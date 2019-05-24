@@ -1,2 +1,3 @@
-# Ignore dummyapp folder
-/gsdk/dummyapp
+/logs/
+/vendor/
+/src/views-cache/

@@ -1,0 +1,21 @@
+{
+    "name": "ufc/eu",
+    "description": "site dos encontros universitarios",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim": "^3.12",
+        "catfan/medoo": "^1.6",
+        "slim/twig-view": "^2.5",
+        "monolog/monolog": "^1.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    }
+}
