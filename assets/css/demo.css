@@ -51,12 +51,14 @@
     background-attachment: scroll; 
 }
 .main{
-    background-color: #FFFFFF;
+    background-color: blueviolet;
 }
 .navigation-example{
     height: 660px;
-    background-image: url('../img/bg.jpg');
-    background-position: center center;
+    /*background-image: url('../img/bg.jpg');*/
+    background-color: blueviolet;
+    /*background-position: center center;*/
+    background-position: center;
     background-size: cover;
     position: relative;
 }
