@@ -1,3 +1,4 @@
-/logs/
-/vendor/
-/src/views-cache/
+logs/
+vendor/
+src/views-cache/
+src/settings.php

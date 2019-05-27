@@ -1,5 +1,5 @@
 <?php
-
+// Altere as Configurações e renomeie para settings.php
 return [
     'settings' => [
         'debug' => true,
