@@ -311,6 +311,10 @@
 /*   EXTRA SHIT  */
 /* @cristina: fisier singular, folosit pentru efectul de blur la parallax in header */
 
+.main .header{
+    background-color: #ff9500;
+}
+
 .blurred-container{
   position:relative;
   width:100%;
