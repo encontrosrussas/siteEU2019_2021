@@ -6,10 +6,20 @@
     width: 100%;
     top:50px;
 }
-.descricao > *, .descricao{
-    background-color: blue;
+.descricao > *, .descricao{ 
+    background-color: #ffde59;
 }
 
 .descricao > *, .descricao{
-    color: yellow;
+    color: rgb(255, 255, 255);
+}
+
+.objetivos > *, .objetivos{
+    background-image: url('../img/objetivo.png');
+    color: rgb(255, 255, 255);
+}
+
+.intro > *, .intro{
+    background-color: #353f9b;
+    color: rgb(255, 255, 255);
 }
