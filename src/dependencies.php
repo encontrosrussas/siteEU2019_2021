@@ -4,7 +4,7 @@ use \Medoo\Medoo;
 return function ($app) {
     // Register component on container
     $app->getContainer()['view'] = function ($container) {
-        $view = new \Slim\Views\Twig('src/views', [
+        $view = new \Slim\Views\Twig('src'. DIRECTORY_SEPARATOR .'views', [
             // 'cache' => 'src/views-cache'
         ]);
 
