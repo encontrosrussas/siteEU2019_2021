@@ -6,3 +6,10 @@
     width: 100%;
     top:50px;
 }
+.descricao > *, .descricao{
+    background-color: blue;
+}
+
+.descricao > *, .descricao{
+    color: yellow;
+}
