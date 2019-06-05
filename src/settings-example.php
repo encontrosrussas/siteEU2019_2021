@@ -8,7 +8,7 @@ return [
         'logger' => [
             'name' => 'slim-app',
             'level' => Monolog\Logger::DEBUG,
-            'path' => __DIR__ .'\..'. DIRECTORY_SEPARATOR . 'logs'. DIRECTORY_SEPARATOR .'app.log',
+            'path' => __DIR__ . DIRECTORY_SEPARATOR . '..'. DIRECTORY_SEPARATOR . 'logs'. DIRECTORY_SEPARATOR .'app.log',
         ],
         'db'=>[
             'type' => 'mysql', 
