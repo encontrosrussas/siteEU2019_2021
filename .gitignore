@@ -1,2 +1,4 @@
 # Ignore dummyapp folder
 /gsdk/dummyapp
+src/
+logs/

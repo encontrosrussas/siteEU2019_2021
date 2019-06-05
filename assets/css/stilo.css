@@ -3,23 +3,23 @@
     height: auto;
 }
 #navbar-full > div.blurred-container > div.motto{
-    width: 100%;
+    width: 97%;
     top:50px;
 }
-.descricao > *, .descricao{ 
+.descricao{ 
     background-color: #ffde59;
 }
 
-.descricao > *, .descricao{
+.descricao{
     color: rgb(255, 255, 255);
 }
 
-.objetivos > *, .objetivos{
+.objetivos{
     background-image: url('../img/objetivo.png');
     color: rgb(255, 255, 255);
 }
 
-.intro > *, .intro{
+.intro{
     background-color: #353f9b;
     color: rgb(255, 255, 255);
 }
