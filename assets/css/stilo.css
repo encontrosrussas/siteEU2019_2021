@@ -2,9 +2,14 @@
     width:100% !important;
     height: auto;
 }
-#navbar-full > div.blurred-container > div.motto{
-    width: 97%;
-    top:50px;
+#navbar-full > div.blurred-container.img-src{
+    display: table;
+    height: 100%;
+    background-image: url('../img/cover_4.jpg');
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 .descricao{ 
     background-color: #ffde59;
@@ -17,6 +22,9 @@
 .objetivos{
     background-image: url('../img/objetivo.png');
     color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .intro{
