@@ -1,0 +1,8 @@
+.my-responsive{
+    width:100% !important;
+    height: auto;
+}
+#navbar-full > div.blurred-container > div.motto{
+    width: 100%;
+    top:50px;
+}
