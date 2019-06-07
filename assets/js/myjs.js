@@ -43,3 +43,7 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+$('#blogCarousel').carousel({
+    interval: 5000
+});
