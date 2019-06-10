@@ -5,7 +5,7 @@
 }
 #navbar-full > div.blurred-container.img-src{
     display: table;
-    height: 200px;
+    height: 600px;
     background-image: url('../img/cover_4.jpg');
     width: 100%;
     background-repeat: no-repeat;
@@ -86,6 +86,16 @@ background: #707070;
     -moz-box-shadow: 6px 6px 10px rgb(24, 23, 23);
     box-shadow: 6px 6px 10px rgb(24, 23, 23);
 
+}
+
+.logo{
+    /*width: 100% !important!;*/
+    height: auto;
+    width: 500px;
+}
+
+.topo{
+    margin-top: 150px;
 }
 
 
