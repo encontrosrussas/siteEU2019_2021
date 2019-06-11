@@ -98,4 +98,17 @@ background: #707070;
     margin-top: 150px;
 }
 
+.rodape{
+    background-color: rgba(0,0,0, .5);
+    margin-left: 0;
+    margin-right: 0;
+}
 
+.cor-seta{
+    color: rgba(0, 0, 0, .7) !important
+}
+
+.margem{
+    margin-left: 0;
+    margin-right: 0;
+}
