@@ -85,7 +85,8 @@ background: #707070;
     border-radius: 12px;
     -webkit-box-shadow: 6px 6px 10px rgb(24, 23, 23); /* aqui começa os efeitos de sombra das caixas*/
     -moz-box-shadow: 6px 6px 10px rgb(24, 23, 23);
-    box-shadow: 6px 6px 10px rgb(24, 23, 23);
+	box-shadow: 6px 6px 10px rgb(24, 23, 23);
+	margin-bottom: 30px;
 
 }
 
