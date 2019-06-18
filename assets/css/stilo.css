@@ -323,3 +323,30 @@ background: #707070;
 .mais{
 	margin-bottom: 10px;
 }
+
+.colorir{
+	background-color: rgb(52, 172, 220) !important;
+	border-color: rgba(52, 172, 220, 0.98) !important;
+	border-radius: 20px;
+	color: #000000 !important;
+	width: 200px;
+	font-weight: 700;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	opacity: unset;
+	
+}
+
+.img-rodape{
+	text-align: right !important;
+	height: 250px;
+	width: 250px;
+	margin-right: none;
+}
+
+.inf-rodape{
+	text-align: right;
+	color: #fff;
+	margin-top: -110px;
+	font-weight: 50 !important;
+}
