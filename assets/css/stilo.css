@@ -350,3 +350,10 @@ background: #707070;
 	margin-top: -110px;
 	font-weight: 50 !important;
 }
+.go-right, .go-left{
+	margin-top: 100% 
+}
+
+.text-center > .go-right, .text-center >  .go-left{
+	margin-top: 0; 
+}
