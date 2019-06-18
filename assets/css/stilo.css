@@ -323,3 +323,11 @@ background: #707070;
 .mais{
 	margin-bottom: 10px;
 }
+
+.go-right, .go-left{
+	margin-top: 100% 
+}
+
+.text-center > .go-right, .text-center >  .go-left{
+	margin-top: 0; 
+}
