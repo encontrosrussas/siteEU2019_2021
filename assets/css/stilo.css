@@ -208,7 +208,6 @@ background: #707070;
 	width: 40px;
 	height: 40px;
 	font-family: 'ecoico';
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
@@ -338,18 +337,26 @@ background: #707070;
 }
 
 .img-rodape{
-	text-align: right !important;
+	text-align: center !important;
 	height: 250px;
 	width: 250px;
 	margin-right: none;
 }
 
-.inf-rodape{
+.inf-rodape > p{
 	text-align: right;
-	color: #fff;
-	margin-top: -110px;
-	font-weight: 50 !important;
+	color: #ddd;
+	opacity: 0.9;
+	/* margin-top: -110px; */
+	font-size: 17px;
 }
+
+.texto-patrocinadoes{
+	color: #ddd;
+	opacity: 0.9;
+	font-size: 17px;
+}
+
 .go-right, .go-left{
 	margin-top: 100% 
 }
