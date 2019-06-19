@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class HomeController
+class LoginControllerAdmin
 {
     protected $container;
 
@@ -12,8 +12,9 @@ class HomeController
         $this->container = $container;
     }
 
-    public function home($request, $response, $args){
+    public function home($request, $response, $args)
+    {
         $this->container->get('logger')->info("slim-app '/' route");
-        return $this->container->view->render($response, 'front/'.$args['nome']);
+        return $this->container->view->render($response, 'admin/template/' . $args['nome']);
     }
 }
