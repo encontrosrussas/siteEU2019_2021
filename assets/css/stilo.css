@@ -168,7 +168,7 @@ background: #707070;
 	background: #3594cb;
 	color: #fff;
 	padding: 2em;
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
 	font-weight: 300;
 	line-height: 1.4;
 	position: relative;
@@ -181,8 +181,8 @@ background: #707070;
 
 .cbp_tmtimeline > li .cbp_tmlabel h2 { 
 	margin-top: 0px;
-	padding: 0 0 10px 0;
-	border-bottom: 1px solid rgba(255,255,255,0.4);
+	/*padding: 0 0 10px 0;
+	border-bottom: 1px solid rgba(255,255,255,0.4);*/
 }
 
 /* The triangle */
@@ -331,7 +331,7 @@ background: #707070;
 	width: 200px;
 	font-weight: 700;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 60px;
 	opacity: unset;
 	
 }
@@ -363,4 +363,56 @@ background: #707070;
 
 .text-center > .go-right, .text-center >  .go-left{
 	margin-top: 0; 
+}
+
+.pag-noticias{
+	background-color: white;
+}
+
+.widget--pagination {
+    margin-top: 2.6666666667em;
+    margin-bottom: 2.6666666667em;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.widget--pagination .pagination--item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.link-list__item, .side-content .date-list__list {
+    border-bottom-width: .0555555556em;
+    border-bottom-style: solid;
+    border-bottom-color: #d1d2d4;
+}
+
+.link-list__item {
+    padding-bottom: .6111111111em;
+    margin-bottom: .6666666667em;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+.link-list__title {
+    font-weight: 700;
+    color: #414042;
+    font-size: 1em;
+    line-height: 1.3333333333em;
+    margin-bottom: 0;
+    transition: all 250ms cubic-bezier(.87,.37,.27,.95);
+}
+
+.link-list__subtitle {
+    color: #414042;
+    line-height: 1.3714285714em;
+    margin-top: .2666666667em;
+}
+
+.link-list__info, .link-list__subtitle {
+    font-size: .7777777778em;
+    font-weight: 400;
 }
