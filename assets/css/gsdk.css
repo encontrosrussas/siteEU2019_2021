@@ -1402,7 +1402,7 @@ input.ct-red + span + label + span.switch-right {
     background-color: #FFFFFF; }
   .navbar-toggle .navbar-collapse,
   .navbar-toggle .navbar-form {
-    border-color: transparent; }
+    border-color: rgba(0, 0, 0, 0.801); }
 
 .dropdown-menu {
   margin: 0;
@@ -1564,9 +1564,9 @@ input.ct-red + span + label + span.switch-right {
 .panel-group .gsdk-collapse {
   display: block;
   height: 0px;
-  visibility: visible;
   overflow: hidden;
-  transition: all 400ms; }
+  visibility: visible;
+  transition: all 0ms; }
 .panel-group .panel-title a:hover,
 .panel-group .panel-title a:focus {
   color: #777777; }

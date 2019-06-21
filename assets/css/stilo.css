@@ -416,3 +416,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     font-size: .7777777778em;
     font-weight: 400;
 }
+
+.navbar-toggle .navbar-collapse,
+.navbar-toggle .navbar-form {
+  border-color: rgba(0, 0, 0, 0.801) !important; 
+}
+
+/*foi com isso que mudei a cor*/
+#top > nav{
+	background-color: rgb(52, 172, 220);
+}
