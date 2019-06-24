@@ -400,7 +400,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .link-list__title {
     font-weight: 700;
     color: #414042;
-    font-size: 1em;
+    font-size: 1.5em;
     line-height: 1.3333333333em;
     margin-bottom: 0;
     transition: all 250ms cubic-bezier(.87,.37,.27,.95);
@@ -413,7 +413,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .link-list__info, .link-list__subtitle {
-    font-size: .7777777778em;
+    font-size: .9999em;
     font-weight: 400;
 }
 
@@ -425,4 +425,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /*foi com isso que mudei a cor*/
 #top > nav{
 	background-color: rgb(52, 172, 220);
+}
+
+body > div.pag-noticias > div > div.text-justify.tim-title.text-center.\.text-nowrap > ol{
+	list-style: none;
+}
+
+/*dando cor as caixas de noticias*/
+.par{
+	background-color: #a3a3a39a;
+}
+
+.color-black{
+	color: #000000;
 }
