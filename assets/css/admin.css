@@ -44,3 +44,7 @@
 	padding-top: 10px;
 	padding-bottom: 30px;
 }
+.overview-chart {
+	height: 50px;
+	position: relative;
+}
