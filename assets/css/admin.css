@@ -20,9 +20,27 @@
 .img-logo-mobile{
     height: 100px;
 }
-
 .content{
     margin-left: 0 !important;
     padding: 11px 0;
     padding-left: 12px;
+}
+.page-wrapper{
+    overflow: visible;
+}
+.page-content--bge5 {
+	background: #e5e5e5;
+	height: 100%;
+}
+.login-wrap {
+	max-width: 540px;
+	padding-top: 8vh;
+	padding-bottom: 8vh;
+	margin: 0 auto;
+}
+.copyright {
+	text-align: center;
+	padding: 0;
+	padding-top: 10px;
+	padding-bottom: 30px;
 }
