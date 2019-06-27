@@ -8,8 +8,10 @@ return function ($app) {
         // Login
         $app->get('/login', AdminController::class . ':login')->setName('login-admin');
         // Dashboard
+        $app->get('/', AdminController::class . ':dashboard')->setName('dashboard-admin');
         $app->get('/dashboard', AdminController::class . ':dashboard')->setName('dashboard-admin');
         $app->get('/usuarios', AdminController::class . ':usuarios')->setName('usuarios-admin');
+        $app->get('/noticias', AdminController::class . ':noticias')->setName('noticias-admin');
         $app->get('/editais', AdminController::class . ':editais')->setName('editais-admin');
         $app->get('/paginas', AdminController::class . ':paginas')->setName('paginas-admin');
         $app->get('/cronogramas', AdminController::class . ':cronogramas')->setName('cronogramas-admin');
