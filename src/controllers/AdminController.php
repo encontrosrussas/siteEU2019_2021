@@ -29,6 +29,12 @@ class AdminController
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/usuarios.html');
     }
+    
+    public function usuarios_modificar($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render($response, 'admin/usuarios-modificacoes.html');
+    }
 
     public function noticias($request, $response, $args)
     {

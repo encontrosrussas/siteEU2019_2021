@@ -11,6 +11,7 @@ return function ($app) {
         $app->get('/', AdminController::class . ':dashboard')->setName('dashboard-admin');
         $app->get('/dashboard', AdminController::class . ':dashboard')->setName('dashboard-admin');
         $app->get('/usuarios', AdminController::class . ':usuarios')->setName('usuarios-admin');
+        $app->get('/usuarios_modificar', AdminController::class . ':usuarios_modificar')->setName('usuarios-modificar-admin');
         $app->get('/noticias', AdminController::class . ':noticias')->setName('noticias-admin');
         $app->get('/editais', AdminController::class . ':editais')->setName('editais-admin');
         $app->get('/paginas', AdminController::class . ':paginas')->setName('paginas-admin');

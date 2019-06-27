@@ -34,7 +34,7 @@ return function ($app) {
             'server' => $settings['host'],
             'username' => $settings['user'],
             'password' => $settings['pass']
-        ]);;
+        ]);
     };
 
 
