@@ -509,3 +509,26 @@ img {vertical-align: middle;}
   background-color: #f1f1f1;
   color: black;
 }
+
+.titulo-acomodacao{
+	font-size: 30px;
+	font-weight: 600;
+}
+
+.descricao-acomodacao{
+	font-size: 20px;
+}
+
+/*alterando cor do gliphicon*/
+.verde{
+	color: #4ab40c;
+}
+
+.hotel{
+	list-style-type: none;
+	padding-left: 0%;
+}
+
+ul{
+	padding: 0px 0px 0px 0px !important;
+}
