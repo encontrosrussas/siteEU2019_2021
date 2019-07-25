@@ -15,6 +15,7 @@ return [
             'host' => 'localhost', 
             'user' => '' ,
             'pass' => '' ,
-            'dbname' => '' 
+            'dbname' => '',
+            'port' => 3306
         ]
 ]];

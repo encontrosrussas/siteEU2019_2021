@@ -48,3 +48,15 @@
 	height: 50px;
 	position: relative;
 }
+.overview-box .icon{
+    margin-right: 0;
+}
+.section__content--p05{
+    padding: 0 5px;
+}
+.au-card{
+    padding: 30px;
+}
+.recent-report{
+    margin-bottom: 30px;
+}

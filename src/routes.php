@@ -19,6 +19,7 @@ return function ($app) {
         $app->get('/apresentacoes', AdminController::class . ':apresentacoes')->setName('apresentacoes-admin');
         $app->get('/mini_cursos', AdminController::class . ':mini_cursos')->setName('mini_cursos-admin');
         $app->get('/palestras', AdminController::class . ':palestras')->setName('palestras-admin');
+        $app->get('/anos', AdminController::class . ':anos')->setName('anos-admin');
         // Conta
         $app->get('/conta', AdminController::class . ':conta')->setName('conta-admin');
         // Sair

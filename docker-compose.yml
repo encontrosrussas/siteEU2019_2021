@@ -1,17 +1,19 @@
-php:
+web:
   build: .
   ports:
-   - "8080:80"
-   - "443:443"
+    - "8080:80"
+  links:
+    - db
   volumes:
-   - ./:/var/www/html
-#   links:
-#    - db
+    - .:/var/www/html
 
-# db:
-#   image: mysql:5.7
-#   volumes:
-#    - /var/lib/mysql
-#   environment:
-#    - MYSQL_ROOT_PASSWORD=myrootpass
-#    - MYSQL_DATABASE=mydatabase
+db:
+  image: mysql:5.7
+  environment:
+    MYSQL_ROOT_PASSWORD: rootpw
+    MYSQL_DATABASE: EU
+    MYSQL_USER: user
+    MYSQL_PASSWORD: password
+  restart: always
+  volumes: 
+    - banco:/var/lib/mysql

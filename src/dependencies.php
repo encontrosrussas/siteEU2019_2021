@@ -33,7 +33,8 @@ return function ($app) {
             'database_name' => $settings['dbname'],
             'server' => $settings['host'],
             'username' => $settings['user'],
-            'password' => $settings['pass']
+            'password' => $settings['pass'],
+            'port' => $settings['port']
         ]);
     };
 

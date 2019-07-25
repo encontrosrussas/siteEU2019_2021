@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use PDOException;
+use mysqli;
+
 class AdminController
 {
     protected $container;
@@ -76,6 +79,16 @@ class AdminController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/palestras.html');
+    }
+    
+    public function anos($request, $response, $args)
+    {
+        $anos = $this->container->db->select("ano",['id', 'nome_ano', 'status']);
+        $anos = [];
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render($response, 'admin/anos.html',[
+            'anos' => $anos
+        ]);
     }
 
     public function conta($request, $response, $args)
