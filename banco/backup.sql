@@ -32,7 +32,7 @@ CREATE TABLE `ano` (
   `palestras` tinyint(4) NOT NULL DEFAULT '1',
   `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `ano` (
 
 LOCK TABLES `ano` WRITE;
 /*!40000 ALTER TABLE `ano` DISABLE KEYS */;
-INSERT INTO `ano` VALUES (1,2019,1,1,1,1,1,1),(2,2018,0,0,0,0,0,0);
+INSERT INTO `ano` VALUES (1,2019,1,1,1,1,1,1),(2,2018,1,0,0,0,0,0);
 /*!40000 ALTER TABLE `ano` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `area` (
   `nome` varchar(50) NOT NULL,
   `descricao` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +263,7 @@ CREATE TABLE `usuarios` (
   `tipo` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 16:20:21
+-- Dump completed on 2019-07-26 17:29:40

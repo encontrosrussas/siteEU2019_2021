@@ -56,12 +56,20 @@ class Ano
     }
 
     /**
-     * Set the value of statusmelho
+     * Set the value of status
      */
     public function setStatus($status)
     {
         if (!empty($status) && !is_null($status))
-            $this->status = $status;
+        $this->status = $status;
+    }
+
+    /**
+     * Get the value of editais
+     */
+    public function getEditais()
+    {
+        return $this->editais;
     }
 
     /**
@@ -141,16 +149,24 @@ class Ano
             $this->apresentacoes = $apresentacoes;
     }
 
+    
     public function toArray()
     {
-        return [
-            "nome_ano" => $this->nome_ano,
-            "status" => $this->status,
-            "editais" => $this->editais,
-            "cronogramas" => $this->cronogramas,
-            "noticias" => $this->noticias,
-            "palestras" => $this->palestras,
-            "apresentacoes" => $this->apresentacoes
-        ];
+        $retorno = [];
+        if (!is_null($this->getNome_ano()))
+            $retorno["nome_ano"] = $this->getNome_ano();
+        if (!is_null($this->getStatus()))
+            $retorno["status"] = $this->getStatus();
+        if (!is_null($this->getEditais()))
+            $retorno["editais"] = $this->getEditais();
+        if (!is_null($this->getCronogramas()))
+            $retorno["cronogramas"] = $this->getCronogramas();
+        if (!is_null($this->getNoticias()))
+            $retorno["noticias"] = $this->getNoticias();
+        if (!is_null($this->getPalestras()))
+            $retorno["palestras"] = $this->getPalestras();
+        if (!is_null($this->getApresentacoes()))
+            $retorno["apresentacoes"] = $this->getApresentacoes();
+        return $retorno;
     }
 }

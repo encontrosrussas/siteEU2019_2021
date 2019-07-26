@@ -12,7 +12,7 @@
                                         <h3 class="title-2 m-b-30">Usuários</h3>
                                     </div>
                                     <div class="col-lg-6 text-right">
-                                        <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/usuarios_modificar">
+                                        <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/usuarios_modificacoes">
                                             <i class="zmdi zmdi-plus"></i>adicionar Usuário</a>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                                     {{usuario.tipo==1 ? 'Administrador' : (usuario.tipo==2 ? 'Organizador' : 'Editor')}}
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{base_url()}}/admin/usuarios_modificar/{{usuario.id}}" class="btn btn-warning">Atualizar</a>
+                                                    <a href="{{base_url()}}/admin/usuarios_modificacoes/{{usuario.id}}" class="btn btn-warning">Atualizar</a>
                                                     <button type="button" id="user-{{usuario.id}}" class="btn btn-danger swldel">Deletar</button>
                                                 </td>
                                             </tr>
