@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 25-Jul-2019 às 15:02
+-- Generation Time: 26-Jul-2019 às 08:55
 -- Versão do servidor: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.20-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -32,14 +32,22 @@ DROP TABLE IF EXISTS `ano`;
 CREATE TABLE IF NOT EXISTS `ano` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_ano` year(4) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  `editais` tinyint(4) NOT NULL DEFAULT '0',
-  `cronogramas` tinyint(4) NOT NULL DEFAULT '0',
-  `noticias` tinyint(4) NOT NULL DEFAULT '0',
-  `palestras` tinyint(4) NOT NULL DEFAULT '0',
-  `apresentacoes` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `editais` tinyint(4) NOT NULL DEFAULT '1',
+  `cronogramas` tinyint(4) NOT NULL DEFAULT '1',
+  `noticias` tinyint(4) NOT NULL DEFAULT '1',
+  `palestras` tinyint(4) NOT NULL DEFAULT '1',
+  `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `ano`
+--
+
+INSERT INTO `ano` (`id`, `nome_ano`, `status`, `editais`, `cronogramas`, `noticias`, `palestras`, `apresentacoes`) VALUES
+(1, 2019, 1, 1, 1, 1, 1, 1),
+(2, 2018, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -53,10 +61,25 @@ CREATE TABLE IF NOT EXISTS `apresentacoes` (
   `nome` varchar(150) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `area_id` int(11) DEFAULT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_apresentacoes_ano1_idx` (`ano_id`)
+  KEY `fk_apresentacoes_ano1_idx` (`ano_id`),
+  KEY `fk_apresentacoes_area1_idx` (`area_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `area`
+--
+
+DROP TABLE IF EXISTS `area`;
+CREATE TABLE IF NOT EXISTS `area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `descricao` longtext NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -70,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `cronogramas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dia` date NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_cronogramas_ano1_idx` (`ano_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -87,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `editais` (
   `nome` varchar(100) NOT NULL,
   `descricao` longtext,
   `tipo` varchar(100) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_editais_ano_idx` (`ano_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -104,10 +127,11 @@ CREATE TABLE IF NOT EXISTS `mini_cursos` (
   `nome` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_mini_cursos_ano1_idx` (`ano_id`)
+  KEY `fk_mini_cursos_ano1_idx` (`ano_id`),
+  KEY `fk_mini_cursos_area1_idx` (`area_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -124,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `hora` time NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
   `conteudo` longtext NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_noticias_ano1_idx` (`ano_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -141,10 +165,11 @@ CREATE TABLE IF NOT EXISTS `palestras` (
   `nome` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_palestras_ano1_idx` (`ano_id`)
+  KEY `fk_palestras_ano1_idx` (`ano_id`),
+  KEY `fk_palestras_area1_idx` (`area_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -171,37 +196,40 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Limitadores para a tabela `apresentacoes`
 --
 ALTER TABLE `apresentacoes`
-  ADD CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `cronogramas`
 --
 ALTER TABLE `cronogramas`
-  ADD CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `editais`
 --
 ALTER TABLE `editais`
-  ADD CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `mini_cursos`
 --
 ALTER TABLE `mini_cursos`
-  ADD CONSTRAINT `fk_mini_cursos_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_mini_cursos_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_mini_cursos_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `noticias`
 --
 ALTER TABLE `noticias`
-  ADD CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `palestras`
 --
 ALTER TABLE `palestras`
-  ADD CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_palestras_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

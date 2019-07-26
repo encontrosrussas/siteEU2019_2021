@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `ano`;
 CREATE TABLE `ano` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_ano` year(4) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  `editais` tinyint(4) NOT NULL DEFAULT '0',
-  `cronogramas` tinyint(4) NOT NULL DEFAULT '0',
-  `noticias` tinyint(4) NOT NULL DEFAULT '0',
-  `palestras` tinyint(4) NOT NULL DEFAULT '0',
-  `apresentacoes` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `editais` tinyint(4) NOT NULL DEFAULT '1',
+  `cronogramas` tinyint(4) NOT NULL DEFAULT '1',
+  `noticias` tinyint(4) NOT NULL DEFAULT '1',
+  `palestras` tinyint(4) NOT NULL DEFAULT '1',
+  `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +41,7 @@ CREATE TABLE `ano` (
 
 LOCK TABLES `ano` WRITE;
 /*!40000 ALTER TABLE `ano` DISABLE KEYS */;
-INSERT INTO `ano` VALUES (1,2019,1,0,0,0,0,0),(2,2018,0,0,0,0,0,0);
+INSERT INTO `ano` VALUES (1,2019,1,1,1,1,1,1),(2,2018,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `ano` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,11 +57,13 @@ CREATE TABLE `apresentacoes` (
   `nome` varchar(150) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `area_id` int(11) DEFAULT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_apresentacoes_ano1_idx` (`ano_id`),
-  CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_apresentacoes_area1_idx` (`area_id`),
+  CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,6 +77,31 @@ LOCK TABLES `apresentacoes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `area`
+--
+
+DROP TABLE IF EXISTS `area`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `descricao` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `area`
+--
+
+LOCK TABLES `area` WRITE;
+/*!40000 ALTER TABLE `area` DISABLE KEYS */;
+INSERT INTO `area` VALUES (1,'Engenharia Civil','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(2,'Engenharia Mecanica','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(3,'Engenharia de ProduÃ§Ã£o','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(4,'CiÃªncia da ComputaÃ§Ã£o','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(5,'Engenharia de Software','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.');
+/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cronogramas`
 --
 
@@ -85,10 +112,10 @@ CREATE TABLE `cronogramas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dia` date NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_cronogramas_ano1_idx` (`ano_id`),
-  CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,10 +140,10 @@ CREATE TABLE `editais` (
   `nome` varchar(100) NOT NULL,
   `descricao` longtext,
   `tipo` varchar(100) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_editais_ano_idx` (`ano_id`),
-  CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,11 +168,13 @@ CREATE TABLE `mini_cursos` (
   `nome` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_mini_cursos_ano1_idx` (`ano_id`),
-  CONSTRAINT `fk_mini_cursos_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_mini_cursos_area1_idx` (`area_id`),
+  CONSTRAINT `fk_mini_cursos_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_mini_cursos_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -172,10 +201,10 @@ CREATE TABLE `noticias` (
   `hora` time NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
   `conteudo` longtext NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_noticias_ano1_idx` (`ano_id`),
-  CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -200,11 +229,13 @@ CREATE TABLE `palestras` (
   `nome` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `area` varchar(20) NOT NULL,
-  `ano_id` int(11) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_palestras_ano1_idx` (`ano_id`),
-  CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_palestras_area1_idx` (`area_id`),
+  CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_palestras_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -230,8 +261,9 @@ CREATE TABLE `usuarios` (
   `email` varchar(150) NOT NULL,
   `senha` varchar(250) NOT NULL,
   `tipo` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,6 +272,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'guilherme nepomuceno','guilherme@gmail.com','25d55ad283aa400af464c76d713c07ad',1),(2,'susana','susana@gmail.com','e10adc3949ba59abbe56e057f20f883e',2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -252,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-25 21:06:45
+-- Dump completed on 2019-07-26 16:20:21

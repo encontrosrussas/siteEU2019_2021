@@ -5,50 +5,70 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="col-lg-12">
+                        <form method="POST">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Adicionar Usuário</strong>
+                                <strong>{{texto}} Usuário</strong>
                             </div>
                             <div class="card-body card-block">
+                                {% if mensagens %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul>
+                                        {% for msg in mensagens %}
+                                        <li>{{msg}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endif %}
                                 <div class="form-group">
                                     <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" value="Digite o Nome do Usuario" class="form-control">
+                                    <input type="text" id="nome" name='nome' placeholder="Digite o Nome do Usuario" class="form-control" value='{{usuario.nome}}'>
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class=" form-control-label">Email</label>
-                                    <input type="email" id="email" placeholder="Digite o Email do Usuario" class="form-control">
+                                    <input type="email" id="email" name='email' placeholder="Digite o Email do Usuario" class="form-control" value='{{usuario.email}}'>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pass" class=" form-control-label">Senha</label>
-                                    <input type="password" id="pass" placeholder="Digite sua Senha" class="form-control">
+                                    <label for="pass" class=" form-control-label">Senha {{usuario ? "<span style='color:red;font-size: 10px'>Caso deixe em branco a senha permanecera a mesma</span>" : ""}}</label>
+                                    <input type="password" id="pass" name='pass' placeholder="Digite sua Senha" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm-pass" class=" form-control-label">Confirme sua Nova Senha</label>
-                                    <input type="password" id="confirm-pass" placeholder="Digite sua Nova Senha Novamente" class="form-control">
+                                    <label for="confirm-pass" class=" form-control-label">Confirme sua Nova Senha {{usuario ? "<span style='color:red;font-size: 10px'>Caso deixe em branco sua senha permanecera a mesma</span>" : ""}}</label>
+                                    <input type="password" id="confirm-pass" name='confirm-pass' placeholder="Digite sua Nova Senha Novamente" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="pass" class=" form-control-label">Tipo do Usuario</label>
                                     <div class="container row form-group">
-                                        <div class="form-check col-lg-6">
-                                            <input class="form-check-input" type="radio" name="tipoU" id="editor" value="1">
-                                            <label class="form-check-label" for="editor">
-                                                Editor
-                                            </label>
-                                        </div>
-                                        <div class="form-check col-lg-6">
-                                            <input class="form-check-input" type="radio" name="tipoU" id="adm" value="1" checked>
+                                        <div class="form-check col-lg-4">
+                                            <input class="form-check-input" type="radio" name="tipoU" id="adm" value="1" {{ usuario.tipo|default('1') == '1' ? 'checked' : ''}}>
                                             <label class="form-check-label" for="adm">
                                                 Administrador
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-lg-4">
+                                            <input class="form-check-input" type="radio" name="tipoU" id="org" value="2" {{ usuario.tipo == '2' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="org">
+                                                Organizador
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-lg-4">
+                                            <input class="form-check-input" type="radio" name="tipoU" id="editor" value="3" {{ usuario.tipo == '3' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="editor">
+                                                Editor
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Adicionar
+                                <button type="submit" name='enviar' value="{{usuario.id}}" class="btn btn-success btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> {{texto}}
                                 </button>
                             </div>
                         </div>
+                        </form>
                     </div>
 {% endblock %}

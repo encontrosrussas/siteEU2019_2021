@@ -9,6 +9,15 @@ class Usuario{
     private $senha;   
     private $tipo;   
 
+    public function __construct($id=null, $nome=null, $email=null, $senha=null, $tipo=null)
+    {
+        $this->setId($id);
+        $this->setNome($nome);
+        $this->setEmail($email);
+        $this->setSenha($senha);
+        $this->setTipo($tipo);
+    }
+
     /**
      * Get the value of id
      */ 
@@ -109,11 +118,15 @@ class Usuario{
 
     public function toArray()
     {
-        return [
-            "nome" => $this->nome,
-            "email" => $this->email,
-            "senha" => $this->senha,
-            "tipo" => $this->tipo
-        ];
+        $retorno =[];
+        if(!is_null($this->getNome()))
+            $retorno["nome"] = $this->getNome();
+        if(!is_null($this->getEmail()))
+            $retorno["email"] = $this->getEmail();
+        if(!is_null($this->getSenha()))
+            $retorno["senha"] = $this->getSenha();
+        if(!is_null($this->getTipo()))
+            $retorno["tipo"] = $this->getTipo();
+        return $retorno;
     }
 }
