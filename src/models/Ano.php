@@ -60,7 +60,7 @@ class Ano
      */
     public function setStatus($status)
     {
-        if (!empty($status) && !is_null($status))
+        if (!is_null($status))
         $this->status = $status;
     }
 
@@ -77,7 +77,7 @@ class Ano
      */
     public function setEditais($editais)
     {
-        if (!empty($editais) && !is_null($editais))
+        if (!is_null($editais))
             $this->editais = $editais;
     }
 
@@ -94,7 +94,7 @@ class Ano
      */
     public function setCronogramas($cronogramas)
     {
-        if (!empty($cronogramas) && !is_null($cronogramas))
+        if (!is_null($cronogramas))
             $this->cronogramas = $cronogramas;
     }
 
@@ -111,7 +111,7 @@ class Ano
      */ 
     public function setNoticias($noticias)
     {
-        if (!empty($noticias) && !is_null($noticias))
+        if (!is_null($noticias))
             $this->noticias = $noticias;
     }
 
@@ -128,7 +128,7 @@ class Ano
      */ 
     public function setPalestras($palestras)
     {
-        if (!empty($palestras) && !is_null($palestras))
+        if (!is_null($palestras))
         $this->palestras = $palestras;
     }
 
@@ -145,7 +145,7 @@ class Ano
      */ 
     public function setApresentacoes($apresentacoes)
     {
-        if (!empty($apresentacoes) && !is_null($apresentacoes))
+        if (!is_null($apresentacoes))
             $this->apresentacoes = $apresentacoes;
     }
     
