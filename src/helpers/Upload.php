@@ -50,18 +50,13 @@ class Upload
     public function __construct($diretorio = null)
     {
         self::$diretorio = ((string) $diretorio ? $diretorio : "arquivos/");
-        $root = $_SERVER['DOCUMENT_ROOT'];
-        $path = $_SERVER['REQUEST_URI'];
-        $path = ltrim($path, '/');
-        $path = explode('/', $path);
-        $cam = $path[0] . "/";
-        if ($path[1] != 'Public') :
-            $cam .= 'Public/';
-        else :
-            $cam .= $path[1] . '/';
-        endif;
-        $path = $cam;
-        $this->pathRoot = $root . $path . self::$diretorio;
+        // $root = $_SERVER['DOCUMENT_ROOT'];
+        // $path = $_SERVER['REQUEST_URI'];
+        // $path = ltrim($path, '/');
+        // $path = explode('/', $path);
+        // $cam = $path[0] . "/";
+        // $path = $cam;
+        $this->pathRoot = self::$diretorio;
         self::$diretorio = $this->pathRoot;
         if (!file_exists(self::$diretorio) && !is_dir(self::$diretorio)) :
             mkdir(self::$diretorio);
@@ -97,7 +92,7 @@ class Upload
      * @param null $name
      * @param null $folder
      */
-    public function image(array $upload, $name = null, $folder = null)
+    public function image($upload, $name = null, $folder = null)
     {
         $folder = ((string) $folder);
         $folders = explode('/', $folder);
@@ -120,7 +115,8 @@ class Upload
                 $data["name"] = $name[$campo] ? $name[$campo] . $ext : $data["name"];
                 $this->arquivo = $data;
                 $this->uploadImagem();
-            } else :
+            } 
+        else :
             if (is_array($name)) :
                 $this->arquivo = $upload;
                 $this->uploadImagem();
@@ -140,7 +136,8 @@ class Upload
     {
         $file_dimensions = getimagesize($this->arquivo['tmp_name']);
         $file_type = strtolower($file_dimensions['mime']);
-        switch ($file_type): case 'image/jpeg':
+        switch ($file_type):
+            case 'image/jpeg':
             case 'image/pjpeg':
                 $this->imagem = imagecreatefromjpeg($this->arquivo["tmp_name"]);
                 break;
@@ -165,7 +162,7 @@ class Upload
      * @param null $maxFileSize
      * @param bool $verificacao
      */
-    public function file(array $file, $name = null, $folder = null, $maxFileSize = null, $verificacao = true)
+    public function file($file, $name = null, $folder = null, $maxFileSize = null, $verificacao = true)
     {
         $folder = ((string) $folder);
         $folders = explode('/', $folder);
@@ -188,15 +185,16 @@ class Upload
                 $data["name"] = $name[$campo] ? $name[$campo] . $ext : $data["name"];
                 $this->arquivo = $data;
                 $this->verificaEnviaArquivos($maxFileSize, $verificacao);
-            } else :
+            } 
+        else :
             if (is_array($name)) :
                 $this->arquivo = $file;
                 $this->verificaEnviaArquivos($maxFileSize, $verificacao);
             else :
-                $this->arquivo = $file;
                 $ext = explode('.', $file['name']);
                 $ext = "." . $ext[count($ext) - 1];
-                $data["name"] = $name ? $name . $ext : $file["name"];
+                $file["name"] = $name ? $name . $ext : $file["name"];
+                $this->arquivo = $file;
                 $this->verificaEnviaArquivos($maxFileSize, $verificacao);
             endif;
         endif;
@@ -258,7 +256,7 @@ class Upload
      * Move o arquivo para o caminho da Variavel Diretorio
      * @param array $upload
      */
-    private function moveArquivo(array $upload)
+    private function moveArquivo($upload)
     {
         if (move_uploaded_file($upload["tmp_name"], self::$diretorio . $upload["name"])) :
             $this->result = true;

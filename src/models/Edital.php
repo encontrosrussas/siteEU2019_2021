@@ -119,6 +119,8 @@ class Edital{
             $retorno["nome"] = $this->getNome();
         if (!is_null($this->getDescricao()))
             $retorno["descricao"] = $this->getDescricao();
+        if (!is_null($this->getArquivo()))
+            $retorno["arquivo"] = $this->getArquivo();
         if (!is_null($this->getTipo()))
             $retorno["tipo"] = $this->getTipo();
         if (!is_null($this->getAno_id()))

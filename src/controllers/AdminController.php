@@ -11,6 +11,7 @@ use app\models\MiniCurso;
 use app\models\Noticia;
 use app\models\Palestra;
 use app\models\Usuario;
+use app\helpers\Upload;
 
 class AdminController
 {
@@ -223,6 +224,15 @@ class AdminController
     {
         $db = $this->container->db;
         if (isset($args['id'])) {
+            $img = $db->select(
+                "noticias",
+                'imagem',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img)){
+                $upload = new Upload("uploads/");
+                $upload->excluir($img, "noticias/");
+            }
             $db->delete(
                 "noticias",
                 ["id" => $args['id']]
@@ -255,9 +265,21 @@ class AdminController
             if (count($argumentos['mensagens']) == 0) {
                 $noticia = new Noticia();
                 $noticia->setTitulo($dados['titulo']);
-                $noticia->setImagem($dados['imagem']);
                 $noticia->setConteudo($dados['conteudo']);
+                $imagem = $request->getUploadedFiles()['imagem'];
+                $upload = new Upload("uploads/");
+                if($imagem->getError() === UPLOAD_ERR_OK){
+                    $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'noticias/');
+                    $noticia->setImagem($upload->getResult()==true?$upload->getName():'');
+                }
                 if (!empty($dados['enviar'])) {
+                    $img = $db->select(
+                        "noticias",
+                        'imagem',
+                        ['id'=>$dados['enviar']]
+                    )[0];
+                    if (!empty($noticia->getImagem()) || !is_null($noticia->getImagem()))
+                        $upload->excluir($img, "noticias/");
                     $noticia->setId($dados['enviar']);
                     $db->update(
                         'noticias',
@@ -267,17 +289,17 @@ class AdminController
                         ]
                     );
                 } else {
-                    $noticia->setAno_id(
-                        $db->select(
-                            "ano",
-                            [
-                                "id"
-                            ],
-                            [
-                                "status" => 1
-                            ]
-                        )[0]['id']
-                    );
+                    $ano = $db->select(
+                        "ano",
+                        [
+                            "id",
+                            "nome_ano",
+                        ],
+                        [
+                            "status" => 1
+                        ]
+                    )[0];
+                    $noticia->setAno_id($ano['id']);
                     $noticia->setData(date("Y-m-d"));
                     $noticia->setHora(date("H:i"));
                     $db->insert(
@@ -297,6 +319,7 @@ class AdminController
                 [
                     'id',
                     'titulo',
+                    'imagem',
                     'conteudo'
                 ],
                 [
@@ -319,6 +342,15 @@ class AdminController
     {
         $db = $this->container->db;
         if (isset($args['id'])) {
+            $img = $db->select(
+                "editais",
+                'arquivo',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img)) {
+                $upload = new Upload("uploads/");
+                $upload->excluir($img, "editais/");
+            }
             $db->delete(
                 "editais",
                 ["id" => $args['id']]
@@ -353,8 +385,20 @@ class AdminController
                 $edital->setNome($dados['nome']);
                 $edital->setDescricao($dados['descricao']);
                 $edital->setTipo($dados['tipo']);
-                $edital->setArquivo($dados['arquivo']);
+                $arquivo = $request->getUploadedFiles()['arquivo'];
+                if ($arquivo->getError() === UPLOAD_ERR_OK) {
+                    $upload = new Upload("uploads/");
+                    $upload->file($_FILES['arquivo'], date("d-m-Y-H-i-s"), 'editais/');
+                    $edital->setArquivo($upload->getResult() == true ? $upload->getName() : '');
+                }
                 if (!empty($dados['enviar'])) {
+                    $img = $db->select(
+                        "editais",
+                        'arquivo',
+                        ['id' => $dados['enviar']]
+                    )[0];
+                    if (!empty($edital->getArquivo()) || !is_null($edital->getArquivo()))
+                        $upload->excluir($img, "editais/");
                     $edital->setId($dados['enviar']);
                     $db->update(
                         'editais',
@@ -364,17 +408,17 @@ class AdminController
                         ]
                     );
                 } else {
-                    $edital->setAno_id(
-                        $db->select(
-                            "ano",
-                            [
-                                "id"
-                            ],
-                            [
-                                "status" => 1
-                            ]
-                        )[0]['id']
-                    );
+                    $ano = $db->select(
+                        "ano",
+                        [
+                            "id",
+                            "nome_ano",
+                        ],
+                        [
+                            "status" => 1
+                        ]
+                    )[0];
+                    $edital->setAno_id($ano['id']);
                     $db->insert(
                         'editais',
                         $edital->toArray()
@@ -392,6 +436,7 @@ class AdminController
                 [
                     'id',
                     'nome',
+                    'arquivo',
                     'tipo',
                     'descricao'
                 ],
@@ -421,6 +466,15 @@ class AdminController
     {
         $db = $this->container->db;
         if (isset($args['id'])) {
+            $img = $db->select(
+                "cronogramas",
+                'imagem',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img)) {
+                $upload = new Upload("uploads/");
+                $upload->excluir($img, "cronogramas/");
+            }
             $db->delete(
                 "cronogramas",
                 ["id" => $args['id']]
@@ -458,8 +512,20 @@ class AdminController
                     ]
                 )[0];
                 $cronograma->setDia("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
-                $cronograma->setImagem($dados['imagem']);
+                $imagem = $request->getUploadedFiles()['imagem'];
+                $upload = new Upload("uploads/");
+                if ($imagem->getError() === UPLOAD_ERR_OK) {
+                    $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'cronogramas/');
+                    $cronograma->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                }
                 if (!empty($dados['enviar'])) {
+                    $img = $db->select(
+                        "cronogramas",
+                        'imagem',
+                        ['id' => $dados['enviar']]
+                    )[0];
+                    if (!empty($cronograma->getImagem()) || !is_null($cronograma->getImagem()))
+                        $upload->excluir($img, "cronogramas/");
                     $cronograma->setId($dados['enviar']);
                     $db->update(
                         'cronogramas',

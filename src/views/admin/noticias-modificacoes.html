@@ -5,7 +5,7 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="col-lg-12">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{texto}} Noticias</strong>
@@ -27,9 +27,12 @@
                                     <label for="titulo" class=" form-control-label">Titulo</label>
                                     <input type="text" id="titulo" name='titulo' placeholder="Digite o Titulo da Noticia" class="form-control" value='{{noticia.titulo}}'>
                                 </div>
+                                {% if noticia.imagem %}
+                                <img src="{{base_url()}}/uploads/noticias/{{noticia.imagem}}" style="width: 50%">
+                                {% endif %}
                                 <div class="form-group">
                                     <label for="imagem" class=" form-control-label">Imagem</label>
-                                    <input type="text" id="imagem" name='imagem' placeholder="Imagem..." class="form-control">
+                                    <input type="file" id="imagem" name="imagem" class="form-control-file">
                                 </div>
                                 <div class="form-group">
                                     <label for="conteudo" class=" form-control-label">Conteúdo</label>
@@ -45,4 +48,20 @@
                         </div>
                         </form>
                     </div>
+{% endblock %}
+{% block js %}
+<script src="{{base_url()}}/assets/ckeditor/ckeditor.js"></script>
+<script src="{{base_url()}}/assets/ckeditor/translations/pt-br.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#conteudo'), {
+            language: 'pt-br'
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 {% endblock %}
