@@ -5,8 +5,10 @@ namespace app\models;
 class MiniCurso{
     private $id;
     private $nome;
+    private $data;
+    private $hora;
     private $descricao;
-    private $tipo;
+    private $area_id;
     private $ano_id;
 
     /**
@@ -61,20 +63,54 @@ class MiniCurso{
     }
 
     /**
-     * Get the value of tipo
-     */ 
-    public function getTipo()
+     * Get the value of data
+     */
+    public function getData()
     {
-        return $this->tipo;
+        return $this->data;
     }
 
     /**
-     * Set the value of tipo
-     */ 
-    public function setTipo($tipo)
+     * Set the value of data
+     */
+    public function setData($data)
     {
-        if (!empty($tipo) && !is_null($tipo))
-        $this->tipo = $tipo;
+        if (!empty($data) && !is_null($data))
+            $this->data = $data;
+    }
+
+    /**
+     * Get the value of hora
+     */
+    public function getHora()
+    {
+        return $this->hora;
+    }
+
+    /**
+     * Set the value of hora
+     */
+    public function setHora($hora)
+    {
+        if (!empty($hora) && !is_null($hora))
+            $this->hora = $hora;
+    }
+
+    /**
+     * Get the value of area
+     */
+    public function getArea_id()
+    {
+        return $this->area_id;
+    }
+
+    /**
+     * Set the value of area
+     */
+    public function setArea_id($area_id)
+    {
+        if (!empty($area_id) && !is_null($area_id))
+            $this->area_id = $area_id;
     }
 
     /**
@@ -96,12 +132,17 @@ class MiniCurso{
 
     public function toArray()
     {
-        return [
-            "nome" => $this->nome,
-            "data" => $this->data,
-            "hora" => $this->hora,
-            "area" => $this->area,
-            "ano_id" => $this->ano_id
-        ];
+        $retorno = [];
+        if (!is_null($this->getNome()))
+            $retorno["nome"] = $this->getNome();
+        if (!is_null($this->getData()))
+            $retorno["data"] = $this->getData();
+        if (!is_null($this->getHora()))
+            $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getArea_id()))
+            $retorno["area_id"] = $this->getArea_id();
+        if (!is_null($this->getAno_id()))
+            $retorno["ano_id"] = $this->getAno_id();
+        return $retorno;
     }
 }

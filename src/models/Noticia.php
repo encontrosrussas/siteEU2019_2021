@@ -132,13 +132,19 @@ class Noticia{
 
     public function toArray()
     {
-        return [
-            "titulo" => $this->titulo,
-            "data" => $this->data,
-            "hora" => $this->hora,
-            "imagem" => $this->imagem,
-            "conteudo" => $this->conteudo,
-            "ano_id" => $this->ano_id
-        ];
+        $retorno = [];
+        if (!is_null($this->getTitulo()))
+            $retorno["titulo"] = $this->getTitulo();
+        if (!is_null($this->getData()))
+            $retorno["data"] = $this->getData();
+        if (!is_null($this->getHora()))
+            $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getImagem()))
+            $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getConteudo()))
+            $retorno["conteudo"] = $this->getConteudo();
+        if (!is_null($this->getAno_id()))
+            $retorno["ano_id"] = $this->getAno_id();
+        return $retorno;
     }
 }

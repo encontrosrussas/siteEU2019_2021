@@ -7,6 +7,7 @@ class Edital{
     private $nome;
     private $descricao;
     private $tipo;
+    private $arquivo;
     private $ano_id;
 
     /**
@@ -94,13 +95,34 @@ class Edital{
         $this->ano_id = $ano_id;
     }
 
+    /**
+     * Get the value of arquivo
+     */
+    public function getArquivo()
+    {
+        return $this->arquivo;
+    }
+
+    /**
+     * Set the value of arquivo
+     */
+    public function setArquivo($arquivo)
+    {
+        if (!empty($arquivo) && !is_null($arquivo))
+        $this->arquivo = $arquivo;
+    }
+
     public function toArray()
     {
-        return [
-            "nome" => $this->nome,
-            "descricao" => $this->descricao,
-            "tipo" => $this->tipo,
-            "ano_id" => $this->ano_id
-        ];
+        $retorno = [];
+        if (!is_null($this->getNome()))
+            $retorno["nome"] = $this->getNome();
+        if (!is_null($this->getDescricao()))
+            $retorno["descricao"] = $this->getDescricao();
+        if (!is_null($this->getTipo()))
+            $retorno["tipo"] = $this->getTipo();
+        if (!is_null($this->getAno_id()))
+            $retorno["ano_id"] = $this->getAno_id();
+        return $retorno;
     }
 }

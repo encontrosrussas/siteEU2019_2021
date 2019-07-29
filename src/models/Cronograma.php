@@ -76,11 +76,15 @@ class Cronograma{
             $this->ano_id = $ano_id;
     }
 
-    public function toArray(){
-        return [
-            "dia" => $this->dia,
-            "imagem" => $this->imagem,
-            "ano_id" => $this->ano_id
-        ];
+    public function toArray()
+    {
+        $retorno = [];
+        if (!is_null($this->getDia()))
+            $retorno["dia"] = $this->getDia();
+        if (!is_null($this->getImagem()))
+            $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getAno_id()))
+            $retorno["ano_id"] = $this->getAno_id();
+        return $retorno;
     }
 }

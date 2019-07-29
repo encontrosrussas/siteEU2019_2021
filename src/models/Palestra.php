@@ -7,7 +7,7 @@ class Palestra{
     private $nome;
     private $data;
     private $hora;
-    private $area;
+    private $area_id;
     private $ano_id;
 
     /**
@@ -80,19 +80,19 @@ class Palestra{
 
     /**
      * Get the value of area
-     */ 
-    public function getArea()
+     */
+    public function getArea_id()
     {
-        return $this->area;
+        return $this->area_id;
     }
 
     /**
      * Set the value of area
-     */ 
-    public function setArea($area)
+     */
+    public function setArea_id($area_id)
     {
-        if (!empty($area) && !is_null($area))
-        $this->area = $area;
+        if (!empty($area_id) && !is_null($area_id))
+            $this->area_id = $area_id;
     }
 
     /**
@@ -112,13 +112,19 @@ class Palestra{
         $this->ano_id = $ano_id;
     }
 
-    public function toArray(){
-        return [
-            "nome" => $this->nome,
-            "data" => $this->data,
-            "hora" => $this->hora,
-            "area" => $this->area,
-            "ano_id" => $this->ano_id
-        ];
+    public function toArray()
+    {
+        $retorno = [];
+        if (!is_null($this->getNome()))
+            $retorno["nome"] = $this->getNome();
+        if (!is_null($this->getData()))
+            $retorno["data"] = $this->getData();
+        if (!is_null($this->getHora()))
+            $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getArea_id()))
+            $retorno["area_id"] = $this->getArea_id();
+        if (!is_null($this->getAno_id()))
+            $retorno["ano_id"] = $this->getAno_id();
+        return $retorno;
     }
 }

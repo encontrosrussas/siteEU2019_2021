@@ -1,5 +1,5 @@
 {% extends "admin/base/template-base-dashboard.html" %}
-{% block title %}{{texto}} Área{% endblock %}
+{% block title %}{{texto}} Noticias{% endblock %}
 {% block page %}
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -8,7 +8,7 @@
                         <form method="POST">
                         <div class="card">
                             <div class="card-header">
-                                <strong>{{texto}} Área</strong>
+                                <strong>{{texto}} Noticias</strong>
                             </div>
                             <div class="card-body card-block">
                                 {% if mensagens %}
@@ -24,16 +24,21 @@
                                 </div>
                                 {% endif %}
                                 <div class="form-group">
-                                    <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" name='nome' placeholder="Digite o Nome da Área" class="form-control" value='{{area.nome}}'>
+                                    <label for="titulo" class=" form-control-label">Titulo</label>
+                                    <input type="text" id="titulo" name='titulo' placeholder="Digite o Titulo da Noticia" class="form-control" value='{{noticia.titulo}}'>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descricao" class=" form-control-label">Descrição</label>
-                                    <textarea name="descricao" id="descricao" rows="5" placeholder="Digite a Descrição da Área..." class="form-control">{{area.descricao|default("")}}</textarea>
+                                    <label for="imagem" class=" form-control-label">Imagem</label>
+                                    <input type="text" id="imagem" name='imagem' placeholder="Imagem..." class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="conteudo" class=" form-control-label">Conteúdo</label>
+                                    <textarea name="conteudo" id="conteudo" rows="5" placeholder="Digite o Conteúdo da Noticia..." class="form-control">{{noticia.conteudo|default("")}}</textarea>
+                                </div>
+
                             </div>
                             <div class="card-footer">
-                                <button type="submit" name='enviar' value="{{area.id}}" class="btn btn-success btn-sm">
+                                <button type="submit" name='enviar' value="{{noticia.id}}" class="btn btn-success btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> {{texto}}
                                 </button>
                             </div>

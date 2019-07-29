@@ -10,31 +10,38 @@
                                 <strong>Conta</strong>
                             </div>
                             <div class="card-body card-block">
+                                {% if mensagens %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul>
+                                        {% for msg in mensagens %}
+                                        <li>{{msg}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endif %}
                                 <div class="form-group">
                                     <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" value="John Doe" class="form-control">
+                                    <input type="text" id="nome" placeholder="Digite o Nome do Usuario" value="{{usuario.nome}}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="email" class=" form-control-label">Email</label>
-                                    <input type="email" id="email" value="johndoe@example.com" class="form-control">
+                                    <input type="email" id="email" placeholder="Digite o Email do Usuario" value="{{usuario.email}}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pass" class=" form-control-label">Senha</label>
-                                    <input type="password" id="pass" placeholder="Digite sua Senha" class="form-control">
+                                    <label for="pass" class=" form-control-label">Senha <span style='color:red;font-size: 10px'>Digite sua Senha para Alterar os Dados</span></label>
+                                    <input type="password" id="pass" name='pass' placeholder="Digite sua Senha" class="form-control">
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col-8">
-                                        <div class="form-group">
-                                            <label for="new-pass" class=" form-control-label">Nova Senha</label>
-                                            <input type="password" id="new-pass" placeholder="Digite sua Nova Senha" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="form-group">
-                                            <label for="confirm-new-pass" class=" form-control-label">Confirme sua Nova Senha</label>
-                                            <input type="password" id="confirm-new-pass" placeholder="Digite sua Nova Senha Novamente" class="form-control">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="new-pass" class=" form-control-label">Nova Senha <span style='color:red;font-size: 10px'>Caso deixe em branco a senha permanecera a mesma</span></label>
+                                    <input type="password" id="new-pass" placeholder="Digite sua Nova Senha" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-pass" class=" form-control-label">Confirme sua Nova Senha <span style='color:red;font-size: 10px'>Caso deixe em branco sua senha permanecera a mesma</span></label>
+                                    <input type="password" id="confirm-pass" name='confirm-pass' placeholder="Digite sua Nova Senha Novamente"
+                                        class="form-control">
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -1,0 +1,95 @@
+{% extends "admin/base/template-base-dashboard.html" %}
+{% block title %}{{texto}} Apresentações{% endblock %}
+{% block page %}
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="col-lg-12">
+                        <form method="POST">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{{texto}} Apresentações</strong>
+                            </div>
+                            <div class="card-body card-block">
+                                {% if mensagens %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul>
+                                        {% for msg in mensagens %}
+                                        <li>{{msg}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <label for="nome" class=" form-control-label">Nome</label>
+                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome da Apresentação" class="form-control" value="{{apresentacao.nome}}">
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-1">
+                                        <label for="dia" class=" form-control-label">Dia:</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <select name="dia" id="dia" class="form-control">
+                                            {% for i in 1..31 %}
+                                            <option value="{{i}}" {{((apresentacao.data|default(""))|date('d'))==i?"selected":''}}>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col col-md-1">
+                                        <label for="mes" class=" form-control-label">Mês:</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <select name="mes" id="mes" class="form-control">
+                                            {% for i in meses %}
+                                            <option value="{{loop.index}}" {{((apresentacao.data|default(""))|date('m'))==loop.index?"selected":''}}>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-1">
+                                        <label for="hora" class=" form-control-label">Hora:</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <select name="hora" id="hora" class="form-control">
+                                            {% for i in 0..23 %}
+                                            <option value="{{i}}" {{((apresentacao.hora|default(""))|date('H'))==i?"selected":''}}>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col col-md-1">
+                                        <label for="minutos" class=" form-control-label">Minutos:</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                        <select name="minutos" id="minutos" class="form-control">
+                                            {% for i in 0..59 %}
+                                            <option value="{{i}}" {{((apresentacao.hora|default(""))|date('i'))==i?"selected":''}}>{{i}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-1">
+                                        <label for="area" class=" form-control-label">Área:</label>
+                                    </div>
+                                    <div class="col-12 col-md-11">
+                                        <select name="area" id="area" class="form-control">
+                                            {% for area in areas %}
+                                            <option value="{{area.id}}" {{(apresentacao.area_id|default(""))==area.id?"selected":''}}>{{area.nome}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" name='enviar' value="{{apresentacao.id}}" class="btn btn-success btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> {{texto}}
+                                </button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+{% endblock %}

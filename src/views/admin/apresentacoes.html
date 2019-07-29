@@ -12,8 +12,8 @@
                                         <h3 class="title-2 m-b-30">Apresentações</h3>
                                     </div>
                                     <div class="col-lg-6 text-right">
-                                        <button class="au-btn au-btn-icon au-btn--blue m-b-30">
-                                            <i class="zmdi zmdi-plus"></i>adicionar Apresentação</button>
+                                        <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/apresentacoes_modificacoes">
+                                            <i class="zmdi zmdi-plus"></i>adicionar Apresentação</a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
@@ -29,73 +29,72 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% if apresentacoes %}
+                                            {% for apresentacao in apresentacoes %}
                                             <tr>
                                                 <td>
-                                                    1
+                                                    {{loop.index}}
                                                 </td>
                                                 <td>
-                                                    lori lynch
+                                                    {{apresentacao.nome}}
                                                 </td>
                                                 <td>
-                                                    10/11/2019
+                                                    {{apresentacao.data|date("d/m/Y")}}
                                                 </td>
                                                 <td>
-                                                    08:00
+                                                    {{apresentacao.hora|date("H:i")}}
                                                 </td>
                                                 <td>
-                                                    CC
+                                                    {{apresentacao.area}}
                                                 </td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-warning">Atualizar</button>
-                                                    <button type="button" class="btn btn-danger">Deletar</button>
+                                                    <a href="{{base_url()}}/admin/apresentacoes_modificacoes/{{apresentacao.id}}" class="btn btn-warning">Atualizar</a>
+                                                    <button type="button" id='apresentacao-{{apresentacao.id}}' class="btn btn-danger swldel">Deletar</button>
                                                 </td>
                                             </tr>
+                                            {% endfor %}
+                                            {% else %}
                                             <tr>
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    lori lynch
-                                                </td>
-                                                <td>
-                                                    11/11/2019
-                                                </td>
-                                                <td>
-                                                    08:30
-                                                </td>
-                                                <td>
-                                                    ES
-                                                </td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-warning">Atualizar</button>
-                                                    <button type="button" class="btn btn-danger">Deletar</button>
-                                                </td>
+                                                <td colspan="6" class="text-center">Não há Registros!</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    3
-                                                </td>
-                                                <td>
-                                                    lori lynch
-                                                </td>
-                                                <td>
-                                                    12/11/2019
-                                                </td>
-                                                <td>
-                                                    09:00
-                                                </td>
-                                                <td>
-                                                    CC
-                                                </td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-warning">Atualizar</button>
-                                                    <button type="button" class="btn btn-danger">Deletar</button>
-                                                </td>
-                                            </tr>
+                                            {% endif %}
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+{% endblock %}
+{% block js %}
+<script src="{{base_url()}}/assets/vendor/sweetalert/sweetalert.min.js"></script>
+<script>
+    $('.swldel').click(function (btn) {
+        swal({
+            title: "Deseja Deletar a Apresentação?",
+            icon: 'warning',
+            dangerMode: true,
+            buttons: {
+                cancel: 'Cancelar',
+                delete: 'Confirmar'
+            }
+        }).then(function (willDelete) {
+            if (willDelete) {
+                swal(" ", {
+                    title: "Apresentação Deletada com Sucesso!",
+                    icon: "success",
+                    timer: 1500,
+                    buttons: false
+                });
+                location.href = BASE + "/admin/apresentacoes/del/" + btn.currentTarget.id.split("-")[1];
+            } else {
+                swal(" ", {
+                    title: "Cancelado!",
+                    icon: "error",
+                    timer: 1500,
+                    buttons: false
+                });
+            }
+        });
+    });
+</script>
 {% endblock %}
