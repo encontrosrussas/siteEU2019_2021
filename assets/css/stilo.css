@@ -364,8 +364,14 @@ background: #707070;
 	margin-top: 10px;
 	margin-bottom: 60px;
 	opacity: unset;
-	
+	transition: transform .2s; /* Animation */
 }
+
+.colorir:hover {
+	transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
 
 .img-rodape{
 	text-align: center !important;
@@ -561,8 +567,8 @@ transition: transform .2s; /* Animation */
 .card-base > .card-icon > .card-data {
 min-height: 250px !important;
 margin-top: -24px;
-background: ghostwhite;
-border: 1px solid #e0e0e0;
+background: rgb(255, 255, 255); /* ghostwhite */
+border: 1px solid #ffffff; /* #e0e0e0 */
 padding: 15px 0 10px 0;
  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 min-height: 215px;
@@ -578,7 +584,12 @@ min-height: 215px;
 	transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
-/*llllllllllllllllllllllll*/
+.cartao-acomodacao{
+	box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 
 
 
