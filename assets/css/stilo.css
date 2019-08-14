@@ -596,3 +596,20 @@ min-height: 215px;
 .timeline__content p {
 	font-size: 1.938rem !important;
 }
+
+.esp{
+	margin-top: 35px;
+}
+
+.fonttitulo{
+	font-weight: 900;
+}
+
+.fontsubtitulo{
+	font-weight: 600;
+	color: #757373;
+}
+
+.fontesp{
+	font-weight: lighter;
+}
