@@ -12,6 +12,7 @@ use app\models\Noticia;
 use app\models\Palestra;
 use app\models\Usuario;
 use app\helpers\Upload;
+use app\helpers\Login;
 
 class AdminController
 {
@@ -25,12 +26,29 @@ class AdminController
 
     public function login($request, $response, $args)
     {
+        Login::redirectLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $argumentos = [];
+        if (!is_null($request->getParsedBody()) && $_POST['email'] != '' && $_POST['password'] != '') {
+            $argumentos['mensagens'] = [];
+            $email = trim(strip_tags(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING)));
+            $senha = trim(strip_tags(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING)));
+            $user = new Usuario();
+            $user->setEmail($email);
+            $user->setSenha($senha);
+            $login = new Login($user, $db);
+            $login->setEmail($email);
+            $login->setPassword($senha);
+            $login->logar();
+            return $response->withRedirect('/admin');
+        }
         return $this->container->view->render($response, 'admin/login.html');
     }
 
     public function dashboard($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         $argumentos = [];
         $argumentos['usuarios']=$db->count(
@@ -55,6 +73,7 @@ class AdminController
 
     public function usuarios($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if(isset($args['id'])){
             $db->delete(
@@ -73,6 +92,7 @@ class AdminController
     
     public function usuarios_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -143,6 +163,7 @@ class AdminController
 
     public function areas($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -161,6 +182,7 @@ class AdminController
     
     public function areas_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -222,6 +244,7 @@ class AdminController
 
     public function noticias($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -252,6 +275,7 @@ class AdminController
 
     public function noticias_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -340,6 +364,7 @@ class AdminController
 
     public function editais($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -370,6 +395,7 @@ class AdminController
 
     public function editais_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -458,12 +484,14 @@ class AdminController
 
     public function paginas($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/paginas.html');
     }
 
     public function cronogramas($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -493,6 +521,7 @@ class AdminController
 
     public function cronogramas_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -575,6 +604,7 @@ class AdminController
 
     public function apresentacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -612,6 +642,7 @@ class AdminController
 
     public function apresentacoes_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -704,6 +735,7 @@ class AdminController
 
     public function mini_cursos($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -741,6 +773,7 @@ class AdminController
 
     public function mini_cursos_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -833,6 +866,7 @@ class AdminController
 
     public function palestras($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -870,6 +904,7 @@ class AdminController
 
     public function palestras_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -962,6 +997,7 @@ class AdminController
     
     public function anos($request, $response, $args)
     {
+        Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -986,6 +1022,7 @@ class AdminController
 
     public function anos_modificacoes($request, $response, $args)
     {
+        Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -1056,6 +1093,7 @@ class AdminController
 
     public function conta($request, $response, $args)
     {
+        Login::verifyLogin();
         //TODO: primeiro fazer o login
         $db = $this->container->db;
         $argumentos = [];
@@ -1114,6 +1152,7 @@ class AdminController
 
     public function sair($request, $response, $args)
     {
+        Login::logout();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $response->withStatus(200)->withHeader('Location', $this->container->router->urlFor("login-admin"));
     }

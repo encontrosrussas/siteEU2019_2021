@@ -6,9 +6,10 @@ use app\controllers\AdminController;
 return function ($app) {
     $app->group("/admin", function ($app) {
         // Login
-        $app->get('/login', AdminController::class . ':login')->setName('login-admin');
+        $app->map(['GET', 'POST'], '', AdminController::class . ':login')->setName('login-barra-admin');
+        $app->map(['GET', 'POST'], '/', AdminController::class . ':login')->setName('login-barra-admin');
+        $app->map(['GET', 'POST'], '/login', AdminController::class . ':login')->setName('login-admin');
         // Dashboard
-        $app->get('/', AdminController::class . ':dashboard')->setName('dashboard-admin');
         $app->get('/dashboard', AdminController::class . ':dashboard')->setName('dashboard-admin');
 
         $app->get('/usuarios[/del/{id}]', AdminController::class . ':usuarios')->setName('usuarios-admin');

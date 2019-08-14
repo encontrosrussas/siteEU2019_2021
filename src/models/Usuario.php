@@ -2,7 +2,9 @@
 
 namespace app\models;
 
-class Usuario{
+use app\helpers\Ilogin;
+
+class Usuario implements Ilogin{
     private $id;   
     private $nome;   
     private $email;   
@@ -16,6 +18,24 @@ class Usuario{
         $this->setEmail($email);
         $this->setSenha($senha);
         $this->setTipo($tipo);
+    }
+
+    public function logar($db, $email, $password){
+        $user = $db->select(
+            "usuarios",
+            [
+                'id',
+                'nome',
+                'email',
+                'senha',
+                'tipo',
+            ],
+            [
+                'email' => $email,
+                'senha' => $password,
+            ]
+        );
+        return (count($user) == 1) ? $user[0] : false;
     }
 
     /**
@@ -106,12 +126,12 @@ class Usuario{
 
     public function cripografarSenha(){
         if(!empty($this->senha) && !is_null($this->senha))
-            $this->senha = md5($this->senha);
+            $this->senha = hash('sha512', $this->senha);
     }
 
     public function verificarSenha($senhaComparar){
         if(!empty($senhaComparar) && !is_null($senhaComparar))
-            return $this->senha == md5($senhaComparar);
+            return $this->senha == hash('sha512', $senhaComparar);
         else
             throw new Exception("Senha Vazia.");
     }

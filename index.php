@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require __DIR__ . DIRECTORY_SEPARATOR ."vendor" . DIRECTORY_SEPARATOR. "autoload.php";
 date_default_timezone_set("America/Fortaleza");
 // Instantiate the app
