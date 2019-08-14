@@ -589,3 +589,20 @@ min-height: 215px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+.esp{
+	margin-top: 35px;
+}
+
+.fonttitulo{
+	font-weight: 900;
+}
+
+.fontsubtitulo{
+	font-weight: 600;
+	color: #757373;
+}
+
+.fontesp{
+	font-weight: lighter;
+}
