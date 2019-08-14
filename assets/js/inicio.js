@@ -48,3 +48,12 @@ $('.go').on('click', function (e) {
         carroselData.next();
     }
 });
+
+$(function () {
+    jQuery('.timeline').timeline({
+        forceVerticalMode: 700,
+        // mode: 'horizontal',
+        verticalStartPosition: 'left',
+        // visibleItems: 4
+    });
+});

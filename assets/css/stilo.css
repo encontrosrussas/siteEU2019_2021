@@ -589,3 +589,10 @@ min-height: 215px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+.timeline__content h2 {
+	font-size: 2.25rem !important;
+}
+.timeline__content p {
+	font-size: 1.938rem !important;
+}
