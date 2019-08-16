@@ -45,7 +45,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{base_url()}}/admin/usuarios_modificacoes/{{usuario.id}}" class="btn btn-warning">Atualizar</a>
+                                                    {% if usuario.id != idlogado %}
                                                     <button type="button" id="user-{{usuario.id}}" class="btn btn-danger swldel">Deletar</button>
+                                                    {% endif %}
                                                 </td>
                                             </tr>
                                             {% endfor %}

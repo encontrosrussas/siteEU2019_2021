@@ -13,7 +13,7 @@ class Password
      * @param $password
      * @return string
      */
-    public function hash($password)
+    public function hash_pass($password)
     {
         return hash('sha512', $password);
     }

@@ -13,6 +13,7 @@ use app\models\Palestra;
 use app\models\Usuario;
 use app\helpers\Upload;
 use app\helpers\Login;
+use app\helpers\Password;
 
 class AdminController
 {
@@ -86,7 +87,8 @@ class AdminController
         ]);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/usuarios.html',[
-            'usuarios'=>$usuarios
+            'usuarios'=>$usuarios,
+            'idlogado' => $_SESSION['id']
         ]);
     }
     
@@ -153,6 +155,7 @@ class AdminController
         }else{
             $argumentos['texto'] = 'Adicionar';
         }
+        $argumentos['idlogado'] = $_SESSION['id'];
         unset($db);
         return $this->container->view->render(
             $response,
@@ -1094,7 +1097,6 @@ class AdminController
     public function conta($request, $response, $args)
     {
         Login::verifyLogin();
-        //TODO: primeiro fazer o login
         $db = $this->container->db;
         $argumentos = [];
         if (!is_null($request->getParsedBody())) {
@@ -1104,7 +1106,10 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
             if (!filter_var($dados['email'], FILTER_VALIDATE_EMAIL))
                 array_push($argumentos['mensagens'], 'Email Invalido!');
-            if (($dados['pass'] != $dados['confirm-pass'] || empty($dados['pass']) || is_null($dados['pass'])))
+            if (($dados['new-pass'] != $dados['confirm-pass'] ||
+                 $dados['pass'] == $dados['new-pass'] || 
+                 empty($dados['new-pass']) || is_null($dados['new-pass']) ||
+                 empty($dados['pass']) || is_null($dados['pass'])))
                 array_push($argumentos['mensagens'], 'Senha Invalida!');
             if (count($argumentos['mensagens']) == 0) {
                 $user = new Usuario(
@@ -1115,10 +1120,10 @@ class AdminController
                     $dados['email'],
                     null,
                     /*$tipo*/
-                    $dados['tipoU']
+                    null
                 );
-                if (!empty($dados['pass']) && !is_null($dados['pass']) && $dados['pass'] == $dados['confirm-pass']) {
-                    $user->setSenha($dados['pass']);
+                if (!empty($dados['new-pass']) && !is_null($dados['new-pass']) && $dados['new-pass'] == $dados['confirm-pass']) {
+                    $user->setSenha($dados['new-pass']);
                     $user->cripografarSenha();
                 }
                 if (!empty($dados['enviar'])) {
@@ -1127,16 +1132,12 @@ class AdminController
                         'usuarios',
                         $user->toArray(),
                         [
-                            'id' => $user->getId()
+                            'id' => $user->getId(),
+                            'senha' => (new Password())->hash_pass($dados['pass'])
                         ]
                     );
-                } else {
-                    $db->insert(
-                        'usuarios',
-                        $user->toArray()
-                    );
                 }
-                return $response->withRedirect('/admin/cpnta');
+                return $response->withRedirect('/admin/dashboard');
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -1144,7 +1145,7 @@ class AdminController
         $argumentos['usuario'] = $db->select("usuarios", [
             'id', 'nome', 'email'
         ],[
-            'id'=>'1'
+            'id'=> $_SESSION['id']
         ])[0];
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/conta.html', $argumentos);

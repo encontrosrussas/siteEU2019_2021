@@ -42,7 +42,7 @@ return function ($app) {
         $app->map(['GET', 'POST'], '/anos_modificacoes[/{id}]', AdminController::class . ':anos_modificacoes')->setName('anos-modificacoes-admin');
         
         // Conta
-        $app->get('/conta', AdminController::class . ':conta')->setName('conta-admin');
+        $app->map(['GET', 'POST'], '/conta', AdminController::class . ':conta')->setName('conta-admin');
         // Sair
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
         $app->get('/temp/{nome}', AdminController::class . ':template')->setName('template');

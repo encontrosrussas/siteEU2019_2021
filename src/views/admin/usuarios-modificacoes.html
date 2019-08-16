@@ -43,19 +43,19 @@
                                     <label for="pass" class=" form-control-label">Tipo do Usuario</label>
                                     <div class="container row form-group">
                                         <div class="form-check col-lg-4">
-                                            <input class="form-check-input" type="radio" name="tipoU" id="adm" value="1" {{ usuario.tipo|default('1') == '1' ? 'checked' : ''}}>
+                                            <input class="form-check-input" type="radio" name="tipoU" id="adm" value="1" {{ usuario.tipo|default('1') == '1' ? 'checked' : ''}}  {{ usuario.id != idlogado ? '' : 'readonly'}} >
                                             <label class="form-check-label" for="adm">
                                                 Administrador
                                             </label>
                                         </div>
                                         <div class="form-check col-lg-4">
-                                            <input class="form-check-input" type="radio" name="tipoU" id="org" value="2" {{ usuario.tipo == '2' ? 'checked' : ''}}>
+                                            <input class="form-check-input" type="radio" name="tipoU" id="org" value="2" {{ usuario.tipo == '2' ? 'checked' : ''}} {{ usuario.id != idlogado ? '' : 'readonly'}}>
                                             <label class="form-check-label" for="org">
                                                 Organizador
                                             </label>
                                         </div>
                                         <div class="form-check col-lg-4">
-                                            <input class="form-check-input" type="radio" name="tipoU" id="editor" value="3" {{ usuario.tipo == '3' ? 'checked' : ''}}>
+                                            <input class="form-check-input" type="radio" name="tipoU" id="editor" value="3" {{ usuario.tipo == '3' ? 'checked' : ''}} {{ usuario.id != idlogado ? '' : 'readonly'}}>
                                             <label class="form-check-label" for="editor">
                                                 Editor
                                             </label>
