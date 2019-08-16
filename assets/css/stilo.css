@@ -621,3 +621,28 @@ min-height: 215px;
 .espCaixa{
 	margin-top: 30px;
 }
+
+.titNot{
+	font-size: 30px;
+	color: rgba(52, 172, 220, 0.98) !important;
+}
+
+hr{
+	border-color: rgb(255, 217, 0);
+	box-sizing:border-box;
+	width:100%;  
+	margin-top: -10px;
+  }
+
+.space-noti{
+	  margin-top: 20px;
+}
+
+.ultimas-noticias{
+	border-bottom-width: .0555555556em;
+    border-bottom-style: solid;
+    border-bottom-color: #d1d2d4;
+    padding-bottom: .6111111111em;
+    overflow: hidden;
+    margin-bottom: .6666666667em;
+}
