@@ -625,6 +625,7 @@ min-height: 215px;
 .titNot{
 	font-size: 30px;
 	color: rgba(52, 172, 220, 0.98) !important;
+	padding-left: 12px;
 }
 
 hr{
@@ -638,11 +639,10 @@ hr{
 	  margin-top: 20px;
 }
 
-.ultimas-noticias{
+.not{
 	border-bottom-width: .0555555556em;
-    border-bottom-style: solid;
-    border-bottom-color: #d1d2d4;
-    padding-bottom: .6111111111em;
-    overflow: hidden;
-    margin-bottom: .6666666667em;
+	border-bottom-color: #d1d2d4;
+	padding-bottom: .6111111111em;
+	margin-bottom: .6666666667em;
+	border-bottom-style: solid;
 }
