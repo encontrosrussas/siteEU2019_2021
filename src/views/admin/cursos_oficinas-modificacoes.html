@@ -5,10 +5,10 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="col-lg-12">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">
-                                <strong>{{texto}} Mini Cursos</strong>
+                                <strong>{{texto}} Mini Cursos e Oficinas</strong>
                             </div>
                             <div class="card-body card-block">
                                 {% if mensagens %}
@@ -25,7 +25,7 @@
                                 {% endif %}
                                 <div class="form-group">
                                     <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome do Mini Curso" class="form-control" value="{{mini_curso.nome}}">
+                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome" class="form-control" value="{{curso_oficina.nome}}">
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-1">
@@ -34,7 +34,7 @@
                                     <div class="col-12 col-md-5">
                                         <select name="dia" id="dia" class="form-control">
                                             {% for i in 1..31 %}
-                                            <option value="{{i}}" {{((mini_curso.data|default(""))|date('d'))==i?"selected":''}}>{{i}}</option>
+                                            <option value="{{i}}" {{((curso_oficina.data|default(""))|date('d'))==i?"selected":''}}>{{i}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -44,7 +44,7 @@
                                     <div class="col-12 col-md-5">
                                         <select name="mes" id="mes" class="form-control">
                                             {% for i in meses %}
-                                            <option value="{{loop.index}}" {{((mini_curso.data|default(""))|date('m'))==loop.index?"selected":''}}>{{i}}</option>
+                                            <option value="{{loop.index}}" {{((curso_oficina.data|default(""))|date('m'))==loop.index?"selected":''}}>{{i}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -56,7 +56,7 @@
                                     <div class="col-12 col-md-5">
                                         <select name="hora" id="hora" class="form-control">
                                             {% for i in 0..23 %}
-                                            <option value="{{i}}" {{((mini_curso.hora|default(""))|date('H'))==i?"selected":''}}>{{i}}</option>
+                                            <option value="{{i}}" {{((curso_oficina.hora|default(""))|date('H'))==i?"selected":''}}>{{i}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -66,7 +66,7 @@
                                     <div class="col-12 col-md-5">
                                         <select name="minutos" id="minutos" class="form-control">
                                             {% for i in 0..59 %}
-                                            <option value="{{i}}" {{((mini_curso.hora|default(""))|date('i'))==i?"selected":''}}>{{i}}</option>
+                                            <option value="{{i}}" {{((curso_oficina.hora|default(""))|date('i'))==i?"selected":''}}>{{i}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -78,14 +78,40 @@
                                     <div class="col-12 col-md-11">
                                         <select name="area" id="area" class="form-control">
                                             {% for area in areas %}
-                                            <option value="{{area.id}}" {{(mini_curso.area_id|default(""))==area.id?"selected":''}}>{{area.nome}}</option>
+                                            <option value="{{area.id}}" {{(curso_oficina.area_id|default(""))==area.id?"selected":''}}>{{area.nome}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
                                 </div>
+                                {% if curso_oficina.imagem %}
+                                <img src="{{base_url()}}/uploads/cursos_oficinas/{{curso_oficina.imagem}}" style="width: 50%">
+                                {% endif %}
+                                <div class="form-group">
+                                    <label for="imagem" class=" form-control-label">Imagem:</label>
+                                    <input type="file" id="imagem" name="imagem" class="form-control-file">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass" class=" form-control-label">Tipo:</label>
+                                    <div class="container row form-group">
+                                        <div class="form-check col-lg-6">
+                                            <input class="form-check-input" type="radio" name="tipo" id="mini" value="1"
+                                                {{ curso_oficina.tipo|default('1') == '1' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="mini">
+                                                Mini Curso
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-lg-6">
+                                            <input class="form-check-input" type="radio" name="tipo" id="ofi" value="2"
+                                                {{ curso_oficina.tipo == '2' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="ofi">
+                                                Oficina
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" name='enviar' value="{{mini_curso.id}}" class="btn btn-success btn-sm">
+                                <button type="submit" name='enviar' value="{{curso_oficina.id}}" class="btn btn-success btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> {{texto}}
                                 </button>
                             </div>

@@ -7,6 +7,7 @@ class Palestra{
     private $nome;
     private $data;
     private $hora;
+    private $imagem;
     private $area_id;
     private $ano_id;
 
@@ -77,6 +78,23 @@ class Palestra{
         if (!empty($hora) && !is_null($hora))
         $this->hora = $hora;
     }
+    
+    /**
+     * Get the value of hora
+     */ 
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * Set the value of hora
+     */ 
+    public function setImagem($imagem)
+    {
+        if (!empty($imagem) && !is_null($imagem))
+        $this->imagem = $imagem;
+    }
 
     /**
      * Get the value of area
@@ -121,6 +139,8 @@ class Palestra{
             $retorno["data"] = $this->getData();
         if (!is_null($this->getHora()))
             $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getImagem()))
+            $retorno["imagem"] = $this->getImagem();
         if (!is_null($this->getArea_id()))
             $retorno["area_id"] = $this->getArea_id();
         if (!is_null($this->getAno_id()))

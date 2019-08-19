@@ -5,8 +5,7 @@ namespace app\models;
 class Apresentacao{
     private $id;
     private $nome;
-    private $data;
-    private $hora;
+    private $resumo;
     private $area_id;
     private $ano_id;
 
@@ -45,37 +44,20 @@ class Apresentacao{
     }
 
     /**
-     * Get the value of data
+     * Get the value of resumo
      */ 
-    public function getData()
+    public function getResumo()
     {
-        return $this->data;
+        return $this->resumo;
     }
 
     /**
-     * Set the value of data
+     * Set the value of resumo
      */ 
-    public function setData($data)
+    public function setResumo($resumo)
     {
-        if (!empty($data) && !is_null($data))
-            $this->data = $data;
-    }
-
-    /**
-     * Get the value of hora
-     */ 
-    public function getHora()
-    {
-        return $this->hora;
-    }
-
-    /**
-     * Set the value of hora
-     */ 
-    public function setHora($hora)
-    {
-        if (!empty($hora) && !is_null($hora))
-            $this->hora = $hora;
+        if (!empty($resumo) && !is_null($resumo))
+            $this->resumo = $resumo;
     }
 
     /**
@@ -117,10 +99,8 @@ class Apresentacao{
         $retorno = [];
         if (!is_null($this->getNome()))
             $retorno["nome"] = $this->getNome();
-        if (!is_null($this->getData()))
-            $retorno["data"] = $this->getData();
-        if (!is_null($this->getHora()))
-            $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getResumo()))
+            $retorno["resumo"] = $this->getResumo();
         if (!is_null($this->getArea_id()))
             $retorno["area_id"] = $this->getArea_id();
         if (!is_null($this->getAno_id()))

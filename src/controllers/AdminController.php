@@ -7,7 +7,7 @@ use app\models\Apresentacao;
 use app\models\Area;
 use app\models\Cronograma;
 use app\models\Edital;
-use app\models\MiniCurso;
+use app\models\CursoOficina;
 use app\models\Noticia;
 use app\models\Palestra;
 use app\models\Usuario;
@@ -58,8 +58,8 @@ class AdminController
         $argumentos['apresentacoes']=$db->count(
             "apresentacoes"
         );
-        $argumentos['mini_cursos']=$db->count(
-            "mini_cursos"
+        $argumentos['cursos_oficinas']=$db->count(
+            "cursos_oficinas"
         );
         $argumentos['palestras']=$db->count(
             "palestras"
@@ -521,7 +521,6 @@ class AdminController
         ]);
     }
 
-
     public function cronogramas_modificacoes($request, $response, $args)
     {
         Login::verifyLogin();
@@ -628,8 +627,7 @@ class AdminController
             [
                 'apresentacoes.id',
                 'apresentacoes.nome',
-                'apresentacoes.data',
-                'apresentacoes.hora',
+                'apresentacoes.resumo',
                 'area.nome(area)',
                 'ano.nome_ano'
             ],
@@ -668,8 +666,7 @@ class AdminController
                 )[0];
                 $apresentacao->setNome($dados['nome']);
                 $apresentacao->setArea_id($dados['area']);
-                $apresentacao->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
-                $apresentacao->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $apresentacao->setResumo($dados['resumo']);
                 if (!empty($dados['enviar'])) {
                     $apresentacao->setId($dados['enviar']);
                     $db->update(
@@ -698,8 +695,7 @@ class AdminController
                 [
                     'id',
                     'nome',
-                    'data',
-                    'hora',
+                    'resumo',
                     'area_id'
                 ],
                 [
@@ -736,31 +732,30 @@ class AdminController
         );
     }
 
-    public function mini_cursos($request, $response, $args)
+    public function cursos_oficinas($request, $response, $args)
     {
         Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
-                "mini_cursos",
+                "cursos_oficinas",
                 ["id" => $args['id']]
             );
         }
-        $mini_cursos = $db->select(
-            "mini_cursos",
+        $cursos_oficinas = $db->select(
+            "cursos_oficinas",
             [
                 "[><]area" => [
-                    "mini_cursos.area_id" => "id"
+                    "cursos_oficinas.area_id" => "id"
                 ],
                 "[><]ano" => [
-                    "mini_cursos.ano_id" => "id"
+                    "cursos_oficinas.ano_id" => "id"
                 ],
             ],
             [
-                'mini_cursos.id',
-                'mini_cursos.nome',
-                'mini_cursos.data',
-                'mini_cursos.hora',
+                'cursos_oficinas.id',
+                'cursos_oficinas.nome',
+                'cursos_oficinas.tipo',
                 'area.nome(area)',
                 'ano.nome_ano'
             ],
@@ -768,13 +763,14 @@ class AdminController
                 "ano.status"=>1
             ]
         );
+
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'admin/mini_cursos.html',[
-            'mini_cursos'=>$mini_cursos
+        return $this->container->view->render($response, 'admin/cursos_oficinas.html',[
+            'cursos_oficinas'=>$cursos_oficinas
         ]);
     }
 
-    public function mini_cursos_modificacoes($request, $response, $args)
+    public function cursos_oficinas_modificacoes($request, $response, $args)
     {
         Login::verifyLogin();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
@@ -786,7 +782,7 @@ class AdminController
             if (empty($dados['nome']) || is_null($dados['nome']))
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
             if (count($argumentos['mensagens']) == 0) {
-                $mini_cursos = new MiniCurso();
+                $cursos_oficinas = new CursoOficina();
                 $ano = $db->select(
                     "ano",
                     [
@@ -797,40 +793,56 @@ class AdminController
                         "status" => 1
                     ]
                 )[0];
-                $mini_cursos->setNome($dados['nome']);
-                $mini_cursos->setArea_id($dados['area']);
-                $mini_cursos->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
-                $mini_cursos->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $cursos_oficinas->setNome($dados['nome']);
+                $cursos_oficinas->setArea_id($dados['area']);
+                $cursos_oficinas->setTipo($dados['tipo']);
+                $cursos_oficinas->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
+                $cursos_oficinas->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $imagem = $request->getUploadedFiles()['imagem'];
+                $upload = new Upload("uploads/");
+                if ($imagem->getError() === UPLOAD_ERR_OK) {
+                    $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'cursos_oficinas/');
+                    $cursos_oficinas->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                }
                 if (!empty($dados['enviar'])) {
-                    $mini_cursos->setId($dados['enviar']);
+                    $img = $db->select(
+                        "cursos_oficinas",
+                        'imagem',
+                        ['id' => $dados['enviar']]
+                    )[0];
+                    if (!empty($cursos_oficinas->getImagem()) || !is_null($cursos_oficinas->getImagem()))
+                        $upload->excluir($img, "cursos_oficinas/");
+                    $cursos_oficinas->setId($dados['enviar']);
                     $db->update(
-                        'mini_cursos',
-                        $mini_cursos->toArray(),
+                        'cursos_oficinas',
+                        $cursos_oficinas->toArray(),
                         [
-                            'id' => $mini_cursos->getId()
+                            'id' => $cursos_oficinas->getId()
                         ]
                     );
                 } else {
-                    $mini_cursos->setAno_id($ano['id']);
+                    $cursos_oficinas->setAno_id($ano['id']);
                     $db->insert(
-                        'mini_cursos',
-                        $mini_cursos->toArray()
+                        'cursos_oficinas',
+                        $cursos_oficinas->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/mini_cursos');
+                return $response->withRedirect('/admin/cursos_oficinas');
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
         }
         if (isset($args['id'])) {
             $argumentos['texto'] = 'Atualizar';
-            $argumentos['mini_curso'] = $db->select(
-                "mini_cursos",
+            $argumentos['curso_oficina'] = $db->select(
+                "cursos_oficinas",
                 [
                     'id',
                     'nome',
                     'data',
                     'hora',
+                    'tipo',
+                    'imagem',
                     'area_id',
                 ],
                 [
@@ -862,7 +874,7 @@ class AdminController
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render(
             $response,
-            'admin/mini-cursos-modificacoes.html',
+            'admin/cursos_oficinas-modificacoes.html',
             $argumentos
         );
     }
@@ -932,7 +944,20 @@ class AdminController
                 $palestra->setArea_id($dados['area']);
                 $palestra->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
                 $palestra->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $imagem = $request->getUploadedFiles()['imagem'];
+                $upload = new Upload("uploads/");
+                if ($imagem->getError() === UPLOAD_ERR_OK) {
+                    $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'palestras/');
+                    $palestra->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                }
                 if (!empty($dados['enviar'])) {
+                    $img = $db->select(
+                        "palestras",
+                        'imagem',
+                        ['id' => $dados['enviar']]
+                    )[0];
+                    if (!empty($palestra->getImagem()) || !is_null($palestra->getImagem()))
+                        $upload->excluir($img, "palestras/");
                     $palestra->setId($dados['enviar']);
                     $db->update(
                         'palestras',
@@ -962,6 +987,7 @@ class AdminController
                     'nome',
                     'data',
                     'hora',
+                    'imagem',
                     'area_id',
                 ],
                 [

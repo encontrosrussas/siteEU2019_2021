@@ -32,7 +32,7 @@ CREATE TABLE `ano` (
   `palestras` tinyint(4) NOT NULL DEFAULT '1',
   `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `ano` (
 
 LOCK TABLES `ano` WRITE;
 /*!40000 ALTER TABLE `ano` DISABLE KEYS */;
-INSERT INTO `ano` VALUES (1,2019,1,1,1,1,1,1),(2,2018,1,0,0,0,0,0);
+INSERT INTO `ano` VALUES (1,2019,1,1,1,1,1,1),(2,2018,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `ano` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,8 +55,7 @@ DROP TABLE IF EXISTS `apresentacoes`;
 CREATE TABLE `apresentacoes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(150) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
+  `resumo` longtext,
   `area_id` int(11) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -64,7 +63,7 @@ CREATE TABLE `apresentacoes` (
   KEY `fk_apresentacoes_area1_idx` (`area_id`),
   CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +72,6 @@ CREATE TABLE `apresentacoes` (
 
 LOCK TABLES `apresentacoes` WRITE;
 /*!40000 ALTER TABLE `apresentacoes` DISABLE KEYS */;
-INSERT INTO `apresentacoes` VALUES (1,'ap1','2019-07-07','08:30:00',4,1),(2,'sdfsdfsdf','2019-10-19','11:07:00',5,1);
 /*!40000 ALTER TABLE `apresentacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +87,7 @@ CREATE TABLE `area` (
   `nome` varchar(50) NOT NULL,
   `descricao` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +115,7 @@ CREATE TABLE `cronogramas` (
   PRIMARY KEY (`id`),
   KEY `fk_cronogramas_ano1_idx` (`ano_id`),
   CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,8 +124,40 @@ CREATE TABLE `cronogramas` (
 
 LOCK TABLES `cronogramas` WRITE;
 /*!40000 ALTER TABLE `cronogramas` DISABLE KEYS */;
-INSERT INTO `cronogramas` VALUES (2,'2019-10-08','iukbhkisxdbvkisdxc',1);
 /*!40000 ALTER TABLE `cronogramas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cursos_oficinas`
+--
+
+DROP TABLE IF EXISTS `cursos_oficinas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cursos_oficinas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `data` date NOT NULL,
+  `hora` time NOT NULL,
+  `imagem` varchar(200) DEFAULT NULL,
+  `tipo` tinyint(4) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cursos_oficinas_ano1_idx` (`ano_id`),
+  KEY `fk_cursos_oficinas_area1_idx` (`area_id`),
+  CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cursos_oficinas`
+--
+
+LOCK TABLES `cursos_oficinas` WRITE;
+/*!40000 ALTER TABLE `cursos_oficinas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cursos_oficinas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -142,12 +172,12 @@ CREATE TABLE `editais` (
   `nome` varchar(100) NOT NULL,
   `descricao` longtext,
   `tipo` varchar(100) NOT NULL,
-  `arquivo` varchar(200) NOT NULL,
+  `arquivo` varchar(200) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_editais_ano_idx` (`ano_id`),
   CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,40 +186,7 @@ CREATE TABLE `editais` (
 
 LOCK TABLES `editais` WRITE;
 /*!40000 ALTER TABLE `editais` DISABLE KEYS */;
-INSERT INTO `editais` VALUES (1,'iyzsvdbcskuyd','iusgheusydicsa\r\n','iysdu','',NULL);
 /*!40000 ALTER TABLE `editais` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `mini_cursos`
---
-
-DROP TABLE IF EXISTS `mini_cursos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mini_cursos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
-  `ano_id` int(11) DEFAULT NULL,
-  `area_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_mini_cursos_ano1_idx` (`ano_id`),
-  KEY `fk_mini_cursos_area1_idx` (`area_id`),
-  CONSTRAINT `fk_mini_cursos_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `fk_mini_cursos_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mini_cursos`
---
-
-LOCK TABLES `mini_cursos` WRITE;
-/*!40000 ALTER TABLE `mini_cursos` DISABLE KEYS */;
-INSERT INTO `mini_cursos` VALUES (1,'dsafsdf','2019-10-07','20:05:00',1,5),(2,'dsafsdf','2019-10-07','13:05:00',1,4);
-/*!40000 ALTER TABLE `mini_cursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -210,7 +207,7 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`id`),
   KEY `fk_noticias_ano1_idx` (`ano_id`),
   CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +216,6 @@ CREATE TABLE `noticias` (
 
 LOCK TABLES `noticias` WRITE;
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
-INSERT INTO `noticias` VALUES (2,'a','2019-07-28','21:17:00','asdasdas','asdasdasdasd',NULL);
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,6 +231,7 @@ CREATE TABLE `palestras` (
   `nome` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
+  `imagem` varchar(200) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -251,7 +248,6 @@ CREATE TABLE `palestras` (
 
 LOCK TABLES `palestras` WRITE;
 /*!40000 ALTER TABLE `palestras` DISABLE KEYS */;
-INSERT INTO `palestras` VALUES (1,'ajksdkjasd','2019-12-07','10:10:00',1,4);
 /*!40000 ALTER TABLE `palestras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +275,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'guilherme nepomuceno','guilherme@gmail.com','25d55ad283aa400af464c76d713c07ad',1),(2,'susana','susana@gmail.com','e10adc3949ba59abbe56e057f20f883e',2);
+INSERT INTO `usuarios` VALUES (1,'guilherme nepomuceno','guilherme@gmail.com','fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe',1),(2,'susana','susana@gmail.com','fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe',2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -292,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-29 12:29:50
+-- Dump completed on 2019-08-19 15:36:06

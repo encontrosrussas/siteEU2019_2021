@@ -9,11 +9,11 @@
                             <div class="au-card-inner">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h3 class="title-2 m-b-30">Mini Cursos</h3>
+                                        <h3 class="title-2 m-b-30">Mini Cursos e Oficinas</h3>
                                     </div>
                                     <div class="col-lg-6 text-right">
-                                        <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/mini_cursos_modificacoes">
-                                            <i class="zmdi zmdi-plus"></i>adicionar Mini Cursos</a>
+                                        <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/cursos_oficinas_modificacoes">
+                                            <i class="zmdi zmdi-plus"></i>adicionar</a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
@@ -22,35 +22,31 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nome</th>
-                                                <th>Data</th>
-                                                <th>Hora</th>
                                                 <th>Área</th>
+                                                <th>Tipo</th>
                                                 <th class="text-center">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% if mini_cursos %}
-                                            {% for mini_curso in mini_cursos %}
+                                            {% if cursos_oficinas %}
+                                            {% for curso_oficina in cursos_oficinas %}
                                             <tr>
                                                 <td>
                                                     {{loop.index}}
                                                 </td>
                                                 <td>
-                                                    {{mini_curso.nome}}
+                                                    {{curso_oficina.nome}}
                                                 </td>
                                                 <td>
-                                                    {{mini_curso.data|date("d/m/Y")}}
+                                                    {{curso_oficina.tipo == '1' ? 'Mini Curso' : 'Oficina'}}
                                                 </td>
                                                 <td>
-                                                    {{mini_curso.hora|date("H:i")}}
-                                                </td>
-                                                <td>
-                                                    {{mini_curso.area}}
+                                                    {{curso_oficina.area}}
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{base_url()}}/admin/mini_cursos_modificacoes/{{mini_curso.id}}"
+                                                    <a href="{{base_url()}}/admin/cursos_oficinas_modificacoes/{{curso_oficina.id}}"
                                                         class="btn btn-warning">Atualizar</a>
-                                                    <button type="button" id='mini_curso-{{mini_curso.id}}' class="btn btn-danger swldel">Deletar</button>
+                                                    <button type="button" id='curso_oficina-{{curso_oficina.id}}' class="btn btn-danger swldel">Deletar</button>
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -86,7 +82,7 @@
                     timer: 1500,
                     buttons: false
                 });
-                location.href = BASE + "/admin/mini_cursos/del/" + btn.currentTarget.id.split("-")[1];
+                location.href = BASE + "/admin/cursos_oficinas/del/" + btn.currentTarget.id.split("-")[1];
             } else {
                 swal(" ", {
                     title: "Cancelado!",

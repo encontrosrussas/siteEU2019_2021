@@ -2,12 +2,13 @@
 
 namespace app\models;
 
-class MiniCurso{
+class CursoOficina{
     private $id;
     private $nome;
     private $data;
     private $hora;
-    private $descricao;
+    private $imagem;
+    private $tipo;
     private $area_id;
     private $ano_id;
 
@@ -46,20 +47,38 @@ class MiniCurso{
     }
 
     /**
-     * Get the value of descricao
-     */ 
-    public function getDescricao()
+     * Get the value of imagem
+     */
+    public function getImagem()
     {
-        return $this->descricao;
+        return $this->imagem;
     }
 
     /**
-     * Set the value of descricao
-     */ 
-    public function setDescricao($descricao)
+     * Set the value of imagem
+     */
+    public function setImagem($imagem)
     {
-        if (!empty($descricao) && !is_null($descricao))
-        $this->descricao = $descricao;
+        if (!empty($imagem) && !is_null($imagem))
+            $this->imagem = $imagem;
+    }
+
+    /**
+     * Get the value of tipo
+     * 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set the value of tipo
+     */
+    public function setTipo($tipo)
+    {
+        if (!empty($tipo) && !is_null($tipo))
+            $this->tipo = $tipo;
     }
 
     /**
@@ -139,6 +158,10 @@ class MiniCurso{
             $retorno["data"] = $this->getData();
         if (!is_null($this->getHora()))
             $retorno["hora"] = $this->getHora();
+        if (!is_null($this->getImagem()))
+            $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getTipo()))
+            $retorno["tipo"] = $this->getTipo();
         if (!is_null($this->getArea_id()))
             $retorno["area_id"] = $this->getArea_id();
         if (!is_null($this->getAno_id()))

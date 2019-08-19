@@ -32,8 +32,8 @@ return function ($app) {
         $app->get('/apresentacoes[/del/{id}]', AdminController::class . ':apresentacoes')->setName('apresentacoes-admin');
         $app->map(['GET', 'POST'], '/apresentacoes_modificacoes[/{id}]', AdminController::class . ':apresentacoes_modificacoes')->setName('apresentacoes-modificacoes-admin');
         
-        $app->get('/mini_cursos[/del/{id}]', AdminController::class . ':mini_cursos')->setName('mini_cursos-admin');
-        $app->map(['GET', 'POST'], '/mini_cursos_modificacoes[/{id}]', AdminController::class . ':mini_cursos_modificacoes')->setName('mini-cursos-modificacoes-admin');
+        $app->get('/cursos_oficinas[/del/{id}]', AdminController::class . ':cursos_oficinas')->setName('cursos_oficinas-admin');
+        $app->map(['GET', 'POST'], '/cursos_oficinas_modificacoes[/{id}]', AdminController::class . ':cursos_oficinas_modificacoes')->setName('cursos_oficinas-modificacoes-admin');
         
         $app->get('/palestras[/del/{id}]', AdminController::class . ':palestras')->setName('palestras-admin');
         $app->map(['GET', 'POST'], '/palestras_modificacoes[/{id}]', AdminController::class . ':palestras_modificacoes')->setName('palestras-modificacoes-admin');
