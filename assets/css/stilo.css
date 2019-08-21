@@ -616,10 +616,6 @@ min-height: 215px;
 	font-weight: lighter;
 }
 
-.botaoposcicao{
-	margin-top: 140px;
-}
-
 .espCaixa{
 	margin-top: 30px;
 }
@@ -653,6 +649,23 @@ hr{
 	font-size: 20px;
 }
 
+.color-but{
+	background-color: rgb(52, 172, 220) !important;
+	border-color: rgba(52, 172, 220, 0.98) !important;
+	color: #ffffff !important;
+	width: 150px;
+	font-weight: 700;
+	opacity: unset;
+	text-shadow: #333333 1px 1px 1px;
+}
+
+.botaoposicao{
+	margin-top: 140px;
+}
+
+.esp-sup{
+	margin-top: 70px;
+}
 .azul-timeline{
 	color: #353f9b;
 }
