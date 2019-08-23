@@ -31,7 +31,7 @@
 }
 
 .intro{
-    background-color: #353f9b;
+    background-color: #191970;
     color: rgb(255, 255, 255);
 }
 
@@ -74,7 +74,11 @@ background: #707070;
 }
 
 .atividades{
-    background-color: #707070;
+    background-color: #003153;
+}
+
+.cor-tit{
+	color: white;
 }
 
 .caixa{
@@ -355,8 +359,8 @@ background: #707070;
 }
 
 .colorir{
-	background-color: rgb(52, 172, 220) !important;
-	border-color: rgba(52, 172, 220, 0.98) !important;
+	background-color: #007FFF !important;
+	border-color: #007FFF !important;
 	border-radius: 20px;
 	color: #ffffff !important;
 	width: 200px;
@@ -650,8 +654,8 @@ hr{
 }
 
 .color-but{
-	background-color: rgb(52, 172, 220) !important;
-	border-color: rgba(52, 172, 220, 0.98) !important;
+	background-color: #007FFF !important;
+	border-color: #007FFF !important;
 	color: #ffffff !important;
 	width: 150px;
 	font-weight: 700;
@@ -667,7 +671,7 @@ hr{
 	margin-top: 70px;
 }
 .azul-timeline{
-	color: #353f9b;
+	color: #191970;
 }
 
 .esp-inf{
