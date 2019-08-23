@@ -1374,8 +1374,10 @@ input.ct-red + span + label + span.switch-right {
     border: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 
+
+  /*testando a barra 077FFF*/
 .navbar-ct-blue {
-  background-color: #007FFF; }
+  background-color: rgba(0, 0, 0, 0.651); }
 
 .navbar-ct-azzure {
   background-color: rgba(91, 202, 255, 0.98); }
