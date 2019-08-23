@@ -1,5 +1,5 @@
 {% extends 'front/base/template-base.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}Inicio{% endblock %}
     {% block content %}
     <div class="container">
         <div class="space-30"></div>
@@ -11,96 +11,17 @@
             </div>
             <div class="col-lg-10">
                 <div class="owl-carousel carousel-noticias">
+                    {% for noticia in noticias%}
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <img src="assets/img/tesimg.png" alt="" class="img-responsive">
                         </div>
                         <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
+                            {{(noticia.conteudo|striptags|truncate)}}
                             <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
-                        </div>
-                        <div class="panel-body">
-                            <p>Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-lg-1 hidden-xs hidden-sm hidden-md esp-sup">
@@ -117,7 +38,7 @@
                 </button>
             </div>
         </div>
-        <a href="#">
+        <a href="{{base_url()}}/noticias">
             <div class="text-right mais">Ver todas as notícias<i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
         </a>
@@ -231,30 +152,30 @@
                     <div class="caixa">
                         <h2>Apresentações</h2>
                         <h5 class="espCaixa">aqui ficará uma breve descrição dos mini-cursos que vão ocorrer nos EU</h5>
-                        <a href="#" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/apresentacoes" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                         <!--<button type="button" class="btn btn-danger botaoposcicao">Danger</button>-->
                         <!--<button type="button" class="btn btn-secondary botaoposcicao">Saiba mais</button>-->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Minicursos</h2>
+                        <h2>Mini Cursos</h2>
                         <h5 class="espCaixa">aqui ficará uma breve descrição dos mini-cursos que vão ocorrer nos EU</h5>
-                        <a href="#" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/mini_cursos" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Oficinas</h2>
                         <h5 class="espCaixa">aqui ficará uma breve descrição das oficinas que vão ocorrer nos EU</h5>
-                        <a href="#" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/oficinas" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Palestras</h2>
                         <h5 class="espCaixa">aqui ficará uma breve descrição das palestras que vão ocorrer nos EU</h5>
-                        <a href="#" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/palestras" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
             </div>

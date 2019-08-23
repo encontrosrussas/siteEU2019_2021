@@ -1,5 +1,6 @@
 <?php
 use \Medoo\Medoo;
+use \Twig\TwigFilter;
 
 return function ($app) {
     // Register component on container
@@ -7,7 +8,13 @@ return function ($app) {
         $view = new \Slim\Views\Twig('src'. DIRECTORY_SEPARATOR .'views', [
             // 'cache' => 'src/views-cache'
         ]);
-
+        $filter = new TwigFilter('truncate',function ($string, $length=255, $end='...'){
+            if(strlen($string) > $length)
+                return substr($string, 0, $length - $end) . $end;
+            else
+                return $string;
+        });
+        $view->getEnvironment()->addFilter($filter);
         // Instantiate and add Slim specific extension
         $router = $container->get('router');
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));

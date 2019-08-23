@@ -14,7 +14,18 @@ class HomeController
 
     public function index($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'front/index.html');
+        $noticias = $this->container->db->select(
+            "noticias",
+            [
+                'id',
+                'titulo',
+                'conteudo'
+            ],
+            ['ano_id' => 1, 'LIMIT' => 8]
+        );
+        return $this->container->view->render($response, 'front/index.html',[
+            'noticias' => $noticias
+        ]);
     }
 
     public function acomodacoes($request, $response, $args){
