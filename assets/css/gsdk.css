@@ -1374,8 +1374,10 @@ input.ct-red + span + label + span.switch-right {
     border: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 
+
+  /*testando a barra 077FFF*/
 .navbar-ct-blue {
-  background-color: rgba(52, 172, 220, 0.98); }
+  background-color: rgba(0, 0, 0, 0.651); }
 
 .navbar-ct-azzure {
   background-color: rgba(91, 202, 255, 0.98); }
@@ -1402,7 +1404,7 @@ input.ct-red + span + label + span.switch-right {
     background-color: #FFFFFF; }
   .navbar-toggle .navbar-collapse,
   .navbar-toggle .navbar-form {
-    border-color: transparent; }
+    border-color: rgba(0, 0, 0, 0.801); }
 
 .dropdown-menu {
   margin: 0;
@@ -1564,9 +1566,9 @@ input.ct-red + span + label + span.switch-right {
 .panel-group .gsdk-collapse {
   display: block;
   height: 0px;
-  visibility: visible;
   overflow: hidden;
-  transition: all 400ms; }
+  visibility: visible;
+  transition: all 0ms; }
 .panel-group .panel-title a:hover,
 .panel-group .panel-title a:focus {
   color: #777777; }

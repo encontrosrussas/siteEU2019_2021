@@ -5,3 +5,5 @@ src/views-cache/
 qualquercoisa
 !assets/vendor
 banco/*.bak
+# Ignore dummyapp folder
+/gsdk/dummyapp
