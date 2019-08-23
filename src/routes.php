@@ -47,5 +47,10 @@ return function ($app) {
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
         $app->get('/temp/{nome}', AdminController::class . ':template')->setName('template');
     });
-    $app->get('/{nome}', HomeController::class . ':home')->setName('index');
+    $app->get('/', HomeController::class . ':index')->setName('index');
+    $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('index');
+    $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
+    $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
+    $app->get('/noticia', HomeController::class . ':noticia')->setName('index');
+    $app->get('/palestras', HomeController::class . ':palestras')->setName('index');
 };
