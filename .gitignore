@@ -1,7 +1,7 @@
 logs/
 vendor
 src/views-cache/
-src/settings.php
+# src/settings.php
 qualquercoisa
 !assets/vendor
 banco/*.bak
