@@ -287,11 +287,14 @@ class AdminController
             $dados = $request->getParsedBody();
             if (empty($dados['titulo']) || is_null($dados['titulo']))
                 array_push($argumentos['mensagens'], 'Titulo Invalido!');
+            if (empty($dados['subtitulo']) || is_null($dados['subtitulo']))
+                array_push($argumentos['mensagens'], 'Sub Titulo Invalido!');
             if (empty($dados['conteudo']) || is_null($dados['conteudo']))
                 array_push($argumentos['mensagens'], 'Conteudo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $noticia = new Noticia();
                 $noticia->setTitulo($dados['titulo']);
+                $noticia->setSubTitulo($dados['subtitulo']);
                 $noticia->setConteudo($dados['conteudo']);
                 $imagem = $request->getUploadedFiles()['imagem'];
                 $upload = new Upload("uploads/");
@@ -346,6 +349,7 @@ class AdminController
                 [
                     'id',
                     'titulo',
+                    'subtitulo',
                     'imagem',
                     'conteudo'
                 ],

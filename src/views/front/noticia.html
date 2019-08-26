@@ -3,41 +3,28 @@
 {% block content %}
     <div class="pag-noticias">
         <div class="container">
-            <div class="space-100"></div>
+            <div class="space-30"></div>
             <div class="text-justify tim-title text-center .text-nowrap">
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 text-left">
-                        <h1 class="fonttitulo">Aqui ficará o título principal da notícia</h1>
-                        <h3 class="fontsubtitulo">Aqui ficará o subtítulo da notícia caso seja necessário</h3>
-                        <h5 class="esp fontesp">Terça-feira, 13 de agosto, às 16:30</h5>
-                        <img src="assets/img/imgTeste.jpg" alt="" class="img-responsive">
-                        <h5 class="esp fontesp">É um facto estabelecido de que um leitor é distraído pelo conteúdo legível de uma página quando analisa a sua mancha gráfica. 
-                            Logo, o uso de Lorem Ipsum leva a uma distribuição mais ou menos normal de letras, ao contrário do uso de "Conteúdo aqui, conteúdo aqui". Existem muitas variações das passagens do Lorem Ipsum disponíveis, mas a maior parte sofreu alterações de alguma forma, pela injecção de humor, ou de palavras aleatórias que nem sequer parecem suficientemente credíveis. Se vai usar uma passagem do Lorem Ipsum, deve ter a certeza que não contém nada de embaraçoso escondido no meio do texto. Todos os geradores de Lorem Ipsum na Internet acabam por repetir porções de texto pré-definido, como necessário, fazendo com que este seja o primeiro verdadeiro gerador na Internet. Usa um dicionário de 200 palavras em Latim, combinado com uma 
-                            dúzia de modelos de frases, para gerar Lorem Ipsum que pareçam razoáveis. Desta forma, o Lorem Ipsum gerado é sempre livre de repetição, ou de injecção humorística, etc.</h5>
+                        <h1 class="fonttitulo">{{noticia.titulo}}</h1>
+                        <h3 class="fontsubtitulo">{{noticia.subtitulo}}</h3>
+                        <h5 class="esp fontesp">{{noticia.data|date('l')|capitalize}}, {{noticia.data|date('d')}} de {{noticia.data|date('F')|capitalize}} de {{noticia.data|date('Y')}}, às {{noticia.hora|date('H:i')}}</h5>
+                        <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
+                        <h5 class="esp fontesp">
+                            {{noticia.conteudo|raw}}{{not}}
+                        </h5>
                     </div>
                     <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text-left">
                         <p class="row titNot">Últimas notícias</p>
                         <hr/>
+                        {% for noti in noticias%}
                         <!--noticia-->
                         <div class="panel panel-default">
-                            <div class="panel-body"><img src="assets/img/tesimg.png" alt="" class="img-responsive"></div>
-                            <div class="panel-body">Panel Footer</div>
+                            <div class="panel-body"><img src="{{noti.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noti.imagem]|join}}" alt="" class="img-responsive"></div>
+                            <div class="panel-body"><a href="{{base_url()}}/noticia/{{noti.id}}"><h4 class="titulo-noticia center-block text-center">{{noti.titulo}}</h4></a></div>
                         </div>
-                        <!--noticia-->
-                        <div class="panel panel-default">
-                            <div class="panel-body"><img src="assets/img/tesimg.png" alt="" class="img-responsive"></div>
-                            <div class="panel-body">Panel Footer</div>
-                        </div>
-                        <!--noticia--> 
-                        <div class="panel panel-default">
-                            <div class="panel-body"><img src="assets/img/tesimg.png" alt="" class="img-responsive"></div>
-                            <div class="panel-body">Panel Footer</div>
-                        </div>
-                        <!--noticia-->
-                        <div class="panel panel-default">
-                            <div class="panel-body"><img src="assets/img/tesimg.png" alt="" class="img-responsive"></div>
-                            <div class="panel-body">Panel Footer</div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

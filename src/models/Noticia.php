@@ -5,6 +5,7 @@ namespace app\models;
 class Noticia{
     private $id;
     private $titulo;
+    private $subtitulo;
     private $data;
     private $hora;
     private $imagem;
@@ -43,6 +44,23 @@ class Noticia{
     {
         if (!empty($titulo) && !is_null($titulo))
         $this->titulo = $titulo;
+    }
+
+    /**
+     * Get the value of titulo
+     */ 
+    public function getSubTitulo()
+    {
+        return $this->subtitulo;
+    }
+
+    /**
+     * Set the value of titulo
+     */ 
+    public function setSubTitulo($subTitulo)
+    {
+        if (!empty($subTitulo) && !is_null($subTitulo))
+        $this->subtitulo = $subTitulo;
     }
 
     /**
@@ -135,6 +153,8 @@ class Noticia{
         $retorno = [];
         if (!is_null($this->getTitulo()))
             $retorno["titulo"] = $this->getTitulo();
+        if (!is_null($this->getSubTitulo()))
+            $retorno["subtitulo"] = $this->getSubTitulo();
         if (!is_null($this->getData()))
             $retorno["data"] = $this->getData();
         if (!is_null($this->getHora()))

@@ -14,11 +14,12 @@
                     {% for noticia in noticias%}
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <img src="assets/img/tesimg.png" alt="" class="img-responsive">
+                            <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
                         </div>
                         <div class="panel-body">
-                            {{(noticia.conteudo|striptags|truncate)}}
-                            <a href="#" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
+                            <h4 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h4>
+                            <h5 class="">{{noticia.subtitulo}}</h5>
+                            <a href="{{base_url()}}/noticia/{{noticia.id}}" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
                         </div>
                     </div>
                     {% endfor %}

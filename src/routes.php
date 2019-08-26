@@ -52,5 +52,6 @@ return function ($app) {
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticia', HomeController::class . ':noticia')->setName('index');
+    $app->get('/noticia/{id}', HomeController::class . ':noticia')->setName('index');
     $app->get('/palestras', HomeController::class . ':palestras')->setName('index');
 };
