@@ -12,9 +12,21 @@
     background-size: cover;
     background-position: center center;
 }
+
+/*
 .cronograma{ 
     color: #333333;
     background-color: white;
+}
+*/
+
+.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso{
+    background-image: url('../img/transparencia encontros.png');
+    color: #333333;
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
 }
 
 .descricao{
@@ -126,13 +138,15 @@ background: #707070;
 }
 
 .logo{
-    /*width: 100% !important!;*/
-    height: auto;
-    width: 500px;
+	width: 170px !important;
 }
 
 .topo{
-    margin-top: 150px;
+	margin-top: 200px;
+}
+
+.esp-entre-logo{
+	margin-bottom: 20px;
 }
 
 /*aqui são propriedades da nossa timeline de datas importantes*/
@@ -329,7 +343,7 @@ background: #707070;
 }
 
 .rodape{
-	background-color: rgba(0, 0, 0, 0.822) !important;
+	background-color: #000d1b !important;
     margin-left: 0;
     margin-right: 0;
 }
@@ -359,14 +373,15 @@ background: #707070;
 }
 
 .colorir{
-	background-color: #007FFF !important;
-	border-color: #007FFF !important;
+	background-color: #0058b8 !important; /*#007FFF*/
+	border-color: #0058b8  !important;
 	border-radius: 20px;
 	color: #ffffff !important;
 	width: 200px;
 	font-weight: 700;
-	margin-top: 10px;
-	margin-bottom: 60px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	/*margin-bottom: 50px;*/
 	opacity: unset;
 	transition: transform .2s; /* Animation */
 	text-shadow: #333333 1px 1px 1px;
@@ -407,9 +422,9 @@ background: #707070;
 	margin-top: 0; 
 }
 
-.pag-noticias{
+/*.pag-noticias{
 	background-color: white;
-}
+}*/
 
 .widget--pagination {
     margin-top: 2.6666666667em;
@@ -677,10 +692,12 @@ hr{
 .esp-inf{
 	margin-bottom: 30px;
 }
-.paginate{
-	text-align: center
+
+.logo-rodape{
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
-.titulo-noticia{
-	margin-top: 0;
+.paginate{
+	text-align: center
 }

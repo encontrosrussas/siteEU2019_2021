@@ -1377,7 +1377,7 @@ input.ct-red + span + label + span.switch-right {
 
   /*testando a barra 077FFF*/
 .navbar-ct-blue {
-  background-color: rgba(0, 0, 0, 0.651); }
+  background-color: rgba(0, 41, 85, 0.87); }
 
 .navbar-ct-azzure {
   background-color: rgba(91, 202, 255, 0.98); }
