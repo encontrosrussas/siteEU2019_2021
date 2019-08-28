@@ -17,8 +17,8 @@
                             <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
                         </div>
                         <div class="panel-body">
-                            <h4 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h4>
-                            <h5 class="">{{noticia.subtitulo}}</h5>
+                            <h5 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h5>
+                            <!-- <p class="">{{noticia.subtitulo}}</p> -->
                             <a href="{{base_url()}}/noticia/{{noticia.id}}" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
                         </div>
                     </div>

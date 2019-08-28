@@ -12,7 +12,7 @@
                         <h5 class="esp fontesp">{{noticia.data|date('l')|capitalize}}, {{noticia.data|date('d')}} de {{noticia.data|date('F')|capitalize}} de {{noticia.data|date('Y')}}, às {{noticia.hora|date('H:i')}}</h5>
                         <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
                         <h5 class="esp fontesp">
-                            {{noticia.conteudo|raw}}{{not}}
+                            {{noticia.conteudo|raw}}
                         </h5>
                     </div>
                     <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text-left">

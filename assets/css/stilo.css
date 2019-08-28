@@ -701,3 +701,12 @@ hr{
 .paginate{
 	text-align: center
 }
+.titulo-noticia{
+	margin-top: 0;
+}
+.owl-carousel .owl-item img {
+	height: 137px;
+}
+.link-list__info, .link-list__subtitle {
+	margin-bottom: 0;
+}
