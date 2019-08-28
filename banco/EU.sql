@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 28-Ago-2019 às 09:05
+-- Generation Time: 28-Ago-2019 às 11:39
 -- Versão do servidor: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.21-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -118,8 +118,11 @@ DROP TABLE IF EXISTS `cursos_oficinas`;
 CREATE TABLE IF NOT EXISTS `cursos_oficinas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
+  `resumo` text NOT NULL,
+  `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
   `tipo` tinyint(4) NOT NULL,
   `ano_id` int(11) DEFAULT NULL,
@@ -177,8 +180,11 @@ DROP TABLE IF EXISTS `palestras`;
 CREATE TABLE IF NOT EXISTS `palestras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
+  `resumo` text NOT NULL,
+  `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,

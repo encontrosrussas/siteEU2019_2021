@@ -9,66 +9,44 @@
             </div>
             <div class="space-30"></div>
             <div class="container">
-                    <div class = "row">
-                        <div class = "col-md-12">
+                    {% if mini_cursos %}
+                    {% for mini_cursos in mini_cursos %}
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="card-base animated bounceInLeft">
-                                <div class="card-icon"><img src="assets/img/pess.png" id="widgetCardIcon" class="imagecard">
+                                <div class="card-icon"><img
+                                        src="{{mini_cursos.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/cursos_oficinas/', mini_cursos.imagem]|join}}"
+                                        id="widgetCardIcon" class="imagecard">
                                     <div class="card-data widgetCardData">
-                                    <h3>Vivenciando o teatro na prática</h1>
-                                    <h2 class="box-title" style="color: #2973d4;"></h2>
-                                    <p class="card-block textoPalestra">Maria Joaquia<br \>
-                                    Área de atuação: Teatro<br \>
-                                    Resumo do minicurso:aqui ficará um breve resumo da palestra e o texto realmente é aberto para que o palestrante relate sobre o que ele quer apresentar<br \>
-                                    Horário e Sala: </p>
-                                    </div>
-                        <div class="space-30"></div>
-                                </div>
-                            </div>
-                        </div>      
-                    </div>
-                </div>
-                <!---->
-                <div class="container">
-                        <div class = "row">
-                            <div class = "col-md-12">
-                                <div class="card-base animated bounceInRight">
-                                    <div class="card-icon"><img src="assets/img/pess1.png" id="widgetCardIcon" class="imagecard">
-                                        <div class="card-data widgetCardData">
-                                        <h3>Vivenciando o teatro na prática</h1>
-                                        <h2 class="box-title" style="color: #2973d4;"></h2>
-                                        <p class="card-block textoPalestra">Maria Joaquia<br \>
-                                        Área de atuação: Teatro<br \>
-                                        Resumo do minicurso:aqui ficará um breve resumo da palestra e o texto realmente é aberto para que o palestrante relate sobre o que ele quer apresentar<br \>
-                                        Horário e Sala: </p>
-                                        </div>
-                            <div class="space-30"></div>
-                                    </div>
-                                </div>
-                            </div>      
-                        </div>
-                    </div>
-                    <!---->
-                    <div class="container">
-                            <div class = "row">
-                                <div class = "col-md-12">
-                                    <div class="card-base animated bounceInLeft">
-                                        <div class="card-icon"><img src="assets/img/pess2.png" id="widgetCardIcon" class="imagecard">
-                                            <div class="card-data widgetCardData">
-                                            <h3>Vivenciando o teatro na prática</h1>
+                                        <h3>{{mini_cursos.titulo}}</h1>
                                             <h2 class="box-title" style="color: #2973d4;"></h2>
-                                            <p class="card-block textoPalestra">Maria Joaquia<br \>
-                                            Área de atuação: Teatro<br \>
-                                            Resumo do minicurso:aqui ficará um breve resumo da palestra e o texto realmente é aberto para que o palestrante relate sobre o que ele quer apresentar<br \>
-                                            Horário e Sala: </p>
-                                            </div>
-                                <div class="space-30"></div>
-                                        </div>
+                                            <p class="card-block textoPalestra">Autor: {{mini_cursos.nome}}<br \>
+                                                Área de atuação: {{mini_cursos.area}}<br \>
+                                                Resumo da palestra: {{mini_cursos.resumo}}<br \>
+                                                Horário: {{mini_cursos.data|date('d/m/Y')}} as {{mini_cursos.hora|date('H:i')}}<br>
+                                                Sala: {{mini_cursos.sala}}</p>
                                     </div>
-                                </div>      
+                                    <div class="space-30"></div>
+                                </div>
                             </div>
                         </div>
-            <div class="space"></div>
-            
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-base animated bounceInLeft">
+                                <div class="card-icon">
+                                    <div class="card-data widgetCardData">
+                                        <h2 class="box-title">Sem Mini Cursos Ainda!</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            <div class="space-30"></div>
         </div>
     </div>
 {% endblock %}

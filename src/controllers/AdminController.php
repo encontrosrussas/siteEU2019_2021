@@ -741,6 +741,13 @@ class AdminController
         Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
+            $img = $db->select(
+                "cursos_oficinas",
+                'imagem',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img))
+                (new Upload("uploads/"))->excluir($img, "cursos_oficinas/");
             $db->delete(
                 "cursos_oficinas",
                 ["id" => $args['id']]
@@ -758,7 +765,7 @@ class AdminController
             ],
             [
                 'cursos_oficinas.id',
-                'cursos_oficinas.nome',
+                'cursos_oficinas.titulo',
                 'cursos_oficinas.tipo',
                 'area.nome(area)',
                 'ano.nome_ano'
@@ -783,8 +790,14 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
+            if (empty($dados['titulo']) || is_null($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo Invalido!');
             if (empty($dados['nome']) || is_null($dados['nome']))
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
+            if (empty($dados['sala']) || is_null($dados['sala']))
+                array_push($argumentos['mensagens'], 'Sala Invalida!');
+            if (empty($dados['resumo']) || is_null($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $cursos_oficinas = new CursoOficina();
                 $ano = $db->select(
@@ -797,7 +810,10 @@ class AdminController
                         "status" => 1
                     ]
                 )[0];
+                $cursos_oficinas->setTitulo($dados['titulo']);
                 $cursos_oficinas->setNome($dados['nome']);
+                $cursos_oficinas->setResumo($dados['resumo']);
+                $cursos_oficinas->setSala($dados['sala']);
                 $cursos_oficinas->setArea_id($dados['area']);
                 $cursos_oficinas->setTipo($dados['tipo']);
                 $cursos_oficinas->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
@@ -842,9 +858,12 @@ class AdminController
                 "cursos_oficinas",
                 [
                     'id',
+                    'titulo',
                     'nome',
                     'data',
                     'hora',
+                    'resumo',
+                    'sala',
                     'tipo',
                     'imagem',
                     'area_id',
@@ -888,6 +907,12 @@ class AdminController
         Login::verifyLogin();
         $db = $this->container->db;
         if (isset($args['id'])) {
+            $img = $db->select(
+                "palestras",
+                'imagem',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img)) (new Upload("uploads/"))->excluir($img, "palestras/");
             $db->delete(
                 "palestras",
                 ["id" => $args['id']]
@@ -905,7 +930,7 @@ class AdminController
             ],
             [
                 'palestras.id',
-                'palestras.nome',
+                'palestras.titulo',
                 'palestras.data',
                 'palestras.hora',
                 'area.nome(area)',
@@ -930,8 +955,14 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
+            if (empty($dados['titulo']) || is_null($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo Invalido!');
             if (empty($dados['nome']) || is_null($dados['nome']))
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
+            if (empty($dados['sala']) || is_null($dados['sala']))
+                array_push($argumentos['mensagens'], 'Sala Invalida!');
+            if (empty($dados['resumo']) || is_null($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Palestra();
                 $ano = $db->select(
@@ -944,7 +975,10 @@ class AdminController
                         "status" => 1
                     ]
                 )[0];
+                $palestra->setTitulo($dados['titulo']);
                 $palestra->setNome($dados['nome']);
+                $palestra->setResumo($dados['resumo']);
+                $palestra->setSala($dados['sala']);
                 $palestra->setArea_id($dados['area']);
                 $palestra->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
                 $palestra->setHora("{$dados['hora']}:{$dados['minutos']}");
@@ -988,9 +1022,12 @@ class AdminController
                 "palestras",
                 [
                     'id',
+                    'titulo',
                     'nome',
                     'data',
                     'hora',
+                    'resumo',
+                    'sala',
                     'imagem',
                     'area_id',
                 ],

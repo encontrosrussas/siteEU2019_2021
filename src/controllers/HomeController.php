@@ -37,7 +37,40 @@ class HomeController
 
     public function mini_cursos($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'front/mini_cursos.html');
+        $db = $this->container->db;
+        $mini_cursos = $db->select(
+            "cursos_oficinas",
+            [
+                "[><]ano" => [
+                    "cursos_oficinas.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "cursos_oficinas.area_id" => "id"
+                ],
+            ],
+            [
+                'cursos_oficinas.id',
+                'cursos_oficinas.titulo',
+                'cursos_oficinas.nome',
+                'cursos_oficinas.data',
+                'cursos_oficinas.hora',
+                'cursos_oficinas.resumo',
+                'cursos_oficinas.sala',
+                'cursos_oficinas.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'AND'=>[
+                    'ano.status' => 1,
+                    'cursos_oficinas.tipo' => 1
+                ]
+            ]
+        );
+        return $this->container->view->render(
+            $response,
+            'front/mini_cursos.html',
+            ['mini_cursos'=>$mini_cursos]
+        );
     }
 
     public function noticias($request, $response, $args){
@@ -59,6 +92,7 @@ class HomeController
                 'noticias.hora'
             ],
             [
+                'ano.status' => 1,
                 'LIMIT' => 6
             ]
         );
@@ -125,7 +159,37 @@ class HomeController
 
     public function palestras($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'front/palestras.html');
+        $db = $this->container->db;
+        $palestras = $db->select(
+            "palestras",
+            [
+                "[><]ano" => [
+                    "palestras.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "palestras.area_id" => "id"
+                ],
+            ],
+            [
+                'palestras.id',
+                'palestras.titulo',
+                'palestras.nome',
+                'palestras.data',
+                'palestras.hora',
+                'palestras.resumo',
+                'palestras.sala',
+                'palestras.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'ano.status' => 1
+            ]
+        );
+        return $this->container->view->render(
+            $response,
+            'front/palestras.html',
+            ['palestras'=>$palestras]
+        );
     }
 
 }

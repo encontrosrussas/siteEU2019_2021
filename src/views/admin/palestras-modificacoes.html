@@ -24,8 +24,16 @@
                                 </div>
                                 {% endif %}
                                 <div class="form-group">
-                                    <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome da Palestra" class="form-control" value="{{palestra.nome}}">
+                                    <label for="titulo" class=" form-control-label">Titulo da Palestrante</label>
+                                    <input type="text" id="titulo" name="titulo" placeholder="Digite o Titulo da Palestra" class="form-control" value="{{palestra.titulo}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome" class=" form-control-label">Nome do Palestrante</label>
+                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome do Palestrante" class="form-control" value="{{palestra.nome}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sala" class=" form-control-label">Sala</label>
+                                    <input type="text" id="sala" name="sala" placeholder="Digite a Sala da Palestra" class="form-control" value="{{palestra.sala}}">
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-1">
@@ -84,6 +92,11 @@
                                             {% endfor %}
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="resumo" class=" form-control-label">Resumo</label>
+                                    <textarea name="resumo" id="resumo" rows="3" placeholder="Digite o Resumo da Palestra..."
+                                        class="form-control">{{palestra.resumo}}</textarea>
                                 </div>
                                 {% if palestra.imagem %}
                                 <img src="{{base_url()}}/uploads/palestras/{{palestra.imagem}}" style="width: 50%">
