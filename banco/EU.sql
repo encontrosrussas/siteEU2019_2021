@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 19-Ago-2019 às 12:35
+-- Generation Time: 28-Ago-2019 às 09:05
 -- Versão do servidor: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.2.21-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -157,6 +157,7 @@ DROP TABLE IF EXISTS `noticias`;
 CREATE TABLE IF NOT EXISTS `noticias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(200) NOT NULL,
+  `subtitulo` varchar(200) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,

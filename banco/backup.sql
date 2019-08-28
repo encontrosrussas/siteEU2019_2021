@@ -63,7 +63,7 @@ CREATE TABLE `apresentacoes` (
   KEY `fk_apresentacoes_area1_idx` (`area_id`),
   CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `cursos_oficinas` (
   KEY `fk_cursos_oficinas_area1_idx` (`area_id`),
   CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,6 +199,7 @@ DROP TABLE IF EXISTS `noticias`;
 CREATE TABLE `noticias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(200) NOT NULL,
+  `subtitulo` varchar(200) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
@@ -207,7 +208,7 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`id`),
   KEY `fk_noticias_ano1_idx` (`ano_id`),
   CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,6 +217,7 @@ CREATE TABLE `noticias` (
 
 LOCK TABLES `noticias` WRITE;
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
+INSERT INTO `noticias` VALUES (1,'aksdhbaksjd','','2019-08-23','10:49:00','26-08-2019-11-02-35.png','<p><strong>akshdbasd</strong></p><p>aksjhdhaksjdkjasd</p>',1),(2,'aksdhbaksjd','askjdbuas','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(3,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(4,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(5,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(6,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(7,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(8,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(9,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(10,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(11,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(12,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(13,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(14,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(15,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(16,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(17,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(18,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(19,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(20,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(21,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(22,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(23,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(24,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(25,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(26,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(27,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(28,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(29,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(30,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(31,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(32,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(33,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(34,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(35,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(36,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(37,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(38,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(39,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(40,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(41,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(42,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(43,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(44,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(45,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(46,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(47,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(48,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(49,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1),(50,'aksdhbaksjd','','2019-08-23','10:49:00',NULL,'<p>aksjhdhaksjdkjasd</p>',1);
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +241,7 @@ CREATE TABLE `palestras` (
   KEY `fk_palestras_area1_idx` (`area_id`),
   CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_palestras_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-19 15:36:06
+-- Dump completed on 2019-08-28 12:05:14
