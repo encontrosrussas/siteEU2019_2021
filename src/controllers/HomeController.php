@@ -73,6 +73,85 @@ class HomeController
         );
     }
 
+    public function apresentacoes($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        // $db = $this->container->db;
+        $apresentacoes = [];
+        // $apresentacoes = $db->select(
+        //     "apresentacoes",
+        //     [
+        //         "[><]ano" => [
+        //             "apresentacoes.ano_id" => "id"
+        //         ],
+        //         "[><]area" => [
+        //             "apresentacoes.area_id" => "id"
+        //         ],
+        //     ],
+        //     [
+        //         'apresentacoes.id',
+        //         'apresentacoes.titulo',
+        //         'apresentacoes.nome',
+        //         'apresentacoes.data',
+        //         'apresentacoes.hora',
+        //         'apresentacoes.resumo',
+        //         'apresentacoes.sala',
+        //         'apresentacoes.imagem',
+        //         'area.nome(area)',
+        //     ],
+        //     [
+        //         'AND' => [
+        //             'ano.status' => 1,
+        //             'apresentacoes.tipo' => 1
+        //         ]
+        //     ]
+        // );
+        return $this->container->view->render(
+            $response,
+            'front/apresentacoes.html',
+            ['apresentacoes' => $apresentacoes]
+        );
+    }
+
+    public function oficinas($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $oficinas = $db->select(
+            "cursos_oficinas",
+            [
+                "[><]ano" => [
+                    "cursos_oficinas.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "cursos_oficinas.area_id" => "id"
+                ],
+            ],
+            [
+                'cursos_oficinas.id',
+                'cursos_oficinas.titulo',
+                'cursos_oficinas.nome',
+                'cursos_oficinas.data',
+                'cursos_oficinas.hora',
+                'cursos_oficinas.resumo',
+                'cursos_oficinas.sala',
+                'cursos_oficinas.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'AND' => [
+                    'ano.status' => 1,
+                    'cursos_oficinas.tipo' => 2
+                ]
+            ]
+        );
+        return $this->container->view->render(
+            $response,
+            'front/oficinas.html',
+            ['oficinas' => $oficinas]
+        );
+    }
+
     public function noticias($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $argumentos = [];
