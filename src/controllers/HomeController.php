@@ -256,6 +256,112 @@ class HomeController
         return $response->withRedirect('/noticias');
     }
 
+    public function editais($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $argumentos = [];
+        $itemsPorPagina = 10;
+        $qtdItems = $db->count(
+            "editais",
+            [
+                "[><]ano" => [
+                    "editais.ano_id" => "id"
+                ],
+            ],
+            [
+                'editais.id',
+            ],
+            [
+                'ano.status' => 1,
+            ]
+        );
+        #quantidade de paginas
+        $num_pag = ceil($qtdItems / $itemsPorPagina);
+        $argumentos['paginas'] = $num_pag;
+        $argumentos['pagina_atual'] = isset($args['pagina']) && $args['pagina'] <= $num_pag && $args['pagina'] > 0 ? $args['pagina'] : 1;
+        $pag = isset($args['pagina']) && $args['pagina'] <= $num_pag && $args['pagina'] > 0 ? ($args['pagina'] - 1) * $itemsPorPagina : 0;
+        $argumentos['editais'] = $db->select(
+            "editais",
+            [
+                "[><]ano" => [
+                    "editais.ano_id" => "id"
+                ],
+            ],
+            [
+                'editais.id',
+                'editais.titulo',
+                'editais.subtitulo',
+                'editais.data',
+                'editais.hora'
+            ],
+            [
+                'ano.status' => 1,
+                'LIMIT' => [$pag, $itemsPorPagina]
+            ]
+        );
+        return $this->container->view->render(
+            $response,
+            'front/editais.html',
+            $argumentos
+        );
+    }
+
+    public function edital($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $argumentos = [];
+        $db = $this->container->db;
+        if (isset($args['id'])) {
+            $noticia = $db->select(
+                "editais",
+                [
+                    "[><]ano" => [
+                        "editais.ano_id" => "id"
+                    ],
+                ],
+                [
+                    'editais.id',
+                    'editais.titulo',
+                    'editais.subtitulo',
+                    'editais.data',
+                    'editais.hora',
+                    'editais.imagem',
+                    'editais.conteudo'
+                ],
+                [
+                    'editais.id' => $args['id']
+                ]
+            );
+            $argumentos['editais'] = $db->select(
+                "editais",
+                [
+                    "[><]ano" => [
+                        "editais.ano_id" => "id"
+                    ],
+                ],
+                [
+                    'editais.id',
+                    'editais.titulo',
+                    'editais.imagem',
+                ],
+                [
+                    'editais.id[!]' => $args['id'],
+                    'LIMIT' => 4
+                ]
+            );
+            if (count($noticia) == 0) {
+                $argumentos['editais'] = $noticia[0];
+                return $this->container->view->render(
+                    $response,
+                    'front/edital.html',
+                    $argumentos
+                );
+            }
+        }
+        return $response->withRedirect('/editais');
+    }
+
     public function palestras($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;

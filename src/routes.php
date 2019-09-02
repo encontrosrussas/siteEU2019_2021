@@ -51,8 +51,12 @@ return function ($app) {
     $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('index');
     $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticias/[{pagina}]', HomeController::class . ':noticias')->setName('noticias');
-    $app->get('/noticia', HomeController::class . ':noticia')->setName('index');
+    $app->get('/noticia', HomeController::class . ':noticia')->setName('noticia');
     $app->get('/noticia/{id}', HomeController::class . ':noticia')->setName('index');
+    $app->get('/editais', HomeController::class . ':editais')->setName('editais');
+    $app->get('/editais/[{pagina}]', HomeController::class . ':editais')->setName('editais');
+    $app->get('/edital', HomeController::class . ':edital')->setName('edital');
+    $app->get('/edital/{id}', HomeController::class . ':edital')->setName('edital');
     $app->get('/palestras', HomeController::class . ':palestras')->setName('index');
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
