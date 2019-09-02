@@ -678,8 +678,8 @@ hr{
 }
 
 .color-but{
-	background-color: #007FFF !important;
-	border-color: #007FFF !important;
+	background-color: #0058b8 !important; /*#007FFF*/
+	border-color: #0058b8  !important;
 	color: #ffffff !important;
 	width: 150px;
 	font-weight: 700;
