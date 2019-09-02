@@ -154,8 +154,28 @@ class HomeController
 
     public function noticias($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        $argumentos = [];
         $db = $this->container->db;
+        $argumentos = [];
+        $itemsPorPagina = 10;
+        $qtdItems = $db->count(
+            "noticias",
+            [
+                "[><]ano" => [
+                    "noticias.ano_id" => "id"
+                ],
+            ],
+            [
+                'noticias.id',
+            ],
+            [
+                'ano.status' => 1,
+            ]
+        );
+        #quantidade de paginas
+        $num_pag = ceil($qtdItems / $itemsPorPagina);
+        $argumentos['paginas'] = $num_pag;
+        $argumentos['pagina_atual'] = isset($args['pagina']) && $args['pagina'] <= $num_pag && $args['pagina'] > 0 ? $args['pagina'] : 1;
+        $pag = isset($args['pagina']) && $args['pagina'] <= $num_pag && $args['pagina'] > 0 ? ($args['pagina'] - 1) * $itemsPorPagina : 0;
         $argumentos['noticias'] = $db->select(
             "noticias",
             [
@@ -172,7 +192,7 @@ class HomeController
             ],
             [
                 'ano.status' => 1,
-                'LIMIT' => 6
+                'LIMIT' => [$pag, $itemsPorPagina]
             ]
         );
         return $this->container->view->render(
@@ -239,7 +259,8 @@ class HomeController
     public function palestras($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $palestras = $db->select(
+        $argumentos = [];
+        $argumentos['palestras'] = $db->select(
             "palestras",
             [
                 "[><]ano" => [
@@ -267,7 +288,7 @@ class HomeController
         return $this->container->view->render(
             $response,
             'front/palestras.html',
-            ['palestras'=>$palestras]
+            $argumentos
         );
     }
 

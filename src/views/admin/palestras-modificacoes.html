@@ -115,3 +115,19 @@
                         </form>
                     </div>
 {% endblock %}
+{% block js %}
+    <script src="{{base_url()}}/assets/ckeditor/ckeditor.js"></script>
+    <script src="{{base_url()}}/assets/ckeditor/translations/pt-br.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#resumo'), {
+                language: 'pt-br'
+            })
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+{% endblock %}

@@ -3,12 +3,13 @@
 {% block content %}
     <div class="pag-noticias">
         <div class="container">
-            <div class="space-100"></div>
+            <div class="space-30"></div>
             <div class="tim-title text-center">
                 <h1>Notícias</h1>
             </div>
             <div class="text-justify tim-title text-center .text-nowrap">
                 <ol>
+                    {% if noticias %}
                     {% for noticia in noticias %}
                     <li class="link-list__item">
                         <article>
@@ -23,26 +24,29 @@
                         </article>
                     </li>
                     {% endfor %}
+                    {% else %}
+                    <div class="space-30"></div>
+                    <li class="link-list__item">
+                        <article>
+                            <header class="text-left">
+                                <h1 class="link-list__title">Não Há noticias ainda!</h1>
+                                
+                            </header>
+                        </article>
+                    </li>
+                    {% endif %}
                 </ol>
             </div>
         </div>
         <nav class="paginate">
             <ul class="pagination">
-                <li class="active">
-                    <a href="#">1</a>
+                {% if paginas %}
+                {% for pag in range(1, paginas)%}
+                <li class="{{ pag == pagina_atual ? 'active' : '' }}">
+                    <a href="/noticias/{{pag}}">{{pag}}</a>
                 </li>
-                <li>
-                    <a href="">2</a>
-                </li>
-                <li>
-                    <a href="">3</a>
-                </li>
-                <li>
-                    <a href="">4</a>
-                </li>
-                <li>
-                    <a href="">5</a>
-                </li>
+                {% endfor %}
+                {% endif %}
             </ul>
         </nav>
         <div class="space-30"></div>

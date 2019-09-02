@@ -7,3 +7,4 @@ qualquercoisa
 banco/*.bak
 # Ignore dummyapp folder
 /gsdk/dummyapp
+uploads

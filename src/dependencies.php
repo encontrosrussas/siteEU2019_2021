@@ -17,7 +17,7 @@ return function ($app) {
             else
                 return $string;
         });
-        $filterDate = new TwigFilter('date',function ($string, $format='d/m/Y'){
+        $filterDate = new TwigFilter('data',function ($string, $format='d/m/Y'){
             return (new \Moment\Moment($string))->format($format);
         });
         $view->getEnvironment()->addFilter($filterTruncate);

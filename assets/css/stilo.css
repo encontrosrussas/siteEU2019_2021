@@ -564,12 +564,21 @@ img {vertical-align: middle;}
 .textoPalestra{
 	text-align: left;
 	margin-left: 20px;
+	margin-right: 20px;
 }
 
 /*teste*/
 .card-base > .card-icon {
 	text-align: center;
 	position: relative;
+}
+
+.card-left{
+	text-align: left;
+}
+.card-resumo{
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .imagecard { 
@@ -586,13 +595,13 @@ color: white;
 transition: transform .2s; /* Animation */
 }
 .card-base > .card-icon > .card-data {
-min-height: 250px !important;
-margin-top: -24px;
-background: rgb(255, 255, 255); /* ghostwhite */
-border: 1px solid #ffffff; /* #e0e0e0 */
-padding: 15px 0 10px 0;
- box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-min-height: 215px;
+	min-height: 250px !important;
+	margin-top: -24px;
+	background: rgb(255, 255, 255); /* ghostwhite */
+	border: 1px solid #ffffff; /* #e0e0e0 */
+	padding: 15px 0 10px 0;
+	box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	min-height: 215px;
 }
 
 #widgetCardIcon {
