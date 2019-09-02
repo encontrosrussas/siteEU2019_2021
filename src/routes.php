@@ -61,4 +61,5 @@ return function ($app) {
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
+    $app->get('/git', HomeController::class . ':git')->setName('git');
 };

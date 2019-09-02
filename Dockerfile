@@ -6,4 +6,6 @@ RUN apt-get update -y && apt-get install -y libpng-dev zlib1g-dev
 
 RUN docker-php-ext-install gd
 
+RUN apt-get install -y git
+
 RUN a2enmod rewrite 

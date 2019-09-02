@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use GitWrapper\GitWrapper;
 class HomeController
 {
     protected $container;
@@ -224,6 +225,7 @@ class HomeController
                     'noticias.conteudo'
                 ],
                 [
+                    'ano.status' => 1,
                     'noticias.id' => $args['id']
                 ]
             );
@@ -290,10 +292,8 @@ class HomeController
             ],
             [
                 'editais.id',
-                'editais.titulo',
-                'editais.subtitulo',
-                'editais.data',
-                'editais.hora'
+                'editais.nome',
+                'editais.tipo'
             ],
             [
                 'ano.status' => 1,
@@ -313,7 +313,7 @@ class HomeController
         $argumentos = [];
         $db = $this->container->db;
         if (isset($args['id'])) {
-            $noticia = $db->select(
+            $edital = $db->select(
                 "editais",
                 [
                     "[><]ano" => [
@@ -322,36 +322,17 @@ class HomeController
                 ],
                 [
                     'editais.id',
-                    'editais.titulo',
-                    'editais.subtitulo',
-                    'editais.data',
-                    'editais.hora',
-                    'editais.imagem',
-                    'editais.conteudo'
+                    'editais.nome',
+                    'editais.tipo',
+                    'editais.descricao',
+                    'editais.arquivo'
                 ],
                 [
                     'editais.id' => $args['id']
                 ]
             );
-            $argumentos['editais'] = $db->select(
-                "editais",
-                [
-                    "[><]ano" => [
-                        "editais.ano_id" => "id"
-                    ],
-                ],
-                [
-                    'editais.id',
-                    'editais.titulo',
-                    'editais.imagem',
-                ],
-                [
-                    'editais.id[!]' => $args['id'],
-                    'LIMIT' => 4
-                ]
-            );
-            if (count($noticia) == 0) {
-                $argumentos['editais'] = $noticia[0];
+            if (count($edital) == 1) {
+                $argumentos['edital'] = $edital[0];
                 return $this->container->view->render(
                     $response,
                     'front/edital.html',
@@ -396,6 +377,11 @@ class HomeController
             'front/palestras.html',
             $argumentos
         );
+    }
+
+    public function git($request, $response, $args){
+        $wrapper = new GitWrapper();
+        dump($wrapper->git('pull'));
     }
 
 }

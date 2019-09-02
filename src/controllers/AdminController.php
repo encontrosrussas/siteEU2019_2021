@@ -413,17 +413,22 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
             if (empty($dados['tipo']) || is_null($dados['tipo']))
                 array_push($argumentos['mensagens'], 'Tipo Invalido!');
+            $arquivo = $request->getUploadedFiles()['arquivo'];
+            $edital = new Edital();
+            if ($arquivo->getError() === UPLOAD_ERR_OK) {
+                $upload = new Upload("uploads/");
+                $upload->file($_FILES['arquivo'], date("d-m-Y-H-i-s"), 'editais/', 2);
+                if($upload->getResult())
+                    $edital->setArquivo($upload->getResult() == true ? $upload->getName() : '');
+                else
+                    array_push($argumentos['mensagens'], $upload->getMsg());
+            }else if ($arquivo->getError() === UPLOAD_ERR_INI_SIZE){
+                array_push($argumentos['mensagens'], "Arquivo muito grande!");
+            }
             if (count($argumentos['mensagens']) == 0) {
-                $edital = new Edital();
                 $edital->setNome($dados['nome']);
                 $edital->setDescricao($dados['descricao']);
                 $edital->setTipo($dados['tipo']);
-                $arquivo = $request->getUploadedFiles()['arquivo'];
-                if ($arquivo->getError() === UPLOAD_ERR_OK) {
-                    $upload = new Upload("uploads/");
-                    $upload->file($_FILES['arquivo'], date("d-m-Y-H-i-s"), 'editais/');
-                    $edital->setArquivo($upload->getResult() == true ? $upload->getName() : '');
-                }
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
                         "editais",
