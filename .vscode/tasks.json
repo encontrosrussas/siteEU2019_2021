@@ -6,12 +6,12 @@
         {
             "label": "importar mysql docker",
             "type": "shell",
-            "command": "docker exec -i development_db_1 sh -c 'exec mysql -uroot -p\"$MYSQL_ROOT_PASSWORD\"' <  banco/EU.sql"
+            "command": "docker exec -i development_db_1 sh -c 'exec mysql -u root -p \"$MYSQL_ROOT_PASSWORD\" EU' <  banco/backup.sql"
         },
         {
             "label": "exportar mysql docker",
             "type": "shell",
-            "command": "docker exec development_db_1 sh -c 'exec mysqldump EU -uroot -p\"$MYSQL_ROOT_PASSWORD\"' > banco/backup.sql"
+            "command": "docker exec development_db_1 sh -c 'exec mysqldump EU -u root -p \"$MYSQL_ROOT_PASSWORD\"' > banco/backup.sql"
         }
     ]
 }
