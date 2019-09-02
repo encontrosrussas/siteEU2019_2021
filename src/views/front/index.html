@@ -2,6 +2,7 @@
 {% block title %}Inicio{% endblock %}
     {% block content %}
     <div class="container">
+        {% if noticias %}
         <div class="space-30"></div>
         <div class="row">
             <div class="col-lg-1 hidden-xs hidden-sm hidden-md esp-sup">
@@ -43,6 +44,13 @@
             <div class="text-right mais">Ver todas as notícias<i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
         </a>
+        {% else %}
+        <div class="space"></div>
+        <div class="text-center">
+            <h3>Não há Noticias!</h3>
+        </div>
+        <div class="space"></div>
+        {% endif %}
     </div>
     <div class="intro" id="encontros">
         <div class="container">
@@ -238,3 +246,6 @@
         </div>
     </div> <!-- end carousel -->
     {% endblock %}
+{% block js %}
+    <script src="{{base_url()}}/assets/js/inicio.js"></script>
+{% endblock %}

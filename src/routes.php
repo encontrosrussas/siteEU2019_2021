@@ -50,6 +50,7 @@ return function ($app) {
     $app->get('/', HomeController::class . ':index')->setName('index');
     $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('index');
     $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
+    $app->get('/noticias/[{pagina}]', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticia', HomeController::class . ':noticia')->setName('index');
     $app->get('/noticia/{id}', HomeController::class . ':noticia')->setName('index');
     $app->get('/palestras', HomeController::class . ':palestras')->setName('index');

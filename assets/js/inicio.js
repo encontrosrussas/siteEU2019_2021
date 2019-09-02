@@ -39,13 +39,12 @@ carrosel.owlCarousel({
     }
 });
 // obtem objeto do carrosel
-var carroselData = carrosel.data()['owl.carousel'];
 $('.go').on('click', function (e) {
     e.preventDefault();
     if ($(this).hasClass('go-left')) { // muda item carrosel para o anterior
-        carroselData.prev();
+        carrosel.data()['owl.carousel'].prev();
     } else { // muda item carrosel para o proximo
-        carroselData.next();
+        carrosel.data()['owl.carousel'].next();
     }
 });
 
