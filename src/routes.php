@@ -2,6 +2,8 @@
 
 use app\controllers\HomeController;
 use app\controllers\AdminController;
+use app\controllers\Erro404;
+use app\controllers\Erro500;
 
 return function ($app) {
     $app->group("/admin", function ($app) {
@@ -62,4 +64,11 @@ return function ($app) {
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
     $app->get('/git', HomeController::class . ':git')->setName('git');
+    // Paginas de Erro
+    $app->getContainer()['notFoundHandler'] = function($c){
+        return new Erro404($c);
+    };
+    $app->getContainer()['errorHandler'] = function($c){
+        return new Erro500($c);
+    };
 };
