@@ -65,10 +65,10 @@ return function ($app) {
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
     $app->get('/git', HomeController::class . ':git')->setName('git');
     // Paginas de Erro
-    $app->getContainer()['notFoundHandler'] = function($c){
-        return new Erro404($c);
-    };
-    $app->getContainer()['errorHandler'] = function($c){
-        return new Erro500($c);
-    };
+    // $app->getContainer()['notFoundHandler'] = function($c){
+    //     return new Erro404($c);
+    // };
+    // $app->getContainer()['errorHandler'] = function($c){
+    //     return new Erro500($c);
+    // };
 };

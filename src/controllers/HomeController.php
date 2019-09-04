@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use GitWrapper\GitWrapper;
+use GitWrapper\GitWorkingCopy;
 class HomeController
 {
     protected $container;
@@ -381,7 +382,15 @@ class HomeController
 
     public function git($request, $response, $args){
         $wrapper = new GitWrapper();
-        dump($wrapper->git('pull'));
+        $wrapper->setEnvVar('HOME', "/var/www/html");
+        $wrapper->git('config --global user.name "Guilherme Nepomuceno de Carvalho"');
+        $wrapper->git('config --global user.email guilhermenepomuceno46@gmail.com');
+        $git = new GitWorkingCopy($wrapper, '.');
+        // dump($wrapper->git('remote'));
+        // dump($wrapper->git('remote', ['origin', 'get-url']));
+        // dump($wrapper->git('pull'));
+        dump($git->pull());
+        // return $response->write('');
     }
 
 }
