@@ -2,11 +2,11 @@
 // Altere as Configurações e renomeie para settings.php
 return [
     'settings' => [
-        'debug' => true,
-        'displayErrorDetails' => true, // set to false in production
+        'debug' => false,
+        'displayErrorDetails' => false, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
         'logger' => [
-            'name' => 'slim-app',
+            'name' => 'Encontros Universitarios',
             'level' => Monolog\Logger::DEBUG,
             'path' => __DIR__ .DIRECTORY_SEPARATOR.'..'. DIRECTORY_SEPARATOR . 'logs'. DIRECTORY_SEPARATOR .'app.log',
         ],
