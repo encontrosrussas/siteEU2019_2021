@@ -1,10 +1,18 @@
-logs/
-vendor
-src/views-cache/
+!logs/
+!vendor
+src/views-cache/*
+!src/views-cache/read.txt
 # src/settings.php
 qualquercoisa
 !assets/vendor
 banco/*.bak
 # Ignore dummyapp folder
 /gsdk/dummyapp
-uploads
+uploads/cursos_oficinas/*
+uploads/editais/*
+uploads/noticias/*
+uploads/palestras/*
+!uploads/cursos_oficinas/read.txt
+!uploads/editais/read.txt
+!uploads/noticias/read.txt
+!uploads/palestras/read.txt
