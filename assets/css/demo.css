@@ -51,12 +51,14 @@
     background-attachment: scroll; 
 }
 .main{
-    background-color: #FFFFFF;
+    background-color: blueviolet;
 }
 .navigation-example{
     height: 660px;
-    background-image: url('../img/bg.jpg');
-    background-position: center center;
+    /*background-image: url('../img/bg.jpg');*/
+    background-color: blueviolet;
+    /*background-position: center center;*/
+    background-position: center;
     background-size: cover;
     position: relative;
 }
@@ -88,6 +90,7 @@
     
 }
 
+  
 .space-100{
     height: 100px;
     display: block;
@@ -308,6 +311,10 @@
 
 /*   EXTRA SHIT  */
 /* @cristina: fisier singular, folosit pentru efectul de blur la parallax in header */
+
+.main .header{
+    background-color: #ff9500;
+}
 
 .blurred-container{
   position:relative;
