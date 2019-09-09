@@ -47,7 +47,6 @@ return function ($app) {
         $app->map(['GET', 'POST'], '/conta', AdminController::class . ':conta')->setName('conta-admin');
         // Sair
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
-        $app->get('/temp/{nome}', AdminController::class . ':template')->setName('template');
     });
     $app->get('/', HomeController::class . ':index')->setName('index');
     $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('index');
@@ -63,8 +62,11 @@ return function ($app) {
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
-    $app->get('/git', HomeController::class . ':git')->setName('git');
+    $app->post('/git', HomeController::class . ':git')->setName('git');
     // Paginas de Erro
+    $app->getContainer()['notAllowedHandler'] = function ($c) {
+        return new Erro404($c);
+    };
     $app->getContainer()['notFoundHandler'] = function($c){
         return new Erro404($c);
     };
