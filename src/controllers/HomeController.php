@@ -381,16 +381,13 @@ class HomeController
     }
 
     public function git($request, $response, $args){
-        $wrapper = new GitWrapper();
-        $wrapper->setEnvVar('HOME', "/var/www/html");
-        $wrapper->git('config --global user.name "Guilherme Nepomuceno de Carvalho"');
-        $wrapper->git('config --global user.email guilhermenepomuceno46@gmail.com');
-        $git = new GitWorkingCopy($wrapper, '.');
-        // dump($wrapper->git('remote'));
-        // dump($wrapper->git('remote', ['origin', 'get-url']));
-        // dump($wrapper->git('pull'));
-        dump($git->pull());
-        // return $response->write('');
+        if($response->getHeaders()["Content-Type"][0] == 'application/json'){
+            // $wrapper = new GitWrapper();
+            // $git = new GitWorkingCopy($wrapper, '.');
+            // $git->config('user.name', "Guilherme Nepomuceno de Carvalho");
+            // $git->config('user.email', 'guilhermenepomuceno46@gmail.com');
+            dump(shell_exec("git pull"));
+        }
     }
 
 }

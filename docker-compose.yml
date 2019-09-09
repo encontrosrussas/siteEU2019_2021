@@ -4,8 +4,10 @@ web:
     - "8080:80"
   links:
     - db
+  restart: always
   volumes:
     - .:/var/www/html
+    - ~/.ssh:/root/.ssh
 
 db:
   image: mysql:5.7
