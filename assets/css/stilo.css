@@ -42,7 +42,30 @@
 	background-attachment: fixed; 
 }
 
+.missao{
+    background-image: url('../img/missao.jpg');
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center center;
+	background-attachment: fixed; 
+}
+
+.valores{
+    background-image: url('../img/valores.jpg');
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center center;
+	background-attachment: fixed; 
+}
+
 .intro{
+    background-color: #191970;
+    color: rgb(255, 255, 255);
+}
+
+.visao{
     background-color: #191970;
     color: rgb(255, 255, 255);
 }
