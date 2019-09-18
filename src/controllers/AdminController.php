@@ -27,7 +27,7 @@ class AdminController
 
     public function login($request, $response, $args)
     {
-        Login::redirectLogin();
+        Login::redirectLogin($this->container->router->pathFor('dashboard-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -42,14 +42,14 @@ class AdminController
             $login->setEmail($email);
             $login->setPassword($senha);
             $login->logar();
-            return $response->withRedirect('/admin');
+            return $response->withRedirect($this->container->router->pathFor('dashboard-admin'));
         }
         return $this->container->view->render($response, 'admin/login.html');
     }
 
     public function dashboard($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         $argumentos = [];
         $argumentos['usuarios']=$db->count(
@@ -74,7 +74,7 @@ class AdminController
 
     public function usuarios($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if(isset($args['id'])){
             $db->delete(
@@ -94,7 +94,7 @@ class AdminController
     
     public function usuarios_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -136,7 +136,7 @@ class AdminController
                         $user->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/usuarios');
+                return $response->withRedirect($this->container->router->pathFor('usuarios-admin'));
             }else{
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -166,7 +166,7 @@ class AdminController
 
     public function areas($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -185,7 +185,7 @@ class AdminController
     
     public function areas_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -215,7 +215,7 @@ class AdminController
                         $area->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/areas');
+                return $response->withRedirect($this->container->router->pathFor('areas-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -247,7 +247,7 @@ class AdminController
 
     public function noticias($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -278,7 +278,7 @@ class AdminController
 
     public function noticias_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -337,7 +337,7 @@ class AdminController
                         $noticia->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/noticias');
+                return $response->withRedirect($this->container->router->pathFor('noticias-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -371,7 +371,7 @@ class AdminController
 
     public function editais($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -402,7 +402,7 @@ class AdminController
 
     public function editais_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -462,7 +462,7 @@ class AdminController
                         $edital->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/editais');
+                return $response->withRedirect($this->container->router->pathFor('editais-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -496,14 +496,14 @@ class AdminController
 
     public function paginas($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/paginas.html');
     }
 
     public function cronogramas($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -532,7 +532,7 @@ class AdminController
 
     public function cronogramas_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -583,7 +583,7 @@ class AdminController
                         $cronograma->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/cronogramas');
+                return $response->withRedirect($this->container->router->pathFor('cronogramas-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -615,7 +615,7 @@ class AdminController
 
     public function apresentacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -652,7 +652,7 @@ class AdminController
 
     public function apresentacoes_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -692,7 +692,7 @@ class AdminController
                         $apresentacao->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/apresentacoes');
+                return $response->withRedirect($this->container->router->pathFor('apresentacoes-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -743,7 +743,7 @@ class AdminController
 
     public function cursos_oficinas($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -788,7 +788,7 @@ class AdminController
 
     public function cursos_oficinas_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -852,7 +852,7 @@ class AdminController
                         $cursos_oficinas->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/cursos_oficinas');
+                return $response->withRedirect($this->container->router->pathFor('cursos_oficinas-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -909,7 +909,7 @@ class AdminController
 
     public function palestras($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -953,7 +953,7 @@ class AdminController
 
     public function palestras_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -1016,7 +1016,7 @@ class AdminController
                         $palestra->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/palestras');
+                return $response->withRedirect($this->container->router->pathFor('palestras-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -1072,7 +1072,7 @@ class AdminController
     
     public function anos($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -1097,7 +1097,7 @@ class AdminController
 
     public function anos_modificacoes($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -1130,7 +1130,7 @@ class AdminController
                         $ano->toArray()
                     );
                 }
-                return $response->withRedirect('/admin/anos');
+                return $response->withRedirect($this->container->router->pathFor('anos-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -1168,7 +1168,7 @@ class AdminController
 
     public function conta($request, $response, $args)
     {
-        Login::verifyLogin();
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
         $db = $this->container->db;
         $argumentos = [];
         if (!is_null($request->getParsedBody())) {
@@ -1209,7 +1209,7 @@ class AdminController
                         ]
                     );
                 }
-                return $response->withRedirect('/admin/dashboard');
+                return $response->withRedirect($this->container->router->pathFor('dashboard-admin'));
             } else {
                 $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
             }
@@ -1227,12 +1227,6 @@ class AdminController
     {
         Login::logout();
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $response->withStatus(200)->withHeader('Location', $this->container->router->urlFor("login-admin"));
-    }
-
-    public function template($request, $response, $args)
-    {
-        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'admin/template/'.$args['nome']);
+        return $response->withStatus(200)->withHeader('Location', $this->container->router->pathFor("login-admin"));
     }
 }

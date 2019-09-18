@@ -120,18 +120,18 @@ class Login
         return isset($_SESSION['logado']) || $_SESSION['logado'] || (int) $_SESSION["id"] > 0;
     }
 
-    public static function verifyLogin()
-    {  
+    public static function verifyLogin($rota)
+    {
         if (!Login::checkLogin()) {
-            header("Location: /admin");
+            header("Location: " . $rota);
             exit;
         }
     }
     
-    public static function redirectLogin()
+    public static function redirectLogin($rota)
     {  
         if (Login::checkLogin()) {
-            header("Location: /admin/dashboard");
+            header("Location: " . $rota);
             exit;
         }
     }
