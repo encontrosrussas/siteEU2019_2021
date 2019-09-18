@@ -43,21 +43,13 @@
 }
 
 .missao{
-    background-image: url('../img/missao.jpg');
+    background-color: #1e1782;
     color: rgb(255, 255, 255);
-    background-repeat: no-repeat;
-    background-size: cover;
-	background-position: center center;
-	background-attachment: fixed; 
 }
 
 .valores{
-    background-image: url('../img/valores.jpg');
+    background-color: #160b30;
     color: rgb(255, 255, 255);
-    background-repeat: no-repeat;
-    background-size: cover;
-	background-position: center center;
-	background-attachment: fixed; 
 }
 
 .intro{
@@ -66,8 +58,12 @@
 }
 
 .visao{
-    background-color: #191970;
+    background-image: url('../img/missao.jpg');
     color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center center;
+	background-attachment: fixed; 
 }
 
 a[href="#top"]{
