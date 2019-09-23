@@ -16,4 +16,4 @@ uploads/palestras/*
 !uploads/editais/read.txt
 !uploads/noticias/read.txt
 !uploads/palestras/read.txt
-./composer.lock
+composer.lock
