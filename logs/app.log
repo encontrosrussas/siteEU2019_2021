@@ -56,31 +56,6 @@
 [2019-09-18 09:01:05] Encontros Universitarios.INFO: '/' route [] {"uid":"b4a031c"}
 [2019-09-18 09:01:34] Encontros Universitarios.INFO: '/' route [] {"uid":"e77ac9f"}
 [2019-09-18 09:01:59] Encontros Universitarios.INFO: '/' route [] {"uid":"cd07e2d"}
-<<<<<<< HEAD
-[2019-09-20 08:25:32] Encontros Universitarios.INFO: '/' route [] {"uid":"c0d3f61"}
-[2019-09-20 08:25:33] Encontros Universitarios.INFO: '/' route [] {"uid":"a4022e6"}
-[2019-09-20 08:30:54] Encontros Universitarios.INFO: '/' route [] {"uid":"fb77e07"}
-[2019-09-20 09:01:33] Encontros Universitarios.INFO: '/' route [] {"uid":"88367d0"}
-[2019-09-20 09:01:35] Encontros Universitarios.INFO: '/' route [] {"uid":"736ca32"}
-[2019-09-20 09:07:09] Encontros Universitarios.INFO: '/' route [] {"uid":"369221f"}
-[2019-09-20 09:07:22] Encontros Universitarios.INFO: '/' route [] {"uid":"487fcd7"}
-[2019-09-20 09:07:48] Encontros Universitarios.INFO: '/' route [] {"uid":"beddd68"}
-[2019-09-20 09:08:00] Encontros Universitarios.INFO: '/' route [] {"uid":"f39bd75"}
-[2019-09-20 09:21:52] Encontros Universitarios.INFO: '/' route [] {"uid":"701ca21"}
-[2019-09-20 09:25:06] Encontros Universitarios.INFO: '/oficinas' route [] {"uid":"abbab5a"}
-[2019-09-20 09:25:09] Encontros Universitarios.INFO: '/' route [] {"uid":"d947221"}
-[2019-09-20 09:25:13] Encontros Universitarios.INFO: '/mini_cursos' route [] {"uid":"4a6dcf1"}
-[2019-09-20 09:25:15] Encontros Universitarios.INFO: '/' route [] {"uid":"80ad69f"}
-[2019-09-20 09:28:08] Encontros Universitarios.INFO: '/' route [] {"uid":"7899d56"}
-[2019-09-20 09:29:35] Encontros Universitarios.INFO: '/' route [] {"uid":"cb01846"}
-[2019-09-20 09:30:38] Encontros Universitarios.INFO: '/' route [] {"uid":"653df9c"}
-[2019-09-20 09:32:41] Encontros Universitarios.INFO: '/' route [] {"uid":"372963e"}
-[2019-09-20 09:33:15] Encontros Universitarios.INFO: '/' route [] {"uid":"294351c"}
-[2019-09-20 09:34:51] Encontros Universitarios.INFO: '/' route [] {"uid":"8d889e6"}
-[2019-09-20 09:36:09] Encontros Universitarios.INFO: '/' route [] {"uid":"28bfe59"}
-[2019-09-20 09:51:18] Encontros Universitarios.INFO: '/' route [] {"uid":"1d78ed7"}
-[2019-09-20 09:57:40] Encontros Universitarios.INFO: '/' route [] {"uid":"d884c06"}
-=======
 [2019-09-18 09:19:31] Encontros Universitarios.INFO: '/site-EU/' route [] {"uid":"9a72f7f"}
 [2019-09-18 09:24:33] Encontros Universitarios.INFO: '/site-EU/' route [] {"uid":"0ec9a22"}
 [2019-09-18 09:25:06] Encontros Universitarios.INFO: '/site-EU/admin' route [] {"uid":"75b69a9"}
@@ -143,5 +118,4 @@
 [2019-09-18 10:37:47] Encontros Universitarios.INFO: '/site-EU/admin' route [] {"uid":"00c0778"}
 [2019-09-18 10:37:51] Encontros Universitarios.INFO: '/site-EU/' route [] {"uid":"149f65e"}
 [2019-09-18 10:38:27] Encontros Universitarios.INFO: '/site-EU/' route [] {"uid":"1e3d3a2"}
->>>>>>> 58954add0f2f7f0f47a531a4553404ad6775b9ba
 [2019-09-23 08:57:16] Encontros Universitarios.INFO: '/acomodacoes' route [] {"uid":"30e401a"}

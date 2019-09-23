@@ -20,7 +20,7 @@
 }
 */
 
-.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso, .pag-error, .pag-alimentacao{
+.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso, .pag-error, .pag-alimentacao, .pag-emBreve{
     background-image: url('../img/transparencia encontros.png');
     color: #333333;
     background-repeat: no-repeat;
