@@ -2,8 +2,6 @@
 
 namespace app\controllers;
 
-use GitWrapper\GitWrapper;
-use GitWrapper\GitWorkingCopy;
 class HomeController
 {
     protected $container;
@@ -378,16 +376,6 @@ class HomeController
             'front/palestras.html',
             $argumentos
         );
-    }
-
-    public function git($request, $response, $args){
-        if($response->getHeaders()["Content-Type"][0] == 'application/json'){
-            // $wrapper = new GitWrapper();
-            // $git = new GitWorkingCopy($wrapper, '.');
-            // $git->config('user.name', "Guilherme Nepomuceno de Carvalho");
-            // $git->config('user.email', 'guilhermenepomuceno46@gmail.com');
-            dump(shell_exec("git pull"));
-        }
     }
 
 }

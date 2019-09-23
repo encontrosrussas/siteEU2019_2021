@@ -43,7 +43,7 @@
                 {% if paginas %}
                 {% for pag in range(1, paginas)%}
                 <li class="{{ pag == pagina_atual ? 'active' : '' }}">
-                    <a href="/noticias/{{pag}}">{{pag}}</a>
+                    <a href="{{base_url()}}/noticias/{{pag}}">{{pag}}</a>
                 </li>
                 {% endfor %}
                 {% endif %}

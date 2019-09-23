@@ -8,8 +8,8 @@ use app\controllers\Erro500;
 return function ($app) {
     $app->group("/admin", function ($app) {
         // Login
-        $app->map(['GET', 'POST'], '', AdminController::class . ':login')->setName('login-barra-admin');
-        $app->map(['GET', 'POST'], '/', AdminController::class . ':login')->setName('login-barra-admin');
+        $app->map(['GET', 'POST'], '', AdminController::class . ':login')->setName('login-admin');
+        $app->map(['GET', 'POST'], '/', AdminController::class . ':login')->setName('login-admin');
         $app->map(['GET', 'POST'], '/login', AdminController::class . ':login')->setName('login-admin');
         // Dashboard
         $app->get('/dashboard', AdminController::class . ':dashboard')->setName('dashboard-admin');
@@ -49,20 +49,19 @@ return function ($app) {
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
     });
     $app->get('/', HomeController::class . ':index')->setName('index');
-    $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('index');
+    $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('acomodacoes');
     $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticias/[{pagina}]', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticia', HomeController::class . ':noticia')->setName('noticia');
-    $app->get('/noticia/{id}', HomeController::class . ':noticia')->setName('index');
+    $app->get('/noticia/{id}', HomeController::class . ':noticia')->setName('noticia');
     $app->get('/editais', HomeController::class . ':editais')->setName('editais');
     $app->get('/editais/[{pagina}]', HomeController::class . ':editais')->setName('editais');
     $app->get('/edital', HomeController::class . ':edital')->setName('edital');
     $app->get('/edital/{id}', HomeController::class . ':edital')->setName('edital');
-    $app->get('/palestras', HomeController::class . ':palestras')->setName('index');
+    $app->get('/palestras', HomeController::class . ':palestras')->setName('palestras');
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
-    $app->post('/git', HomeController::class . ':git')->setName('git');
     // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {
         return new Erro404($c);
