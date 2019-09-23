@@ -378,4 +378,62 @@ class HomeController
         );
     }
 
+    public function palco_mix($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        // $db = $this->container->db;
+        $argumentos = [];
+        $argumentos['palestras'] = [];
+        return $this->container->view->render(
+            $response,
+            'front/palco_mix.html',
+            $argumentos
+        );
+    }
+
+    public function mostra_audiovisual($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        // $db = $this->container->db;
+        $argumentos = [];
+        $argumentos['palestras'] = [];
+        return $this->container->view->render(
+            $response,
+            'front/mostra_audiovisual.html',
+            $argumentos
+        );
+    }
+
+    public function feira_de_artesanato($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        // $db = $this->container->db;
+        $argumentos = [];
+        $argumentos['palestras'] = [];
+        return $this->container->view->render(
+            $response,
+            'front/feira_de_artesanato.html',
+            $argumentos
+        );
+    }
+
+    public function espaco_gastronomico($request, $response, $args)
+    {
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        // $db = $this->container->db;
+        $argumentos = [];
+        $argumentos['palestras'] = [];
+        return $this->container->view->render(
+            $response,
+            'front/espaco_gastronomico.html',
+            $argumentos
+        );
+    }
+
+    public function emBreve($request, $response, $args){
+        return $this->container->view->render(
+            $response,
+            'front/emBreve.html'
+        );
+    }
 }

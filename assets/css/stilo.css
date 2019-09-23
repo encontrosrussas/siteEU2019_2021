@@ -20,7 +20,7 @@
 }
 */
 
-.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso, .pag-error, .pag-alimentacao{
+.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso, .pag-error, .pag-alimentacao, .pag-emBreve{
     background-image: url('../img/transparencia encontros.png');
     color: #333333;
     background-repeat: no-repeat;
@@ -58,7 +58,7 @@
 }
 
 .visao{
-    background-image: url('../img/missao.jpg');
+    background-image: url('../img/visao.jpg');
     color: rgb(255, 255, 255);
     background-repeat: no-repeat;
     background-size: cover;
@@ -104,8 +104,12 @@ a[href="#top"]:hover{
 background: #707070;
 }
 
-.atividades{
+.programacao{
     background-color: #003153;
+}
+
+.artistica{
+    background-color: #065f9e;
 }
 
 .cor-tit{
