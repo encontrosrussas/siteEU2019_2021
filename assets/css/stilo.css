@@ -20,7 +20,7 @@
 }
 */
 
-.cronograma, .pag-palestra, .pag-acomodacao, .pag-minicurso, .pag-error, .pag-alimentacao, .pag-emBreve{
+.cronograma, .pag-palestra, .pag-conheca, .pag-minicurso, .pag-error, .pag-alimentacao, .pag-emBreve{
     background-image: url('../img/transparencia encontros.png');
     color: #333333;
     background-repeat: no-repeat;
@@ -34,7 +34,7 @@
 }
 
 .objetivos{
-    background-image: url('../img/objetivo.png');
+    background-image: url('../img/objetivo.jpg');
     color: rgb(255, 255, 255);
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,13 +67,13 @@
 }
 
 a[href="#top"]{
-    padding:10px;
+    /*padding:10px;*/
     position:fixed;
     top: 90%;
     right:40px;
     display:none;
     font-size: 30px;
-    color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 }
 
 a[href="#top"]:hover{
@@ -162,7 +162,7 @@ background: #707070;
 }
 
 .logo{
-	width: 170px !important;
+	width: 250px !important;
 }
 
 .topo{
@@ -373,7 +373,7 @@ background: #707070;
 }
 
 .cor-seta{
-    color: rgba(0, 0, 0, .7) !important
+    color: rgba(0, 0, 0, 0.795) !important /*rgba(0, 0, 0, .7)*/
 }
 
 .margem{
@@ -425,6 +425,7 @@ background: #707070;
 }
 
 .inf-rodape > p{
+	margin-top: 10px;
 	text-align: right;
 	color: #ddd;
 	opacity: 0.9;
@@ -675,6 +676,23 @@ transition: transform .2s; /* Animation */
     margin-left: auto;
     margin-right: auto;
 	margin-top: 50px;
+}
+
+.imgCardMostra{
+	width: 150px;
+	height: 150px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 30px;
+}
+
+.esp-but-mostra{
+	margin-top: 20px;
+}
+
+#CardUnico{
+	margin-top: 70px;
 }
 
 .titNot{

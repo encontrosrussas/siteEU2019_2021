@@ -1,6 +1,6 @@
 // carrousel bootsrap
 $('.carousel').carousel({
-    interval: 4000
+    interval: 2000
 });
 // elemento owl carousel noticias
 var carrosel = $(".carousel-noticias");

@@ -1392,7 +1392,7 @@ input.ct-red + span + label + span.switch-right {
   background-color: rgba(255, 76, 64, 0.98); }
 
 .navbar-transparent {
-  padding-top: 15px;
+  /*padding-top: 15px;*/
   background-color: transparent;
   border-bottom: 1px solid transparent; }
 
