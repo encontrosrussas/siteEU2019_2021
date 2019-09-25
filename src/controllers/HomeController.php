@@ -378,9 +378,33 @@ class HomeController
     public function palco_mix($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        // $db = $this->container->db;
+        $db = $this->container->db;
         $argumentos = [];
-        $argumentos['palestras'] = [];
+        $argumentos['palco_mix'] = $db->select(
+            "artistico",
+            [
+                "[><]ano" => [
+                    "artistico.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "artistico.area_id" => "id"
+                ],
+            ],
+            [
+                'artistico.id',
+                'artistico.titulo',
+                'artistico.facilitador',
+                'artistico.data',
+                'artistico.resumo',
+                'artistico.local',
+                'artistico.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'ano.status' => 1,
+                'artistico.tipo' => 1
+            ]
+        );
         return $this->container->view->render(
             $response,
             'front/palco_mix.html',
@@ -391,9 +415,33 @@ class HomeController
     public function mostra_audiovisual($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        // $db = $this->container->db;
+        $db = $this->container->db;
         $argumentos = [];
-        $argumentos['palestras'] = [];
+        $argumentos['mostras_audiovisual'] = $db->select(
+            "artistico",
+            [
+                "[><]ano" => [
+                    "artistico.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "artistico.area_id" => "id"
+                ],
+            ],
+            [
+                'artistico.id',
+                'artistico.titulo',
+                'artistico.facilitador',
+                'artistico.data',
+                'artistico.resumo',
+                'artistico.local',
+                'artistico.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'ano.status' => 1,
+                'artistico.tipo' => 2
+            ]
+        );
         return $this->container->view->render(
             $response,
             'front/mostra_audiovisual.html',
@@ -404,9 +452,33 @@ class HomeController
     public function feira_de_artesanato($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        // $db = $this->container->db;
+        $db = $this->container->db;
         $argumentos = [];
-        $argumentos['palestras'] = [];
+        $argumentos['feira_de_artesanatos'] = $db->select(
+            "artistico",
+            [
+                "[><]ano" => [
+                    "artistico.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "artistico.area_id" => "id"
+                ],
+            ],
+            [
+                'artistico.id',
+                'artistico.titulo',
+                'artistico.facilitador',
+                'artistico.data',
+                'artistico.resumo',
+                'artistico.local',
+                'artistico.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'ano.status' => 1,
+                'artistico.tipo' => 3
+            ]
+        );
         return $this->container->view->render(
             $response,
             'front/feira_de_artesanato.html',
@@ -417,9 +489,33 @@ class HomeController
     public function espaco_gastronomico($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        // $db = $this->container->db;
+        $db = $this->container->db;
         $argumentos = [];
-        $argumentos['palestras'] = [];
+        $argumentos['espacos_gastronomicos'] = $db->select(
+            "artistico",
+            [
+                "[><]ano" => [
+                    "artistico.ano_id" => "id"
+                ],
+                "[><]area" => [
+                    "artistico.area_id" => "id"
+                ],
+            ],
+            [
+                'artistico.id',
+                'artistico.titulo',
+                'artistico.facilitador',
+                'artistico.data',
+                'artistico.resumo',
+                'artistico.local',
+                'artistico.imagem',
+                'area.nome(area)',
+            ],
+            [
+                'ano.status' => 1,
+                'artistico.tipo' => 4
+            ]
+        );
         return $this->container->view->render(
             $response,
             'front/espaco_gastronomico.html',
