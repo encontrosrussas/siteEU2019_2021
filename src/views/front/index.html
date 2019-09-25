@@ -20,7 +20,7 @@
                         <div class="panel-body">
                             <h5 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h5>
                             <!-- <p class="">{{noticia.subtitulo}}</p> -->
-                            <a href="{{base_url()}}/noticia/{{noticia.id}}" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
+                            <a href="{{base_url()}}/noticia/{{noticia.id}}#noticia" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -32,7 +32,7 @@
                 </button>
             </div>
         </div>
-        <a href="{{base_url()}}/noticias">
+        <a href="{{base_url()}}/noticias#noticias">
             <div class="text-right mais">Ver todas as notícias<i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
         </a>
@@ -142,44 +142,50 @@
                     <div class="timeline__items">
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">21 a 27 de setembro</h2>
-                                <p>Primeira fase de submissão dos trabalhos</p>
+                                <h2 class="azul-timeline">20 de setembro</h2>
+                                <p>Lançamento do Edital.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">28 de setembro a 02 de outubro</h2>
-                                <p>Avaliação dos trabalhos submetidos</p>
+                                <h2 class="azul-timeline">28 de setembro a 05 de Outubro</h2>
+                                <p>Primeira fase de submissão dos trabalhos.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">11 de outubro</h2>
-                                <p>Divulgação dos resultados das submissões</p>
+                                <h2 class="azul-timeline">06 a 12 de Outubro</h2>
+                                <p>Avaliação dos trabalhos submetidos.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">12 a 15 de outubro</h2>
-                                <p>Período de recurso para os trabalhos não aceitos</p>
+                                <h2 class="azul-timeline">15 de Outubro</h2>
+                                <p>Divulgação dos resultados das submissões.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">16 a 20 de outubro</h2>
-                                <p>Reavaliação dos trabalhos submetidos no período de recurso</p>
+                                <h2 class="azul-timeline">16 a 18 de Outubro</h2>
+                                <p>Período de recurso para os trabalhos não aceitos.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">21 de outubro</h2>
-                                <p>Resultado dos recursos</p>
+                                <h2 class="azul-timeline">18 a 22 de Outubro</h2>
+                                <p>Reavaliação dos trabalhos submetidos no período de recurso.</p>
+                            </div>
+                        </div>
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2 class="azul-timeline">23 de outubro</h2>
+                                <p>Resultado dos recursos.</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                                 <div class="timeline__content">
-                                    <h2 class="azul-timeline">22 a 24 de outubro</h2>
-                                    <p>Submissão final de todos os trabalhos aceitos</p>
+                                    <h2 class="azul-timeline">24 a 26 de Outubro</h2>
+                                    <p>Submissão final de todos os trabalhos aceitos.</p>
                                 </div>
                         </div>
                         <div class="timeline__item">
@@ -205,7 +211,7 @@
                     <div class="caixa">
                         <h2>Apresentações</h2>
                         <img src="{{base_url()}}/assets/img/presentation.png" alt="" class="img-responsive imgCardAti">
-                        <a href="{{base_url()}}/apresentacoes" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/apresentacoes#apresentacoes" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                         <!--<button type="button" class="btn btn-danger botaoposcicao">Danger</button>-->
                         <!--<button type="button" class="btn btn-secondary botaoposcicao">Saiba mais</button>-->
                     </div>
@@ -214,21 +220,21 @@
                     <div class="caixa">
                         <h2>Mini Cursos</h2>
                         <img src="{{base_url()}}/assets/img/training.png" alt="" class="img-responsive imgCardAti">
-                        <a href="{{base_url()}}/mini_cursos" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/mini_cursos#mini_cursos" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Oficinas</h2>
                         <img src="{{base_url()}}/assets/img/elearning.png" alt="" class="img-responsive imgCardAti">
-                        <a href="{{base_url()}}/oficinas" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/oficinas#oficinas" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Palestras</h2>
                         <img src="{{base_url()}}/assets/img/lecture.png" alt="" class="img-responsive imgCardAti">
-                        <a href="{{base_url()}}/palestras" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/palestras#palestras" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
             </div>
@@ -246,7 +252,7 @@
                     <div class="caixa">
                         <h2>Palco Mix</h2>
                         <img src="{{base_url()}}/assets/img/palcoMix.png" alt="" class="img-responsive imgCardAti">
-                        <a href="{{base_url()}}/palco_mix" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/palco_mix#palco_mix" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                         <!--<button type="button" class="btn btn-danger botaoposcicao">Danger</button>-->
                         <!--<button type="button" class="btn btn-secondary botaoposcicao">Saiba mais</button>-->
                     </div>
@@ -255,21 +261,21 @@
                     <div class="caixa">
                         <h2>Mostra audiovisual</h2>
                         <img src="{{base_url()}}/assets/img/mostraVisual.png" alt="" class="img-responsive imgCardMostra">
-                        <a href="{{base_url()}}/mostra_audiovisual" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/mostra_audiovisual#mostra_audiovisual" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Feira de artesanato</h2>
                         <img src="{{base_url()}}/assets/img/feiraArtesanato.png" alt="" class="img-responsive imgCardMostra">
-                        <a href="{{base_url()}}/feira_de_artesanato" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/feira_de_artesanato#feira_de_artesanato" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
                         <h2>Espaço gastronômico</h2>
                         <img src="{{base_url()}}/assets/img/espacoGastronomico.png" alt="" class="img-responsive imgCardMostra">
-                        <a href="{{base_url()}}/espaco_gastronomico" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                        <a href="{{base_url()}}/espaco_gastronomico#espaco_gastronomico" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
             </div>
@@ -315,9 +321,6 @@
                 </div>
                 <div class="item">
                     <img src="{{base_url()}}/assets/img/img8.jpg" class="img-fluid my-responsive" alt="Awesome Image">
-                </div>
-                <div class="item">
-                    <img src="{{base_url()}}/assets/img/img9.jpg" class="img-fluid my-responsive" alt="Awesome Image">
                 </div>
             </div>
             <!-- Controls -->

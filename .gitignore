@@ -17,3 +17,4 @@ uploads/palestras/*
 !uploads/noticias/read.txt
 !uploads/palestras/read.txt
 composer.lock
+logs/app.log

@@ -518,6 +518,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 body > div.pag-noticias > div > div.text-justify.tim-title.text-center.\.text-nowrap > ol{
 	list-style: none;
+	padding-left: 0px;
 }
 
 /*dando cor as caixas de noticias*/

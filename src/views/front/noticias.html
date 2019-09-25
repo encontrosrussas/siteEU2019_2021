@@ -2,7 +2,7 @@
 {% block title %}Noticias{% endblock %}
 {% block content %}
     <div class="pag-noticias">
-        <div class="container">
+        <div class="container" id="noticias">
             <div class="space-30"></div>
             <div class="tim-title text-center">
                 <h1>Notícias</h1>
@@ -29,8 +29,7 @@
                     <li class="link-list__item">
                         <article>
                             <header class="text-left">
-                                <h1 class="link-list__title">Não Há noticias ainda!</h1>
-                                
+                                <h1 class="link-list__title">Noticias em breve!</h1>
                             </header>
                         </article>
                     </li>
@@ -43,7 +42,7 @@
                 {% if paginas %}
                 {% for pag in range(1, paginas)%}
                 <li class="{{ pag == pagina_atual ? 'active' : '' }}">
-                    <a href="{{base_url()}}/noticias/{{pag}}">{{pag}}</a>
+                    <a href="{{base_url()}}/noticias/{{pag}}#noticias">{{pag}}</a>
                 </li>
                 {% endfor %}
                 {% endif %}
