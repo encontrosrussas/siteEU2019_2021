@@ -417,7 +417,7 @@ class AdminController
             $edital = new Edital();
             if ($arquivo->getError() === UPLOAD_ERR_OK) {
                 $upload = new Upload("uploads/");
-                $upload->file($_FILES['arquivo'], date("d-m-Y-H-i-s"), 'editais/', 2);
+                $upload->file($_FILES['arquivo'], date("d-m-Y-H-i-s"), 'editais/', 5);
                 if($upload->getResult())
                     $edital->setArquivo($upload->getResult() == true ? $upload->getName() : '');
                 else

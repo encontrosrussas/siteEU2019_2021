@@ -43,17 +43,17 @@
 }
 
 .missao{
-    background-color: #1e1782;
+    background-color: #00003d;
     color: rgb(255, 255, 255);
 }
 
 .valores{
-    background-color: #160b30;
+    background-color: #00002d;
     color: rgb(255, 255, 255);
 }
 
 .intro{
-    background-color: #191970;
+    background-color: #00004c;
     color: rgb(255, 255, 255);
 }
 
@@ -74,6 +74,7 @@ a[href="#top"]{
     display:none;
     font-size: 30px;
 	color: rgb(0, 0, 0);
+	margin-bottom: 10px;
 }
 
 a[href="#top"]:hover{
@@ -105,11 +106,16 @@ background: #707070;
 }
 
 .programacao{
-    background-color: #003153;
+    background-color: #00001e;
 }
 
 .artistica{
-    background-color: #065f9e;
+	background-image: url('../img/fundoFeira.png');
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center center;
+	background-attachment: fixed; 
 }
 
 .cor-tit{
@@ -162,7 +168,7 @@ background: #707070;
 }
 
 .logo{
-	width: 250px !important;
+	width: 210px !important;
 }
 
 .topo{
@@ -367,7 +373,7 @@ background: #707070;
 }
 
 .rodape{
-	background-color: #000d1b !important;
+	background-color: #00000f !important;
     margin-left: 0;
     margin-right: 0;
 }
@@ -424,9 +430,9 @@ background: #707070;
 	margin-right: none;
 }
 
-.inf-rodape > p{
+.inf-rodape > h5{
 	margin-top: 10px;
-	text-align: right;
+	text-align: right !important;
 	color: #ddd;
 	opacity: 0.9;
 	/* margin-top: -110px; */
@@ -741,6 +747,7 @@ hr{
 .esp-sup{
 	margin-top: 70px;
 }
+
 .azul-timeline{
 	color: #191970;
 }
@@ -750,8 +757,8 @@ hr{
 }
 
 .logo-rodape{
-	margin-top: 20px;
-	margin-bottom: 10px;
+	width: 250px;
+	height: 250;
 }
 
 .paginate{

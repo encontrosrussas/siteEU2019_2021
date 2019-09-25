@@ -62,14 +62,11 @@ return function ($app) {
     $app->get('/mini_cursos', HomeController::class . ':mini_cursos')->setName('mini_cursos');
     $app->get('/oficinas', HomeController::class . ':oficinas')->setName('oficinas');
     $app->get('/apresentacoes', HomeController::class . ':apresentacoes')->setName('apresentacoes');
+    $app->get('/palco_mix', HomeController::class . ':palco_mix')->setName('palco_mix');
+    $app->get('/mostra_audiovisual', HomeController::class . ':mostra_audiovisual')->setName('mostra_audiovisual');
+    $app->get('/feira_de_artesanato', HomeController::class . ':feira_de_artesanato')->setName('feira_de_artesanato');
+    $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
+    $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
     // Paginas de Erro
-    $app->getContainer()['notAllowedHandler'] = function ($c) {
-        return new Erro404($c);
-    };
-    $app->getContainer()['notFoundHandler'] = function($c){
-        return new Erro404($c);
-    };
-    $app->getContainer()['errorHandler'] = function($c){
-        return new Erro500($c);
-    };
+
 };
