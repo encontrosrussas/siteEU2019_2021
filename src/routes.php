@@ -70,6 +70,9 @@ return function ($app) {
     $app->get('/feira_de_artesanato', HomeController::class . ':feira_de_artesanato')->setName('feira_de_artesanato');
     $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
+    // Rota para remover views em cache
+    // $app->get('/removeViews', HomeController::class . ':removeViews')->setName('removeViews');
+
     // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {
         return new Erro404($c);
