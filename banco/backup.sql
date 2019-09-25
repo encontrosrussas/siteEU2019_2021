@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: EU
 -- ------------------------------------------------------
--- Server version	5.7.26
+-- Server version	5.7.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -96,8 +96,43 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'Engenharia Civil','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(2,'Engenharia Mecanica','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(3,'Engenharia de ProduÃ§Ã£o','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(4,'CiÃªncia da ComputaÃ§Ã£o','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),(5,'Engenharia de Software','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.');
+INSERT INTO `area` VALUES (1,'Engenharia Civil','1'),(2,'Engenharia Mecanica',''),(3,'Engenharia de ProduÃ§Ã£o',''),(4,'CiÃªncia da ComputaÃ§Ã£o',''),(5,'Engenharia de Software','');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artistico`
+--
+
+DROP TABLE IF EXISTS `artistico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `artistico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `facilitador` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `data` varchar(100) NOT NULL,
+  `resumo` text NOT NULL,
+  `local` varchar(30) NOT NULL,
+  `imagem` varchar(200) DEFAULT NULL,
+  `tipo` tinyint(4) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_artistico_ano1_idx` (`ano_id`),
+  KEY `fk_artistico_area1_idx` (`area_id`),
+  CONSTRAINT `fk_artistico_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_artistico_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artistico`
+--
+
+LOCK TABLES `artistico` WRITE;
+/*!40000 ALTER TABLE `artistico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artistico` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -138,8 +173,7 @@ CREATE TABLE `cursos_oficinas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
+  `data` varchar(100) NOT NULL,
   `resumo` text NOT NULL,
   `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
@@ -151,7 +185,7 @@ CREATE TABLE `cursos_oficinas` (
   KEY `fk_cursos_oficinas_area1_idx` (`area_id`),
   CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +214,7 @@ CREATE TABLE `editais` (
   PRIMARY KEY (`id`),
   KEY `fk_editais_ano_idx` (`ano_id`),
   CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +223,7 @@ CREATE TABLE `editais` (
 
 LOCK TABLES `editais` WRITE;
 /*!40000 ALTER TABLE `editais` DISABLE KEYS */;
-INSERT INTO `editais` VALUES (4,'akjsdhaksdhg','<p>jlabsdkjabsdb</p>','oisauhduisd','02-09-2019-16-35-03.pdf',1);
+INSERT INTO `editais` VALUES (1,'asdnjkalsd','<p>ksjadfbnihksd</p>','lkaidhbua',NULL,1);
 /*!40000 ALTER TABLE `editais` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +246,7 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`id`),
   KEY `fk_noticias_ano1_idx` (`ano_id`),
   CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +255,7 @@ CREATE TABLE `noticias` (
 
 LOCK TABLES `noticias` WRITE;
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
-INSERT INTO `noticias` VALUES (5,'Ã§alksdjnilash','loihnsaodlinh','2019-09-02','16:38:00','09-09-2019-18-44-09.png','<p>kusajdvabhdsoukas</p><p>dcsÃ§kzbcoisuishdfouwsh</p>',1);
+INSERT INTO `noticias` VALUES (1,'asdkjbans','kjabsdik','2019-09-25','08:23:00',NULL,'<p>kajsdbjkhsd</p>',1);
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,8 +270,7 @@ CREATE TABLE `palestras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
+  `data` varchar(100) NOT NULL,
   `resumo` text NOT NULL,
   `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
@@ -257,7 +290,6 @@ CREATE TABLE `palestras` (
 
 LOCK TABLES `palestras` WRITE;
 /*!40000 ALTER TABLE `palestras` DISABLE KEYS */;
-INSERT INTO `palestras` VALUES (1,'palestrante','Palestra1','2019-09-09','15:59:00','<p>resumo</p><p>resumo</p><p>resumo</p>','sala1',NULL,1,1);
 /*!40000 ALTER TABLE `palestras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,4 +330,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-09 22:11:43
+-- Dump completed on 2019-09-25 12:56:27
