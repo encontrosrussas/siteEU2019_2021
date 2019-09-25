@@ -2,14 +2,15 @@
 
 namespace app\models;
 
-class Palestra{
+class Artistico{
     private $id;
     private $titulo;
-    private $nome;
+    private $facilitador;
     private $data;
     private $resumo;
-    private $sala;
+    private $local;
     private $imagem;
+    private $tipo;
     private $area_id;
     private $ano_id;
 
@@ -48,25 +49,60 @@ class Palestra{
     }
 
     /**
-     * Get the value of nome
+     * Get the value of facilitador
      */ 
-    public function getNome()
+    public function getFacilitador()
     {
-        return $this->nome;
+        return $this->facilitador;
     }
 
     /**
-     * Set the value of nome
+     * Set the value of facilitador
      */ 
-    public function setNome($nome)
+    public function setFacilitador($facilitador)
     {
-        if (!empty($nome) && !is_null($nome))
-        $this->nome = $nome;
+        if (!empty($facilitador) && !is_null($facilitador))
+        $this->facilitador = $facilitador;
+    }
+
+    /**
+     * Get the value of imagem
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * Set the value of imagem
+     */
+    public function setImagem($imagem)
+    {
+        if (!empty($imagem) && !is_null($imagem))
+            $this->imagem = $imagem;
+    }
+
+    /**
+     * Get the value of tipo
+     * 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set the value of tipo
+     */
+    public function setTipo($tipo)
+    {
+        if (!empty($tipo) && !is_null($tipo))
+            $this->tipo = $tipo;
     }
 
     /**
      * Get the value of data
-     */ 
+     */
     public function getData()
     {
         return $this->data;
@@ -74,16 +110,16 @@ class Palestra{
 
     /**
      * Set the value of data
-     */ 
+     */
     public function setData($data)
     {
         if (!empty($data) && !is_null($data))
-        $this->data = $data;
+            $this->data = $data;
     }
 
     /**
      * Get the value of resumo
-     */ 
+     */
     public function getResumo()
     {
         return $this->resumo;
@@ -91,46 +127,30 @@ class Palestra{
 
     /**
      * Set the value of resumo
-     */ 
+     */
     public function setResumo($resumo)
     {
         if (!empty($resumo) && !is_null($resumo))
-        $this->resumo = $resumo;
+            $this->resumo = $resumo;
     }
 
     /**
-     * Get the value of sala
-     */ 
-    public function getSala()
+     * Get the value of local
+     */
+    public function getLocal()
     {
-        return $this->sala;
+        return $this->local;
     }
 
     /**
-     * Set the value of sala
-     */ 
-    public function setSala($sala)
+     * Set the value of local
+     */
+    public function setLocal($local)
     {
-        if (!empty($sala) && !is_null($sala))
-        $this->sala = $sala;
+        if (!empty($local) && !is_null($local))
+            $this->local = $local;
     }
     
-    /**
-     * Get the value of hora
-     */ 
-    public function getImagem()
-    {
-        return $this->imagem;
-    }
-
-    /**
-     * Set the value of hora
-     */ 
-    public function setImagem($imagem)
-    {
-        if (!empty($imagem) && !is_null($imagem))
-        $this->imagem = $imagem;
-    }
 
     /**
      * Get the value of area
@@ -171,16 +191,18 @@ class Palestra{
         $retorno = [];
         if (!is_null($this->getTitulo()))
             $retorno["titulo"] = $this->getTitulo();
-        if (!is_null($this->getNome()))
-            $retorno["nome"] = $this->getNome();
+        if (!is_null($this->getFacilitador()))
+            $retorno["facilitador"] = $this->getFacilitador();
         if (!is_null($this->getData()))
             $retorno["data"] = $this->getData();
         if (!is_null($this->getResumo()))
             $retorno["resumo"] = $this->getResumo();
-        if (!is_null($this->getSala()))
-            $retorno["sala"] = $this->getSala();
+        if (!is_null($this->getLocal()))
+            $retorno["local"] = $this->getLocal();
         if (!is_null($this->getImagem()))
             $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getTipo()))
+            $retorno["tipo"] = $this->getTipo();
         if (!is_null($this->getArea_id()))
             $retorno["area_id"] = $this->getArea_id();
         if (!is_null($this->getAno_id()))

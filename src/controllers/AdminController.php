@@ -10,6 +10,7 @@ use app\models\Edital;
 use app\models\CursoOficina;
 use app\models\Noticia;
 use app\models\Palestra;
+use app\models\Artistico;
 use app\models\Usuario;
 use app\helpers\Upload;
 use app\helpers\Login;
@@ -799,6 +800,8 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Titulo Invalido!');
             if (empty($dados['nome']) || is_null($dados['nome']))
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data Invalida!');
             if (empty($dados['sala']) || is_null($dados['sala']))
                 array_push($argumentos['mensagens'], 'Sala Invalida!');
             if (empty($dados['resumo']) || is_null($dados['resumo']))
@@ -821,8 +824,7 @@ class AdminController
                 $cursos_oficinas->setSala($dados['sala']);
                 $cursos_oficinas->setArea_id($dados['area']);
                 $cursos_oficinas->setTipo($dados['tipo']);
-                $cursos_oficinas->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
-                $cursos_oficinas->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $cursos_oficinas->setData($dados['data']);
                 $imagem = $request->getUploadedFiles()['imagem'];
                 $upload = new Upload("uploads/");
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
@@ -866,7 +868,6 @@ class AdminController
                     'titulo',
                     'nome',
                     'data',
-                    'hora',
                     'resumo',
                     'sala',
                     'tipo',
@@ -937,7 +938,6 @@ class AdminController
                 'palestras.id',
                 'palestras.titulo',
                 'palestras.data',
-                'palestras.hora',
                 'area.nome(area)',
                 'ano.nome_ano'
             ],
@@ -964,6 +964,8 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Titulo Invalido!');
             if (empty($dados['nome']) || is_null($dados['nome']))
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data Invalida!');
             if (empty($dados['sala']) || is_null($dados['sala']))
                 array_push($argumentos['mensagens'], 'Sala Invalida!');
             if (empty($dados['resumo']) || is_null($dados['resumo']))
@@ -985,8 +987,7 @@ class AdminController
                 $palestra->setResumo($dados['resumo']);
                 $palestra->setSala($dados['sala']);
                 $palestra->setArea_id($dados['area']);
-                $palestra->setData("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
-                $palestra->setHora("{$dados['hora']}:{$dados['minutos']}");
+                $palestra->setData($dados['data']);
                 $imagem = $request->getUploadedFiles()['imagem'];
                 $upload = new Upload("uploads/");
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
@@ -1030,7 +1031,6 @@ class AdminController
                     'titulo',
                     'nome',
                     'data',
-                    'hora',
                     'resumo',
                     'sala',
                     'imagem',
@@ -1066,6 +1066,156 @@ class AdminController
         return $this->container->view->render(
             $response,
             'admin/palestras-modificacoes.html',
+            $argumentos
+        );
+    }
+
+    public function artistico($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        $db = $this->container->db;
+        if (isset($args['id'])) {
+            $img = $db->select(
+                "artistico",
+                'imagem',
+                ['id' => $args['id']]
+            )[0];
+            if (!empty($img) || !is_null($img)) (new Upload("uploads/"))->excluir($img, "artistico/");
+            $db->delete(
+                "artistico",
+                ["id" => $args['id']]
+            );
+        }
+        $artistico = $db->select(
+            "artistico",
+            [
+                "[><]area" => [
+                    "artistico.area_id" => "id"
+                ],
+                "[><]ano" => [
+                    "artistico.ano_id" => "id"
+                ],
+            ],
+            [
+                'artistico.id',
+                'artistico.titulo',
+                'artistico.tipo',
+                'area.nome(area)',
+                'ano.nome_ano'
+            ],
+            [
+                "ano.status" => 1
+            ]
+        );
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render($response, 'admin/artistico.html', [
+            'artisticas' => $artistico
+        ]);
+    }
+
+    public function artistico_modificacoes($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $argumentos = [];
+        if (!is_null($request->getParsedBody())) {
+            $argumentos['mensagens'] = [];
+            $dados = $request->getParsedBody();
+            if (empty($dados['titulo']) || is_null($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo Invalido!');
+            if (empty($dados['facilitador']) || is_null($dados['facilitador']))
+                array_push($argumentos['mensagens'], 'Facilitador Invalido!');
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data Invalida!');
+            if (empty($dados['local']) || is_null($dados['local']))
+                array_push($argumentos['mensagens'], 'Local Invalida!');
+            if (empty($dados['resumo']) || is_null($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo Invalido!');
+            if (count($argumentos['mensagens']) == 0) {
+                $palestra = new Artistico();
+                $ano = $db->select(
+                    "ano",
+                    [
+                        "id",
+                        "nome_ano",
+                    ],
+                    [
+                        "status" => 1
+                    ]
+                )[0];
+                $palestra->setTitulo($dados['titulo']);
+                $palestra->setFacilitador($dados['facilitador']);
+                $palestra->setResumo($dados['resumo']);
+                $palestra->setLocal($dados['local']);
+                $palestra->setArea_id($dados['area']);
+                $palestra->setTipo($dados['tipo']);
+                $palestra->setData($dados['data']);
+                $imagem = $request->getUploadedFiles()['imagem'];
+                $upload = new Upload("uploads/");
+                if ($imagem->getError() === UPLOAD_ERR_OK) {
+                    $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'artistico/');
+                    $palestra->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                }
+                if (!empty($dados['enviar'])) {
+                    $img = $db->select(
+                        "artistico",
+                        'imagem',
+                        ['id' => $dados['enviar']]
+                    )[0];
+                    if (!empty($palestra->getImagem()) || !is_null($palestra->getImagem()))
+                        $upload->excluir($img, "artistico/");
+                    $palestra->setId($dados['enviar']);
+                    $db->update(
+                        'artistico',
+                        $palestra->toArray(),
+                        [
+                            'id' => $palestra->getId()
+                        ]
+                    );
+                } else {
+                    $palestra->setAno_id($ano['id']);
+                    $db->insert(
+                        'artistico',
+                        $palestra->toArray()
+                    );
+                }
+                return $response->withRedirect($this->container->router->pathFor('artistico-admin'));
+            } else {
+                $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+            }
+        }
+        if (isset($args['id'])) {
+            $argumentos['texto'] = 'Atualizar';
+            $argumentos['artistico'] = $db->select(
+                "artistico",
+                [
+                    'id',
+                    'titulo',
+                    'facilitador',
+                    'data',
+                    'tipo',
+                    'resumo',
+                    'local',
+                    'imagem',
+                    'area_id',
+                ],
+                [
+                    'id' => $args['id']
+                ]
+            )[0];
+        } else {
+            $argumentos['texto'] = 'Adicionar';
+        }
+        $argumentos["areas"] = $db->select("area", [
+            "id",
+            "nome"
+        ]);
+        unset($db);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'admin/artistico-modificacoes.html',
             $argumentos
         );
     }

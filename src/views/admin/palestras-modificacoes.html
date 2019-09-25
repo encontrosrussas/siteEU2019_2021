@@ -35,50 +35,9 @@
                                     <label for="sala" class=" form-control-label">Sala</label>
                                     <input type="text" id="sala" name="sala" placeholder="Digite a Sala da Palestra" class="form-control" value="{{palestra.sala}}">
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-1">
-                                        <label for="dia" class=" form-control-label">Dia:</label>
-                                    </div>
-                                    <div class="col-12 col-md-5">
-                                        <select name="dia" id="dia" class="form-control">
-                                            {% for i in 1..31 %}
-                                            <option value="{{i}}" {{((palestra.data|default(""))|date('d'))==i?"selected":''}}>{{i}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="col col-md-1">
-                                        <label for="mes" class=" form-control-label">Mês:</label>
-                                    </div>
-                                    <div class="col-12 col-md-5">
-                                        <select name="mes" id="mes" class="form-control">
-                                            {% for i in meses %}
-                                            <option value="{{loop.index}}" {{((palestra.data|default(""))|date('m'))==loop.index?"selected":''}}>
-                                                {{i}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-1">
-                                        <label for="hora" class=" form-control-label">Hora:</label>
-                                    </div>
-                                    <div class="col-12 col-md-5">
-                                        <select name="hora" id="hora" class="form-control">
-                                            {% for i in 0..23 %}
-                                            <option value="{{i}}" {{((palestra.hora|default(""))|date('H'))==i?"selected":''}}>{{i}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="col col-md-1">
-                                        <label for="minutos" class=" form-control-label">Minutos:</label>
-                                    </div>
-                                    <div class="col-12 col-md-5">
-                                        <select name="minutos" id="minutos" class="form-control">
-                                            {% for i in 0..59 %}
-                                            <option value="{{i}}" {{((palestra.hora|default(""))|date('i'))==i?"selected":''}}>{{i}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="data" class=" form-control-label">Data:</label>
+                                    <input type="text" id="data" name="data" placeholder="Digite a Data" class="form-control" value="{{palestra.data}}">
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-1">

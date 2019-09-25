@@ -1,5 +1,5 @@
 {% extends "admin/base/template-base-dashboard.html" %}
-{% block title %}{{texto}} Mini Cursos e Oficinas{% endblock %}
+{% block title %}{{texto}} Apresentações Artísticas{% endblock %}
 {% block page %}
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -8,7 +8,7 @@
                         <form method="POST" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">
-                                <strong>{{texto}} Mini Cursos e Oficinas</strong>
+                                <strong>{{texto}} Apresentações Artísticas</strong>
                             </div>
                             <div class="card-body card-block">
                                 {% if mensagens %}
@@ -25,19 +25,19 @@
                                 {% endif %}
                                 <div class="form-group">
                                     <label for="titulo" class=" form-control-label">Titulo</label>
-                                    <input type="text" id="titulo" name="titulo" placeholder="Digite o Titulo" class="form-control" value="{{curso_oficina.titulo}}">
+                                    <input type="text" id="titulo" name="titulo" placeholder="Digite o Titulo" class="form-control" value="{{artistico.titulo}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nome" class=" form-control-label">Nome</label>
-                                    <input type="text" id="nome" name="nome" placeholder="Digite o Nome" class="form-control" value="{{curso_oficina.nome}}">
+                                    <label for="facilitador" class=" form-control-label">Facilitador</label>
+                                    <input type="text" id="facilitador" name="facilitador" placeholder="Digite o Facilitador" class="form-control" value="{{artistico.facilitador}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="sala" class=" form-control-label">Sala</label>
-                                    <input type="text" id="sala" name="sala" placeholder="Digite a Sala" class="form-control" value="{{curso_oficina.sala}}">
+                                    <label for="sala" class=" form-control-label">Local</label>
+                                    <input type="text" id="local" name="local" placeholder="Digite o Local" class="form-control" value="{{artistico.local}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="data" class=" form-control-label">Data:</label>
-                                    <input type="text" id="data" name="data" placeholder="Digite a Data" class="form-control" value="{{curso_oficina.data}}">
+                                    <input type="text" id="data" name="data" placeholder="Digite a Data" class="form-control" value="{{artistico.data}}">
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-1">
@@ -46,7 +46,7 @@
                                     <div class="col-12 col-md-11">
                                         <select name="area" id="area" class="form-control">
                                             {% for area in areas %}
-                                            <option value="{{area.id}}" {{(curso_oficina.area_id|default(""))==area.id?"selected":''}}>{{area.nome}}</option>
+                                            <option value="{{area.id}}" {{(artistico.area_id|default(""))==area.id?"selected":''}}>{{area.nome}}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -54,10 +54,10 @@
                                 <div class="form-group">
                                     <label for="resumo" class=" form-control-label">Resumo</label>
                                     <textarea name="resumo" id="resumo" rows="5" placeholder="Digite o Resumo..."
-                                        class="form-control">{{curso_oficina.resumo}}</textarea>
+                                        class="form-control">{{artistico.resumo}}</textarea>
                                 </div>
-                                {% if curso_oficina.imagem %}
-                                <img src="{{base_url()}}/uploads/cursos_oficinas/{{curso_oficina.imagem}}" style="width: 50%">
+                                {% if artistico.imagem %}
+                                <img src="{{base_url()}}/uploads/artistico/{{artistico.imagem}}" style="width: 50%">
                                 {% endif %}
                                 <div class="form-group">
                                     <label for="imagem" class=" form-control-label">Imagem:</label>
@@ -67,24 +67,38 @@
                                     <label for="pass" class=" form-control-label">Tipo:</label>
                                     <div class="container row form-group">
                                         <div class="form-check col-lg-6">
-                                            <input class="form-check-input" type="radio" name="tipo" id="mini" value="1"
-                                                {{ curso_oficina.tipo|default('1') == '1' ? 'checked' : ''}}>
-                                            <label class="form-check-label" for="mini">
-                                                Mini Curso
+                                            <input class="form-check-input" type="radio" name="tipo" id="palco" value="1"
+                                                {{ artistico.tipo|default('1') == '1' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="palco">
+                                                Palco Mix
                                             </label>
                                         </div>
                                         <div class="form-check col-lg-6">
-                                            <input class="form-check-input" type="radio" name="tipo" id="ofi" value="2"
-                                                {{ curso_oficina.tipo == '2' ? 'checked' : ''}}>
-                                            <label class="form-check-label" for="ofi">
-                                                Oficina
+                                            <input class="form-check-input" type="radio" name="tipo" id="mostra" value="2"
+                                                {{ artistico.tipo == '2' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="mostra">
+                                                Mostra Audiovisual
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-lg-6">
+                                            <input class="form-check-input" type="radio" name="tipo" id="feira" value="3"
+                                                {{ artistico.tipo == '3' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="feira">
+                                                Feira de Artesanato
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-lg-6">
+                                            <input class="form-check-input" type="radio" name="tipo" id="espaco" value="4"
+                                                {{ artistico.tipo == '4' ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="espaco">
+                                                Espaço Gastronômico
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" name='enviar' value="{{curso_oficina.id}}" class="btn btn-success btn-sm">
+                                <button type="submit" name='enviar' value="{{artistico.id}}" class="btn btn-success btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> {{texto}}
                                 </button>
                             </div>

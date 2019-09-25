@@ -7,7 +7,6 @@ class CursoOficina{
     private $titulo;
     private $nome;
     private $data;
-    private $hora;
     private $resumo;
     private $sala;
     private $imagem;
@@ -119,24 +118,6 @@ class CursoOficina{
     }
 
     /**
-     * Get the value of hora
-     */
-    public function getHora()
-    {
-        return $this->hora;
-    }
-
-    /**
-     * Set the value of hora
-     */
-    public function setHora($hora)
-    {
-        if (!empty($hora) && !is_null($hora))
-            $this->hora = $hora;
-    }
-
-
-    /**
      * Get the value of resumo
      */
     public function getResumo()
@@ -214,8 +195,6 @@ class CursoOficina{
             $retorno["nome"] = $this->getNome();
         if (!is_null($this->getData()))
             $retorno["data"] = $this->getData();
-        if (!is_null($this->getHora()))
-            $retorno["hora"] = $this->getHora();
         if (!is_null($this->getResumo()))
             $retorno["resumo"] = $this->getResumo();
         if (!is_null($this->getSala()))
