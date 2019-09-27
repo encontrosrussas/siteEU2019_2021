@@ -534,6 +534,13 @@ class HomeController
         );
     }
 
+    public function manual($request, $response, $args){
+        return $this->container->view->render(
+            $response,
+            'front/manual.html'
+        );
+    }
+
     public function emBreve($request, $response, $args){
         return $this->container->view->render(
             $response,

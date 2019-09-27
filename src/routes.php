@@ -69,6 +69,7 @@ return function ($app) {
     $app->get('/mostra_audiovisual', HomeController::class . ':mostra_audiovisual')->setName('mostra_audiovisual');
     $app->get('/feira_de_artesanato', HomeController::class . ':feira_de_artesanato')->setName('feira_de_artesanato');
     $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
+    $app->get('/manual', HomeController::class . ':manual')->setName('manual');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
     // Rota para remover views em cache
     // $app->get('/removeViews', HomeController::class . ':removeViews')->setName('removeViews');
