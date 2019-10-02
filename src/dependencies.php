@@ -9,7 +9,7 @@ return function ($app) {
     // Register component on container
     $app->getContainer()['view'] = function ($container) {
         $view = new \Slim\Views\Twig('src'. DIRECTORY_SEPARATOR .'views', [
-            //'cache' => 'src/views-cache'
+            // 'cache' => 'src/views-cache'
         ]);
         $filterTruncate = new TwigFilter('truncate',function ($string, $length=255, $end='...'){
             if(strlen($string) > $length)

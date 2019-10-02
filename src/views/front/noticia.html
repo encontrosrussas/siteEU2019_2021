@@ -2,7 +2,7 @@
 {% block title %}Noticia{% endblock %}
 {% block content %}
     <div class="pag-noticias">
-        <div class="container">
+        <div class="container" id="noticia">
             <div class="space-30"></div>
             <div class="text-justify tim-title text-center .text-nowrap">
                 <div class="row">
@@ -23,7 +23,7 @@
                         <div class="panel panel-default">
                             <a href="{{base_url()}}/noticia/{{noti.id}}">
                             <div class="panel-body"><img src="{{noti.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noti.imagem]|join}}" alt="" class="img-responsive"></div>
-                            <div class="panel-body"><a href="{{base_url()}}/noticia/{{noti.id}}"><h4 class="titulo-noticia center-block text-center">{{noti.titulo}}</h4></a></div>
+                            <div class="panel-body"><a href="{{base_url()}}/noticia/{{noti.id}}#noticia"><h4 class="titulo-noticia center-block text-center">{{noti.titulo}}</h4></a></div>
                         </div>
                         {% endfor %}
                     </div>
