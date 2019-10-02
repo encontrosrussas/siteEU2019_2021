@@ -14,14 +14,14 @@
                 <div class="owl-carousel carousel-noticias">
                     {% for noticia in noticias%}
                     <div class="panel panel-default">
+                        <a href="{{base_url()}}/noticia/{{noticia.id}}#noticia">
                         <div class="panel-heading">
-                            <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
+                            <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/NOTICIAS.svg']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
                         </div>
                         <div class="panel-body">
                             <h5 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h5>
-                            <!-- <p class="">{{noticia.subtitulo}}</p> -->
-                            <a href="{{base_url()}}/noticia/{{noticia.id}}" class="btn btn-secondary active color-but center-block" role="button" aria-pressed="true">Saiba mais</a>
                         </div>
+                        </a>
                     </div>
                     {% endfor %}
                 </div>
@@ -203,30 +203,32 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Apresentações</h2>
+                        <a href="{{base_url()}}/apresentacoes">
+                        <h2 class="corTituloCard">Apresentações</h2>
                         <img src="{{base_url()}}/assets/img/presentation.png" alt="" class="img-responsive imgCardAti">
                         <a href="{{base_url()}}/apresentacoes" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
-                        <!--<button type="button" class="btn btn-danger botaoposcicao">Danger</button>-->
-                        <!--<button type="button" class="btn btn-secondary botaoposcicao">Saiba mais</button>-->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Mini Cursos</h2>
+                        <a href="{{base_url()}}/mini_cursos">
+                        <h2 class="corTituloCard">Mini Cursos</h2>
                         <img src="{{base_url()}}/assets/img/training.png" alt="" class="img-responsive imgCardAti">
                         <a href="{{base_url()}}/mini_cursos" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Oficinas</h2>
+                        <a href="{{base_url()}}/oficinas">
+                        <h2 class="corTituloCard">Oficinas</h2>
                         <img src="{{base_url()}}/assets/img/elearning.png" alt="" class="img-responsive imgCardAti">
                         <a href="{{base_url()}}/oficinas" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Palestras</h2>
+                        <a href="{{base_url()}}/palestras">
+                        <h2 class="corTituloCard">Palestras</h2>
                         <img src="{{base_url()}}/assets/img/lecture.png" alt="" class="img-responsive imgCardAti">
                         <a href="{{base_url()}}/palestras" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
@@ -244,30 +246,32 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Palco Mix</h2>
+                        <a href="{{base_url()}}/palco_mix">
+                        <h2 class="corTituloCard">Palco Mix</h2>
                         <img src="{{base_url()}}/assets/img/palcoMix.png" alt="" class="img-responsive imgCardAti">
                         <a href="{{base_url()}}/palco_mix" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
-                        <!--<button type="button" class="btn btn-danger botaoposcicao">Danger</button>-->
-                        <!--<button type="button" class="btn btn-secondary botaoposcicao">Saiba mais</button>-->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Mostra audiovisual</h2>
+                        <a href="{{base_url()}}/mostra_audiovisual">
+                        <h2 class="corTituloCard">Mostra audiovisual</h2>
                         <img src="{{base_url()}}/assets/img/mostraVisual.png" alt="" class="img-responsive imgCardMostra">
                         <a href="{{base_url()}}/mostra_audiovisual" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Feira de artesanato</h2>
+                        <a href="{{base_url()}}/feira_de_artesanato">
+                        <h2 class="corTituloCard">Feira de artesanato</h2>
                         <img src="{{base_url()}}/assets/img/feiraArtesanato.png" alt="" class="img-responsive imgCardMostra">
                         <a href="{{base_url()}}/feira_de_artesanato" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
                     <div class="caixa">
-                        <h2>Espaço gastronômico</h2>
+                        <a href="{{base_url()}}/espaco_gastronomico">
+                        <h2 class="corTituloCard">Espaço gastronômico</h2>
                         <img src="{{base_url()}}/assets/img/espacoGastronomico.png" alt="" class="img-responsive imgCardMostra">
                         <a href="{{base_url()}}/espaco_gastronomico" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
                     </div>

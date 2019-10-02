@@ -122,8 +122,13 @@ background: #707070;
 	color: white;
 }
 
+.corTituloCard{
+	color: #000000 !important;
+	font-weight: 500;
+}
+
 .caixa{
-	color: #000000;
+	color: #000000 !important;
     background-color: white;
     height: 400px;
     padding: 10px;
@@ -522,7 +527,7 @@ body > div.pag-noticias > div > div.text-justify.tim-title.text-center.\.text-no
 
 /*dando cor as caixas de noticias*/
 .par{
-	background-color: #a3a3a39a;
+	background-color: white;
 }
 
 .color-black{
@@ -715,7 +720,7 @@ hr{
   }
 
 .space-noti{
-	  margin-top: 20px;
+	margin-top: 20px;
 }
 
 .not{
@@ -745,7 +750,7 @@ hr{
 }
 
 .esp-sup{
-	margin-top: 70px;
+	margin-top: 30px;
 }
 
 .azul-timeline{
@@ -765,6 +770,7 @@ hr{
 	text-align: center
 }
 .titulo-noticia{
+	color: #272525 !important;
 	margin-top: 0;
 }
 .owl-carousel .owl-item img {

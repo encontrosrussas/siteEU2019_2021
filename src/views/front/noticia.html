@@ -21,6 +21,7 @@
                         {% for noti in noticias%}
                         <!--noticia-->
                         <div class="panel panel-default">
+                            <a href="{{base_url()}}/noticia/{{noti.id}}">
                             <div class="panel-body"><img src="{{noti.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noti.imagem]|join}}" alt="" class="img-responsive"></div>
                             <div class="panel-body"><a href="{{base_url()}}/noticia/{{noti.id}}"><h4 class="titulo-noticia center-block text-center">{{noti.titulo}}</h4></a></div>
                         </div>

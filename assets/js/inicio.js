@@ -25,13 +25,13 @@ carrosel.owlCarousel({
             autoplayHoverPause: true,
         },
         600: {
-            items: 3,
+            items: 2,
             nav: false,
             loop: true,
             autoplayHoverPause: true,
         },
         1000: {
-            items: 4,
+            items: 2,
             nav: false,
             loop: true,
             autoplayHoverPause: true,
