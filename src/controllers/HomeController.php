@@ -23,7 +23,13 @@ class HomeController
                 'imagem',
                 'conteudo'
             ],
-            ['ano_id' => 1, 'LIMIT' => 8]
+            [
+                'ano_id' => 1,
+                'LIMIT' => 8,
+                "ORDER" => [
+                    'id' => "DESC"
+                ]
+            ]
         );
         foreach(scandir("src/views-cache") as $ind){
             if($ind!='.' && $ind!='..' && $ind!='read.txt'){
