@@ -773,6 +773,7 @@ hr{
 .titulo-noticia{
 	color: #272525 !important;
 	margin-top: 0;
+	font-weight: bold;
 }
 .owl-carousel .owl-item img {
 	height: 137px;
