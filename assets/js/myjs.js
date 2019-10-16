@@ -38,13 +38,13 @@ $(".carousel-rodape").owlCarousel({
             autoplayHoverPause: true,
         },
         600: {
-            items: 1,
+            items: 2,
             nav: false,
             loop: true,
             autoplayHoverPause: true,
         },
         1000: {
-            items: 2,
+            items: 4,
             nav: false,
             loop: true,
             autoplayHoverPause: true,
