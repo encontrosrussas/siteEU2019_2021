@@ -1,2 +1,2 @@
-# site-EU
-site dos encontros universitarios
+# Site dos Encontros Universitarios de Russas
+Repositório de versões do site dos Encontros Universitarios de Russas
