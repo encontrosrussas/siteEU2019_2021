@@ -2,11 +2,13 @@
                             <a class="js-arrow" href="{{base_url()}}/admin/dashboard">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
+                        {% if "tipo"|session == 1%}
                         <li>
                             <a href="{{base_url()}}/admin/usuarios">
                                 <i class="fas fa-users"></i>Usuários
                             </a>
                         </li>
+                        {% endif %}
                         <li>
                             <a href="{{base_url()}}/admin/areas">
                                 <i class="fas fa-tags "></i>Áreas
@@ -17,6 +19,7 @@
                                 <i class="fas fa-envelope"></i>Noticias
                             </a>
                         </li>
+                        {% if "tipo"|session <= 2%}
                         <li>
                             <a href="{{base_url()}}/admin/editais">
                                 <i class="fas fa-file-alt"></i>Editais
@@ -27,6 +30,7 @@
                                 <i class="fas fa-calendar-alt"></i>Cronogramas
                             </a>
                         </li>
+                        {% endif %}
                         <li>
                             <a href="{{base_url()}}/admin/apresentacoes">
                                 <i class="fas fa-book"></i>Apresentações
@@ -47,8 +51,10 @@
                                 <i class="fas fa-archive"></i>Mostra Artística
                             </a>
                         </li>
+                        {% if "tipo"|session == 1%}
                         <li>
                             <a href="{{base_url()}}/admin/anos">
                                 <i class="fas fa-calendar-check-o "></i>Anos
                             </a>
                         </li>
+                        {% endif %}

@@ -20,6 +20,10 @@ return function ($app) {
         $filterDate = new TwigFilter('data',function ($string, $format='d/m/Y'){
             return (new \Moment\Moment($string))->format($format);
         });
+        $ses = new TwigFilter('session', function ($string) {
+            return $_SESSION[$string];
+        });
+        $view->getEnvironment()->addFilter($ses);
         $view->getEnvironment()->addFilter($filterTruncate);
         $view->getEnvironment()->addFilter($filterDate);
         // Instantiate and add Slim specific extension
