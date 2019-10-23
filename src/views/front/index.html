@@ -140,66 +140,14 @@
             <div class="timeline">
                 <div class="timeline__wrap">
                     <div class="timeline__items">
+                        {% for dia in calendario %}
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">20 de setembro</h2>
-                                <p>Lançamento do Edital.</p>
+                                <h2 class="azul-timeline">{{dia.data}}</h2>
+                                <p>{{dia.descricao}}</p>
                             </div>
                         </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">28 de setembro a 07 de Outubro</h2>
-                                <p>Primeira fase de submissão dos trabalhos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">28 de setembro a 08 de Outubro</h2>
-                                <p>Período de aval do orientador.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">08 a 14 de Outubro</h2>
-                                <p>Avaliação dos trabalhos submetidos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">17 de Outubro</h2>
-                                <p>Divulgação dos resultados das submissões.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">18 a 20 de Outubro</h2>
-                                <p>Período de recurso para os trabalhos não aceitos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">20 a 24 de Outubro</h2>
-                                <p>Reavaliação dos trabalhos submetidos no período de recurso.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">25 de outubro</h2>
-                                <p>Resultado dos recursos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                                <div class="timeline__content">
-                                    <h2 class="azul-timeline">26 a 28 de Outubro</h2>
-                                    <p>Submissão final de todos os trabalhos aceitos.</p>
-                                </div>
-                        </div>
-                        <div class="timeline__item">
-                                <div class="timeline__content">
-                                    <h2 class="azul-timeline">06 a 08 de novembro</h2>
-                                    <p>IV Encontros Universitários da UFC em Russas</p>
-                                </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

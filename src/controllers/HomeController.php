@@ -31,19 +31,21 @@ class HomeController
                 ]
             ]
         );
-        foreach(scandir("src/views-cache") as $ind){
-            if($ind!='.' && $ind!='..' && $ind!='read.txt'){
-                $dir = "src/views-cache/" . $ind;
-                foreach(scandir($dir) as $arq){
-                    if ($arq != '.' && $arq != '..') {
-                        unlink($dir.'/'.$arq);
-                    }
-                }
-                rmdir("src/views-cache/".$ind);
-            }
-        }
+        $calendario = $this->container->db->select(
+            "calendario",
+            [
+                'data',
+                'descricao'
+            ],
+            [
+                "ORDER" => [
+                    'id' => "ASC"
+                ]
+            ]
+        );
         return $this->container->view->render($response, 'front/index.html',[
-            'noticias' => $noticias
+            'noticias' => $noticias,
+            'calendario' => $calendario
         ]);
     }
 
@@ -207,7 +209,10 @@ class HomeController
             ],
             [
                 'ano.status' => 1,
-                'LIMIT' => [$pag, $itemsPorPagina]
+                'LIMIT' => [$pag, $itemsPorPagina],
+                "ORDER" => [
+                    'id' => "DESC"
+                ]
             ]
         );
         return $this->container->view->render(
@@ -311,7 +316,10 @@ class HomeController
             ],
             [
                 'ano.status' => 1,
-                'LIMIT' => [$pag, $itemsPorPagina]
+                'LIMIT' => [$pag, $itemsPorPagina],
+                "ORDER" => [
+                    'id' => "DESC"
+                ]
             ]
         );
         return $this->container->view->render(

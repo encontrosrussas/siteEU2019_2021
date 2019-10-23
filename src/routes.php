@@ -30,6 +30,9 @@ return function ($app) {
         
         $app->get('/cronogramas[/del/{id}]', AdminController::class . ':cronogramas')->setName('cronogramas-admin');
         $app->map(['GET', 'POST'], '/cronogramas_modificacoes[/{id}]', AdminController::class . ':cronogramas_modificacoes')->setName('cronogramas-modificacoes-admin');
+
+        $app->get('/calendario[/del/{id}]', AdminController::class . ':calendario')->setName('calendario-admin');
+        $app->map(['GET', 'POST'], '/calendario_modificacoes[/{id}]', AdminController::class . ':calendario_modificacoes')->setName('calendario-modificacoes-admin');
         
         $app->get('/apresentacoes[/del/{id}]', AdminController::class . ':apresentacoes')->setName('apresentacoes-admin');
         $app->map(['GET', 'POST'], '/apresentacoes_modificacoes[/{id}]', AdminController::class . ':apresentacoes_modificacoes')->setName('apresentacoes-modificacoes-admin');

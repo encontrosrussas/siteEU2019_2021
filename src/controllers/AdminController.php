@@ -6,6 +6,7 @@ use app\models\Ano;
 use app\models\Apresentacao;
 use app\models\Area;
 use app\models\Cronograma;
+use app\models\Calendario;
 use app\models\Edital;
 use app\models\CursoOficina;
 use app\models\Noticia;
@@ -616,6 +617,103 @@ class AdminController
         return $this->container->view->render(
             $response,
             'admin/cronogramas-modificacoes.html',
+            $argumentos
+        );
+    }
+
+    public function calendario($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        Login::permitAccess($request, $response, 2);
+        $db = $this->container->db;
+        if (isset($args['id'])) {
+            $db->delete(
+                "calendario",
+                ["id" => $args['id']]
+            );
+        }
+        $calendario = $db->select("calendario", [
+            'id',
+            'data'
+        ]);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render($response, 'admin/calendario.html', [
+            'calendario' => $calendario
+        ]);
+    }
+
+    public function calendario_modificacoes($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        Login::permitAccess($request, $response, 2);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $argumentos = [];
+        if (!is_null($request->getParsedBody())) {
+            $argumentos['mensagens'] = [];
+            $dados = $request->getParsedBody();
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data Invalida!');
+            if (empty($dados['descricao']) || is_null($dados['descricao']))
+                array_push($argumentos['mensagens'], 'Descrição Invalida!');
+            if (count($argumentos['mensagens']) == 0) {
+                $calendario = new Calendario();
+                $ano = $db->select(
+                    "ano",
+                    [
+                        "id",
+                        "nome_ano",
+                    ],
+                    [
+                        "status" => 1
+                    ]
+                )[0];
+                $calendario->setData($dados['data']);
+                $calendario->setDescricao($dados['descricao']);
+                if (!empty($dados['enviar'])) {
+                    $calendario->setId($dados['enviar']);
+                    $db->update(
+                        'calendario',
+                        $calendario->toArray(),
+                        [
+                            'id' => $calendario->getId()
+                        ]
+                    );
+                } else {
+                    $calendario->setAno_id(
+                        $ano['id']
+                    );
+                    $db->insert(
+                        'calendario',
+                        $calendario->toArray()
+                    );
+                }
+                return $response->withRedirect($this->container->router->pathFor('calendario-admin'));
+            } else {
+                $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+            }
+        }
+        if (isset($args['id'])) {
+            $argumentos['texto'] = 'Atualizar';
+            $argumentos['calendario'] = $db->select(
+                "calendario",
+                [
+                    'id',
+                    'data',
+                    'descricao'
+                ],
+                [
+                    'id' => $args['id']
+                ]
+            )[0];
+        } else {
+            $argumentos['texto'] = 'Adicionar';
+        }
+        unset($db);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'admin/calendario-modificacoes.html',
             $argumentos
         );
     }
