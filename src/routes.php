@@ -51,6 +51,10 @@ return function ($app) {
         
         // Conta
         $app->map(['GET', 'POST'], '/conta', AdminController::class . ':conta')->setName('conta-admin');
+
+        // Rota para remover views em cache
+        $app->get('/removeViews', AdminController::class . ':removeViews')->setName('removeViews');
+
         // Sair
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
     });
@@ -74,8 +78,6 @@ return function ($app) {
     $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
     $app->get('/manual', HomeController::class . ':manual')->setName('manual');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
-    // Rota para remover views em cache
-    // $app->get('/removeViews', HomeController::class . ':removeViews')->setName('removeViews');
 
     // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {

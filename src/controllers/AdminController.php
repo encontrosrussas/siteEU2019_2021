@@ -1422,6 +1422,25 @@ class AdminController
         );
     }
 
+    public function removeViews($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        Login::permitAccess($request, $response);
+        foreach (scandir("src/views-cache") as $ind) {
+            if ($ind != '.' && $ind != '..' && $ind != 'read.txt') {
+                $dir = "src/views-cache/" . $ind;
+                foreach (scandir($dir) as $arq) {
+                    if ($arq != '.' && $arq != '..') {
+                        unlink($dir . '/' . $arq);
+                        dump($dir . '/' . $arq);
+                    }
+                }
+                rmdir("src/views-cache/" . $ind);
+                dump($dir);
+            }
+        }
+    }
+
     public function conta($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));

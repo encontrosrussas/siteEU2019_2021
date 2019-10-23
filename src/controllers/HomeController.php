@@ -561,20 +561,4 @@ class HomeController
             'front/emBreve.html'
         );
     }
-
-    public function removeViews($request, $response, $args){
-        foreach (scandir("src/views-cache") as $ind) {
-            if ($ind != '.' && $ind != '..' && $ind != 'read.txt') {
-                $dir = "src/views-cache/" . $ind;
-                foreach (scandir($dir) as $arq) {
-                    if ($arq != '.' && $arq != '..') {
-                        unlink($dir . '/' . $arq);
-                        dump($dir . '/' . $arq);
-                    }
-                }
-                rmdir("src/views-cache/" . $ind);
-                dump($dir);
-            }
-        }
-    }
 }
