@@ -20,11 +20,22 @@ use app\helpers\Password;
 class AdminController
 {
     protected $container;
+    protected $ano_atual;
 
     // constructor receives container instance
     public function __construct($container)
     {
         $this->container = $container;
+        $this->ano_atual = $container->db->select(
+            "ano",
+            [
+                "id",
+                "nome_ano",
+            ],
+            [
+                "status" => 1
+            ]
+        )[0];
     }
 
     public function login($request, $response, $args)
@@ -58,13 +69,22 @@ class AdminController
             "usuarios"
         );
         $argumentos['apresentacoes']=$db->count(
-            "apresentacoes"
+            "apresentacoes",
+            [
+                "ano_id" => $this->ano_atual['id']
+            ]
         );
         $argumentos['cursos_oficinas']=$db->count(
-            "cursos_oficinas"
+            "cursos_oficinas",
+            [
+                "ano_id" => $this->ano_atual['id']
+            ]
         );
         $argumentos['palestras']=$db->count(
-            "palestras"
+            "palestras",
+            [
+                "ano_id" => $this->ano_atual['id']
+            ]
         );
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render(
@@ -257,7 +277,10 @@ class AdminController
             $img = $db->select(
                 "noticias",
                 'imagem',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img)){
                 $upload = new Upload("uploads/");
@@ -265,15 +288,24 @@ class AdminController
             }
             $db->delete(
                 "noticias",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
-        $noticias = $db->select("noticias", [
-            'id',
-            'titulo',
-            'data',
-            'hora'
-        ]);
+        $noticias = $db->select(
+            "noticias", 
+            [
+                'id',
+                'titulo',
+                'data',
+                'hora'
+            ],
+            [
+                "ano_id" => $this->ano_atual['id']
+            ]
+        );
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/noticias.html',[
             'noticias' => $noticias
@@ -310,7 +342,10 @@ class AdminController
                     $img = $db->select(
                         "noticias",
                         'imagem',
-                        ['id'=>$dados['enviar']]
+                        [
+                            'id'=>$dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($noticia->getImagem()) || !is_null($noticia->getImagem()))
                         $upload->excluir($img, "noticias/");
@@ -319,21 +354,12 @@ class AdminController
                         'noticias',
                         $noticia->toArray(),
                         [
-                            'id' => $noticia->getId()
+                            'id' => $noticia->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $ano = $db->select(
-                        "ano",
-                        [
-                            "id",
-                            "nome_ano",
-                        ],
-                        [
-                            "status" => 1
-                        ]
-                    )[0];
-                    $noticia->setAno_id($ano['id']);
+                    $noticia->setAno_id($this->ano_atual['id']);
                     $noticia->setData(date("Y-m-d"));
                     $noticia->setHora(date("H:i"));
                     $db->insert(
@@ -347,7 +373,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['noticia'] = $db->select(
                 "noticias",
                 [
@@ -358,9 +383,14 @@ class AdminController
                     'conteudo'
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if ($argumentos['noticia'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -382,7 +412,10 @@ class AdminController
             $img = $db->select(
                 "editais",
                 'arquivo',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img)) {
                 $upload = new Upload("uploads/");
@@ -390,15 +423,24 @@ class AdminController
             }
             $db->delete(
                 "editais",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
-        $editais = $db->select("editais", [
-            'id',
-            'nome',
-            'descricao',
-            'tipo'
-        ]);
+        $editais = $db->select(
+            "editais", 
+            [
+                'id',
+                'nome',
+                'descricao',
+                'tipo'
+            ],
+            [
+                "ano_id" => $this->ano_atual['id']
+            ]
+        );
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/editais.html',[
             'editais'=>$editais
@@ -439,7 +481,10 @@ class AdminController
                     $img = $db->select(
                         "editais",
                         'arquivo',
-                        ['id' => $dados['enviar']]
+                        [
+                            'id' => $dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($edital->getArquivo()) || !is_null($edital->getArquivo()))
                         $upload->excluir($img, "editais/");
@@ -448,21 +493,12 @@ class AdminController
                         'editais',
                         $edital->toArray(),
                         [
-                            'id' => $edital->getId()
+                            'id' => $edital->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $ano = $db->select(
-                        "ano",
-                        [
-                            "id",
-                            "nome_ano",
-                        ],
-                        [
-                            "status" => 1
-                        ]
-                    )[0];
-                    $edital->setAno_id($ano['id']);
+                    $edital->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'editais',
                         $edital->toArray()
@@ -474,7 +510,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['edital'] = $db->select(
                 "editais",
                 [
@@ -485,9 +520,14 @@ class AdminController
                     'descricao'
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['edital'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -500,13 +540,6 @@ class AdminController
         );
     }
 
-    public function paginas($request, $response, $args)
-    {
-        Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'admin/paginas.html');
-    }
-
     public function cronogramas($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
@@ -516,7 +549,10 @@ class AdminController
             $img = $db->select(
                 "cronogramas",
                 'imagem',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img)) {
                 $upload = new Upload("uploads/");
@@ -524,12 +560,17 @@ class AdminController
             }
             $db->delete(
                 "cronogramas",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $cronogramas = $db->select("cronogramas", [
             'id',
             'dia'
+        ],[
+            "ano_id" => $this->ano_atual['id']
         ]);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/cronogramas.html',[
@@ -549,17 +590,7 @@ class AdminController
             $dados = $request->getParsedBody();
             if (count($argumentos['mensagens']) == 0) {
                 $cronograma = new Cronograma();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
-                $cronograma->setDia("{$ano['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
+                $cronograma->setDia("{$this->ano_atual['nome_ano']}-{$dados['mes']}-{$dados['dia']}");
                 $imagem = $request->getUploadedFiles()['imagem'];
                 $upload = new Upload("uploads/");
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
@@ -570,7 +601,10 @@ class AdminController
                     $img = $db->select(
                         "cronogramas",
                         'imagem',
-                        ['id' => $dados['enviar']]
+                        [
+                            'id' => $dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($cronograma->getImagem()) || !is_null($cronograma->getImagem()))
                         $upload->excluir($img, "cronogramas/");
@@ -579,12 +613,13 @@ class AdminController
                         'cronogramas',
                         $cronograma->toArray(),
                         [
-                            'id' => $cronograma->getId()
+                            'id' => $cronograma->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
                     $cronograma->setAno_id(
-                        $ano['id']
+                        $this->ano_atual['id']
                     );
                     $db->insert(
                         'cronogramas',
@@ -629,12 +664,17 @@ class AdminController
         if (isset($args['id'])) {
             $db->delete(
                 "calendario",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $calendario = $db->select("calendario", [
             'id',
             'data'
+        ],[
+            "ano_id" => $this->ano_atual['id']
         ]);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render($response, 'admin/calendario.html', [
@@ -658,16 +698,6 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Descrição Invalida!');
             if (count($argumentos['mensagens']) == 0) {
                 $calendario = new Calendario();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
                 $calendario->setData($dados['data']);
                 $calendario->setDescricao($dados['descricao']);
                 if (!empty($dados['enviar'])) {
@@ -676,12 +706,13 @@ class AdminController
                         'calendario',
                         $calendario->toArray(),
                         [
-                            'id' => $calendario->getId()
+                            'id' => $calendario->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
                     $calendario->setAno_id(
-                        $ano['id']
+                        $this->ano_atual['id']
                     );
                     $db->insert(
                         'calendario',
@@ -694,7 +725,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['calendario'] = $db->select(
                 "calendario",
                 [
@@ -703,9 +733,14 @@ class AdminController
                     'descricao'
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['calendario'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -725,7 +760,10 @@ class AdminController
         if (isset($args['id'])) {
             $db->delete(
                 "apresentacoes",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $apresentacoes = $db->select(
@@ -768,16 +806,6 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Nome Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $apresentacao = new Apresentacao();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
                 $apresentacao->setNome($dados['nome']);
                 $apresentacao->setArea_id($dados['area']);
                 $apresentacao->setResumo($dados['resumo']);
@@ -787,11 +815,12 @@ class AdminController
                         'apresentacoes',
                         $apresentacao->toArray(),
                         [
-                            'id' => $apresentacao->getId()
+                            'id' => $apresentacao->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $apresentacao->setAno_id($ano['id']);
+                    $apresentacao->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'apresentacoes',
                         $apresentacao->toArray()
@@ -803,7 +832,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['apresentacao'] = $db->select(
                 "apresentacoes",
                 [
@@ -813,9 +841,14 @@ class AdminController
                     'area_id'
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['apresentacao'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -854,13 +887,19 @@ class AdminController
             $img = $db->select(
                 "cursos_oficinas",
                 'imagem',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img))
                 (new Upload("uploads/"))->excluir($img, "cursos_oficinas/");
             $db->delete(
                 "cursos_oficinas",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $cursos_oficinas = $db->select(
@@ -912,16 +951,6 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Resumo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $cursos_oficinas = new CursoOficina();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
                 $cursos_oficinas->setTitulo($dados['titulo']);
                 $cursos_oficinas->setNome($dados['nome']);
                 $cursos_oficinas->setResumo($dados['resumo']);
@@ -939,7 +968,10 @@ class AdminController
                     $img = $db->select(
                         "cursos_oficinas",
                         'imagem',
-                        ['id' => $dados['enviar']]
+                        [
+                            'id' => $dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($cursos_oficinas->getImagem()) || !is_null($cursos_oficinas->getImagem()))
                         $upload->excluir($img, "cursos_oficinas/");
@@ -948,11 +980,12 @@ class AdminController
                         'cursos_oficinas',
                         $cursos_oficinas->toArray(),
                         [
-                            'id' => $cursos_oficinas->getId()
+                            'id' => $cursos_oficinas->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $cursos_oficinas->setAno_id($ano['id']);
+                    $cursos_oficinas->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'cursos_oficinas',
                         $cursos_oficinas->toArray()
@@ -964,7 +997,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['curso_oficina'] = $db->select(
                 "cursos_oficinas",
                 [
@@ -979,9 +1011,14 @@ class AdminController
                     'area_id',
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['curso_oficina'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -1020,12 +1057,18 @@ class AdminController
             $img = $db->select(
                 "palestras",
                 'imagem',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img)) (new Upload("uploads/"))->excluir($img, "palestras/");
             $db->delete(
                 "palestras",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $palestras = $db->select(
@@ -1076,16 +1119,6 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Resumo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Palestra();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
                 $palestra->setTitulo($dados['titulo']);
                 $palestra->setNome($dados['nome']);
                 $palestra->setResumo($dados['resumo']);
@@ -1102,7 +1135,10 @@ class AdminController
                     $img = $db->select(
                         "palestras",
                         'imagem',
-                        ['id' => $dados['enviar']]
+                        [
+                            'id' => $dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($palestra->getImagem()) || !is_null($palestra->getImagem()))
                         $upload->excluir($img, "palestras/");
@@ -1111,11 +1147,12 @@ class AdminController
                         'palestras',
                         $palestra->toArray(),
                         [
-                            'id' => $palestra->getId()
+                            'id' => $palestra->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $palestra->setAno_id($ano['id']);
+                    $palestra->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'palestras',
                         $palestra->toArray()
@@ -1127,7 +1164,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['palestra'] = $db->select(
                 "palestras",
                 [
@@ -1141,9 +1177,14 @@ class AdminController
                     'area_id',
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['palestra'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
@@ -1182,12 +1223,18 @@ class AdminController
             $img = $db->select(
                 "artistico",
                 'imagem',
-                ['id' => $args['id']]
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             )[0];
             if (!empty($img) || !is_null($img)) (new Upload("uploads/"))->excluir($img, "artistico/");
             $db->delete(
                 "artistico",
-                ["id" => $args['id']]
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
             );
         }
         $artistico = $db->select(
@@ -1238,16 +1285,6 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Resumo Invalido!');
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Artistico();
-                $ano = $db->select(
-                    "ano",
-                    [
-                        "id",
-                        "nome_ano",
-                    ],
-                    [
-                        "status" => 1
-                    ]
-                )[0];
                 $palestra->setTitulo($dados['titulo']);
                 $palestra->setFacilitador($dados['facilitador']);
                 $palestra->setResumo($dados['resumo']);
@@ -1265,7 +1302,10 @@ class AdminController
                     $img = $db->select(
                         "artistico",
                         'imagem',
-                        ['id' => $dados['enviar']]
+                        [
+                            'id' => $dados['enviar'],
+                            "ano_id" => $this->ano_atual['id']
+                        ]
                     )[0];
                     if (!empty($palestra->getImagem()) || !is_null($palestra->getImagem()))
                         $upload->excluir($img, "artistico/");
@@ -1274,11 +1314,12 @@ class AdminController
                         'artistico',
                         $palestra->toArray(),
                         [
-                            'id' => $palestra->getId()
+                            'id' => $palestra->getId(),
+                            "ano_id" => $this->ano_atual['id']
                         ]
                     );
                 } else {
-                    $palestra->setAno_id($ano['id']);
+                    $palestra->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'artistico',
                         $palestra->toArray()
@@ -1290,7 +1331,6 @@ class AdminController
             }
         }
         if (isset($args['id'])) {
-            $argumentos['texto'] = 'Atualizar';
             $argumentos['artistico'] = $db->select(
                 "artistico",
                 [
@@ -1305,9 +1345,14 @@ class AdminController
                     'area_id',
                 ],
                 [
-                    'id' => $args['id']
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
                 ]
             )[0];
+            if($argumentos['artistico'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
         } else {
             $argumentos['texto'] = 'Adicionar';
         }

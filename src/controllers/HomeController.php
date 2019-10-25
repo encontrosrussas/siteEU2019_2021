@@ -5,11 +5,22 @@ namespace app\controllers;
 class HomeController
 {
     protected $container;
+    protected $ano_atual;
 
     // constructor receives container instance
     public function __construct($container)
     {
         $this->container = $container;
+        $this->ano_atual = $container->db->select(
+            "ano",
+            [
+                "id",
+                "nome_ano",
+            ],
+            [
+                "status" => 1
+            ]
+        )[0];
     }
 
     public function index($request, $response, $args){
@@ -24,7 +35,7 @@ class HomeController
                 'conteudo'
             ],
             [
-                'ano_id' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'LIMIT' => 8,
                 "ORDER" => [
                     'id' => "DESC"
@@ -38,6 +49,7 @@ class HomeController
                 'descricao'
             ],
             [
+                "ano_id" => $this->ano_atual['id'],
                 "ORDER" => [
                     'id' => "ASC"
                 ]
@@ -350,6 +362,7 @@ class HomeController
                     'editais.arquivo'
                 ],
                 [
+                    'ano.status' => 1,
                     'editais.id' => $args['id']
                 ]
             );

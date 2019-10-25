@@ -26,8 +26,6 @@ return function ($app) {
         $app->get('/editais[/del/{id}]', AdminController::class . ':editais')->setName('editais-admin');
         $app->map(['GET', 'POST'], '/editais_modificacoes[/{id}]', AdminController::class . ':editais_modificacoes')->setName('editais-modificacoes-admin');
         
-        $app->get('/paginas[/del/{id}]', AdminController::class . ':paginas')->setName('paginas-admin');
-        
         $app->get('/cronogramas[/del/{id}]', AdminController::class . ':cronogramas')->setName('cronogramas-admin');
         $app->map(['GET', 'POST'], '/cronogramas_modificacoes[/{id}]', AdminController::class . ':cronogramas_modificacoes')->setName('cronogramas-modificacoes-admin');
 
