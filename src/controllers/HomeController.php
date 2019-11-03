@@ -5,11 +5,22 @@ namespace app\controllers;
 class HomeController
 {
     protected $container;
+    protected $ano_atual;
 
     // constructor receives container instance
     public function __construct($container)
     {
         $this->container = $container;
+        $this->ano_atual = $container->db->select(
+            "ano",
+            [
+                "id",
+                "nome_ano",
+            ],
+            [
+                "status" => 1
+            ]
+        )[0];
     }
 
     public function index($request, $response, $args){
@@ -24,26 +35,29 @@ class HomeController
                 'conteudo'
             ],
             [
-                'ano_id' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'LIMIT' => 8,
                 "ORDER" => [
                     'id' => "DESC"
                 ]
             ]
         );
-        foreach(scandir("src/views-cache") as $ind){
-            if($ind!='.' && $ind!='..' && $ind!='read.txt'){
-                $dir = "src/views-cache/" . $ind;
-                foreach(scandir($dir) as $arq){
-                    if ($arq != '.' && $arq != '..') {
-                        unlink($dir.'/'.$arq);
-                    }
-                }
-                rmdir("src/views-cache/".$ind);
-            }
-        }
+        $calendario = $this->container->db->select(
+            "calendario",
+            [
+                'data',
+                'descricao'
+            ],
+            [
+                "ano_id" => $this->ano_atual['id'],
+                "ORDER" => [
+                    'id' => "ASC"
+                ]
+            ]
+        );
         return $this->container->view->render($response, 'front/index.html',[
-            'noticias' => $noticias
+            'noticias' => $noticias,
+            'calendario' => $calendario
         ]);
     }
 
@@ -207,7 +221,10 @@ class HomeController
             ],
             [
                 'ano.status' => 1,
-                'LIMIT' => [$pag, $itemsPorPagina]
+                'LIMIT' => [$pag, $itemsPorPagina],
+                "ORDER" => [
+                    'id' => "DESC"
+                ]
             ]
         );
         return $this->container->view->render(
@@ -311,7 +328,10 @@ class HomeController
             ],
             [
                 'ano.status' => 1,
-                'LIMIT' => [$pag, $itemsPorPagina]
+                'LIMIT' => [$pag, $itemsPorPagina],
+                "ORDER" => [
+                    'id' => "DESC"
+                ]
             ]
         );
         return $this->container->view->render(
@@ -342,6 +362,7 @@ class HomeController
                     'editais.arquivo'
                 ],
                 [
+                    'ano.status' => 1,
                     'editais.id' => $args['id']
                 ]
             );
@@ -552,21 +573,5 @@ class HomeController
             $response,
             'front/emBreve.html'
         );
-    }
-
-    public function removeViews($request, $response, $args){
-        foreach (scandir("src/views-cache") as $ind) {
-            if ($ind != '.' && $ind != '..' && $ind != 'read.txt') {
-                $dir = "src/views-cache/" . $ind;
-                foreach (scandir($dir) as $arq) {
-                    if ($arq != '.' && $arq != '..') {
-                        unlink($dir . '/' . $arq);
-                        dump($dir . '/' . $arq);
-                    }
-                }
-                rmdir("src/views-cache/" . $ind);
-                dump($dir);
-            }
-        }
     }
 }

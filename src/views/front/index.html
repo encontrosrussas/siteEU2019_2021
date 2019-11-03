@@ -16,7 +16,7 @@
                     <div class="panel panel-default">
                         <a href="{{base_url()}}/noticia/{{noticia.id}}#noticia">
                         <div class="panel-heading">
-                            <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/visao.svg']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="" class="img-responsive">
+                            <img src="{{[base_url(),'/assets/img/NOTICIAS.svg']|join}}" alt="" class="img-responsive">
                         </div>
                         <div class="panel-body">
                             <h5 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h5>
@@ -140,66 +140,14 @@
             <div class="timeline">
                 <div class="timeline__wrap">
                     <div class="timeline__items">
+                        {% for dia in calendario %}
                         <div class="timeline__item">
                             <div class="timeline__content">
-                                <h2 class="azul-timeline">20 de setembro</h2>
-                                <p>Lançamento do Edital.</p>
+                                <h2 class="azul-timeline">{{dia.data}}</h2>
+                                <p>{{dia.descricao}}</p>
                             </div>
                         </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">28 de setembro a 05 de Outubro</h2>
-                                <p>Primeira fase de submissão dos trabalhos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">28 de setembro a 06 de Outubro</h2>
-                                <p>Período de aval do orientador.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">06 a 12 de Outubro</h2>
-                                <p>Avaliação dos trabalhos submetidos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">15 de Outubro</h2>
-                                <p>Divulgação dos resultados das submissões.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">16 a 18 de Outubro</h2>
-                                <p>Período de recurso para os trabalhos não aceitos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">18 a 22 de Outubro</h2>
-                                <p>Reavaliação dos trabalhos submetidos no período de recurso.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                            <div class="timeline__content">
-                                <h2 class="azul-timeline">23 de outubro</h2>
-                                <p>Resultado dos recursos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline__item">
-                                <div class="timeline__content">
-                                    <h2 class="azul-timeline">24 a 26 de Outubro</h2>
-                                    <p>Submissão final de todos os trabalhos aceitos.</p>
-                                </div>
-                        </div>
-                        <div class="timeline__item">
-                                <div class="timeline__content">
-                                    <h2 class="azul-timeline">06 a 08 de novembro</h2>
-                                    <p>IV Encontros Universitários da UFC em Russas</p>
-                                </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

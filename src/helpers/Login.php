@@ -3,7 +3,7 @@
 namespace app\helpers;
 
 use app\helpers\Ilogin;
-
+use Slim\Exception\NotFoundException;
 /**
  * Class Login
  * @package App\Classes
@@ -120,6 +120,11 @@ class Login
         return isset($_SESSION['logado']) || $_SESSION['logado'] || (int) $_SESSION["id"] > 0;
     }
 
+    public static function checkAccess($nivel)
+    {
+        return isset($_SESSION['tipo']) && $_SESSION['logado'] && (int) $_SESSION["tipo"] <= $nivel;
+    }
+
     public static function verifyLogin($rota)
     {
         if (!Login::checkLogin()) {
@@ -132,6 +137,13 @@ class Login
     {  
         if (Login::checkLogin()) {
             header("Location: " . $rota);
+            exit;
+        }
+    }
+
+    public static function permitAccess($req, $res, $nivel=1){
+        if (!Login::checkAccess($nivel)) {
+            throw new NotFoundException($req, $res);
             exit;
         }
     }

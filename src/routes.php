@@ -26,10 +26,11 @@ return function ($app) {
         $app->get('/editais[/del/{id}]', AdminController::class . ':editais')->setName('editais-admin');
         $app->map(['GET', 'POST'], '/editais_modificacoes[/{id}]', AdminController::class . ':editais_modificacoes')->setName('editais-modificacoes-admin');
         
-        $app->get('/paginas[/del/{id}]', AdminController::class . ':paginas')->setName('paginas-admin');
-        
         $app->get('/cronogramas[/del/{id}]', AdminController::class . ':cronogramas')->setName('cronogramas-admin');
         $app->map(['GET', 'POST'], '/cronogramas_modificacoes[/{id}]', AdminController::class . ':cronogramas_modificacoes')->setName('cronogramas-modificacoes-admin');
+
+        $app->get('/calendario[/del/{id}]', AdminController::class . ':calendario')->setName('calendario-admin');
+        $app->map(['GET', 'POST'], '/calendario_modificacoes[/{id}]', AdminController::class . ':calendario_modificacoes')->setName('calendario-modificacoes-admin');
         
         $app->get('/apresentacoes[/del/{id}]', AdminController::class . ':apresentacoes')->setName('apresentacoes-admin');
         $app->map(['GET', 'POST'], '/apresentacoes_modificacoes[/{id}]', AdminController::class . ':apresentacoes_modificacoes')->setName('apresentacoes-modificacoes-admin');
@@ -48,6 +49,10 @@ return function ($app) {
         
         // Conta
         $app->map(['GET', 'POST'], '/conta', AdminController::class . ':conta')->setName('conta-admin');
+
+        // Rota para remover views em cache
+        $app->get('/removeViews', AdminController::class . ':removeViews')->setName('removeViews');
+
         // Sair
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
     });
@@ -71,8 +76,6 @@ return function ($app) {
     $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
     $app->get('/manual', HomeController::class . ':manual')->setName('manual');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
-    // Rota para remover views em cache
-    // $app->get('/removeViews', HomeController::class . ':removeViews')->setName('removeViews');
 
     // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {
