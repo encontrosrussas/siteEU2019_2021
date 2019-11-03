@@ -33,7 +33,7 @@
                                                     {{loop.index}}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{c.data}}
+                                                    {{c.data|striptags}}
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{base_url()}}/admin/calendario_modificacoes/{{c.id}}" class="btn btn-warning">Atualizar</a>
