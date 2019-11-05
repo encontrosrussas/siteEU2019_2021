@@ -412,7 +412,7 @@ background: #707070;
 	border-color: #0058b8  !important;
 	border-radius: 20px;
 	color: #ffffff !important;
-	width: 200px;
+	min-width: 200px;
 	font-weight: 700;
 	margin-top: 50px;
 	margin-bottom: 20px;
