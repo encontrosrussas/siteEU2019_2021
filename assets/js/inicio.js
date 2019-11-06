@@ -6,9 +6,9 @@ $('.carousel').carousel({
 var carrosel = $(".carousel-noticias");
 // inicia carousel
 carrosel.owlCarousel({
-    loop: true,
+    loop: false,
     margin: 15,
-    autoplay: true,
+    autoplay: false,
     autoplayTimeout: 2500,
     responsiveClass: true,
     responsive: {
@@ -31,7 +31,7 @@ carrosel.owlCarousel({
             autoplayHoverPause: true,
         },
         1000: {
-            items: 3,
+            items: 4,
             nav: false,
             loop: true,
             autoplayHoverPause: true,
