@@ -57,7 +57,7 @@ return function ($app) {
         $app->get('/sair', AdminController::class . ':sair')->setName('sair-admin');
     });
     $app->get('/', HomeController::class . ':index')->setName('index');
-    $app->get('/acomodacoes', HomeController::class . ':acomodacoes')->setName('acomodacoes');
+    $app->get('/certificados[/{ano}]', HomeController::class . ':certificados')->setName('certificados');
     $app->get('/noticias', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticias/[{pagina}]', HomeController::class . ':noticias')->setName('noticias');
     $app->get('/noticia', HomeController::class . ':noticia')->setName('noticia');

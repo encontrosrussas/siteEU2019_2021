@@ -61,9 +61,9 @@ class HomeController
         ]);
     }
 
-    public function acomodacoes($request, $response, $args){
+    public function certificados($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'front/acomodacoes.html');
+        return $this->container->view->render($response, 'front/certificados.html');
     }
 
     public function mini_cursos($request, $response, $args){
