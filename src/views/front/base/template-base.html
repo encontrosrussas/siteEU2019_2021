@@ -42,8 +42,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right justify-content-center">
-                            <li><a href="{{base_url()}}/">Início</a></li>
-                            <!-- <li class="dropdown">
+                            <!--<li><a href="{{base_url()}}/">Início</a></li>-->
+                            <li class="dropdown">
                                 <a href="{{base_url()}}/" class="dropdown-toggle" data-toggle="dropdown">Início <b class="caret"></b></a>                            
                                 <ul class="dropdown-menu">
                                     <li><a href="{{base_url()}}/">Início</a></li>
@@ -51,7 +51,7 @@
                                     <li><a href="{{base_url()}}/#programacao">Programação</a></li>
                                     <li><a href="{{base_url()}}/#artistica">Mostra Artística</a></li>
                                 </ul>
-                            </li> -->
+                            </li> 
                             <li><a href="{{base_url()}}/certificados#certificados">Certificados</a></li>
                             <li><a href="{{base_url()}}/noticias#noticias">Notícias</a></li>
                             <li><a href="{{base_url()}}/editais#editais">Editais</a></li>
@@ -176,7 +176,13 @@
     <script src="{{base_url()}}/assets/js/get-shit-done.js"></script>
     <script src="{{base_url()}}/assets/owlcarousel/owl.carousel.min.js"></script>
     <script src="{{base_url()}}/assets/timeline/js/timeline.min.js"></script>
+    <script src="{{base_url()}}/assets/js/smooth-scroll.polyfills.min.js"></script>
     <script src="{{base_url()}}/assets/js/myjs.js"></script>
+
+    <!-- INICIALIZAÇÃO DO SCROLL -->
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
     {% block js%}
     {% endblock %}
 </html>
