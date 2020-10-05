@@ -10,6 +10,7 @@ class Artistico{
     private $resumo;
     private $local;
     private $imagem;
+    private $imagem_descricao;
     private $tipo;
     private $area_id;
     private $ano_id;
@@ -80,6 +81,23 @@ class Artistico{
     {
         if (!empty($imagem) && !is_null($imagem))
             $this->imagem = $imagem;
+    }
+
+    /**
+     * Get the value of imagem_descricao
+     */
+    public function getImagem_descricao()
+    {
+        return $this->imagem_descricao;
+    }
+
+    /**
+     * Set the value of imagem_descricao
+     */
+    public function setImagem_descricao($imagem_descricao)
+    {
+        if (!empty($imagem_descricao) && !is_null($imagem_descricao))
+            $this->imagem_descricao = $imagem_descricao;
     }
 
     /**
@@ -201,6 +219,8 @@ class Artistico{
             $retorno["local"] = $this->getLocal();
         if (!is_null($this->getImagem()))
             $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getImagem_descricao()))
+            $retorno["imagem_descricao"] = $this->getImagem_descricao();
         if (!is_null($this->getTipo()))
             $retorno["tipo"] = $this->getTipo();
         if (!is_null($this->getArea_id()))

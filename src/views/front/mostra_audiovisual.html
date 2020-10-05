@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class = "col-md-12">
                             <div class="card-base animated bounceInLeft">
-                                <div class="card-icon"><img src="{{mostra_audiovisual.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/artistico/', mostra_audiovisual.imagem]|join}}" id="widgetCardIcon" class="imagecard">
+                                <div class="card-icon"><img src="{{mostra_audiovisual.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/artistico/', mostra_audiovisual.imagem]|join}}" alt="{{mostra_audiovisual.imagem_descricao is null ? 'Imagem de uma Pessoa' : mostra_audiovisual.imagem_descricao}}" id="widgetCardIcon" class="imagecard">
                                     <div class="card-data widgetCardData">
                                         <h3>{{mostra_audiovisual.titulo}}</h3>
                                         <div class="card-left">

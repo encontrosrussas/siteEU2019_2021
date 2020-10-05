@@ -39,6 +39,11 @@
                                     <input type="file" id="imagem" name="imagem" class="form-control-file">
                                 </div>
                                 <div class="form-group">
+                                    <label for="imagem_descricao" class=" form-control-label">Descrição da Imagem</label>
+                                    <input type="text" id="imagem_descricao" name='imagem_descricao' placeholder="Digite a Descrição da Imagem da Noticia" class="form-control"
+                                        value='{{noticia.imagem_descricao}}'>
+                                </div>
+                                <div class="form-group">
                                     <label for="conteudo" class=" form-control-label">Conteúdo</label>
                                     <textarea name="conteudo" id="conteudo" rows="5" placeholder="Digite o Conteúdo da Noticia..." class="form-control">{{noticia.conteudo|default("")}}</textarea>
                                 </div>

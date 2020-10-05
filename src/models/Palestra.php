@@ -10,6 +10,7 @@ class Palestra{
     private $resumo;
     private $sala;
     private $imagem;
+    private $imagem_descricao;
     private $area_id;
     private $ano_id;
 
@@ -133,6 +134,23 @@ class Palestra{
     }
 
     /**
+     * Get the value of imagem_descricao
+     */
+    public function getImagem_descricao()
+    {
+        return $this->imagem_descricao;
+    }
+
+    /**
+     * Set the value of imagem_descricao
+     */
+    public function setImagem_descricao($imagem_descricao)
+    {
+        if (!empty($imagem_descricao) && !is_null($imagem_descricao))
+            $this->imagem_descricao = $imagem_descricao;
+    }
+
+    /**
      * Get the value of area
      */
     public function getArea_id()
@@ -181,6 +199,8 @@ class Palestra{
             $retorno["sala"] = $this->getSala();
         if (!is_null($this->getImagem()))
             $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getImagem_descricao()))
+            $retorno["imagem_descricao"] = $this->getImagem_descricao();
         if (!is_null($this->getArea_id()))
             $retorno["area_id"] = $this->getArea_id();
         if (!is_null($this->getAno_id()))

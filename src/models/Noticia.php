@@ -9,6 +9,7 @@ class Noticia{
     private $data;
     private $hora;
     private $imagem;
+    private $imagem_descricao;
     private $conteudo;
     private $ano_id;
 
@@ -115,6 +116,23 @@ class Noticia{
     }
 
     /**
+     * Get the value of imagem_descricao
+     */ 
+    public function getImagem_descricao()
+    {
+        return $this->imagem_descricao;
+    }
+
+    /**
+     * Set the value of imagem_descricao
+     */ 
+    public function setImagem_descricao($imagem_descricao)
+    {
+        if (!empty($imagem_descricao) && !is_null($imagem_descricao))
+        $this->imagem_descricao = $imagem_descricao;
+    }
+
+    /**
      * Get the value of conteudo
      */ 
     public function getConteudo()
@@ -161,6 +179,8 @@ class Noticia{
             $retorno["hora"] = $this->getHora();
         if (!is_null($this->getImagem()))
             $retorno["imagem"] = $this->getImagem();
+        if (!is_null($this->getImagem_descricao()))
+            $retorno["imagem_descricao"] = $this->getImagem_descricao();
         if (!is_null($this->getConteudo()))
             $retorno["conteudo"] = $this->getConteudo();
         if (!is_null($this->getAno_id()))
