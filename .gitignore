@@ -1,5 +1,3 @@
-!logs/
-!vendor
 src/views-cache/*
 !src/views-cache/read.txt
 # src/settings.php
@@ -17,4 +15,5 @@ uploads/palestras/*
 !uploads/noticias/read.txt
 !uploads/palestras/read.txt
 composer.lock
-logs/app.log
+vendor/
+logs/
