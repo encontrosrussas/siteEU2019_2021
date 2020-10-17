@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
--- https://www.phpmyadmin.net/
+-- version 4.2.12deb2+deb8u4
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: 28-Ago-2019 às 11:39
--- Versão do servidor: 5.7.27-0ubuntu0.18.04.1
--- PHP Version: 7.2.21-1+ubuntu18.04.1+deb.sury.org+1
+-- Host: localhost
+-- Generation Time: 30-Set-2020 às 09:18
+-- Versão do servidor: 5.5.62-0+deb8u1
+-- PHP Version: 5.6.40-0+deb8u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,13 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `EU`
 --
-CREATE DATABASE IF NOT EXISTS `EU` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `EU`;
 
 -- --------------------------------------------------------
 
@@ -30,24 +28,15 @@ USE `EU`;
 
 DROP TABLE IF EXISTS `ano`;
 CREATE TABLE IF NOT EXISTS `ano` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome_ano` year(4) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1',
   `editais` tinyint(4) NOT NULL DEFAULT '1',
   `cronogramas` tinyint(4) NOT NULL DEFAULT '1',
   `noticias` tinyint(4) NOT NULL DEFAULT '1',
   `palestras` tinyint(4) NOT NULL DEFAULT '1',
-  `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `apresentacoes` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `ano`
---
-
-INSERT INTO `ano` (`id`, `nome_ano`, `status`, `editais`, `cronogramas`, `noticias`, `palestras`, `apresentacoes`) VALUES
-(1, 2019, 1, 1, 1, 1, 1, 1),
-(2, 2018, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -57,14 +46,11 @@ INSERT INTO `ano` (`id`, `nome_ano`, `status`, `editais`, `cronogramas`, `notici
 
 DROP TABLE IF EXISTS `apresentacoes`;
 CREATE TABLE IF NOT EXISTS `apresentacoes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
   `resumo` longtext,
   `area_id` int(11) DEFAULT NULL,
-  `ano_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_apresentacoes_ano1_idx` (`ano_id`),
-  KEY `fk_apresentacoes_area1_idx` (`area_id`)
+  `ano_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -75,22 +61,57 @@ CREATE TABLE IF NOT EXISTS `apresentacoes` (
 
 DROP TABLE IF EXISTS `area`;
 CREATE TABLE IF NOT EXISTS `area` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `descricao` longtext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `descricao` longtext NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `area`
 --
 
 INSERT INTO `area` (`id`, `nome`, `descricao`) VALUES
-(1, 'Engenharia Civil', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),
-(2, 'Engenharia Mecanica', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),
-(3, 'Engenharia de ProduÃ§Ã£o', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),
-(4, 'CiÃªncia da ComputaÃ§Ã£o', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.'),
-(5, 'Engenharia de Software', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum quidem obcaecati, consequatur dolorem tenetur ullam laudantium iusto, odit deserunt autem dolorum, repellat atque amet! Nisi ab nulla obcaecati fugit nostrum.');
+(1, 'Engenharia Civil', ''),
+(2, 'Engenharia Mecanica', ''),
+(3, 'Engenharia de Produção', ''),
+(4, 'Ciência da Computação', ''),
+(5, 'Engenharia de Software', ''),
+(6, 'Libras', ' '),
+(7, 'Diversos', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `artistico`
+--
+
+DROP TABLE IF EXISTS `artistico`;
+CREATE TABLE IF NOT EXISTS `artistico` (
+`id` int(11) NOT NULL,
+  `facilitador` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `data` varchar(100) NOT NULL,
+  `resumo` text NOT NULL,
+  `local` varchar(30) NOT NULL,
+  `imagem` varchar(200) DEFAULT NULL,
+  `tipo` tinyint(4) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `calendario`
+--
+
+DROP TABLE IF EXISTS `calendario`;
+CREATE TABLE IF NOT EXISTS `calendario` (
+`id` int(11) NOT NULL,
+  `data` varchar(100) NOT NULL,
+  `descricao` varchar(250) NOT NULL,
+  `ano_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -100,12 +121,10 @@ INSERT INTO `area` (`id`, `nome`, `descricao`) VALUES
 
 DROP TABLE IF EXISTS `cronogramas`;
 CREATE TABLE IF NOT EXISTS `cronogramas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `dia` date NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
-  `ano_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cronogramas_ano1_idx` (`ano_id`)
+  `ano_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -116,21 +135,17 @@ CREATE TABLE IF NOT EXISTS `cronogramas` (
 
 DROP TABLE IF EXISTS `cursos_oficinas`;
 CREATE TABLE IF NOT EXISTS `cursos_oficinas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
+  `data` varchar(100) NOT NULL,
   `resumo` text NOT NULL,
   `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
   `tipo` tinyint(4) NOT NULL,
   `ano_id` int(11) DEFAULT NULL,
-  `area_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cursos_oficinas_ano1_idx` (`ano_id`),
-  KEY `fk_cursos_oficinas_area1_idx` (`area_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `area_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -140,15 +155,13 @@ CREATE TABLE IF NOT EXISTS `cursos_oficinas` (
 
 DROP TABLE IF EXISTS `editais`;
 CREATE TABLE IF NOT EXISTS `editais` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `descricao` longtext,
   `tipo` varchar(100) NOT NULL,
   `arquivo` varchar(200) DEFAULT NULL,
-  `ano_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_editais_ano_idx` (`ano_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ano_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -158,17 +171,15 @@ CREATE TABLE IF NOT EXISTS `editais` (
 
 DROP TABLE IF EXISTS `noticias`;
 CREATE TABLE IF NOT EXISTS `noticias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `titulo` varchar(200) NOT NULL,
   `subtitulo` varchar(200) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
   `imagem` varchar(300) DEFAULT NULL,
   `conteudo` longtext NOT NULL,
-  `ano_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_noticias_ano1_idx` (`ano_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ano_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -178,20 +189,16 @@ CREATE TABLE IF NOT EXISTS `noticias` (
 
 DROP TABLE IF EXISTS `palestras`;
 CREATE TABLE IF NOT EXISTS `palestras` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL,
+  `data` varchar(100) NOT NULL,
   `resumo` text NOT NULL,
   `sala` varchar(30) NOT NULL,
   `imagem` varchar(200) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
-  `area_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_palestras_ano1_idx` (`ano_id`),
-  KEY `fk_palestras_area1_idx` (`area_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `area_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -201,23 +208,151 @@ CREATE TABLE IF NOT EXISTS `palestras` (
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `email` varchar(150) NOT NULL,
   `senha` varchar(250) NOT NULL,
-  `tipo` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `tipo` tinyint(4) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
-(1, 'guilherme nepomuceno', 'guilherme@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', 1),
-(2, 'susana', 'susana@gmail.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', 2);
+-- Senha desse usuário admin: senha123
 
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
+(1, 'Administrador', 'admin@n2s.com', 'fa3c1cdee866e8b57b644e55aa85ad1f001ea14471da9d41cdd3195e5613f4b8b6fff905e7f1afb3954a3e182e92c52497e41decf5718b51a09bfadf52e77f20', 1),
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ano`
+--
+ALTER TABLE `ano`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `apresentacoes`
+--
+ALTER TABLE `apresentacoes`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_apresentacoes_ano1_idx` (`ano_id`), ADD KEY `fk_apresentacoes_area1_idx` (`area_id`);
+
+--
+-- Indexes for table `area`
+--
+ALTER TABLE `area`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `artistico`
+--
+ALTER TABLE `artistico`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_artistico_ano1_idx` (`ano_id`), ADD KEY `fk_artistico_area1_idx` (`area_id`);
+
+--
+-- Indexes for table `calendario`
+--
+ALTER TABLE `calendario`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_calendario_ano1_idx` (`ano_id`);
+
+--
+-- Indexes for table `cronogramas`
+--
+ALTER TABLE `cronogramas`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_cronogramas_ano1_idx` (`ano_id`);
+
+--
+-- Indexes for table `cursos_oficinas`
+--
+ALTER TABLE `cursos_oficinas`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_cursos_oficinas_ano1_idx` (`ano_id`), ADD KEY `fk_cursos_oficinas_area1_idx` (`area_id`);
+
+--
+-- Indexes for table `editais`
+--
+ALTER TABLE `editais`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_editais_ano_idx` (`ano_id`);
+
+--
+-- Indexes for table `noticias`
+--
+ALTER TABLE `noticias`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_noticias_ano1_idx` (`ano_id`);
+
+--
+-- Indexes for table `palestras`
+--
+ALTER TABLE `palestras`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_palestras_ano1_idx` (`ano_id`), ADD KEY `fk_palestras_area1_idx` (`area_id`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ano`
+--
+ALTER TABLE `ano`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `apresentacoes`
+--
+ALTER TABLE `apresentacoes`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `area`
+--
+ALTER TABLE `area`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `artistico`
+--
+ALTER TABLE `artistico`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `calendario`
+--
+ALTER TABLE `calendario`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `cronogramas`
+--
+ALTER TABLE `cronogramas`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cursos_oficinas`
+--
+ALTER TABLE `cursos_oficinas`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `editais`
+--
+ALTER TABLE `editais`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `noticias`
+--
+ALTER TABLE `noticias`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `palestras`
+--
+ALTER TABLE `palestras`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -226,40 +361,53 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `tipo`) VALUES
 -- Limitadores para a tabela `apresentacoes`
 --
 ALTER TABLE `apresentacoes`
-  ADD CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_apresentacoes_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_apresentacoes_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `artistico`
+--
+ALTER TABLE `artistico`
+ADD CONSTRAINT `fk_artistico_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_artistico_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `calendario`
+--
+ALTER TABLE `calendario`
+ADD CONSTRAINT `fk_calendario_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `cronogramas`
 --
 ALTER TABLE `cronogramas`
-  ADD CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_cronogramas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `cursos_oficinas`
 --
 ALTER TABLE `cursos_oficinas`
-  ADD CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `editais`
 --
 ALTER TABLE `editais`
-  ADD CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_editais_ano` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `noticias`
 --
 ALTER TABLE `noticias`
-  ADD CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_noticias_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `palestras`
 --
 ALTER TABLE `palestras`
-  ADD CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_palestras_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_palestras_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_palestras_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

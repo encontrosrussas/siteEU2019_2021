@@ -16,6 +16,11 @@
                             <div class="form-group">
                                 <label>Email</label>
                                 <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                {% if loginResponse == false %}
+                                    <div class="is-invalid">
+                                        Os dados informados não conferem!
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="form-group">
                                 <label>Senha</label>
