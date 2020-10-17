@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class = "col-md-12">
                             <div class="card-base animated bounceInLeft">
-                                <div class="card-icon"><img src="{{feira_de_artesanato.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/artistico/', feira_de_artesanato.imagem]|join}}" id="widgetCardIcon" class="imagecard">
+                                <div class="card-icon"><img src="{{feira_de_artesanato.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/artistico/', feira_de_artesanato.imagem]|join}}" alt="{{feira_de_artesanato.imagem_descricao is null ? 'Imagem de uma Pessoa' : feira_de_artesanato.imagem_descricao}}" id="widgetCardIcon" class="imagecard">
                                     <div class="card-data widgetCardData">
                                         <h3>{{feira_de_artesanato.titulo}}</h3>
                                         <div class="card-left">

@@ -380,7 +380,11 @@ class AdminController
             # Validação do conteúdo
             if (empty($dados['conteudo']) || is_null($dados['conteudo']))
                 array_push($argumentos['mensagens'], 'Conteúdo não pode ser vazio!');
-
+            
+            # Validação da descrição da imagem
+            if ((empty($dados['imagem_descricao']) || is_null($dados['imagem_descricao'])) && 
+                $request->getUploadedFiles()['imagem']->getError() != UPLOAD_ERR_NO_FILE)
+                array_push($argumentos['mensagens'], 'Descrição da Imagem Invalida!');
 
             if (count($argumentos['mensagens']) == 0) {
                 $noticia = new Noticia();
@@ -392,6 +396,7 @@ class AdminController
                 if($imagem->getError() === UPLOAD_ERR_OK){
                     $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'noticias/');
                     $noticia->setImagem($upload->getResult()==true?$upload->getName():'');
+                    $noticia->setImagem_descricao($dados['imagem_descricao']);
                 }
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
@@ -437,7 +442,8 @@ class AdminController
                     'titulo',
                     'subtitulo',
                     'imagem',
-                    'conteudo'
+                    'conteudo',
+                    'imagem_descricao'
                 ],
                 [
                     'id' => $args['id'],
@@ -1096,9 +1102,13 @@ class AdminController
             # Validação do tipo
             if (empty($dados['tipo']) || is_null($dados['tipo']) || !in_array($dados['tipo'], [1, 2]))
                 array_push($argumentos['mensagens'], 'Tipo inválido!');
+            
+            # Validação da descrição da mensagem
+            if ((empty($dados['imagem_descricao']) || is_null($dados['imagem_descricao'])) && 
+                $request->getUploadedFiles()['imagem']->getError() != UPLOAD_ERR_NO_FILE)
+                array_push($argumentos['mensagens'], 'Descrição da Imagem Invalida!');
 
             $tipoNome = $dados['tipo'] == 1 ? 'Mini Curso' : 'Oficina';
-
             if (count($argumentos['mensagens']) == 0) {
                 $cursos_oficinas = new CursoOficina();
                 $cursos_oficinas->setTitulo($dados['titulo']);
@@ -1113,6 +1123,7 @@ class AdminController
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
                     $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'cursos_oficinas/');
                     $cursos_oficinas->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                    $cursos_oficinas->setImagem_descricao($dados['imagem_descricao']);
                 }
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
@@ -1160,6 +1171,7 @@ class AdminController
                     'sala',
                     'tipo',
                     'imagem',
+                    'imagem_descricao',
                     'area_id',
                 ],
                 [
@@ -1292,6 +1304,10 @@ class AdminController
             $areaExiste = $db->count('area', ['id' => $dados['area']]);
             if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
                 array_push($argumentos['mensagens'], 'Área inválida!');
+            
+            # Validação da descrição de imagem
+            if ((empty($dados['imagem_descricao']) || is_null($dados['imagem_descricao'])) && 
+                $request->getUploadedFiles()['imagem']->getError() != UPLOAD_ERR_NO_FILE)
 
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Palestra();
@@ -1306,6 +1322,7 @@ class AdminController
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
                     $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'palestras/');
                     $palestra->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                    $palestra->setImagem_descricao($dados['imagem_descricao']);
                 }
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
@@ -1353,6 +1370,7 @@ class AdminController
                     'resumo',
                     'sala',
                     'imagem',
+                    'imagem_descricao',
                     'area_id',
                 ],
                 [
@@ -1489,6 +1507,11 @@ class AdminController
             # Validação do tipo
             if (empty($dados['tipo']) || is_null($dados['tipo']) || !in_array($dados['tipo'], [1, 2, 3, 4]))
                 array_push($argumentos['mensagens'], 'Tipo inválido!');
+           
+            # Validação da descrição de imagem
+            if ((empty($dados['imagem_descricao']) || is_null($dados['imagem_descricao'])) && 
+                $request->getUploadedFiles()['imagem']->getError() != UPLOAD_ERR_NO_FILE)
+                array_push($argumentos['mensagens'], 'Descrição da Imagem Invalida!');
 
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Artistico();
@@ -1504,6 +1527,7 @@ class AdminController
                 if ($imagem->getError() === UPLOAD_ERR_OK) {
                     $upload->image($_FILES['imagem'], date("d-m-Y-H-i-s"), 'artistico/');
                     $palestra->setImagem($upload->getResult() == true ? $upload->getName() : '');
+                    $palestra->setImagem_descricao($dados['imagem_descricao']);
                 }
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
@@ -1551,6 +1575,7 @@ class AdminController
                     'resumo',
                     'local',
                     'imagem',
+                    'imagem_descricao',
                     'area_id',
                 ],
                 [
@@ -1635,6 +1660,14 @@ class AdminController
                 $ano->setNoticias($dados['noticias']);
                 $ano->setPalestras($dados['palestras']);
                 $ano->setApresentacoes($dados['apresentacoes']);
+                if ($ano->getStatus() == 1) {
+                    $db->update(
+                        'ano',
+                        [
+                            'status' => 0
+                        ]
+                    );
+                }
                 if (!empty($dados['enviar'])) {
                     $ano->setId($dados['enviar']);
                     $db->update(

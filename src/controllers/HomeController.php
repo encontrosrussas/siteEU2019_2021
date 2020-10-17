@@ -87,6 +87,7 @@ class HomeController
                 'cursos_oficinas.resumo',
                 'cursos_oficinas.sala',
                 'cursos_oficinas.imagem',
+                'cursos_oficinas.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -165,6 +166,7 @@ class HomeController
                 'cursos_oficinas.resumo',
                 'cursos_oficinas.sala',
                 'cursos_oficinas.imagem',
+                'cursos_oficinas.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -253,6 +255,7 @@ class HomeController
                     'noticias.data',
                     'noticias.hora',
                     'noticias.imagem',
+                    'noticias.imagem_descricao',
                     'noticias.conteudo'
                 ],
                 [
@@ -271,8 +274,10 @@ class HomeController
                     'noticias.id',
                     'noticias.titulo',
                     'noticias.imagem',
+                    'noticias.imagem_descricao',
                 ],
                 [
+                    'ano.status' => 1,
                     'noticias.id[!]' => $args['id'],
                     'LIMIT' => 4
                 ]
@@ -400,6 +405,7 @@ class HomeController
                 'palestras.resumo',
                 'palestras.sala',
                 'palestras.imagem',
+                'palestras.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -436,6 +442,7 @@ class HomeController
                 'artistico.resumo',
                 'artistico.local',
                 'artistico.imagem',
+                'artistico.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -473,6 +480,7 @@ class HomeController
                 'artistico.resumo',
                 'artistico.local',
                 'artistico.imagem',
+                'artistico.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -510,6 +518,7 @@ class HomeController
                 'artistico.resumo',
                 'artistico.local',
                 'artistico.imagem',
+                'artistico.imagem_descricao',
                 'area.nome(area)',
             ],
             [
@@ -547,6 +556,7 @@ class HomeController
                 'artistico.resumo',
                 'artistico.local',
                 'artistico.imagem',
+                'artistico.imagem_descricao',
                 'area.nome(area)',
             ],
             [

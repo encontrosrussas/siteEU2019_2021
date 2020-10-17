@@ -15,7 +15,9 @@
                         <div class="col-md-12">
                             <div class="card-base animated bounceInLeft">
                                 <div class="card-icon">
-                                    <img src="{{mini_curso.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/cursos_oficinas/', mini_curso.imagem]|join}}"
+                                    <img
+                                        src="{{mini_curso.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/cursos_oficinas/', mini_curso.imagem]|join}}"
+                                        alt="{{mini_curso.imagem_descricao is null ? 'Imagem de uma Pessoa' : mini_curso.imagem_descricao}}"
                                         id="widgetCardIcon" class="imagecard">
                                     <div class="card-data widgetCardData">
                                         <h3>{{mini_curso.titulo}}</h3>
