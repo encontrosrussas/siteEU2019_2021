@@ -44,6 +44,7 @@ class AdminController
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
+        $loginResponse = true;
         if (!is_null($request->getParsedBody()) && $_POST['email'] != '' && $_POST['password'] != '') {
             $argumentos['mensagens'] = [];
             $email = trim(strip_tags(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING)));
@@ -54,10 +55,15 @@ class AdminController
             $login = new Login($user, $db);
             $login->setEmail($email);
             $login->setPassword($senha);
-            $login->logar();
-            return $response->withRedirect($this->container->router->pathFor('dashboard-admin'));
+            $loginResponse = $login->logar();
+            
+            # Tentar redirecionar para o dashboard somente se o login foi realizado
+            if ($loginResponse)
+                return $response->withRedirect($this->container->router->pathFor('dashboard-admin'));
         }
-        return $this->container->view->render($response, 'admin/login.html');
+        return $this->container->view->render($response, 'admin/login.html',[
+            'loginResponse' => $loginResponse
+        ]);
     }
 
     public function dashboard($request, $response, $args)
@@ -125,14 +131,32 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
+
+            # Validação do nome
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if (strlen($dados['nome']) <= 3)
+                array_push($argumentos['mensagens'], 'Nome deve ter mais de 3 caracteres!');
+            
+            # Validação do e-mail
+            $emailsIguais = $db->count('usuarios', [
+                'email' => $dados['email'],
+                'id[!]' => $args['id']
+            ]);
+
             if(!filter_var($dados['email'], FILTER_VALIDATE_EMAIL))
-                array_push($argumentos['mensagens'], 'Email Invalido!');
+                array_push($argumentos['mensagens'], 'Email inválido!');
+            else if($emailsIguais > 0)
+                array_push($argumentos['mensagens'], 'Email já cadastrado por outro usuário!');
+
+            # Validação de senha
             if(empty($dados['enviar']) && ($dados['pass'] != $dados['confirm-pass'] || empty($dados['pass']) || is_null($dados['pass'])))
-                array_push($argumentos['mensagens'], 'Senha Invalida!');
+                array_push($argumentos['mensagens'], 'Senha inválida!');
+
+            # Validação do tipo de usuário
             if($dados['tipoU'] < 1 || $dados['tipoU']>3)
-                array_push($argumentos['mensagens'], 'Tipo do Usuario Invalido!');
+                array_push($argumentos['mensagens'], 'Tipo do Usuario inválido!');
+            
             if(count($argumentos['mensagens']) == 0){
                 $user = new Usuario(
                     null,
@@ -154,11 +178,14 @@ class AdminController
                             'id' => $user->getId()
                         ]
                     );
+
+                    $this->container->flash->addMessage('usuarios', 'Usuário atualizado com sucesso!');
                 }else{
                     $db->insert(
                         'usuarios',
                         $user->toArray()
                     );
+                    $this->container->flash->addMessage('usuarios', 'Usuário adicionado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('usuarios-admin'));
             }else{
@@ -216,10 +243,24 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
-            if (empty($dados['descricao']) || is_null($dados['descricao']))
-                array_push($argumentos['mensagens'], 'Descrição Invalida!');
+
+            $nomesIguais = $db->count('area', [
+                'nome' => $dados['nome'],
+                'id[!]' => $args['id']
+            ]);
+
+            # Validação do nome
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if(strlen($dados['nome']) < 5)
+                array_push($argumentos['mensagens'], 'Nome deve ter no mínimo 5 caracteres!');
+            else if($nomesIguais > 0)
+                array_push($argumentos['mensagens'], 'Já existe uma área com esse nome!');
+
+            # Validação da descricação
+            if (empty($dados['descricao']) || is_null($dados['descricao']) || is_numeric($dados['descricao']))
+                array_push($argumentos['mensagens'], 'Descrição inválida!');
+            
             if (count($argumentos['mensagens']) == 0) {
                 $area = new Area();
                 $area->setNome($dados['nome']);
@@ -233,11 +274,13 @@ class AdminController
                             'id' => $area->getId()
                         ]
                     );
+                    $this->container->flash->addMessage('areas', 'Área atualizada com sucesso!');
                 } else {
                     $db->insert(
                         'area',
                         $area->toArray()
                     );
+                    $this->container->flash->addMessage('areas', 'Área adicionada com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('areas-admin'));
             } else {
@@ -321,12 +364,24 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['titulo']) || is_null($dados['titulo']))
-                array_push($argumentos['mensagens'], 'Titulo Invalido!');
-            if (empty($dados['subtitulo']) || is_null($dados['subtitulo']))
-                array_push($argumentos['mensagens'], 'Sub Titulo Invalido!');
+
+            # Validação do titulo
+            if (empty($dados['titulo']) || is_null($dados['titulo']) || is_numeric($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo inválido!');
+            else if(strlen($dados['titulo']) < 8)
+                array_push($argumentos['mensagens'], 'Título deve ter no mínimo 8 caracteres!');
+            
+            # Validação do subtitulo
+            if (empty($dados['subtitulo']) || is_null($dados['subtitulo']) || is_numeric($dados['subtitulo'])) 
+                array_push($argumentos['mensagens'], 'Sub Titulo inválido!');
+            else if(strlen($dados['subtitulo']) < 5)
+                array_push($argumentos['mensagens'], 'Sub Título deve ter no mínimo 5 caracteres!');
+            
+            # Validação do conteúdo
             if (empty($dados['conteudo']) || is_null($dados['conteudo']))
-                array_push($argumentos['mensagens'], 'Conteudo Invalido!');
+                array_push($argumentos['mensagens'], 'Conteúdo não pode ser vazio!');
+
+
             if (count($argumentos['mensagens']) == 0) {
                 $noticia = new Noticia();
                 $noticia->setTitulo($dados['titulo']);
@@ -358,6 +413,7 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+                    $this->container->flash->addMessage('noticias', 'Notícia atualizada com sucesso!');
                 } else {
                     $noticia->setAno_id($this->ano_atual['id']);
                     $noticia->setData(date("Y-m-d"));
@@ -366,6 +422,7 @@ class AdminController
                         'noticias',
                         $noticia->toArray()
                     );
+                    $this->container->flash->addMessage('noticias', 'Notícia adicionada com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('noticias-admin'));
             } else {
@@ -457,10 +514,29 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
-            if (empty($dados['tipo']) || is_null($dados['tipo']))
-                array_push($argumentos['mensagens'], 'Tipo Invalido!');
+
+            # Validação do nome
+            $nomesIguais = $db->count('editais', [
+                'nome' => $dados['nome'],
+                'id[!]' => $args['id']
+            ]);
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if (strlen($dados['nome']) < 5)
+                array_push($argumentos['mensagens'], 'Nome deve ter no mínimo 5 caracteres!');
+            else if ($nomesIguais)
+                array_push($argumentos['mensagens'], 'Já existe um edital cadastrado com esse nome!');
+
+            # Validação do tipo
+            if (empty($dados['tipo']) || is_null($dados['tipo']) || is_numeric($dados['tipo']))
+                array_push($argumentos['mensagens'], 'Tipo inválido!');
+            else if (strlen($dados['tipo']) < 5)
+                array_push($argumentos['mensagens'], 'Tipo deve ter no mínimo 5 caracteres!');
+            
+            # Validação da descrição
+            if (empty($dados['descricao']) || is_null($dados['descricao']) || is_numeric($dados['descricao']))
+                array_push($argumentos['mensagens'], 'Descrição inválido!');
+
             $arquivo = $request->getUploadedFiles()['arquivo'];
             $edital = new Edital();
             if ($arquivo->getError() === UPLOAD_ERR_OK) {
@@ -497,12 +573,15 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+
+                    $this->container->flash->addMessage('editais', 'Edital atualizado com sucesso!');
                 } else {
                     $edital->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'editais',
                         $edital->toArray()
                     );
+                    $this->container->flash->addMessage('editais', 'Edital adicionado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('editais-admin'));
             } else {
@@ -617,6 +696,7 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+                    $this->container->flash->addMessage('cronogramas', 'Cronograma atualizado com sucesso!');
                 } else {
                     $cronograma->setAno_id(
                         $this->ano_atual['id']
@@ -625,6 +705,7 @@ class AdminController
                         'cronogramas',
                         $cronograma->toArray()
                     );
+                    $this->container->flash->addMessage('cronogramas', 'Cronograma adicionado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('cronogramas-admin'));
             } else {
@@ -692,10 +773,26 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
+
+            # Validação da data
+            $datasIguais = $db->count('calendario', [
+                'data' => $dados['data'],
+                'id[!]' => $args['id']
+            ]);
             if (empty($dados['data']) || is_null($dados['data']))
-                array_push($argumentos['mensagens'], 'Data Invalida!');
-            if (empty($dados['descricao']) || is_null($dados['descricao']))
-                array_push($argumentos['mensagens'], 'Descrição Invalida!');
+                array_push($argumentos['mensagens'], 'Data inválida!');
+            else if (strlen($dados['data']) < 4)
+                array_push($argumentos['mensagens'], 'Data deve ter no mínimo 4 caracteres!');
+            else if($datasIguais > 0)
+                array_push($argumentos['mensagens'], 'Essa data já foi cadastrada!');
+
+            # Validação da descrição
+            if (empty($dados['descricao']) || is_null($dados['descricao']) || is_numeric($dados['descricao']))
+                array_push($argumentos['mensagens'], 'Descrição inválida!');
+            else if (strlen($dados['descricao']) < 5)
+                array_push($argumentos['mensagens'], 'Descrição deve ter no mínimo 5 caracteres!');
+            
+
             if (count($argumentos['mensagens']) == 0) {
                 $calendario = new Calendario();
                 $calendario->setData($dados['data']);
@@ -710,6 +807,8 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+
+                    $this->container->flash->addMessage('calendario', 'Dia atualizado com sucesso!');
                 } else {
                     $calendario->setAno_id(
                         $this->ano_atual['id']
@@ -718,6 +817,8 @@ class AdminController
                         'calendario',
                         $calendario->toArray()
                     );
+
+                    $this->container->flash->addMessage('calendario', 'Dia cadastrado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('calendario-admin'));
             } else {
@@ -802,8 +903,24 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
+
+            # Validação do nome
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if(strlen($dados['nome']) < 8)
+                array_push($argumentos['mensagens'], 'Nome deve ter no mínimo 8 caracteres!');
+
+            # Validação do resumo
+            if (empty($dados['resumo']) || is_null($dados['resumo']) || is_numeric($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo inválido!');
+            else if(strlen($dados['resumo']) < 10)
+                array_push($argumentos['mensagens'], 'Resumo deve ter no mínimo 10 caracteres!');
+            
+            # Validação da área
+            $areaExiste = $db->count('area', ['id' => $dados['area']]);
+            if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
+                array_push($argumentos['mensagens'], 'Área inválida!');
+
             if (count($argumentos['mensagens']) == 0) {
                 $apresentacao = new Apresentacao();
                 $apresentacao->setNome($dados['nome']);
@@ -819,12 +936,15 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+
+                    $this->container->flash->addMessage('apresentacoes', 'Apresentação atualizada com sucesso!');
                 } else {
                     $apresentacao->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'apresentacoes',
                         $apresentacao->toArray()
                     );
+                    $this->container->flash->addMessage('apresentacoes', 'Apresentação adicionada com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('apresentacoes-admin'));
             } else {
@@ -939,16 +1059,46 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['titulo']) || is_null($dados['titulo']))
-                array_push($argumentos['mensagens'], 'Titulo Invalido!');
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
-            if (empty($dados['data']) || is_null($dados['data']))
-                array_push($argumentos['mensagens'], 'Data Invalida!');
+
+            # Validação do titulo
+            if (empty($dados['titulo']) || is_null($dados['titulo']) || is_numeric($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo inválido!');
+            else if (strlen($dados['titulo']) < 5)
+                array_push($argumentos['mensagens'], 'Titulo deve ter no mínimo 5 caracteres!');
+
+            # Validação do nome
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if (strlen($dados['nome']) < 5)
+                array_push($argumentos['mensagens'], 'Nome deve ter no mínimo 5 caracteres!');
+
+            # Validação da sala
             if (empty($dados['sala']) || is_null($dados['sala']))
-                array_push($argumentos['mensagens'], 'Sala Invalida!');
-            if (empty($dados['resumo']) || is_null($dados['resumo']))
-                array_push($argumentos['mensagens'], 'Resumo Invalido!');
+                array_push($argumentos['mensagens'], 'Sala inválida!');
+
+            # Validação da data
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data inválida!');
+            else if (strlen($dados['data']) < 4)
+                array_push($argumentos['mensagens'], 'Data deve ter no mínimo 4 caracteres!');
+
+            # Validação do resumo
+            if (empty($dados['resumo']) || is_null($dados['resumo']) || is_numeric($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo inválido!');
+            else if (strlen($dados['resumo']) < 10)
+                array_push($argumentos['mensagens'], 'Resumo deve ter no mínimo 10 caracteres!');
+            
+            # Validação da área
+            $areaExiste = $db->count('area', ['id' => $dados['area']]);
+            if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
+                array_push($argumentos['mensagens'], 'Área inválida!');
+
+            # Validação do tipo
+            if (empty($dados['tipo']) || is_null($dados['tipo']) || !in_array($dados['tipo'], [1, 2]))
+                array_push($argumentos['mensagens'], 'Tipo inválido!');
+
+            $tipoNome = $dados['tipo'] == 1 ? 'Mini Curso' : 'Oficina';
+
             if (count($argumentos['mensagens']) == 0) {
                 $cursos_oficinas = new CursoOficina();
                 $cursos_oficinas->setTitulo($dados['titulo']);
@@ -984,12 +1134,14 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+                    $this->container->flash->addMessage('cursos_oficinas', $tipoNome . ' atualizado com sucesso!');
                 } else {
                     $cursos_oficinas->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'cursos_oficinas',
                         $cursos_oficinas->toArray()
                     );
+                    $this->container->flash->addMessage('cursos_oficinas', $tipoNome . ' adicionado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('cursos_oficinas-admin'));
             } else {
@@ -1107,16 +1259,40 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['titulo']) || is_null($dados['titulo']))
-                array_push($argumentos['mensagens'], 'Titulo Invalido!');
-            if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
-            if (empty($dados['data']) || is_null($dados['data']))
-                array_push($argumentos['mensagens'], 'Data Invalida!');
+
+            # Validação do titulo
+            if (empty($dados['titulo']) || is_null($dados['titulo']) || is_numeric($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo inválido!');
+            else if (strlen($dados['titulo']) < 5)
+                array_push($argumentos['mensagens'], 'Titulo deve ter no mínimo 5 caracteres!');
+
+            # Validação do nome
+            if (empty($dados['nome']) || is_null($dados['nome']) || is_numeric($dados['nome']))
+                array_push($argumentos['mensagens'], 'Nome inválido!');
+            else if (strlen($dados['nome']) < 5)
+                array_push($argumentos['mensagens'], 'Nome deve ter no mínimo 5 caracteres!');
+
+            # Validação da sala
             if (empty($dados['sala']) || is_null($dados['sala']))
-                array_push($argumentos['mensagens'], 'Sala Invalida!');
-            if (empty($dados['resumo']) || is_null($dados['resumo']))
-                array_push($argumentos['mensagens'], 'Resumo Invalido!');
+                array_push($argumentos['mensagens'], 'Sala inválida!');
+
+            # Validação da data
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data inválida!');
+            else if (strlen($dados['data']) < 4)
+                array_push($argumentos['mensagens'], 'Data deve ter no mínimo 4 caracteres!');
+
+            # Validação do resumo
+            if (empty($dados['resumo']) || is_null($dados['resumo']) || is_numeric($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo inválido!');
+            else if (strlen($dados['resumo']) < 10)
+                array_push($argumentos['mensagens'], 'Resumo deve ter no mínimo 10 caracteres!');
+            
+            # Validação da área
+            $areaExiste = $db->count('area', ['id' => $dados['area']]);
+            if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
+                array_push($argumentos['mensagens'], 'Área inválida!');
+
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Palestra();
                 $palestra->setTitulo($dados['titulo']);
@@ -1151,12 +1327,15 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+                    $this->container->flash->addMessage('palestras', 'Palestra atualizada com sucesso!');
                 } else {
                     $palestra->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'palestras',
                         $palestra->toArray()
                     );
+
+                    $this->container->flash->addMessage('palestras', 'Palestra adicionada com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('palestras-admin'));
             } else {
@@ -1273,16 +1452,44 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
-            if (empty($dados['titulo']) || is_null($dados['titulo']))
-                array_push($argumentos['mensagens'], 'Titulo Invalido!');
-            if (empty($dados['facilitador']) || is_null($dados['facilitador']))
-                array_push($argumentos['mensagens'], 'Facilitador Invalido!');
-            if (empty($dados['data']) || is_null($dados['data']))
-                array_push($argumentos['mensagens'], 'Data Invalida!');
+
+            # Validação do titulo
+            if (empty($dados['titulo']) || is_null($dados['titulo']) || is_numeric($dados['titulo']))
+                array_push($argumentos['mensagens'], 'Titulo inválido!');
+            else if (strlen($dados['titulo']) < 5)
+                array_push($argumentos['mensagens'], 'Titulo deve ter no mínimo 5 caracteres!');
+
+            # Validação do facilitador
+            if (empty($dados['facilitador']) || is_null($dados['facilitador']) || is_numeric($dados['facilitador']))
+                array_push($argumentos['mensagens'], 'Facilitador inválido!');
+            else if (strlen($dados['facilitador']) < 5)
+                array_push($argumentos['mensagens'], 'Facilitador deve ter no mínimo 5 caracteres!');
+
+            # Validação da local
             if (empty($dados['local']) || is_null($dados['local']))
-                array_push($argumentos['mensagens'], 'Local Invalida!');
-            if (empty($dados['resumo']) || is_null($dados['resumo']))
-                array_push($argumentos['mensagens'], 'Resumo Invalido!');
+                array_push($argumentos['mensagens'], 'Local inválida!');
+
+            # Validação da data
+            if (empty($dados['data']) || is_null($dados['data']))
+                array_push($argumentos['mensagens'], 'Data inválida!');
+            else if (strlen($dados['data']) < 4)
+                array_push($argumentos['mensagens'], 'Data deve ter no mínimo 4 caracteres!');
+
+            # Validação do resumo
+            if (empty($dados['resumo']) || is_null($dados['resumo']) || is_numeric($dados['resumo']))
+                array_push($argumentos['mensagens'], 'Resumo inválido!');
+            else if (strlen($dados['resumo']) < 10)
+                array_push($argumentos['mensagens'], 'Resumo deve ter no mínimo 10 caracteres!');
+            
+            # Validação da área
+            $areaExiste = $db->count('area', ['id' => $dados['area']]);
+            if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
+                array_push($argumentos['mensagens'], 'Área inválida!');
+
+            # Validação do tipo
+            if (empty($dados['tipo']) || is_null($dados['tipo']) || !in_array($dados['tipo'], [1, 2, 3, 4]))
+                array_push($argumentos['mensagens'], 'Tipo inválido!');
+
             if (count($argumentos['mensagens']) == 0) {
                 $palestra = new Artistico();
                 $palestra->setTitulo($dados['titulo']);
@@ -1318,12 +1525,14 @@ class AdminController
                             "ano_id" => $this->ano_atual['id']
                         ]
                     );
+                    $this->container->flash->addMessage('artistica', 'Mostra artística atualizada com sucesso!');
                 } else {
                     $palestra->setAno_id($this->ano_atual['id']);
                     $db->insert(
                         'artistico',
                         $palestra->toArray()
                     );
+                    $this->container->flash->addMessage('artistica', 'Mostra artística adicionada com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('artistico-admin'));
             } else {
@@ -1405,8 +1614,18 @@ class AdminController
         if (!is_null($request->getParsedBody())) {
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
+
+            # Validação do ano
+            $anosIguais = $db->count('ano', [
+                'nome_ano' => $dados['ano'],
+                'id[!]' => $args['id']
+            ]);
             if (empty($dados['ano']) || is_null($dados['ano']) || $dados['ano']<2000 || $dados['ano']>2100)
-                array_push($argumentos['mensagens'], 'Ano Invalido!');
+                array_push($argumentos['mensagens'], 'Ano inválido!');
+            else if($anosIguais > 0)
+            array_push($argumentos['mensagens'], 'Esse ano já foi cadastrado!');
+
+
             if (count($argumentos['mensagens']) == 0) {
                 $ano = new Ano();
                 $ano->setNome_ano($dados['ano']);
@@ -1425,11 +1644,13 @@ class AdminController
                             'id' => $ano->getId()
                         ]
                     );
+                    $this->container->flash->addMessage('anos', 'Ano atualizado com sucesso!');
                 } else {
                     $db->insert(
                         'ano',
                         $ano->toArray()
                     );
+                    $this->container->flash->addMessage('anos', 'Ano adicionado com sucesso!');
                 }
                 return $response->withRedirect($this->container->router->pathFor('anos-admin'));
             } else {
@@ -1495,14 +1716,14 @@ class AdminController
             $argumentos['mensagens'] = [];
             $dados = $request->getParsedBody();
             if (empty($dados['nome']) || is_null($dados['nome']))
-                array_push($argumentos['mensagens'], 'Nome Invalido!');
+                array_push($argumentos['mensagens'], 'Nome inválido!');
             if (!filter_var($dados['email'], FILTER_VALIDATE_EMAIL))
-                array_push($argumentos['mensagens'], 'Email Invalido!');
+                array_push($argumentos['mensagens'], 'Email inválido!');
             if (($dados['new-pass'] != $dados['confirm-pass'] ||
                  $dados['pass'] == $dados['new-pass'] || 
                  empty($dados['new-pass']) || is_null($dados['new-pass']) ||
                  empty($dados['pass']) || is_null($dados['pass'])))
-                array_push($argumentos['mensagens'], 'Senha Invalida!');
+                array_push($argumentos['mensagens'], 'Senha inválida!');
             if (count($argumentos['mensagens']) == 0) {
                 $user = new Usuario(
                     null,
