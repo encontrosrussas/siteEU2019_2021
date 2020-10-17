@@ -11,7 +11,6 @@
         "twig/twig": "1.42.5",  
         "monolog/monolog": "^1.24",
         "fightbulc/moment": "dev-master",
-        "twig/twig": "1.42.5",
         "slim/flash": "dev-master",
         "kanellov/slim-twig-flash": "^0.2.0"
     },
