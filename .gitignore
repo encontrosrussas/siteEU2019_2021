@@ -17,3 +17,4 @@ uploads/palestras/*
 composer.lock
 vendor/
 logs/
+.vscode/
