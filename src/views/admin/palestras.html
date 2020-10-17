@@ -5,6 +5,17 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="col-lg-12">
+
+                        {% if flash('palestras') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fas fa-check"></i> {{ flash('palestras')[0] }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> 
+                        {% endif %}
+
+
                         <div class="au-card recent-report">
                             <div class="au-card-inner">
                                 <div class="row">
@@ -13,7 +24,7 @@
                                     </div>
                                     <div class="col-lg-6 text-right">
                                         <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/palestras_modificacoes">
-                                            <i class="zmdi zmdi-plus"></i>adicionar Palestas</a>
+                                            <i class="zmdi zmdi-plus"></i>Adicionar Palestas</a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-30">
