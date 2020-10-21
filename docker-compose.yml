@@ -20,6 +20,16 @@ db:
     MYSQL_PASSWORD: password
   restart: always
   ports:
-    - "3380:3306"
+    - "3306:3306"
   volumes: 
     - banco:/var/lib/mysql
+
+app:
+    container_name: eu_phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
