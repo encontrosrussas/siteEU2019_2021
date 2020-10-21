@@ -19,5 +19,7 @@ db:
     MYSQL_USER: user
     MYSQL_PASSWORD: password
   restart: always
+  ports:
+    - "3380:3306"
   volumes: 
     - banco:/var/lib/mysql

@@ -30,6 +30,9 @@ return function ($app) {
         $router = $container->get('router');
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+        $view->addExtension(new Knlv\Slim\Views\TwigMessages(
+            new Slim\Flash\Messages()
+        ));
         return $view;
     };
 
@@ -55,5 +58,7 @@ return function ($app) {
         ]);
     };
 
-
+    $app->getContainer()['flash'] = function () {
+        return new \Slim\Flash\Messages();
+    };
 };

@@ -10,7 +10,9 @@
         "slim/twig-view": "2.1",
         "twig/twig": "1.42.5",  
         "monolog/monolog": "^1.24",
-        "fightbulc/moment": "dev-master"
+        "fightbulc/moment": "dev-master",
+        "slim/flash": "dev-master",
+        "kanellov/slim-twig-flash": "^0.2.0"
     },
     "autoload": {
         "psr-4": {
