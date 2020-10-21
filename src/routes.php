@@ -79,13 +79,13 @@ return function ($app) {
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
 
     // Paginas de Erro
-    // $app->getContainer()['notAllowedHandler'] = function ($c) {
-    //     return new Erro404($c);
-    // };
-    // $app->getContainer()['notFoundHandler'] = function ($c) {
-    //     return new Erro404($c);
-    // };
-    // $app->getContainer()['errorHandler'] = function ($c) {
-    //     return new Erro500($c);
-    // };
+    $app->getContainer()['notAllowedHandler'] = function ($c) {
+         return new Erro404($c);
+    };
+    $app->getContainer()['notFoundHandler'] = function ($c) {
+         return new Erro404($c);
+    };
+    $app->getContainer()['errorHandler'] = function ($c) {
+         return new Erro500($c);
+    };
 };
