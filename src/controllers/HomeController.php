@@ -6,6 +6,7 @@ class HomeController
 {
     protected $container;
     protected $ano_atual;
+    protected $anos;
 
     // constructor receives container instance
     public function __construct($container)
@@ -21,9 +22,39 @@ class HomeController
                 "status" => 1
             ]
         )[0];
+        $this->anos = $container->db->select(
+            "ano",
+            [
+                "id",
+                "nome_ano",
+                "status"
+            ], 
+            [
+                "ORDER" => ["nome_ano" => "DESC"],
+            ]
+        );
+        if (isset($_SESSION['ano'])){
+            foreach($this->anos as $ano){
+                if($ano['id'] == $_SESSION['ano']){
+                    $this->ano_atual = $ano;
+                }
+            }
+        }
     }
 
     public function index($request, $response, $args){
+        if($args['ano']) {
+            if ($args['ano'] != $this->ano_atual['id']){
+                $_SESSION['ano'] = $args['ano'];
+                foreach ($this->anos as $ano) {
+                    if ($ano['id'] == $_SESSION['ano']) {
+                        $this->ano_atual = $ano;
+                    }
+                }
+            } else {
+                unset($_SESSION['ano']);
+            }
+        }
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $noticias = $this->container->db->select(
             "noticias",
@@ -57,13 +88,19 @@ class HomeController
         );
         return $this->container->view->render($response, 'front/index.html',[
             'noticias' => $noticias,
-            'calendario' => $calendario
+            'calendario' => $calendario,
+            'anos' => $this->anos
         ]);
     }
 
     public function certificados($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        return $this->container->view->render($response, 'front/certificados.html');
+        return $this->container->view->render(
+            $response,
+            'front/certificados.html',[
+                'anos' => $this->anos
+            ]
+        );
     }
 
     public function mini_cursos($request, $response, $args){
@@ -92,7 +129,7 @@ class HomeController
             ],
             [
                 'AND'=>[
-                    'ano.status' => 1,
+                    "ano_id" => $this->ano_atual['id'],
                     'cursos_oficinas.tipo' => 1
                 ]
             ]
@@ -100,7 +137,10 @@ class HomeController
         return $this->container->view->render(
             $response,
             'front/mini_cursos.html',
-            ['mini_cursos'=>$mini_cursos]
+            [
+                'mini_cursos'=>$mini_cursos,
+                'anos' => $this->anos
+            ]
         );
     }
 
@@ -132,7 +172,7 @@ class HomeController
         //     ],
         //     [
         //         'AND' => [
-        //             'ano.status' => 1,
+        //             "ano_id" => $this->ano_atual['id'],
         //             'apresentacoes.tipo' => 1
         //         ]
         //     ]
@@ -140,7 +180,10 @@ class HomeController
         return $this->container->view->render(
             $response,
             'front/apresentacoes.html',
-            ['apresentacoes' => $apresentacoes]
+            [
+                'apresentacoes' => $apresentacoes,
+                'anos' => $this->anos
+            ]
         );
     }
 
@@ -171,7 +214,7 @@ class HomeController
             ],
             [
                 'AND' => [
-                    'ano.status' => 1,
+                    "ano_id" => $this->ano_atual['id'],
                     'cursos_oficinas.tipo' => 2
                 ]
             ]
@@ -179,14 +222,19 @@ class HomeController
         return $this->container->view->render(
             $response,
             'front/oficinas.html',
-            ['oficinas' => $oficinas]
+            [
+                'oficinas' => $oficinas,
+                'anos' => $this->anos
+            ]
         );
     }
 
     public function noticias($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = [
+            'anos' => $this->anos
+        ];
         $itemsPorPagina = 10;
         $qtdItems = $db->count(
             "noticias",
@@ -199,7 +247,7 @@ class HomeController
                 'noticias.id',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
             ]
         );
         #quantidade de paginas
@@ -222,7 +270,7 @@ class HomeController
                 'noticias.hora'
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'LIMIT' => [$pag, $itemsPorPagina],
                 "ORDER" => [
                     'id' => "DESC"
@@ -238,7 +286,7 @@ class HomeController
 
     public function noticia($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $db = $this->container->db;
         if (isset($args['id'])) {
             $noticia = $db->select(
@@ -259,7 +307,7 @@ class HomeController
                     'noticias.conteudo'
                 ],
                 [
-                    'ano.status' => 1,
+                    "ano_id" => $this->ano_atual['id'],
                     'noticias.id' => $args['id']
                 ]
             );
@@ -277,7 +325,7 @@ class HomeController
                     'noticias.imagem_descricao',
                 ],
                 [
-                    'ano.status' => 1,
+                    "ano_id" => $this->ano_atual['id'],
                     'noticias.id[!]' => $args['id'],
                     'LIMIT' => 4
                 ]
@@ -298,7 +346,7 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $itemsPorPagina = 10;
         $qtdItems = $db->count(
             "editais",
@@ -311,7 +359,7 @@ class HomeController
                 'editais.id',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
             ]
         );
         #quantidade de paginas
@@ -332,7 +380,7 @@ class HomeController
                 'editais.tipo'
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'LIMIT' => [$pag, $itemsPorPagina],
                 "ORDER" => [
                     'id' => "DESC"
@@ -349,7 +397,7 @@ class HomeController
     public function edital($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $db = $this->container->db;
         if (isset($args['id'])) {
             $edital = $db->select(
@@ -367,7 +415,7 @@ class HomeController
                     'editais.arquivo'
                 ],
                 [
-                    'ano.status' => 1,
+                    "ano_id" => $this->ano_atual['id'],
                     'editais.id' => $args['id']
                 ]
             );
@@ -386,7 +434,7 @@ class HomeController
     public function palestras($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $argumentos['palestras'] = $db->select(
             "palestras",
             [
@@ -423,7 +471,7 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $argumentos['palco_mix'] = $db->select(
             "artistico",
             [
@@ -446,7 +494,7 @@ class HomeController
                 'area.nome(area)',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'artistico.tipo' => 1
             ]
         );
@@ -461,7 +509,7 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $argumentos['mostras_audiovisual'] = $db->select(
             "artistico",
             [
@@ -484,7 +532,7 @@ class HomeController
                 'area.nome(area)',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'artistico.tipo' => 2
             ]
         );
@@ -499,7 +547,7 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $argumentos['feira_de_artesanatos'] = $db->select(
             "artistico",
             [
@@ -522,7 +570,7 @@ class HomeController
                 'area.nome(area)',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'artistico.tipo' => 3
             ]
         );
@@ -537,7 +585,7 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = [];
+        $argumentos = ['anos' => $this->anos];
         $argumentos['espacos_gastronomicos'] = $db->select(
             "artistico",
             [
@@ -560,7 +608,7 @@ class HomeController
                 'area.nome(area)',
             ],
             [
-                'ano.status' => 1,
+                "ano_id" => $this->ano_atual['id'],
                 'artistico.tipo' => 4
             ]
         );
@@ -574,14 +622,18 @@ class HomeController
     public function manual($request, $response, $args){
         return $this->container->view->render(
             $response,
-            'front/manual.html'
+            'front/manual.html',[
+                'anos' => $this->anos
+            ]
         );
     }
 
     public function emBreve($request, $response, $args){
         return $this->container->view->render(
             $response,
-            'front/emBreve.html'
+            'front/emBreve.html',[
+                'anos' => $this->anos
+            ]
         );
     }
 }
