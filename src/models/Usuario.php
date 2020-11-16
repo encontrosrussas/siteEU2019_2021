@@ -133,7 +133,7 @@ class Usuario implements Ilogin{
         if(!empty($senhaComparar) && !is_null($senhaComparar))
             return $this->senha == hash('sha512', $senhaComparar);
         else
-            throw new Exception("Senha Vazia.");
+            throw new \Exception("Senha Vazia.");
     }
 
     public function toArray()

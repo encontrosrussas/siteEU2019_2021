@@ -18,13 +18,11 @@
                                         src="{{apresentacao.imagem is null ? [base_url(),'/assets/img/pess1.png']|join:[base_url(),'/uploads/cursos_oficinas/', apresentacao.imagem]|join}}"
                                         id="widgetCardIcon" class="imagecard">
                                     <div class="card-data widgetCardData">
-                                        <h3>{{apresentacao.titulo}}</h1>
+                                        <h3>{{apresentacao.nome}}</h1>
                                             <h2 class="box-title" style="color: #2973d4;"></h2>
-                                            <p class="card-block textoPalestra">Autor: {{apresentacao.nome}}<br \>
-                                                Área de atuação: {{apresentacao.area}}<br \>
-                                                Resumo da palestra: {{apresentacao.resumo}}<br \>
-                                                Horário: {{apresentacao.data|date('d/m/Y')}} as {{apresentacao.hora|date('H:i')}}<br>
-                                                Sala: {{apresentacao.sala}}</p>
+                                            <p class="card-block textoPalestra">Autor: {{apresentacao.autor}}<br>
+                                                Área de atuação: {{apresentacao.trilha}}<br>
+                                                Resumo da palestra: {{apresentacao.resumo}}<br>
                                     </div>
                                     <div class="space-30"></div>
                                 </div>

@@ -24,8 +24,12 @@
                                 </div>
                                 {% endif %}
                                 <div class="form-group">
-                                    <label for="nome" class=" form-control-label">Nome</label>
+                                    <label for="ano" class=" form-control-label">Nome</label>
                                     <input type="number" id="ano" min="2000" max="2100" name='ano' placeholder="Digite Ano" class="form-control" value='{{ano.nome_ano|default(ano_atual)}}'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_evento" class=" form-control-label">Id Evento</label>
+                                    <input type="number" id="id_evento" name='id_evento' placeholder="Digite o Id do Evento" class="form-control" value='{{ano.id_evento}}'>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">

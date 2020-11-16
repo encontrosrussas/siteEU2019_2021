@@ -17,6 +17,8 @@ use app\helpers\Upload;
 use app\helpers\Login;
 use app\helpers\Password;
 
+use GuzzleHttp;
+
 class AdminController
 {
     protected $container;
@@ -31,6 +33,7 @@ class AdminController
             [
                 "id",
                 "nome_ano",
+                "id_evento",
             ],
             [
                 "status" => 1
@@ -876,9 +879,6 @@ class AdminController
         $apresentacoes = $db->select(
             "apresentacoes",
             [
-                "[><]area" => [
-                    "apresentacoes.area_id" => "id"
-                ],
                 "[><]ano" => [
                     "apresentacoes.ano_id" => "id"
                 ],
@@ -886,8 +886,7 @@ class AdminController
             [
                 'apresentacoes.id',
                 'apresentacoes.nome',
-                'apresentacoes.resumo',
-                'area.nome(area)',
+                'apresentacoes.trilha',
                 'ano.nome_ano'
             ],
             [
@@ -898,6 +897,40 @@ class AdminController
         return $this->container->view->render($response, 'admin/apresentacoes.html',[
             'apresentacoes'=>$apresentacoes
         ]);
+    }
+
+    public function apresentacoes_buscar($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $api = str_replace("{id_evento}", $this->ano_atual['id_evento'], $this->container->api);
+        $client = new GuzzleHttp\Client(['http_errors' => false]);
+        $res = $client->request('GET', $api);
+        $statusCode = $res->getStatusCode();
+        switch ($statusCode) {
+            case 200:
+                $data = json_decode($res->getBody());
+                $apresentacao = new Apresentacao();
+                $apresentacao->setAno_id($this->ano_atual['id']);
+                foreach ($data as $trabalho) {
+                    $apresentacao->setNome($trabalho->tituloTrabalho);
+                    $apresentacao->setAutor($trabalho->nomeAutor);
+                    $apresentacao->setTrilha($trabalho->nomeTrilha);
+                    $apresentacao->setResumo($trabalho->resumo);
+                    $apresentacao->setIdFake($trabalho->idFake);
+                    $db->insert(
+                        'apresentacoes',
+                        $apresentacao->toArray(true)
+                    );
+                }
+                $this->container->flash->addMessage('apresentacoes', 'Apresentações cadastradas com sucesso!');
+            break;
+            default:
+                $this->container->flash->addMessage('busca', 'Erro ao Buscar Apresentações!');
+            break;
+        }
+        return $response->withRedirect($this->container->router->pathFor('apresentacoes-admin'));
     }
 
     public function apresentacoes_modificacoes($request, $response, $args)
@@ -922,15 +955,19 @@ class AdminController
             else if(strlen($dados['resumo']) < 10)
                 array_push($argumentos['mensagens'], 'Resumo deve ter no mínimo 10 caracteres!');
             
-            # Validação da área
-            $areaExiste = $db->count('area', ['id' => $dados['area']]);
-            if (empty($dados['area']) || is_null($dados['area']) || !is_numeric($dados['area']) || $areaExiste == 0)
-                array_push($argumentos['mensagens'], 'Área inválida!');
+            # Validação da trilha
+            if (empty($dados['trilha']) || is_null($dados['trilha'])|| is_numeric($dados['trilha']))
+                array_push($argumentos['mensagens'], 'Trilha inválida!');
+
+            # Validação do autor
+            if (empty($dados['autor']) || is_null($dados['autor'])|| is_numeric($dados['autor']))
+                array_push($argumentos['mensagens'], 'Autor inválida!');
 
             if (count($argumentos['mensagens']) == 0) {
                 $apresentacao = new Apresentacao();
                 $apresentacao->setNome($dados['nome']);
-                $apresentacao->setArea_id($dados['area']);
+                $apresentacao->setAutor($dados['autor']);
+                $apresentacao->setTrilha($dados['trilha']);
                 $apresentacao->setResumo($dados['resumo']);
                 if (!empty($dados['enviar'])) {
                     $apresentacao->setId($dados['enviar']);
@@ -964,7 +1001,8 @@ class AdminController
                     'id',
                     'nome',
                     'resumo',
-                    'area_id'
+                    'trilha',
+                    'autor'
                 ],
                 [
                     'id' => $args['id'],
@@ -978,24 +1016,6 @@ class AdminController
         } else {
             $argumentos['texto'] = 'Adicionar';
         }
-        $argumentos["areas"]=$db->select("area",[
-            "id",
-            "nome"
-        ]);
-        $argumentos["meses"]=[
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"
-        ];
         unset($db);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render(
@@ -1648,12 +1668,16 @@ class AdminController
             if (empty($dados['ano']) || is_null($dados['ano']) || $dados['ano']<2000 || $dados['ano']>2100)
                 array_push($argumentos['mensagens'], 'Ano inválido!');
             else if($anosIguais > 0)
-            array_push($argumentos['mensagens'], 'Esse ano já foi cadastrado!');
+                array_push($argumentos['mensagens'], 'Esse ano já foi cadastrado!');
+        
+            if ((empty($dados['id_evento']) || is_null($dados['id_evento'])) && $dados['id_evento'] <= 0)
+                array_push($argumentos['mensagens'], 'Id do Evento inválido!');
 
 
             if (count($argumentos['mensagens']) == 0) {
                 $ano = new Ano();
                 $ano->setNome_ano($dados['ano']);
+                $ano->setIdEvento($dados['id_evento']);
                 $ano->setStatus($dados['status']);
                 $ano->setEditais($dados['editais']);
                 $ano->setCronogramas($dados['cronogramas']);
@@ -1697,6 +1721,7 @@ class AdminController
                 [
                     'id',
                     'nome_ano',
+                    'id_evento',
                     'status',
                     'editais',
                     'cronogramas',

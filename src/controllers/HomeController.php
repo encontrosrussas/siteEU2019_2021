@@ -147,36 +147,28 @@ class HomeController
     public function apresentacoes($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        // $db = $this->container->db;
+        $db = $this->container->db;
         $apresentacoes = [];
-        // $apresentacoes = $db->select(
-        //     "apresentacoes",
-        //     [
-        //         "[><]ano" => [
-        //             "apresentacoes.ano_id" => "id"
-        //         ],
-        //         "[><]area" => [
-        //             "apresentacoes.area_id" => "id"
-        //         ],
-        //     ],
-        //     [
-        //         'apresentacoes.id',
-        //         'apresentacoes.titulo',
-        //         'apresentacoes.nome',
-        //         'apresentacoes.data',
-        //         'apresentacoes.hora',
-        //         'apresentacoes.resumo',
-        //         'apresentacoes.sala',
-        //         'apresentacoes.imagem',
-        //         'area.nome(area)',
-        //     ],
-        //     [
-        //         'AND' => [
-        //             "ano_id" => $this->ano_atual['id'],
-        //             'apresentacoes.tipo' => 1
-        //         ]
-        //     ]
-        // );
+        $apresentacoes = $db->select(
+            "apresentacoes",
+            [
+                "[><]ano" => [
+                    "apresentacoes.ano_id" => "id"
+                ],
+            ],
+            [
+                'apresentacoes.id',
+                'apresentacoes.nome',
+                'apresentacoes.autor',
+                'apresentacoes.resumo',
+                'apresentacoes.trilha',
+            ],
+            [
+                'AND' => [
+                    "ano_id" => $this->ano_atual['id'],
+                ]
+            ]
+        );
         return $this->container->view->render(
             $response,
             'front/apresentacoes.html',

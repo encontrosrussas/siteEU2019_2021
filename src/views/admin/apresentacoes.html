@@ -14,6 +14,14 @@
                                 </button>
                             </div> 
                         {% endif %}
+                        {% if flash('busca') %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-close"></i> {{ flash('busca')[0] }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div> 
+                        {% endif %}
 
 
                         <div class="au-card recent-report">
@@ -23,6 +31,8 @@
                                         <h3 class="title-2 m-b-30">Apresentações</h3>
                                     </div>
                                     <div class="col-lg-6 text-right">
+                                        <a class="au-btn au-btn-icon au-btn--green m-b-30" href="{{base_url()}}/admin/apresentacoes_buscar">
+                                            <i class="zmdi zmdi-refresh"></i>buscar Apresentação</a>
                                         <a class="au-btn au-btn-icon au-btn--blue m-b-30" href="{{base_url()}}/admin/apresentacoes_modificacoes">
                                             <i class="zmdi zmdi-plus"></i>adicionar Apresentação</a>
                                     </div>
@@ -48,7 +58,7 @@
                                                     {{apresentacao.nome}}
                                                 </td>
                                                 <td>
-                                                    {{apresentacao.area}}
+                                                    {{apresentacao.trilha}}
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="{{base_url()}}/admin/apresentacoes_modificacoes/{{apresentacao.id}}" class="btn btn-warning">Atualizar</a>

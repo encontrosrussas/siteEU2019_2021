@@ -17,5 +17,6 @@ return [
             'pass' => 'password',
             'dbname' => 'EU',
             'port' => 3306
-        ]
+        ],
+        'api' => 'http://n2s.russas.ufc.br:8080/digital-valley-restapi/evento/{id_evento}/trabalho'
 ]];

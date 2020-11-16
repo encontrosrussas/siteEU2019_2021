@@ -33,6 +33,7 @@ return function ($app) {
         $app->map(['GET', 'POST'], '/calendario_modificacoes[/{id}]', AdminController::class . ':calendario_modificacoes')->setName('calendario-modificacoes-admin');
         
         $app->get('/apresentacoes[/del/{id}]', AdminController::class . ':apresentacoes')->setName('apresentacoes-admin');
+        $app->get('/apresentacoes_buscar', AdminController::class . ':apresentacoes_buscar')->setName('apresentacoes_buscar-admin');
         $app->map(['GET', 'POST'], '/apresentacoes_modificacoes[/{id}]', AdminController::class . ':apresentacoes_modificacoes')->setName('apresentacoes-modificacoes-admin');
         
         $app->get('/cursos_oficinas[/del/{id}]', AdminController::class . ':cursos_oficinas')->setName('cursos_oficinas-admin');
@@ -78,14 +79,14 @@ return function ($app) {
     $app->get('/manual', HomeController::class . ':manual')->setName('manual');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
 
-    // Paginas de Erro
-    $app->getContainer()['notAllowedHandler'] = function ($c) {
-         return new Erro404($c);
-    };
-    $app->getContainer()['notFoundHandler'] = function ($c) {
-         return new Erro404($c);
-    };
-    $app->getContainer()['errorHandler'] = function ($c) {
-         return new Erro500($c);
-    };
+    // // Paginas de Erro
+    // $app->getContainer()['notAllowedHandler'] = function ($c) {
+    //      return new Erro404($c);
+    // };
+    // $app->getContainer()['notFoundHandler'] = function ($c) {
+    //      return new Erro404($c);
+    // };
+    // $app->getContainer()['errorHandler'] = function ($c) {
+    //      return new Erro500($c);
+    // };
 };

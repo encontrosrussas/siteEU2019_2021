@@ -6,7 +6,9 @@ class Apresentacao{
     private $id;
     private $nome;
     private $resumo;
-    private $area_id;
+    private $autor;
+    private $trilha;
+    private $id_fake;
     private $ano_id;
 
     /**
@@ -27,6 +29,23 @@ class Apresentacao{
     }
 
     /**
+     * Get the value of id_fake
+     */ 
+    public function getIdFake()
+    {
+        return $this->id_fake;
+    }
+
+    /**
+     * Set the value of id_fake
+     */ 
+    public function setIdFake($id_fake)
+    {
+        if (!empty($id_fake) && !is_null($id_fake))
+            $this->id_fake = $id_fake;
+    }
+
+    /**
      * Get the value of nome
      */ 
     public function getNome()
@@ -41,6 +60,23 @@ class Apresentacao{
     {
         if (!empty($nome) && !is_null($nome))
             $this->nome = $nome;
+    }
+
+    /**
+     * Get the value of autor
+     */ 
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * Set the value of autor
+     */ 
+    public function setAutor($autor)
+    {
+        if (!empty($autor) && !is_null($autor))
+            $this->autor = $autor;
     }
 
     /**
@@ -63,18 +99,18 @@ class Apresentacao{
     /**
      * Get the value of area
      */ 
-    public function getArea_id()
+    public function getTrilha()
     {
-        return $this->area_id;
+        return $this->trilha;
     }
 
     /**
      * Set the value of area
      */ 
-    public function setArea_id($area_id)
+    public function setTrilha($trilha)
     {
-        if (!empty($area_id) && !is_null($area_id))
-            $this->area_id = $area_id;
+        if (!empty($trilha) && !is_null($trilha))
+            $this->trilha = $trilha;
     }
 
     /**
@@ -94,15 +130,19 @@ class Apresentacao{
             $this->ano_id = $ano_id;
     }
 
-    public function toArray()
+    public function toArray($fake=false)
     {
         $retorno = [];
         if (!is_null($this->getNome()))
             $retorno["nome"] = $this->getNome();
         if (!is_null($this->getResumo()))
             $retorno["resumo"] = $this->getResumo();
-        if (!is_null($this->getArea_id()))
-            $retorno["area_id"] = $this->getArea_id();
+        if (!is_null($this->getTrilha()))
+            $retorno["trilha"] = $this->getTrilha();
+        if (!is_null($this->getAutor()))
+            $retorno["autor"] = $this->getAutor();
+        if ($fake && !is_null($this->getIdFake()))
+            $retorno["id_fake"] = $this->getIdFake();
         if (!is_null($this->getAno_id()))
             $retorno["ano_id"] = $this->getAno_id();
         return $retorno;

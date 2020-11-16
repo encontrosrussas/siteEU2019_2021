@@ -6,6 +6,7 @@ class Ano
 {
     private $id;
     private $nome_ano;
+    private $id_evento;
     private $status;
     private $editais;
     private $cronogramas;
@@ -45,6 +46,23 @@ class Ano
     {
         if (!empty($nome_ano) && !is_null($nome_ano))
             $this->nome_ano = $nome_ano;
+    }
+
+    /**
+     * Get the value of id_evento
+     */
+    public function getIdEvento()
+    {
+        return $this->id_evento;
+    }
+
+    /**
+     * Set the value of id_evento
+     */
+    public function setIdEvento($id_evento)
+    {
+        if (!empty($id_evento) && !is_null($id_evento))
+            $this->id_evento = $id_evento;
     }
 
     /**
@@ -154,6 +172,8 @@ class Ano
         $retorno = [];
         if (!is_null($this->getNome_ano()))
             $retorno["nome_ano"] = $this->getNome_ano();
+        if (!is_null($this->getIdEvento()))
+            $retorno["id_evento"] = $this->getIdEvento();
         if (!is_null($this->getStatus()))
             $retorno["status"] = $this->getStatus();
         if (!is_null($this->getEditais()))

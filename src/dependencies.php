@@ -30,9 +30,11 @@ return function ($app) {
         $router = $container->get('router');
         $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
         $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
-        $view->addExtension(new Knlv\Slim\Views\TwigMessages(
-            new Slim\Flash\Messages()
-        ));
+        $view->addExtension(
+            new Knlv\Slim\Views\TwigMessages(
+                new Slim\Flash\Messages()
+            )
+        );
         return $view;
     };
 
@@ -56,6 +58,11 @@ return function ($app) {
             'password' => $settings['pass'],
             'port' => $settings['port']
         ]);
+    };
+
+    $app->getContainer()['api'] = function ($c) {
+        $settings = $c->get('settings')['api'];
+        return $settings;
     };
 
     $app->getContainer()['flash'] = function () {
