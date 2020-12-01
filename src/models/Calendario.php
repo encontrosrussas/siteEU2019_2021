@@ -6,6 +6,8 @@ class Calendario{
     private $id;
     private $data;
     private $descricao;
+    private $link;
+    private $icone;
     private $ano_id;
     
     /**
@@ -60,6 +62,40 @@ class Calendario{
     }
 
     /**
+     * Get the value of link
+     */ 
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set the value of link
+     */
+    public function setLink($link)
+    {
+        if (!empty($link) && !is_null($link))
+        $this->link = $link;
+    }
+
+    /**
+     * Get the value of icone
+     */ 
+    public function getIcone()
+    {
+        return $this->icone;
+    }
+
+    /**
+     * Set the value of icone
+     */
+    public function setIcone($icone)
+    {
+        if (!empty($icone) && !is_null($icone))
+        $this->icone = $icone;
+    }
+
+    /**
      * Get the value of ano_id
      */
     public function getAno_id()
@@ -83,6 +119,10 @@ class Calendario{
             $retorno["data"] = $this->getData();
         if (!is_null($this->getDescricao()))
             $retorno["descricao"] = $this->getDescricao();
+        if (!is_null($this->getLink()))
+            $retorno["link"] = $this->getLink();
+        if (!is_null($this->getIcone()))
+            $retorno["icone"] = $this->getIcone();
         if (!is_null($this->getAno_id()))
             $retorno["ano_id"] = $this->getAno_id();
         return $retorno;

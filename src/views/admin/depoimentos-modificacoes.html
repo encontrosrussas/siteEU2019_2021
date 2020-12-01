@@ -1,5 +1,5 @@
 {% extends "admin/base/template-base-dashboard.html" %}
-{% block title %}{{texto}} Dia{% endblock %}
+{% block title %}{{texto}} Depoimento{% endblock %}
 {% block page %}
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -8,7 +8,7 @@
                         <form method="POST" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">
-                                <strong>{{texto}} Dia</strong>
+                                <strong>{{texto}} Depoimento</strong>
                             </div>
                             <div class="card-body card-block">
                                 {% if mensagens %}
@@ -24,32 +24,38 @@
                                 </div>
                                 {% endif %}
                                 <div class="form-group">
-                                    <label for="data" class=" form-control-label">Dia</label>
-                                    <input type="text" id="data" name='data' placeholder="Digite o Dia ex: 23 de Outubro, 22 a 23 de Outubro" class="form-control"
-                                        value='{{calendario.data}}'>
+                                    <label for="nome_autor" class=" form-control-label">Nome do Autor</label>
+                                    <input type="text" id="nome_autor" name='nome_autor' placeholder="Digite o Nome do Autor do Depoimento..." class="form-control"
+                                        value='{{depoimento.nome_autor}}'>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descricao" class=" form-control-label">Descrição</label>
-                                    <input type="text" id="descricao" name='descricao' placeholder="Digite a descrição do dia" class="form-control"
-                                        value='{{calendario.descricao}}'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="link" class=" form-control-label">Link</label>
-                                    <input type="text" id="link" name='link' placeholder="Digite o link do botão" class="form-control"
-                                        value='{{calendario.link}}'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="icone" class=" form-control-label">Icone</label>
-                                    <input type="text" id="icone" name='icone' placeholder="Digite o codigo do icone" class="form-control"
-                                        value='{{calendario.icone}}'>
+                                    <label for="depoimento" class=" form-control-label">Depoimento</label>
+                                    <textarea name="depoimento" id="depoimento" rows="5" placeholder="Digite o Conteúdo do Depoimento..."
+                                        class="form-control">{{depoimento.depoimento|default("")}}</textarea>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" name='enviar' value="{{calendario.id}}" class="btn btn-success btn-sm">
+                                <button type="submit" name='enviar' value="{{depoimento.id}}" class="btn btn-success btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> {{texto}}
                                 </button>
                             </div>
                         </div>
                         </form>
                     </div>
+{% endblock %}
+{% block js %}
+    <script src="{{base_url()}}/assets/ckeditor/ckeditor.js"></script>
+    <script src="{{base_url()}}/assets/ckeditor/translations/pt-br.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#depoimento'), {
+                language: 'pt-br'
+            })
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 {% endblock %}

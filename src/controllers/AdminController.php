@@ -16,7 +16,7 @@ use app\models\Usuario;
 use app\helpers\Upload;
 use app\helpers\Login;
 use app\helpers\Password;
-
+use app\models\Depoimento;
 use GuzzleHttp;
 
 class AdminController
@@ -800,12 +800,13 @@ class AdminController
                 array_push($argumentos['mensagens'], 'Descrição inválida!');
             else if (strlen($dados['descricao']) < 5)
                 array_push($argumentos['mensagens'], 'Descrição deve ter no mínimo 5 caracteres!');
-            
 
             if (count($argumentos['mensagens']) == 0) {
                 $calendario = new Calendario();
                 $calendario->setData($dados['data']);
                 $calendario->setDescricao($dados['descricao']);
+                $calendario->setLink($dados['link']);
+                $calendario->setIcone($dados['icone']);
                 if (!empty($dados['enviar'])) {
                     $calendario->setId($dados['enviar']);
                     $db->update(
@@ -1619,6 +1620,110 @@ class AdminController
         return $this->container->view->render(
             $response,
             'admin/artistico-modificacoes.html',
+            $argumentos
+        );
+    }
+
+    public function depoimentos($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        Login::permitAccess($request, $response, 2);
+        $db = $this->container->db;
+        if (isset($args['id'])) {
+            $db->delete(
+                "depoimentos",
+                [
+                    "id" => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
+            );
+        }
+        $depoimentos = $db->select("depoimentos", [
+            'id',
+            'nome_autor'
+        ], [
+            "ano_id" => $this->ano_atual['id']
+        ]);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render($response, 'admin/depoimentos.html', [
+            'depoimentos' => $depoimentos
+        ]);
+    }
+
+    public function depoimentos_modificacoes($request, $response, $args)
+    {
+        Login::verifyLogin($this->container->router->pathFor('login-admin'));
+        Login::permitAccess($request, $response, 2);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        $db = $this->container->db;
+        $argumentos = [];
+        if (!is_null($request->getParsedBody())) {
+            $argumentos['mensagens'] = [];
+            $dados = $request->getParsedBody();
+
+            if (empty($dados['nome_autor']) || is_null($dados['nome_autor']))
+                array_push($argumentos['mensagens'], 'Nome do Autor inválido!');
+            
+            if (empty($dados['depoimento']) || is_null($dados['depoimento']))
+                array_push($argumentos['mensagens'], 'Depoimento inválido!');
+            
+            if (count($argumentos['mensagens']) == 0) {
+                $depoimento = new Depoimento();
+                $depoimento->setNomeAutor($dados['nome_autor']);
+                $depoimento->setDepoimento($dados['depoimento']);
+                if (!empty($dados['enviar'])) {
+                    $depoimento->setId($dados['enviar']);
+                    $db->update(
+                        'depoimentos',
+                        $depoimento->toArray(),
+                        [
+                            'id' => $depoimento->getId(),
+                            "ano_id" => $this->ano_atual['id']
+                        ]
+                    );
+
+                    $this->container->flash->addMessage('depoimento', 'Depoimento atualizado com sucesso!');
+                } else {
+                    $depoimento->setAno_id(
+                        $this->ano_atual['id']
+                    );
+                    $db->insert(
+                        'depoimentos',
+                        $depoimento->toArray()
+                    );
+
+                    $this->container->flash->addMessage('depoimento', 'Depoimento cadastrado com sucesso!');
+                }
+                return $response->withRedirect($this->container->router->pathFor('depoimentos-admin'));
+            } else {
+                $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+            }
+        }
+        if (isset($args['id'])) {
+            $argumentos['depoimento'] = $db->select(
+                "depoimentos",
+                [
+                    'id',
+                    'nome_autor',
+                    'depoimento'
+                ],
+                [
+                    'id' => $args['id'],
+                    "ano_id" => $this->ano_atual['id']
+                ]
+            )[0];
+            if ($argumentos['depoimento'])
+                $argumentos['texto'] = 'Atualizar';
+            else
+                $argumentos['texto'] = 'Adicionar';
+        } else {
+            $argumentos['texto'] = 'Adicionar';
+        }
+        unset($db);
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'admin/depoimentos-modificacoes.html',
             $argumentos
         );
     }

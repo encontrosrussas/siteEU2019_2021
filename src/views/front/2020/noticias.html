@@ -1,0 +1,54 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Noticias{% endblock %}
+{% block content %}
+    <div class="pag-noticias">
+        <div class="container" id="noticias">
+            <div class="space-30"></div>
+            <div class="tim-title text-center">
+                <h1>Notícias</h1>
+            </div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <ol>
+                    {% if noticias %}
+                    {% for noticia in noticias %}
+                    <li class="link-list__item">
+                        <article>
+                            <header class="text-left">
+                                <a href="{{base_url()}}/noticia/{{noticia.id}}">
+                                <h1 class="link-list__title">{{noticia.titulo}}</h1>
+                                <h2 class="link-list__subtitle">{{noticia.subtitulo}}</h2>
+                                <a href="{{base_url()}}/noticia/{{noticia.id}}">
+                                    <div class="text-right color-black">leia mais<i class="fa fa-chevron-right"></i>
+                                    </div>
+                                </a>
+                            </header>
+                        </article>
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    <div class="space-30"></div>
+                    <li class="link-list__item">
+                        <article>
+                            <header class="text-left">
+                                <h1 class="link-list__title">Noticias em breve!</h1>
+                            </header>
+                        </article>
+                    </li>
+                    {% endif %}
+                </ol>
+            </div>
+        </div>
+        <nav class="paginate">
+            <ul class="pagination">
+                {% if paginas %}
+                {% for pag in range(1, paginas)%}
+                <li class="{{ pag == pagina_atual ? 'active' : '' }}">
+                    <a href="{{base_url()}}/noticias/{{pag}}#noticias">{{pag}}</a>
+                </li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="space-30"></div>
+    </div>
+{% endblock %}

@@ -86,10 +86,11 @@ class HomeController
                 ]
             ]
         );
-        return $this->container->view->render($response, 'front/index.html',[
+        return $this->container->view->render($response, 'front/'. $this->ano_atual['nome_ano'] .'/index.html',[
             'noticias' => $noticias,
             'calendario' => $calendario,
-            'anos' => $this->anos
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
         ]);
     }
 
@@ -97,8 +98,9 @@ class HomeController
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         return $this->container->view->render(
             $response,
-            'front/certificados.html',[
-                'anos' => $this->anos
+            'front/'. $this->ano_atual['nome_ano'] .'/certificados.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }
@@ -136,10 +138,11 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/mini_cursos.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/mini_cursos.html',
             [
                 'mini_cursos'=>$mini_cursos,
-                'anos' => $this->anos
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }
@@ -171,10 +174,11 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/apresentacoes.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/apresentacoes.html',
             [
                 'apresentacoes' => $apresentacoes,
-                'anos' => $this->anos
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }
@@ -213,10 +217,11 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/oficinas.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/oficinas.html',
             [
                 'oficinas' => $oficinas,
-                'anos' => $this->anos
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }
@@ -225,7 +230,8 @@ class HomeController
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [
-            'anos' => $this->anos
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
         ];
         $itemsPorPagina = 10;
         $qtdItems = $db->count(
@@ -271,14 +277,17 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/noticias.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/noticias.html',
             $argumentos
         );
     }
 
     public function noticia($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $db = $this->container->db;
         if (isset($args['id'])) {
             $noticia = $db->select(
@@ -326,7 +335,7 @@ class HomeController
                 $argumentos['noticia'] = $noticia[0];
                 return $this->container->view->render(
                     $response,
-                    'front/noticia.html',
+                    'front/'. $this->ano_atual['nome_ano'] .'/noticia.html',
                     $argumentos
                 );
             }
@@ -338,7 +347,10 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $itemsPorPagina = 10;
         $qtdItems = $db->count(
             "editais",
@@ -381,7 +393,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/editais.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/editais.html',
             $argumentos
         );
     }
@@ -389,7 +401,10 @@ class HomeController
     public function edital($request, $response, $args)
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $db = $this->container->db;
         if (isset($args['id'])) {
             $edital = $db->select(
@@ -415,7 +430,7 @@ class HomeController
                 $argumentos['edital'] = $edital[0];
                 return $this->container->view->render(
                     $response,
-                    'front/edital.html',
+                    'front/'. $this->ano_atual['nome_ano'] .'/edital.html',
                     $argumentos
                 );
             }
@@ -426,7 +441,10 @@ class HomeController
     public function palestras($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $argumentos['palestras'] = $db->select(
             "palestras",
             [
@@ -454,7 +472,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/palestras.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/palestras.html',
             $argumentos
         );
     }
@@ -463,7 +481,10 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $argumentos['palco_mix'] = $db->select(
             "artistico",
             [
@@ -492,7 +513,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/palco_mix.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/palco_mix.html',
             $argumentos
         );
     }
@@ -501,7 +522,10 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $argumentos['mostras_audiovisual'] = $db->select(
             "artistico",
             [
@@ -530,7 +554,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/mostra_audiovisual.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/mostra_audiovisual.html',
             $argumentos
         );
     }
@@ -539,7 +563,10 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $argumentos['feira_de_artesanatos'] = $db->select(
             "artistico",
             [
@@ -568,7 +595,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/feira_de_artesanato.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/feira_de_artesanato.html',
             $argumentos
         );
     }
@@ -577,7 +604,10 @@ class HomeController
     {
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
-        $argumentos = ['anos' => $this->anos];
+        $argumentos = [
+            'anos' => $this->anos,
+            'ano_atual' => $this->ano_atual,
+        ];
         $argumentos['espacos_gastronomicos'] = $db->select(
             "artistico",
             [
@@ -606,7 +636,7 @@ class HomeController
         );
         return $this->container->view->render(
             $response,
-            'front/espaco_gastronomico.html',
+            'front/'. $this->ano_atual['nome_ano'] .'/espaco_gastronomico.html',
             $argumentos
         );
     }
@@ -614,8 +644,9 @@ class HomeController
     public function manual($request, $response, $args){
         return $this->container->view->render(
             $response,
-            'front/manual.html',[
-                'anos' => $this->anos
+            'front/'. $this->ano_atual['nome_ano'] .'/manual.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }
@@ -623,8 +654,9 @@ class HomeController
     public function emBreve($request, $response, $args){
         return $this->container->view->render(
             $response,
-            'front/emBreve.html',[
-                'anos' => $this->anos
+            'front/'. $this->ano_atual['nome_ano'] .'/emBreve.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
             ]
         );
     }

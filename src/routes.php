@@ -44,6 +44,9 @@ return function ($app) {
         
         $app->get('/artistico[/del/{id}]', AdminController::class . ':artistico')->setName('artistico-admin');
         $app->map(['GET', 'POST'], '/artistico_modificacoes[/{id}]', AdminController::class . ':artistico_modificacoes')->setName('artistico-modificacoes-admin');
+
+        $app->get('/depoimentos[/del/{id}]', AdminController::class . ':depoimentos')->setName('depoimentos-admin');
+        $app->map(['GET', 'POST'], '/depoimentos_modificacoes[/{id}]', AdminController::class . ':depoimentos_modificacoes')->setName('depoimentos-modificacoes-admin');
         
         $app->get('/anos[/del/{id}]', AdminController::class . ':anos')->setName('anos-admin');
         $app->map(['GET', 'POST'], '/anos_modificacoes[/{id}]', AdminController::class . ':anos_modificacoes')->setName('anos-modificacoes-admin');

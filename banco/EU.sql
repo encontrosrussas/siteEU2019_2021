@@ -175,6 +175,8 @@ CREATE TABLE IF NOT EXISTS `calendario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` varchar(100) NOT NULL,
   `descricao` varchar(250) NOT NULL,
+  `link` varchar(300) DEFAULT NULL,
+  `icone` varchar(50) DEFAULT NULL,
   `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_calendario_ano1_idx` (`ano_id`)
@@ -184,17 +186,17 @@ CREATE TABLE IF NOT EXISTS `calendario` (
 -- Extraindo dados da tabela `calendario`
 --
 
-INSERT INTO `calendario` (`id`, `data`, `descricao`, `ano_id`) VALUES
-(1, '20 de Setembro', 'LanÃ§amento do Edital.', 1),
-(2, '28 de Setembro a 07 de Outubro', 'Primeira fase de submissÃ£o dos trabalhos.', 1),
-(3, '28 de Setembro a 08 de Outubro', 'PerÃ­odo de aval do orientador.', 1),
-(4, '08 a 14 de Outubro', 'AvaliaÃ§Ã£o dos trabalhos submetidos.', 1),
-(5, '17 de Outubro', 'DivulgaÃ§Ã£o dos resultados das submissÃµes.', 1),
-(6, '18 a 21 de Outubro', 'PerÃ­odo de recurso para os trabalhos nÃ£o aceitos.', 1),
-(7, '<strike>22 a 26 de Outubro</strike> <span style=\'color:red\'>22 a 28 de Outubro (Alterado)</span>', 'ReavaliaÃ§Ã£o dos trabalhos submetidos no perÃ­odo de recurso.', 1),
-(8, '<strike>27 de Outubro</strike> <span style=\'color:red\'>29 de Outubro (Alterado)</span>', 'DivulgaÃ§Ã£o dos resumos aceitos para submissÃ£o final.', 1),
-(9, '<strike>28 a 30 de Outubro</strike> <span style=\'color: red\'>29 a 31 de Outubro (Alterado)</span>', 'SubmissÃ£o final de todos os trabalhos aceitos.', 1),
-(10, '06 a 08 de Novembro', 'IV Encontros UniversitÃ¡rios da UFC em Russas', 1);
+INSERT INTO `calendario` (`id`, `data`, `descricao`, `link`, `icone`, `ano_id`) VALUES
+(1, '20 de Setembro', 'LanÃ§amento do Edital.', NULL, NULL, 1),
+(2, '28 de Setembro a 07 de Outubro', 'Primeira fase de submissÃ£o dos trabalhos.', NULL, NULL, 1),
+(3, '28 de Setembro a 08 de Outubro', 'PerÃ­odo de aval do orientador.', NULL, NULL, 1),
+(4, '08 a 14 de Outubro', 'AvaliaÃ§Ã£o dos trabalhos submetidos.', NULL, NULL, 1),
+(5, '17 de Outubro', 'DivulgaÃ§Ã£o dos resultados das submissÃµes.', NULL, NULL, 1),
+(6, '18 a 21 de Outubro', 'PerÃ­odo de recurso para os trabalhos nÃ£o aceitos.', NULL, NULL, 1),
+(7, '<strike>22 a 26 de Outubro</strike> <span style=\'color:red\'>22 a 28 de Outubro (Alterado)</span>', 'ReavaliaÃ§Ã£o dos trabalhos submetidos no perÃ­odo de recurso.', NULL, NULL, 1),
+(8, '<strike>27 de Outubro</strike> <span style=\'color:red\'>29 de Outubro (Alterado)</span>', 'DivulgaÃ§Ã£o dos resumos aceitos para submissÃ£o final.', NULL, NULL, 1),
+(9, '<strike>28 a 30 de Outubro</strike> <span style=\'color: red\'>29 a 31 de Outubro (Alterado)</span>', 'SubmissÃ£o final de todos os trabalhos aceitos.', NULL, NULL, 1),
+(10, '06 a 08 de Novembro', 'IV Encontros UniversitÃ¡rios da UFC em Russas', NULL, NULL, 1),
 
 -- --------------------------------------------------------
 
@@ -254,6 +256,22 @@ INSERT INTO `cursos_oficinas` (`id`, `nome`, `titulo`, `data`, `resumo`, `sala`,
 (13, 'JocÃ¡ssia maria de Oliveira de Lima', 'Minicurso de calculadora cientÃ­fica, CASIO FX-82MS', '06/11 as 13:30 atÃ© 15:30', '<p>Nesse curso os alunos vÃ£o aprender desde funÃ§Ãµes bÃ¡sicas da calculadora cientÃ­fica, atÃ© funÃ§Ãµes complexas que podem poupar muito trabalho e \"salvar\" na hora das provas.&nbsp;</p><p>&nbsp;</p><p>NÃºmero de vagas: 30 vagas</p><p>Tempo de atividade: 2h</p><p>&nbsp;</p><p>Link para InscriÃ§Ã£o: &nbsp;https://docs.google.com/forms/d/e/1FAIpQLScowml9ZvKILL9yWVzJeMdNTn2pTPyG-_dkQoNfde0o3_f4ZA/viewform?vc=0&amp;c=0&amp;w=1</p>', 'A definir', NULL, NULL, 1, 1, 7),
 (14, 'Cristiane Alves', 'Treinamento de NormalizaÃ§Ã£o de Trabalhos AcadÃªmicos', '06/11 as 14:00 atÃ© 16:00', '<p>A Biblioteca do Campus de Russas- BCR, ofertarÃ¡ um Treinamento de NormalizaÃ§Ã£o de Trabalhos AcadÃªmicos. SerÃ£o abordados noÃ§Ãµes gerais sobre a elaboraÃ§Ã£o de trabalhos acadÃªmicos, citaÃ§Ãµes e elaboraÃ§Ã£o de referÃªncias seguindo as normas da AssociaÃ§Ã£o Brasileira de Normas TÃ©cnicas (ABNT). As inscriÃ§Ãµes deverÃ£o ser realizadas atÃ© o dia do evento atravÃ©s do e-mail bcr@ufc.br, informando nome completo, matrÃ­cula e curso do interessado.</p><p>NÃºmero de vagas: 30 vagas</p><p>Tempo de atividade: 2h</p><p>&nbsp;</p><p>Para InscriÃ§Ã£o: &nbsp;Enviar e-mail para bcr@ufc.br informando nome completo, matrÃ­cula e curso do interessado.</p>', 'A definir', NULL, NULL, 1, 1, 7),
 (15, 'Aureliano Neto de Oliveira da Silva', 'Desvendando os grandes mistÃ©rios do cubo mÃ¡gico', '08/11 as 13:30 atÃ© 15:30', '<p>Nesta oficina serÃ¡ desvendado como montar e aumentar sua capacidade de resolver puzzles. SOBRE O FACILITADOR: Aluno do curso de engenharia de software, com experiÃªncia de 8 anos com puzzles (Cubos em geral).</p><p>&nbsp;</p><p>NÃºmero de vagas: 30 vagas</p><p>Tempo de atividade: 2h</p><p>&nbsp;</p><p>Link para InscriÃ§Ã£o: Em Breve</p><p>&nbsp;</p><p>OBS: &nbsp;Ã‰ necessÃ¡rio levar um cubo mÃ¡gico.</p>', 'A definir', '03-11-2019-21-20-52.jpg', NULL, 2, 1, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `depoimentos`
+--
+
+DROP TABLE IF EXISTS `depoimentos`;
+CREATE TABLE IF NOT EXISTS `depoimentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_autor` varchar(200) NOT NULL,
+  `depoimento` longtext NOT NULL,
+  `ano_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_depoimentos_ano1_idx` (`ano_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -422,6 +440,12 @@ ALTER TABLE `cronogramas`
 ALTER TABLE `cursos_oficinas`
   ADD CONSTRAINT `fk_cursos_oficinas_ano1` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cursos_oficinas_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `depoimentos`
+--
+ALTER TABLE `depoimentos`
+  ADD CONSTRAINT `fk_ano_id` FOREIGN KEY (`ano_id`) REFERENCES `ano` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `editais`

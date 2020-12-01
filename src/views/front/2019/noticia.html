@@ -1,0 +1,37 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Noticia{% endblock %}
+{% block content %}
+    <div class="pag-noticias">
+        <div class="container" id="noticia">
+            <div class="space-30"></div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12 text-left">
+                        <h1 class="fonttitulo">{{noticia.titulo}}</h1>
+                        <h3 class="fontsubtitulo">{{noticia.subtitulo}}</h3>
+                        <h5 class="esp fontesp">{{noticia.data|data('l')|capitalize}}, {{noticia.data|data('d')}} de {{noticia.data|data('F')|capitalize}} de {{noticia.data|data('Y')}}, às {{noticia.hora|data('H:i')}}</h5>
+                        <img src="{{noticia.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noticia.imagem]|join}}" alt="{{noticia.imagem is null ? 'Logo dos Encontros Universitarios' : noticia.imagem_descricao}}" class="img-responsive">
+                        <h5 class="esp fontesp">
+                            {{noticia.conteudo|raw}}
+                        </h5>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 text-left">
+                        {% if noticias %}
+                        <p class="row titNot">Últimas notícias</p>
+                        <hr/>
+                        {% for noti in noticias%}
+                        <!--noticia-->
+                        <div class="panel panel-default">
+                            <a href="{{base_url()}}/noticia/{{noti.id}}">
+                            <div class="panel-body"><img src="{{noti.imagem is null ? [base_url(),'/assets/img/tesimg.png']|join:[base_url(),'/uploads/noticias/', noti.imagem]|join}}" alt="{{noti.imagem_descricao is null ? 'Logo dos Encontros Universitarios' : noti.imagem_descricao}}" class="img-responsive"></div>
+                            <div class="panel-body"><a href="{{base_url()}}/noticia/{{noti.id}}#noticia"><h4 class="titulo-noticia center-block text-center">{{noti.titulo}}</h4></a></div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+{% endblock %}
