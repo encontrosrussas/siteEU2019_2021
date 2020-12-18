@@ -1,0 +1,80 @@
+/*! purgecss start ignore */
+
+/*
+    Background sizes.
+*/
+@layer utilities {
+    @variants responsive {
+        .bg-size-25 {
+            background-size: auto 25rem;
+        }
+
+        .bg-size-30 {
+            background-size: auto 30rem;
+        }
+    }
+}
+
+/*
+    Scrollbar.
+*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+    @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 0.1px solid #b7b7b7;
+    @apply bg-maire-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-maire-500;
+}
+
+/*
+    Navbar links.
+*/
+
+/* Edicoes */
+.edicoes-link:not(:last-child) {
+    @apply border-b-2 border-white;
+} 
+
+.edicoes-dropdown {
+    @apply relative inline-block;
+}
+
+.edicoes-dropdown .edicoes-grupo-link {
+    @apply hidden;
+}
+
+.edicoes-dropdown {
+    &:hover {
+        button {
+            @apply text-maire-500 transition duration-150 ease-in-out;
+        }
+
+        .edicoes-grupo-link {
+            @apply flex flex-col;
+        }
+    }
+}
+
+/*! purgecss end ignore */

@@ -1,0 +1,75 @@
+/*! purgecss start ignore */
+@import "flickity/dist/flickity.css";
+
+/*
+  Notícias.
+*/
+.noticia-item-spacing {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.noticia-img {
+  @apply bg-top bg-no-repeat bg-cover;
+}
+
+.flickity-button {
+  @apply bg-transparent;
+}
+
+.flickity-prev-next-button {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+.flickity-prev-next-button:hover {
+  @apply bg-transparent;
+}
+
+.flickity-prev-next-button .arrow {
+  @apply fill-current text-white;
+}
+
+.flickity-prev-next-button.no-svg {
+  @apply text-maire-500;
+}
+
+.flickity-prev-next-button.previous {
+  @apply -left-10;
+}
+
+.flickity-prev-next-button.next {
+  @apply -right-10;
+}
+
+/*
+  Fotos.
+*/
+.flickity-page-dots {
+  bottom: 10px;
+}
+
+.flickity-page-dots .dot {
+  @apply bg-chocolate-500 ring-2 ring-white;
+}
+
+.carousel-fs {
+  height: 55vh;
+
+  @screen sm {
+    height: 75vh;
+  }
+
+  @screen md {
+    height: 80vh;
+  }
+
+  @screen lg {
+    height: 90vh;
+  }
+
+  .carousel-cell {
+      @apply w-full h-full p-0 m-0 bg-center bg-cover;
+  }
+}
+/*! purgecss end ignore */

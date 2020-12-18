@@ -374,12 +374,6 @@ class AdminController
             else if(strlen($dados['titulo']) < 8)
                 array_push($argumentos['mensagens'], 'Título deve ter no mínimo 8 caracteres!');
             
-            # Validação do subtitulo
-            if (empty($dados['subtitulo']) || is_null($dados['subtitulo']) || is_numeric($dados['subtitulo'])) 
-                array_push($argumentos['mensagens'], 'Sub Titulo inválido!');
-            else if(strlen($dados['subtitulo']) < 5)
-                array_push($argumentos['mensagens'], 'Sub Título deve ter no mínimo 5 caracteres!');
-            
             # Validação do conteúdo
             if (empty($dados['conteudo']) || is_null($dados['conteudo']))
                 array_push($argumentos['mensagens'], 'Conteúdo não pode ser vazio!');

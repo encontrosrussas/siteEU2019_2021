@@ -77,7 +77,9 @@ class HomeController
             "calendario",
             [
                 'data',
-                'descricao'
+                'descricao',
+                'link',
+                'icone'
             ],
             [
                 "ano_id" => $this->ano_atual['id'],
@@ -86,11 +88,20 @@ class HomeController
                 ]
             ]
         );
+        $depoimento = $this->container->db->rand(
+            "depoimentos",
+            [
+                'nome_autor',
+                'depoimento'
+            ]
+        );
+        
         return $this->container->view->render($response, 'front/'. $this->ano_atual['nome_ano'] .'/index.html',[
             'noticias' => $noticias,
             'calendario' => $calendario,
             'anos' => $this->anos,
             'ano_atual' => $this->ano_atual,
+            'depoimento' => $depoimento[0]
         ]);
     }
 
