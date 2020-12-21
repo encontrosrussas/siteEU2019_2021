@@ -1623,7 +1623,6 @@ class AdminController
     public function depoimentos($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -1649,7 +1648,6 @@ class AdminController
     public function depoimentos_modificacoes($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
