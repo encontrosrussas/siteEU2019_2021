@@ -7,6 +7,7 @@ class Edital{
     private $nome;
     private $descricao;
     private $tipo;
+    private $link;
     private $arquivo;
     private $ano_id;
 
@@ -79,6 +80,23 @@ class Edital{
     }
 
     /**
+     * Get the value of tipo
+     */ 
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set the value of tipo
+     */ 
+    public function setLink($link)
+    {
+        if (!empty($link) && !is_null($link))
+        $this->link = $link;
+    }
+
+    /**
      * Get the value of ano_id
      */ 
     public function getAno_id()
@@ -123,6 +141,8 @@ class Edital{
             $retorno["arquivo"] = $this->getArquivo();
         if (!is_null($this->getTipo()))
             $retorno["tipo"] = $this->getTipo();
+        if (!is_null($this->getLink()))
+            $retorno["link"] = $this->getLink();
         if (!is_null($this->getAno_id()))
             $retorno["ano_id"] = $this->getAno_id();
         return $retorno;

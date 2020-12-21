@@ -556,6 +556,7 @@ class AdminController
                 $edital->setNome($dados['nome']);
                 $edital->setDescricao($dados['descricao']);
                 $edital->setTipo($dados['tipo']);
+                $edital->setLink($dados['link']);
                 if (!empty($dados['enviar'])) {
                     $img = $db->select(
                         "editais",
@@ -599,6 +600,7 @@ class AdminController
                     'nome',
                     'arquivo',
                     'tipo',
+                    'link',
                     'descricao'
                 ],
                 [
