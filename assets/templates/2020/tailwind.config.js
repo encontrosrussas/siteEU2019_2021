@@ -68,36 +68,14 @@ module.exports = {
       },
       backgroundImage: theme => ({
         'cronograma': "url('../../dist/images/bg_cronograma.svg')",
-        '2020-1': "url('../../dist/images/rodape_2020_1.svg')",
-        '2020-2': "url('../../dist/images/rodape_2020_2.svg')",
         'depoimento': "url('../../dist/images/setas.svg')",
         'formas': "url('../../dist/images/formas.svg')",
         'seta': "url('../../dist/images/seta_deslize.svg')",
-        'dinamismo': "url('../../dist/images/dinamismo.svg')",
       }),
-      spacing: {
-        '15': '3.813rem',
-        '21': '5.625rem',
-        '24.5': '6.625rem',
-        '40.5': '10.625rem',
-        '41': '10.688rem',
-        '57': '14.125rem',
-      },
       animation: {
-        'fade-in-up': 'fade-in-up 1s',
         'smooth-bounce': 'smooth-bounce 3s infinite ease-in-out'
       },
       keyframes: {
-        'fade-in-up': {
-          '0%': {
-            'opacity': '0',
-            'transform': 'translate3d(0, 35%, 0)'
-          },
-          '100%': {
-            'opacity': '1',
-            'transform': 'translate3d(0, 0, 0)'
-          }
-        },
         'smooth-bounce': {
           '0%': {
             transform: 'translateY(-5px)',
@@ -112,7 +90,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      'sans': ['MuseoModerno', 'cursive']
+      'sans': ['MuseoModerno', 'cursive'],
+      'serif': ['Open Sans', 'Georgia', 'Cambria'],
     },
     tooltipArrows: theme => ({
       'timeline-arrow': {

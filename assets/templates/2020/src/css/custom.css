@@ -12,6 +12,10 @@
         .bg-size-30 {
             background-size: auto 30rem;
         }
+
+        .bg-size-4\/5 {
+            background-size: auto 80%;
+        }
     }
 }
 
@@ -68,12 +72,25 @@ html {
 .edicoes-dropdown {
     &:hover {
         button {
-            @apply text-maire-500 transition duration-150 ease-in-out;
+            @apply text-maire-500;
         }
 
         .edicoes-grupo-link {
             @apply flex flex-col;
         }
+    }
+}
+
+/* Effects */
+.fade-hover {
+    @apply transition duration-150 ease-in-out;
+}
+
+/* Links */
+a {
+    @apply text-chocolate-500 fade-hover;
+    &:hover {
+        @apply text-chocolate-400;
     }
 }
 
