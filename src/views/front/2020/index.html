@@ -2,33 +2,36 @@
 {% block title %}Inicio{% endblock %}
 {% block content %}
 <!-- Hero EU 2020-->
-<div
-    class="px-4 bg-right-bottom bg-no-repeat sm:bg-size-25 md:bg-size-30 lg:bg-contain md:py-3 sm:py-2 bg-mauvelous-500 sm:bg-formas">
-    <div class="md:max-w-6xl md:mx-auto md:flex md:flex-col">
-        <div class="w-full sm:w-3/4" id="eu">
-            <h1
-                class="py-6 text-lg font-bold leading-tight text-center text-white sm:animate-fade-in-up sm:text-left sm:text-xl md:mb-4 lg:text-2xl xl:text-3xl">
-                EU 2020
-            </h1>
+<div class="flex flex-col bg-right-bottom bg-no-repeat sm:min-h-screen sm:bg-size-25 md:bg-size-30 lg:bg-size-4/5 bg-mauvelous-500 sm:bg-formas">
+    {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+    <div class="flex-1 px-4 py-10 sm:py-0 xl:px-0 sm:max-w-6xl sm:mx-auto sm:flex sm:flex-col sm:justify-center sm:space-y-20 xl:space-y-16">
+        <div>
+            <div class="w-full" id="eu">
+                <h1
+                    class="pb-6 text-lg font-bold leading-tight text-center text-white sm:text-left sm:text-4xl md:mb-4 xl:text-3xl">
+                    EU 2020
+                </h1>
+            </div>
+
+            <div class="w-full lg:w-3/4 xl:w-1/2" id="msg">
+                <p
+                    class="text-xl font-semibold text-center sm:text-left sm:text-5xl xl:text-5xl text-maire-500">
+                    Por uma universidade dinâmica, inovadora e conectada.
+                </p>
+            </div>
         </div>
 
-        <div class="w-full sm:w-3/4 md:w-1/2" id="msg">
-            <p
-                class="text-xl font-semibold text-center sm:animate-fade-in-up sm:text-left sm:text-3xl lg:text-4xl xl:text-5xl text-maire-500">
-                Por uma universidade dinâmica, inovadora e conectada.
-            </p>
-        </div>
-    </div>
+        <div class="flex flex-row w-full">
+            <div
+                class="hidden w-5 mb-2 bg-no-repeat bg-contain sm:animate-smooth-bounce sm:w-12 md:w-20 sm:block h-52 bg-seta">
+            </div>
 
-    <div class="flex flex-row max-w-6xl pb-10 mx-auto sm:pb-2 sm:mb-0 sm:mt-14">
-        <div class="hidden w-5 bg-no-repeat bg-contain sm:animate-smooth-bounce sm:w-12 md:w-20 sm:block h-52 bg-seta">
-        </div>
-
-        <div class="w-full mt-6 text-center sm:animate-fade-in-up sm:mt-0 sm:w-1/2 sm:text-left">
-            <a
-                class="px-4 py-1 font-bold text-center text-white uppercase transition duration-150 ease-in-out rounded-full tex-lg sm:text-xl xl:px-8 xl:text-2xl bg-smalt-500 hover:bg-chocolate-500">
-                Inscreva-se
-            </a>
+            <div class="w-full mt-6 text-center sm:mt-0 sm:w-1/2 sm:text-left">
+                <a href="http://n2s.russas.ufc.br/guardiao/" target="_blank"
+                    class="px-4 py-1 font-bold text-center text-white uppercase rounded-full tex-lg sm:text-xl xl:px-8 xl:text-2xl bg-smalt-500 hover:bg-chocolate-500">
+                    Inscreva-se
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -39,14 +42,14 @@
     <div class="w-9/12 h-full mx-auto bg-transparent sm:w-4/5 md:w-10/12 xl:w-10/12" id="carousel-noticias">
         {% for noticia in noticias%}
         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 noticia-item-spacing">
-            <div class="h-32 border-2 border-white rounded-t bg-smalt-500 noticia-img"
-                style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}')">
+            <div class="h-32 border-2 border-white rounded-t xl:h-40 bg-smalt-500 noticia-img" style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}')">
             </div>
-            <div
-                class="h-32 px-3 py-1 font-bold text-center text-white border-b-2 border-l-2 border-r-2 border-white rounded-b xl:py-1 sm:text-base md:text-base lg:text-sm xl:text-base bg-smalt-500">
-                <a href="{{base_url()}}/noticia/{{noticia.id}}">
-                    {{noticia.titulo}}
-                </a>
+            <div class="h-32 px-2 text-center border-b-2 border-l-2 border-r-2 border-white rounded-b xl:h-40 xl:py-1 sm:text-base md:text-base lg:text-sm xl:text-base bg-smalt-500">
+                <div class="flex items-center justify-center h-full">
+                    <a class="font-bold text-white hover:text-white" href="{{base_url()}}/noticia/{{noticia.id}}">
+                        {{noticia.titulo}}
+                    </a>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -61,58 +64,68 @@
 </div>
 
 <!-- Cronograma -->
-<div id="cronograma" class="pb-12">
-    <div class="h-16 bg-top bg-no-repeat bg-contain sm:h-36 lg:h-60 bg-cronograma"></div>
-
-    <div class="mt-6 text-lg font-bold text-center uppercase lg:mt-12 lg:text-3xl text-chocolate-500">
-        Cronograma
+<div id="cronograma" class="flex flex-col min-h-screen">
+    <div class="self-center w-1/2 mt-0">
+        <img src="{{base_url()}}/assets/templates/2020/dist/images/bg_cronograma.svg" alt="Forma Abstrata 2020" />
     </div>
 
-    <section class="timeline js-timeline">
-        <div class="mx-auto sm:w-10/12 md:w-11/12 lg:w-3/4 timeline-container">
-            {% for dia in calendario %}
-            <div class="timeline-block">
-                <div class="timeline-icon">
-                    <i class="text-white {{dia.icone|raw}} fa-lg"></i>
-                </div>
-
-                <div class="timeline-content">
-                    <h2>{{dia.data|raw}}</h2>
-                    <p class="py-1 text-base text-maire-500">
-                        {{dia.descricao|raw}}
-                    </p>
-
-                    {% if dia.link %}
-                    <div class="flex items-center justify-between">
-                        <a href="{{dia.link|raw}}" class="timeline-link">Clique aqui</a>
+    <div class="flex flex-col flex-1 py-4 sm:py-10 justify-evenly">
+        {% if calendario %}
+            <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-chocolate-500">
+                Cronograma
+            </div>
+        
+            <div class="timeline js-timeline">
+                <div class="mx-auto sm:w-10/12 md:w-11/12 lg:w-3/4 timeline-container">
+                    {% for dia in calendario %}
+                    <div class="timeline-block">
+                        <div class="timeline-icon">
+                            <i class="text-white {{dia.icone|raw}} fa-lg"></i>
+                        </div>
+        
+                        <div class="timeline-content">
+                            <h2>{{dia.data|raw}}</h2>
+                            <p class="py-1 text-base text-maire-500">
+                                {{dia.descricao|raw}}
+                            </p>
+        
+                            {% if dia.link %}
+                            <div class="flex items-center justify-between">
+                                <a href="{{dia.link|raw}}" class="timeline-link">Clique aqui</a>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
-                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
-    </section>
+        {% else %}
+            <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-chocolate-500">
+                Cronograma em breve!
+            </div>
+        {% endif %}
+    </div>
 </div>
 
 <!-- Depoimentos -->
-<div id="depoimento"
-    class="py-16 bg-left bg-no-repeat bg-contain lg:py-32 xl:py-96 xl:h-screen bg-maire-500 bg-depoimento">
-    <div class="flex flex-col items-end content-center justify-center w-full h-full lg:px-14 xl:px-12">
-        <div class="px-5 text-right xl:px-10 xl:p-0 xl:w-3/4">
+<div id="depoimento" class="flex min-h-screen bg-left bg-no-repeat bg-contain bg-maire-500 bg-depoimento">
+    <div class="flex flex-col items-end content-center justify-center w-full lg:px-12 xl:px-12">
+        <div class="flex flex-col px-5 space-y-12 text-right xl:px-10 xl:p-0 xl:w-3/4">
             <div
-                class="mb-10 text-2xl font-extrabold uppercase lg:text-4xl xl:text-5xl text-chocolate-500 md:mb-12 lg:mb-16">
+                class="text-2xl font-extrabold uppercase sm:text-3xl lg:text-4xl text-chocolate-500">
                 Depoimento
             </div>
 
             {% if depoimento %}
-            <div class="text-lg font-medium text-white lg:text-2xl xl:text-3xl">
+            <div class="text-lg font-medium text-white sm:text-2xl lg:text-2xl xl:text-3xl">
                 {{depoimento.depoimento|raw}}
             </div>
 
-            <div class="mt-3 text-lg font-extrabold text-white lg:mt-6 lg:2xl xl:text-3xl">
+            <div class="text-lg font-extrabold text-white sm:text-2xl lg:2xl xl:text-3xl">
                 {{depoimento.nome_autor|raw}}
             </div>
             {% else %}
-            <div class="text-lg font-medium text-white lg:text-2xl xl:text-3xl">
+            <div class="text-sm font-medium text-white sm:text-2xl lg:text-2xl xl:text-3xl">
                 Não há depoimentos no momento!
             </div>
             {% endif %}
@@ -123,15 +136,19 @@
 <!-- Carousel de Fotos -->
 <div id="carousel-fs" class="carousel-fs">
     {% for numeroFoto in 1..11 %}
-    <div class="carousel-cell" style="background-image: url({{[base_url(), "/assets/templates/2020/dist/carousel/fotos/", numeroFoto, ".jpg" ]|join}})"></div>
+        <div class="carousel-cell" style="background-image: url({{[base_url(), "/assets/templates/2020/dist/carousel/fotos/", numeroFoto, ".jpg" ]|join}})"></div>
     {% endfor %}
 </div>
 {% endblock %}
 
 {% block footer %}
-<div class="flex flex-row w-full h-15 sm:h-24.5 md:h-32 lg:h-41 xl:h-57">
-    <div class="w-8/12 bg-left bg-no-repeat bg-contain bg-chocolate-500 bg-2020-1"></div>
-    <div class="w-4/12 bg-left bg-no-repeat bg-contain bg-maire-500 bg-2020-2"></div>
+<div class="flex flex-row w-full h-auto">
+    <div class="w-8/12 bg-chocolate-500">
+        <img src="{{base_url()}}/assets/templates/2020/dist/images/rodape_2020_1.svg" alt="Forma Abstrata 2020" />
+    </div>
+    <div class="w-4/12 bg-maire-500">
+        <img src="{{base_url()}}/assets/templates/2020/dist/images/rodape_2020_2.svg" alt="Forma Abstrata 2020" />
+    </div>
 </div>
 
 <div class="flex flex-col-reverse lg:flex-row">
@@ -146,9 +163,11 @@
                     <br />
                     Site: http://www.russas.ufc.br/
                     <br />
-                    Telefone: (88) 3411 - 9223 / 9224
+                    Telefone: (88) 3411 - 9218
                     <br />
                     E-mail: encontros.ufcrussas@gmail.com
+                    <br />
+                    Site oficial: <href="https://eu2020.ufc.br/" target="_blank">eu2020.ufc.br</a>
                 </div>
             </div>
             <div class="bg-chocolate-500 h-1/4">
@@ -163,9 +182,11 @@
     <div id="coluna-2" class="w-full lg:w-4/12 bg-smalt-500">
         <div
             class="flex items-center justify-center w-full py-3 space-x-8 lg:space-x-0 lg:space-y-8 lg:flex-col lg:h-full">
-            <div class="w-28 lg:w-64"><img src="{{ base_url() }}/assets/templates/2020/dist/images/logo_ufcrussas.svg" alt="">
+            <div class="w-28 lg:w-64"><img src="{{ base_url() }}/assets/templates/2020/dist/images/logo_ufcrussas.svg"
+                    alt="">
             </div>
-            <div class="w-28 lg:w-64"><img src="{{ base_url() }}/assets/templates/2020/dist/images/logo_eu_2.svg" alt=""></div>
+            <div class="w-28 lg:w-64"><img src="{{ base_url() }}/assets/templates/2020/dist/images/logo_eu_2.svg"
+                    alt=""></div>
         </div>
     </div>
 </div>

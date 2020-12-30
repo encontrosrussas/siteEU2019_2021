@@ -1,72 +1,82 @@
 {% extends "admin/base/template-base-dashboard.html" %}
 {% block title %}{{texto}} Dia{% endblock %}
 {% block page %}
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="col-lg-12">
-                        <form method="POST" enctype="multipart/form-data">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>{{texto}} Dia</strong>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="col-lg-12">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>{{texto}} Dia</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        {% if mensagens %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul>
+                                {% for msg in mensagens %}
+                                <li>{{msg}}</li>
+                                {% endfor %}
+                            </ul>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="data" class=" form-control-label">Dia</label>
+                            <input type="text" id="data" name='data'
+                                placeholder="Digite o Dia ex: 23 de Outubro, 22 a 23 de Outubro" class="form-control"
+                                value='{{calendario.data}}'>
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao" class=" form-control-label">Descrição</label>
+                            <input type="text" id="descricao" name='descricao' placeholder="Digite a descrição do dia"
+                                class="form-control" value='{{calendario.descricao}}'>
+                        </div>
+                        <div class="form-group">
+                            <label for="link" class=" form-control-label">Link</label>
+                            <input type="text" id="link" name='link' placeholder="Digite o link do botão"
+                                class="form-control" value='{{calendario.link}}'>
+                        </div>
+                        <div class="form-group">
+                            <label for="icone" class=" form-control-label">Icone</label>
+                            <select id="icone" name='icone' class="form-control">
+                                <option hidden selected>Selecione...</option>
+                                <option value="fas fa-file-alt" {{calendario.icone=='fas fa-file-alt' ? "selected" : '' }}>Arquivo</option>
+                                <option value="fas fa-upload" {{calendario.icone=='fas fa-upload' ? "selected" : '' }}>Upload</option>
+                                <option value="fas fa-sliders-h" {{calendario.icone=='fas fa-sliders-h' ? "selected" : '' }}>Ajuste</option>
+                                <option value="fas fa-search" {{calendario.icone=='fas fa-search' ? "selected" : '' }}>Lupa</option>
+                                <option value="fas fa-bullhorn" {{calendario.icone=='fas fa-bullhorn' ? "selected" : '' }}>Megafone</option>
+                                <option value="fas fa-star" {{calendario.icone=='fas fa-star' ? "selected" : '' }}>Estrela</option>
+                                <option value="fas fa-medal" {{calendario.icone=='fas fa-medal' ? "selected" : '' }}>Medalha</option>
+                                <option value="fas fa-exclamation" {{calendario.icone=='fas fa-exclamation' ? "selected" : '' }}>Exclamação</option>
+                            </select>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label class=" form-control-label">Concluido</label>
                             </div>
-                            <div class="card-body card-block">
-                                {% if mensagens %}
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <ul>
-                                        {% for msg in mensagens %}
-                                        <li>{{msg}}</li>
-                                        {% endfor %}
-                                    </ul>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                            <div class="col col-md-9">
+                                <div class="form-check-inline form-check">
+                                    <label for="concluido1" class="form-check-label ">
+                                        <input type="radio" id="concluido1" name="concluido" value="1" class="form-check-input"
+                                            {{calendario.concluido|default("1")=='1' ? "checked" : '' }}>Sim
+                                    </label>
+                                    <label for="concluido0" class="form-check-label ">
+                                        <input type="radio" id="concluido0" name="concluido" value="0" class="form-check-input"
+                                            {{calendario.concluido=='0' ? "checked" : '' }}>Não
+                                    </label>
                                 </div>
-                                {% endif %}
-                                <div class="form-group">
-                                    <label for="data" class=" form-control-label">Dia</label>
-                                    <input type="text" id="data" name='data' placeholder="Digite o Dia ex: 23 de Outubro, 22 a 23 de Outubro" class="form-control"
-                                        value='{{calendario.data}}'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="descricao" class=" form-control-label">Descrição</label>
-                                    <input type="text" id="descricao" name='descricao' placeholder="Digite a descrição do dia" class="form-control"
-                                        value='{{calendario.descricao}}'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="link" class=" form-control-label">Link</label>
-                                    <input type="text" id="link" name='link' placeholder="Digite o link do botão" class="form-control"
-                                        value='{{calendario.link}}'>
-                                </div>
-                                <div class="form-group">
-                                    <label for="icone" class=" form-control-label">Icone</label>
-                                    <input type="text" id="icone" name='icone' placeholder="Digite o codigo do icone" class="form-control"
-                                        value='{{calendario.icone}}'>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label class=" form-control-label">Concluido</label>
-                                    </div>
-                                    <div class="col col-md-9">
-                                        <div class="form-check-inline form-check">
-                                            <label for="concluido1" class="form-check-label ">
-                                                <input type="radio" id="concluido1" name="concluido" value="1" class="form-check-input"
-                                                    {{calendario.concluido|default("1")=='1' ? "checked" : '' }}>Sim
-                                            </label>
-                                            <label for="concluido0" class="form-check-label ">
-                                                <input type="radio" id="concluido0" name="concluido" value="0" class="form-check-input" {{calendario.concluido=='0'
-                                                    ? "checked" : '' }}>Não
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" name='enviar' value="{{calendario.id}}" class="btn btn-success btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> {{texto}}
-                                </button>
                             </div>
                         </div>
-                        </form>
                     </div>
-{% endblock %}
+                    <div class="card-footer">
+                        <button type="submit" name='enviar' value="{{calendario.id}}" class="btn btn-success btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> {{texto}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endblock %}

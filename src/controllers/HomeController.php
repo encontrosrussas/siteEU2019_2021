@@ -392,7 +392,10 @@ class HomeController
             [
                 'editais.id',
                 'editais.nome',
-                'editais.tipo'
+                'editais.tipo',
+                'editais.link',
+                'editais.arquivo',
+                'editais.descricao'
             ],
             [
                 "ano_id" => $this->ano_atual['id'],

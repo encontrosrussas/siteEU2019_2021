@@ -78,6 +78,11 @@
     .timeline-link {
         @apply px-2 py-1 mt-3 text-lg uppercase border border-chocolate-500 text-chocolate-500;
         box-shadow: 4px 4px 0px 0px rgba(232, 84, 23);
+
+        &:hover, &:focus {
+            @apply text-chocolate-400 border-chocolate-400;
+            box-shadow: 4px 4px 0px 0px rgba(239, 135, 93);
+        }
     }
 
     @screen md {

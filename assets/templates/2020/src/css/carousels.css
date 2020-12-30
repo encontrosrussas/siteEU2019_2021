@@ -10,7 +10,7 @@
 }
 
 .noticia-img {
-  @apply bg-top bg-no-repeat bg-cover;
+  @apply bg-center bg-no-repeat bg-cover;
 }
 
 .flickity-button {
