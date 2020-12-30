@@ -8,6 +8,7 @@ class Calendario{
     private $descricao;
     private $link;
     private $icone;
+    private $concluido;
     private $ano_id;
     
     /**
@@ -96,6 +97,23 @@ class Calendario{
     }
 
     /**
+     * Get the value of concluido
+     */ 
+    public function getConcluido()
+    {
+        return $this->concluido;
+    }
+
+    /**
+     * Set the value of concluido
+     */
+    public function setConcluido($concluido)
+    {
+        if (!empty($concluido) && !is_null($concluido))
+        $this->concluido = $concluido;
+    }
+
+    /**
      * Get the value of ano_id
      */
     public function getAno_id()
@@ -123,6 +141,8 @@ class Calendario{
             $retorno["link"] = $this->getLink();
         if (!is_null($this->getIcone()))
             $retorno["icone"] = $this->getIcone();
+        if (!is_null($this->getConcluido()))
+            $retorno["concluido"] = $this->getConcluido();
         if (!is_null($this->getAno_id()))
             $retorno["ano_id"] = $this->getAno_id();
         return $retorno;

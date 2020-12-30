@@ -803,6 +803,7 @@ class AdminController
                 $calendario->setDescricao($dados['descricao']);
                 $calendario->setLink($dados['link']);
                 $calendario->setIcone($dados['icone']);
+                $calendario->setConcluido($dados['concluido']);
                 if (!empty($dados['enviar'])) {
                     $calendario->setId($dados['enviar']);
                     $db->update(
@@ -837,7 +838,10 @@ class AdminController
                 [
                     'id',
                     'data',
-                    'descricao'
+                    'descricao',
+                    'link',
+                    'icone',
+                    'concluido',
                 ],
                 [
                     'id' => $args['id'],

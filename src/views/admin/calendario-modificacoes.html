@@ -43,6 +43,23 @@
                                     <input type="text" id="icone" name='icone' placeholder="Digite o codigo do icone" class="form-control"
                                         value='{{calendario.icone}}'>
                                 </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Concluido</label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="concluido1" class="form-check-label ">
+                                                <input type="radio" id="concluido1" name="concluido" value="1" class="form-check-input"
+                                                    {{calendario.concluido|default("1")=='1' ? "checked" : '' }}>Sim
+                                            </label>
+                                            <label for="concluido0" class="form-check-label ">
+                                                <input type="radio" id="concluido0" name="concluido" value="0" class="form-check-input" {{calendario.concluido=='0'
+                                                    ? "checked" : '' }}>Não
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" name='enviar' value="{{calendario.id}}" class="btn btn-success btn-sm">
