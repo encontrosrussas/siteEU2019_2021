@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ano` (
   `palestras` tinyint(4) NOT NULL DEFAULT '1',
   `apresentacoes` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `ano`
@@ -47,8 +47,7 @@ CREATE TABLE IF NOT EXISTS `ano` (
 
 INSERT INTO `ano` (`id`, `nome_ano`, `id_evento`, `status`, `editais`, `cronogramas`, `noticias`, `palestras`, `apresentacoes`) VALUES
 (1, 2019, NULL, 0, 1, 1, 1, 1, 1),
-(2, 2018, NULL, 0, 0, 0, 0, 0, 0),
-(3, 2020, 4, 1, 1, 1, 1, 1, 1);
+(2, 2020, 4, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -177,6 +176,7 @@ CREATE TABLE IF NOT EXISTS `calendario` (
   `descricao` varchar(250) NOT NULL,
   `link` varchar(300) DEFAULT NULL,
   `icone` varchar(50) DEFAULT NULL,
+  `concluido` tinyint(4) NOT NULL DEFAULT '0',
   `ano_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_calendario_ano1_idx` (`ano_id`)
@@ -186,17 +186,17 @@ CREATE TABLE IF NOT EXISTS `calendario` (
 -- Extraindo dados da tabela `calendario`
 --
 
-INSERT INTO `calendario` (`id`, `data`, `descricao`, `link`, `icone`, `ano_id`) VALUES
-(1, '20 de Setembro', 'LanÃ§amento do Edital.', NULL, NULL, 1),
-(2, '28 de Setembro a 07 de Outubro', 'Primeira fase de submissÃ£o dos trabalhos.', NULL, NULL, 1),
-(3, '28 de Setembro a 08 de Outubro', 'PerÃ­odo de aval do orientador.', NULL, NULL, 1),
-(4, '08 a 14 de Outubro', 'AvaliaÃ§Ã£o dos trabalhos submetidos.', NULL, NULL, 1),
-(5, '17 de Outubro', 'DivulgaÃ§Ã£o dos resultados das submissÃµes.', NULL, NULL, 1),
-(6, '18 a 21 de Outubro', 'PerÃ­odo de recurso para os trabalhos nÃ£o aceitos.', NULL, NULL, 1),
-(7, '<strike>22 a 26 de Outubro</strike> <span style=\'color:red\'>22 a 28 de Outubro (Alterado)</span>', 'ReavaliaÃ§Ã£o dos trabalhos submetidos no perÃ­odo de recurso.', NULL, NULL, 1),
-(8, '<strike>27 de Outubro</strike> <span style=\'color:red\'>29 de Outubro (Alterado)</span>', 'DivulgaÃ§Ã£o dos resumos aceitos para submissÃ£o final.', NULL, NULL, 1),
-(9, '<strike>28 a 30 de Outubro</strike> <span style=\'color: red\'>29 a 31 de Outubro (Alterado)</span>', 'SubmissÃ£o final de todos os trabalhos aceitos.', NULL, NULL, 1),
-(10, '06 a 08 de Novembro', 'IV Encontros UniversitÃ¡rios da UFC em Russas', NULL, NULL, 1),
+INSERT INTO `calendario` (`id`, `data`, `descricao`, `link`, `icone`, `concluido`, `ano_id`) VALUES
+(1, '20 de Setembro', 'LanÃ§amento do Edital.', NULL, NULL, 0, 1),
+(2, '28 de Setembro a 07 de Outubro', 'Primeira fase de submissÃ£o dos trabalhos.', NULL, NULL, 0, 1),
+(3, '28 de Setembro a 08 de Outubro', 'PerÃ­odo de aval do orientador.', NULL, NULL, 0, 1),
+(4, '08 a 14 de Outubro', 'AvaliaÃ§Ã£o dos trabalhos submetidos.', NULL, NULL, 0, 1),
+(5, '17 de Outubro', 'DivulgaÃ§Ã£o dos resultados das submissÃµes.', NULL, NULL, 0, 1),
+(6, '18 a 21 de Outubro', 'PerÃ­odo de recurso para os trabalhos nÃ£o aceitos.', NULL, NULL, 0, 1),
+(7, '<strike>22 a 26 de Outubro</strike> <span style=\'color:red\'>22 a 28 de Outubro (Alterado)</span>', 'ReavaliaÃ§Ã£o dos trabalhos submetidos no perÃ­odo de recurso.', NULL, NULL, 0, 1),
+(8, '<strike>27 de Outubro</strike> <span style=\'color:red\'>29 de Outubro (Alterado)</span>', 'DivulgaÃ§Ã£o dos resumos aceitos para submissÃ£o final.', NULL, NULL, 0, 1),
+(9, '<strike>28 a 30 de Outubro</strike> <span style=\'color: red\'>29 a 31 de Outubro (Alterado)</span>', 'SubmissÃ£o final de todos os trabalhos aceitos.', NULL, NULL, 0, 1),
+(10, '06 a 08 de Novembro', 'IV Encontros UniversitÃ¡rios da UFC em Russas', NULL, NULL, 0, 1);
 
 -- --------------------------------------------------------
 
