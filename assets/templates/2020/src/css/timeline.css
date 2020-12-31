@@ -37,8 +37,6 @@
 }
 
 .timeline-icon {
-    @apply z-10 flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-full rounded-xl bg-chocolate-500;
-
     @screen md {
         @apply order-1 w-12 h-12;
         margin-left: calc(5% - 24px);
@@ -47,6 +45,14 @@
             margin-right: calc(5% - 24px);
         }
     }
+}
+
+.timeline-icon.active {
+    @apply z-10 flex items-center justify-center flex-shrink-0 rounded-full bg-chocolate-500 text-white;
+}
+
+.timeline-icon.disabled {
+    @apply z-10 flex items-center justify-center flex-shrink-0 rounded-full bg-white border-4 border-chocolate-500 text-chocolate-500; 
 }
 
 .timeline-arrow-top {
