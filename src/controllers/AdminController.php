@@ -466,7 +466,6 @@ class AdminController
     public function editais($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $db = $this->container->db;
         if (isset($args['id'])) {
             $img = $db->select(
@@ -510,7 +509,6 @@ class AdminController
     public function editais_modificacoes($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];
@@ -745,7 +743,6 @@ class AdminController
     public function calendario($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $db = $this->container->db;
         if (isset($args['id'])) {
             $db->delete(
@@ -771,7 +768,6 @@ class AdminController
     public function calendario_modificacoes($request, $response, $args)
     {
         Login::verifyLogin($this->container->router->pathFor('login-admin'));
-        Login::permitAccess($request, $response, 2);
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;
         $argumentos = [];

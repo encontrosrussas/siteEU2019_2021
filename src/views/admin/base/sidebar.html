@@ -19,23 +19,23 @@
                                 <i class="fas fa-envelope"></i>Noticias
                             </a>
                         </li>
-                        {% if "tipo"|session <= 2%}
                         <li>
                             <a href="{{base_url()}}/admin/editais">
                                 <i class="fas fa-file-alt"></i>Editais
                             </a>
                         </li>
+                        {% if "tipo"|session <= 2%}
                         <li>
                             <a href="{{base_url()}}/admin/cronogramas">
                                 <i class="fas fa-calendar-alt"></i>Cronogramas
                             </a>
                         </li>
+                        {% endif %}
                         <li>
                             <a href="{{base_url()}}/admin/calendario">
                                 <i class="fas fa-calendar-alt"></i>Calendario
                             </a>
                         </li>
-                        {% endif %}
                         <li>
                             <a href="{{base_url()}}/admin/apresentacoes">
                                 <i class="fas fa-book"></i>Apresentações
