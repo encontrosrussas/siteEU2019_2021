@@ -91,7 +91,7 @@ module.exports = {
     },
     fontFamily: {
       'sans': ['MuseoModerno', 'cursive'],
-      'serif': ['Open Sans', 'Georgia', 'Cambria'],
+      'display': ['Open Sans', 'Georgia', 'Cambria'],
     },
     tooltipArrows: theme => ({
       'timeline-arrow': {

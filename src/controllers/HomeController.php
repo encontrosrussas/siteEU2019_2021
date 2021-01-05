@@ -79,7 +79,8 @@ class HomeController
                 'data',
                 'descricao',
                 'link',
-                'icone'
+                'icone',
+                'concluido'
             ],
             [
                 "ano_id" => $this->ano_atual['id'],
