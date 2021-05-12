@@ -14,7 +14,7 @@
         "flickity": "^2.2.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.20",
-        "postcss": "^8.2.2",
+        "postcss": "^8.2.10",
         "postcss-import": "^14.0.0",
         "resolve-url-loader": "^3.1.2",
         "tailwindcss": "^2.0.2",
