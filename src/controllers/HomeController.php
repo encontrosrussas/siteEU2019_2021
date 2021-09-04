@@ -117,6 +117,28 @@ class HomeController
         );
     }
 
+    public function links_uteis($request, $response, $args){
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'front/'. $this->ano_atual['nome_ano'] .'/links-uteis.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
+            ]
+        );
+    }
+
+    public function inscrevase($request, $response, $args){
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'front/'. $this->ano_atual['nome_ano'] .'/inscrevase.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
+            ]
+        );
+    }
+
     public function mini_cursos($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
         $db = $this->container->db;

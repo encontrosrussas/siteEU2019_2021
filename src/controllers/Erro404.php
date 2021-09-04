@@ -17,7 +17,12 @@ class Erro404
         return $this->container->view->render(
             $response->withStatus(404)
                      ->withHeader('Content-Type', 'text/html'),
-            'front/error404.html'
+            'front/2018/error404.html',
+            [
+                'ano_atual' => [
+                    'nome_ano' => 2018
+                ]
+            ]
         );
     }
 }

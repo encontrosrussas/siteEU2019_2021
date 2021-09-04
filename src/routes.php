@@ -81,15 +81,17 @@ return function ($app) {
     $app->get('/espaco_gastronomico', HomeController::class . ':espaco_gastronomico')->setName('espaco_gastronomico');
     $app->get('/manual', HomeController::class . ':manual')->setName('manual');
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
+    $app->get('/links-uteis', HomeController::class . ':links_uteis')->setName('links_uteis');
+    $app->get('/inscrevase', HomeController::class . ':inscrevase')->setName('inscrevase');
 
     // // Paginas de Erro
-    // $app->getContainer()['notAllowedHandler'] = function ($c) {
-    //      return new Erro404($c);
-    // };
-    // $app->getContainer()['notFoundHandler'] = function ($c) {
-    //      return new Erro404($c);
-    // };
-    // $app->getContainer()['errorHandler'] = function ($c) {
-    //      return new Erro500($c);
-    // };
+    $app->getContainer()['notAllowedHandler'] = function ($c) {
+         return new Erro404($c);
+    };
+    $app->getContainer()['notFoundHandler'] = function ($c) {
+         return new Erro404($c);
+    };
+    $app->getContainer()['errorHandler'] = function ($c) {
+         return new Erro500($c);
+    };
 };
