@@ -1,0 +1,92 @@
+body .texto {
+  width: 50rem;
+}
+
+.inscricao {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 5rem;
+  padding-top: 2rem;
+}
+
+.texto-inscricao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80rem;
+  height: auto;
+  padding-bottom: 5rem;
+}
+
+.texto-inscricao p {
+  line-height: 30px;
+  font-size: 1.3rem;
+}
+
+.texto-inscricao .links {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.texto-inscricao .links a {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--cor-preta);
+  font-size: 1.2rem;
+  padding: 1rem;
+  transition: .3s;
+}
+
+.texto-inscricao .links a:hover {
+  background-color: var(--cor-roxa);
+  color: var(--cor-branca);
+
+}
+
+.texto-inscricao .links a:nth-child(1) {
+  width: 20rem;
+  border-bottom: 2px solid var(--cor-preta);
+}
+
+.texto-inscricao .links a:nth-child(2) {
+
+  border-bottom: 2px solid var(--cor-preta);
+}
+
+.texto-inscricao .link {
+  color: var(--cor-roxa);
+  border-bottom: 1px solid var(--cor-roxa);
+  font-weight: 600;
+}
+
+
+@media (max-width: 560px) {
+
+  .texto h1 {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .texto {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+
+  }
+
+  body main .quadrado {
+    height: 5rem;
+  }
+
+  .inscricao {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+}

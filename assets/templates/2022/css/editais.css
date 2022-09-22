@@ -1,0 +1,107 @@
+section {
+  display: flex;
+  align-items: flex-start;
+
+}
+
+.titulo {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+section .quadrado {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--cor-roxa);
+}
+
+.texto {
+  width: 11rem;
+  border-bottom: 5px solid var(--cor-roxa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+}
+
+.texto h1 {
+  font-weight: 800;
+  font-size: 2.5rem;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 1120px;
+  padding-left: 1.5rem;
+  padding-bottom: 18rem;
+}
+
+.container .rotulo {
+  border-left: 8px solid var(--cor-verde);
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 7rem;
+  width: 90%;
+  font-weight: 600;
+}
+
+.container .rotulo a {
+  text-decoration: none;
+  color: black;
+  position: relative;
+  width: 5rem;
+  border-bottom: 2px solid black;
+  transition: .3s;
+  padding: 1rem;
+}
+
+.container .rotulo p {
+  padding-right: 1.5rem;
+  font-size: 1.1rem;
+}
+
+
+
+.container .rotulo a:hover {
+  color: white;
+  background-color: blueviolet;
+}
+
+p {
+  line-height: 20px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 560px) {
+  .container .rotulo {
+    /*justify-content: space-between;*/
+    height: 10rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding-left: 1.5rem;
+  }
+
+  section .quadrado {
+    width: 1.5rem;
+    height: 3rem;
+  }
+
+  .texto {
+    height: 3rem;
+  }
+
+  .container .rotulo p {
+    width: 18rem;
+  }
+
+}

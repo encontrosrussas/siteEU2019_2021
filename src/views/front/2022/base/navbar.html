@@ -1,0 +1,38 @@
+<header>
+
+    <div class="logos">
+        <a href="{{ base_url() }}"><img src="{{ base_url() }}/assets/templates/2022/images/logo-encontros-universitários.svg" alt="logo"></a>
+        <a href="{{ base_url() }}"><img src="{{ base_url() }}/assets/templates/2022/images/logo-ufc.svg" alt="logo"></a>
+    </div>
+    <nav>
+        <div class="menu-mobile">
+            <i><img src="{{ base_url() }}/assets/templates/2022/images/icone-menu-mobile-1.svg" class="line1" alt=""></i>
+            <i><img src="{{ base_url() }}/assets/templates/2022/images/icone-menu-mobile-2.svg" class="line2" alt=""></i>
+        </div>
+        <ul class="nav-list">
+            <li><a href="{{ base_url() }}">INÍCIO</a></li>
+            <li><a href="{{ base_url() }}#noticias">NOTÍCIAS</a></li>
+            <li><a href="{{ base_url() }}#cronograma">CRONOGRAMA</a></li>
+            <li class="menu-edicoes">
+                <a href="#">EDIÇÕES<img src="{{ base_url() }}/assets/templates/2022/images/seta-para-baixo.svg" alt="imagesm setinha"> </a>
+                <ul>
+                    {% for ano in anos %}
+                    <li>
+                        <a href="{{base_url()}}/ano/{{ano.id}}" class="ano3" target="_blank">
+                            {{ano.nome_ano}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="menu-acesso-rapido">
+                <a href="#">ACESSO RÁPIDO<img src="{{ base_url() }}/assets/templates/2022/images/seta-para-baixo.svg" alt="imagesm setinha"> </a>
+                <ul>
+                    <li><a href="{{ base_url() }}/editais">Edital</a></li>
+                    <li><a href="{{ base_url() }}/links-uteis">Links úteis</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</header>

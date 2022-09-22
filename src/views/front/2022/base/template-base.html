@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Encontros universitários</title>
+    <link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/index.css">
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/footer.css">
+    <link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/swiper-bundle.min.css">
+</head>
+
+<body>
+    {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="detalhes-footer">
+
+
+        </div>
+        <div class="sub-footer">
+
+            <div class="caixa1">
+                <div class="detalhe-um">
+                </div>
+                <div class="logo-sub-footer">
+                    <img src="{{ base_url() }}/assets/templates/2022/images/logossubfooter.svg" width="60%" alt="">
+                </div>
+
+            </div>
+
+            <div class="caixa2">
+                <div class="detalhe-dois">
+                    <div class="cor-roxa">
+                    </div>
+                    <div class="cor-roxa-clara">
+                    </div>
+                    <div class="cor-laranja">
+                    </div>
+                    <div class="cor-verde">
+                    </div>
+                </div>
+                <div class="texto-sub-footer">
+                    <img src="{{ base_url() }}/assets/templates/2022/images/vetorsubfooter.svg" width="70%" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="info">
+                <p>
+                    Universidade Federal do Ceará - Campus de Russas <br>
+                    Rua Felipe Santiago - N° 411, Russas - CE, CEP 62900-000 <br>
+                    Site: www.russas.ufc.br/ <br>
+                    Telefone: (88) 3411 - 9218 <br>
+                    E-mail: encontros.ufcrussas@gmail.com <br>
+                    Site oficial: www.eu2022.ufc.br
+                </p>
+            </div>
+            <div class="footer-logo">
+                <p>Desenvolvido por</p>
+                <a href="https://www.instagram.com/learninglabufc/">
+                    <img src="{{ base_url() }}/assets/templates/2022/images/logoprojeto.svg" alt=""></a>
+
+            </div>
+        </div>
+
+    </footer>
+    <script src="{{ base_url() }}/assets/templates/2022/js/swiper-bundle.min.js"></script>
+    <script src="{{ base_url() }}/assets/templates/2022/js/index.js"></script>
+    <script src="{{ base_url() }}/assets/templates/2022/js/response.js"></script>
+</body>
+
+</html>
