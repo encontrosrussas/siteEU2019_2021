@@ -1,0 +1,63 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Notícias{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/editais.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/inscricao.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/noticia-data.css">
+{% endblock %}
+{% block content %}
+<main>
+
+    <div class="titulo">
+        <section>
+            <div class="quadrado"></div>
+            <div class="texto">
+                <h1>Formulários de avaliação dos resumos cadastrados para os EU2022 foram enviados por e-mail aos
+                    avaliadores</h1>
+            </div>
+        </section>
+    </div>
+
+    <div class="inscricao">
+        <section class="texto-inscricao">
+            <p>Formulários de avaliação dos resumos cadastrados para os EU2022 foram enviados por e-mail aos avaliadores
+                que terão até 10/10 (improrrogável) para devolvê-los com as devidas observações.
+            </p>
+            <br>
+            <p>Para a avaliação serão considerados aspectos como:
+            </p>
+            <br>
+            <ul class="instrucoes-redacao">
+                <li><strong>Estrutura:</strong> apresenta todos os elementos de um resumo, contexto, justificativa,
+                    objetivo etc, de maneira coerente?</li>
+                <li><strong>Contextualização/problemática:</strong> contextualiza e apresenta elementos introdutórios?
+                </li>
+                <li><strong>justificativa:</strong> apresenta argumentos que evidenciem o grau de relevância do tema
+                    dentro da modalidade?</li>
+                <li><strong>Objetivos:</strong> o objetivo principal do trabalho está claro?</li>
+                <li><strong>Metodologia:</strong> descreve metodologia(s) alinhada(s) ao(s) objetivo(s)?</li>
+                <li><strong>Resultados/conclusão:</strong> apresenta os resultados do trabalho e as considerações
+                    finais, estando os resultados e considerações alinhados aos objetivos do trabalho?</li>
+                <li><strong>Normatização da Língua:</strong> utiliza a linguagem científica e ortografia correta?</li>
+                <li><strong>Palavras-chaves:</strong> apresenta as palavras-chaves adequadas ao tema?</li>
+            </ul>
+            <br>
+            <p>A decisão para o aceite ou não do resumo deverá ser informada e justificada pelo avaliador.</p>
+            <br>
+            <br>
+            <div class="acesso-rapido">
+                <p><strong>Acesso rápido:</strong></p>
+                <a href="http://www.campusrussas.ufc.br/uploads/docs2022/edital%202022%20_1da022c8ced6d59.pdf"
+                    target="_blank">Edital dos VII Encontros Universitários do Campus de Russas</a>
+                <a href="http://sysprppg.ufc.br/eu/2022/" target="_blank">Link para inscrição</a>
+                <a href="http://www.campusrussas.ufc.br/uploads/docs2022/aditivo%20de%20edital%202022%20_cbd276ecae38659.pdf"
+                    target="_blank">Aditivo I</a>
+            </div>
+            <br>
+            <br>
+            <p>Fonte: Comissão Organizadora dos EU2022 do Campus da UFC em Russas - Contato:
+                encontros.ufcrussas@gmail.com</p>
+        </section>
+    </div>
+</main>
+{% endblock content %}

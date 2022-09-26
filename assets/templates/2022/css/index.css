@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap");
 
 * {
   margin: 0;
@@ -8,19 +8,24 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
 :root {
   /* colors */
-  --cor-branca: #FFF;
+  --cor-branca: #fff;
   --cor-preta: #000000;
-  --cor-verde: #37E18F;
-  --cor-roxa: #7d4AFE;
-  --cor-laranja: #FCB56F;
-  --cor-lilas: #CB98FE;
-  --primeiro-degrade: linear-gradient(90deg, #9C96C8 0%, #4EBE85 52.6%, #5055A4 100%);
-  --segundo-degrade: linear-gradient(90deg, #F9AF6E 0%, #5258A6 100%);
+  --cor-verde: #37e18f;
+  --cor-roxa: #7d4afe;
+  --cor-laranja: #fcb56f;
+  --cor-lilas: #cb98fe;
+  --primeiro-degrade: linear-gradient(
+    90deg,
+    #9c96c8 0%,
+    #4ebe85 52.6%,
+    #5055a4 100%
+  );
+  --segundo-degrade: linear-gradient(90deg, #f9af6e 0%, #5258a6 100%);
 }
 
 body {
@@ -59,7 +64,7 @@ header nav ul {
 
 header nav ul a {
   display: flex;
-  gap: .3rem;
+  gap: 0.3rem;
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -70,7 +75,7 @@ header nav ul a {
 }
 
 header .logos img {
-  width: 100%;
+  width: 90%;
 }
 
 header .logos {
@@ -78,7 +83,8 @@ header .logos {
   background-color: var(--cor-roxa);
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  text-align: center;
   align-items: center;
 }
 
@@ -103,7 +109,7 @@ header nav {
   display: none;
   background-color: white;
   width: 9.7rem;
-  /* height: 8rem; */
+  height: 8rem;
 }
 
 .menu-edicoes:hover ul,
@@ -113,14 +119,13 @@ header nav {
 
 .menu-edicoes a img,
 .menu-acesso-rapido a img {
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .menu-edicoes:hover a img,
 .menu-acesso-rapido:hover a img {
   transform: rotate(180deg);
 }
-
 
 .menu-edicoes ul li,
 .menu-acesso-rapido ul li {
@@ -130,7 +135,6 @@ header nav {
   height: 1.875rem;
   margin: 1.25rem 0.625rem 1.25rem 0.625rem;
 }
-
 
 nav ul li a:hover,
 nav ul li a.active {
@@ -185,7 +189,7 @@ nav ul li a.active::after {
   text-transform: uppercase;
   color: #fff;
   font-weight: 700;
-  background-color: #7d4AFE;
+  background-color: #7d4afe;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -197,16 +201,15 @@ nav ul li a.active::after {
 
 .link a:hover {
   color: #000;
-  background-color: #4EBE85;
+  background-color: #4ebe85;
   box-shadow: 4px 4px #fff;
   cursor: pointer;
   transition: 0.6s;
-
 }
 
 .lado-vazio {
   width: 65%;
-  background-color: #7d4AFE;
+  background-color: #7d4afe;
 }
 
 @media (max-width: 1100px) {
@@ -240,7 +243,6 @@ nav ul li a.active::after {
   .frase {
     width: 100%;
     height: 100%;
-
     padding-left: 40px;
   }
 
@@ -253,7 +255,6 @@ nav ul li a.active::after {
     height: 40px;
   }
 }
-
 
 .noticias,
 .depoimento {
@@ -276,7 +277,6 @@ main .depoimento {
   gap: 4rem;
   width: 50rem;
   text-align: center;
-
 }
 
 .depoimento .conteudo-depoimento p:nth-child(2) {
@@ -297,7 +297,7 @@ main .depoimento {
 .card .texto {
   padding: 22px 15px;
   border-bottom: 1px solid var(--cor-preta);
-  height: 6rem;
+  height: 9rem;
 }
 
 .card .ler-mais {
@@ -312,7 +312,7 @@ main .depoimento {
 
 .card .ler-mais .ler-mais-link {
   width: 5rem;
-  transition: .3s;
+  transition: 0.3s;
   width: 100%;
   height: 3rem;
   display: flex;
@@ -324,7 +324,7 @@ main .depoimento {
   height: 100%;
   display: flex;
   align-items: center;
-  transition: .3s;
+  transition: 0.3s;
   font-weight: 700;
 }
 
@@ -336,13 +336,11 @@ main .depoimento {
   background-color: var(--cor-verde);
 }
 
-
 .slide-container {
   max-width: 1120px;
   margin-top: 150px;
   width: 100%;
   padding: 3rem 3rem;
-
 }
 
 .slide-content {
@@ -351,12 +349,10 @@ main .depoimento {
   padding-bottom: 2rem;
 }
 
-
 .noticias .swiper-pagination-bullet {
   background-color: var(--cor-branca);
   opacity: 1;
 }
-
 
 .noticias .swiper-pagination-bullet-active {
   background-color: var(--cor-verde);
@@ -365,7 +361,7 @@ main .depoimento {
 .noticias .swiper-navBtn1,
 .noticias .swiper-navBtn2 {
   color: var(--cor-roxa);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .noticias .swiper-navBtn1:hover {
@@ -378,7 +374,6 @@ main .depoimento {
   color: var(--cor-branca);
 }
 
-
 @media (max-width: 845px) {
   header {
     width: 100%;
@@ -387,7 +382,7 @@ main .depoimento {
 
   header .logos a img {
     width: 80%;
-    margin-left: .6rem;
+    margin-left: 0.6rem;
   }
 
   header .logos {
@@ -404,19 +399,14 @@ main .depoimento {
     align-items: center;
   }
 
-  header nav ul a {
-    /*display: none;*/
-  }
+  /* header nav ul a {
+    display: none;
+  } */
 
   .menu-mobile {
     display: flex;
     visibility: visible;
     cursor: pointer;
-  }
-
-  body,
-  html {
-    overflow-x: hidden;
   }
 
   .nav-list {
@@ -430,7 +420,6 @@ main .depoimento {
     justify-content: space-evenly;
     background-color: #fff;
     visibility: hidden;
-
   }
 
   .nav-list.active {
@@ -450,7 +439,7 @@ main .depoimento {
     display: flex;
     width: 8.7em;
     height: 4em;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 
   .menu-edicoes ul li {
@@ -505,15 +494,15 @@ main .depoimento {
   .menu-edicoes ul li a,
   .menu-acesso-rapido ul li a {
     padding: 5px;
-    border-bottom: 3px solid #5055A4;
+    border-bottom: 3px solid #5055a4;
   }
 
   .menu-edicoes ul li a.ano2 {
-    border-bottom: 3px solid #37E18F;
+    border-bottom: 3px solid #37e18f;
   }
 
   .menu-edicoes ul li a.ano3 {
-    border-bottom: 3px solid #F9AF6E;
+    border-bottom: 3px solid #f9af6e;
   }
 
   body {
@@ -530,7 +519,6 @@ main .depoimento {
     line-height: 2rem;
     font-size: 1.5rem;
     width: 20rem;
-
   }
 }
 
@@ -543,7 +531,6 @@ main .depoimento {
   to {
     opacity: 1;
     transform: translateX(0);
-
   }
 }
 
@@ -575,8 +562,6 @@ main .depoimento {
   .nav-list li {
     margin-top: -50px;
   }
-
-
 }
 
 /* Cronograma */
@@ -587,7 +572,7 @@ html {
 
 ::selection {
   color: #fff;
-  background: #37E18F;
+  background: #37e18f;
 }
 
 .wrapper {
@@ -620,7 +605,7 @@ html {
 }
 
 .wrapper .row section {
-  background: #CB98FE;
+  background: #cb98fe;
   width: calc(50% - 40px);
   padding: 20px;
   position: relative;
@@ -631,7 +616,7 @@ html {
   content: "";
   height: 15px;
   width: 15px;
-  background: #CB98FE;
+  background: #cb98fe;
   top: 28px;
   z-index: -1;
   transform: rotate(45deg);
@@ -702,10 +687,10 @@ html {
   /*transform: scale(0.97);*/
   color: var(--cor-branca);
   background-color: var(--cor-roxa);
-  border-bottom: 1px solid #5055A4;
+  border-bottom: 1px solid #5055a4;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .wrapper .center-line {
     left: 40px;
   }
@@ -733,7 +718,7 @@ html {
   line-height: 49px;
 }
 
-@media(max-width: 376px) {
+@media (max-width: 376px) {
   .cronograma h1 {
     font-size: 27px;
   }

@@ -1,0 +1,66 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Notícias{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/editais.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/inscricao.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/noticia-data.css">
+{% endblock %}
+{% block content %}
+<main>
+
+    <div class="titulo">
+        <section>
+            <div class="quadrado"></div>
+            <div class="texto">
+                <h1>Campus de Russas lança edital; Inscrições vão até o dia 16/09.</h1>
+            </div>
+        </section>
+    </div>
+
+    <div class="inscricao">
+        <section class="texto-inscricao">
+            <p><strong>A Comissão Organizadora da edição de 2022 dos VII Encontros Universitários da UFC - Campus de
+                    Russas informa que o Edital EU2022 já está disponível.</strong> O evento, um dos maiores e mais
+                importantes da Universidade Federal do Ceará, <strong>ocorrerá de 23 a 25 de novembro.</strong> As
+                inscrições de resumos de trabalhos já estão abertas e vão até o dia 16 de setembro.
+            </p>
+            <br>
+            <p>A inscrição será realizada, exclusivamente, por via eletrônica, no endereço: <a class="link"
+                    href="http://www.encontrosuniversitarios.ufc.br"
+                    target="_blank">http://www.encontrosuniversitarios.ufc.br</a>, utilizando-se o link
+                <strong>“Inscrição”.</strong> Não serão aceitas inscrições fora do prazo. Para realizar a inscrição o
+                aluno deverá selecionar inicialmente o evento que participará <strong>(evento do Campus de
+                    Russas)</strong>, preencher os dados cadastrais do formulário eletrônico dos Encontros <strong>(que
+                    será na modalidade pôster)</strong> e a área adequada, que para bolsistas, será a modalidade da
+                bolsa.
+            </p>
+            <br>
+            <p>Com o tema "Educação reinventa futuros", os EU 2022 serão realizados, mais uma vez, no <strong>formato
+                    remoto</strong>, possibilitando a ampla participação da comunidade acadêmica e do público externo em
+                algumas das apresentações, palestras, atividades culturais e oficinas da programação, que será divulgada
+                em breve.</p>
+            <br>
+            <p><strong>QUEM DEVE PARTICIPAR -</strong> A regra geral para apresentação de trabalho nos EU 2022 determina
+                obrigatoriedade para todos os alunos bolsistas, com auxílio de seus respectivos orientadores.</p>
+            <br>
+            <p>A organização dos EU destaca que o evento tem como propósito agregar a comunidade acadêmica e favorecer a
+                troca de experiências, sendo importante o engajamento de todos.</p>
+            <br>
+            <p><strong>SOBRE OS EU -</strong> Os Encontros Universitários são um dos principais eventos de divulgação
+                científica e cultural do Ceará. Nos três dias dos Encontros, toda a produção acadêmica de estudantes,
+                servidores docentes e técnico-administrativos da UFC é mostrada à sociedade, por meio de apresentações
+                de trabalhos e atividades culturais. A participação de bolsistas é obrigatória.</p>
+            <br>
+            <div class="acesso-rapido">
+                <p><strong>Acesso rápido:</strong></p>
+                <a href="http://www.campusrussas.ufc.br/uploads/docs2022/edital%202022%20_1da022c8ced6d59.pdf"
+                    target="_blank">Edital dos VII Encontros Universitários do Campus de Russas</a>
+                <a href="http://sysprppg.ufc.br/eu/2022/" target="_blank">Link para inscrição</a>
+            </div>
+            <br>
+            <p>Fonte: Comissão Organizadora dos EU2022 do Campus da UFC em Russas - Contato:
+                encontros.ufcrussas@gmail.com</p>
+        </section>
+    </div>
+</main>
+{% endblock content %}

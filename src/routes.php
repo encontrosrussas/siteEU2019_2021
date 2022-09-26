@@ -83,6 +83,11 @@ return function ($app) {
     $app->get('/emBreve', HomeController::class . ':emBreve')->setName('embreve');
     $app->get('/links-uteis', HomeController::class . ':links_uteis')->setName('links_uteis');
     $app->get('/inscrevase', HomeController::class . ':inscrevase')->setName('inscrevase');
+    $app->get('/noticia-aditivo', HomeController::class . ':noticia_aditivo')->setName('noticia_aditivo');
+    $app->get('/noticia-comisao', HomeController::class . ':noticia_comisao')->setName('noticia_comisao');
+    $app->get('/noticia-data', HomeController::class . ':noticia_data')->setName('noticia_data');
+    $app->get('/noticia-edital', HomeController::class . ':noticia_edital')->setName('noticia_edital');
+    $app->get('/noticia-formulario', HomeController::class . ':noticia_formulario')->setName('noticia_formulario');
 
     // // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {

@@ -1,5 +1,10 @@
 body .texto {
-  width: 50rem;
+  /*width: 50rem;*/
+  width: auto;
+}
+
+body .texto h1 {
+  margin-left: 1rem;
 }
 
 .inscricao {
@@ -8,14 +13,13 @@ body .texto {
   align-items: center;
   padding-left: 5rem;
   padding-top: 2rem;
+  padding-right: 5rem;
 }
 
 .texto-inscricao {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 80rem;
-  height: auto;
   padding-bottom: 5rem;
 }
 
@@ -62,6 +66,40 @@ body .texto {
   font-weight: 600;
 }
 
+.acesso-rapido {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.acesso-rapido a {
+  color: var(--cor-roxa);
+  transition: .3s;
+  font-size: 1.2rem;
+}
+
+.texto-inscricao p:last-child {
+  font-size: 1rem;
+}
+
+body .inscricao .texto-inscricao ul {
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+}
+
+body .inscricao .texto-inscricao ul li {
+  list-style: outside;
+  margin-left: 1rem;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 845px) {
+  .texto h1 {
+    font-size: 1.8rem;
+    margin-bottom: .5rem;
+  }
+}
 
 @media (max-width: 560px) {
 
@@ -87,6 +125,19 @@ body .texto {
   .inscricao {
     padding-left: 1rem;
     padding-right: 1rem;
+    display: flex;
+  }
+
+  .inscricao .link {
+    font-size: 1.1rem;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .inscricao .texto-inscricao .link {
+    font-size: 1rem;
   }
 
 }
