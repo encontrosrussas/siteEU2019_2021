@@ -193,6 +193,17 @@ class HomeController
             ]
         );
     }
+    
+    public function noticia_resumos($request, $response, $args){
+        $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");
+        return $this->container->view->render(
+            $response,
+            'front/'. $this->ano_atual['nome_ano'] .'/noticia-resumos.html',[
+                'anos' => $this->anos,
+                'ano_atual' => $this->ano_atual,
+            ]
+        );
+    }
 
     public function mini_cursos($request, $response, $args){
         $this->container->get('logger')->info("'{$_SERVER['REQUEST_URI']}' route");

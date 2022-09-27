@@ -88,6 +88,7 @@ return function ($app) {
     $app->get('/noticia-data', HomeController::class . ':noticia_data')->setName('noticia_data');
     $app->get('/noticia-edital', HomeController::class . ':noticia_edital')->setName('noticia_edital');
     $app->get('/noticia-formulario', HomeController::class . ':noticia_formulario')->setName('noticia_formulario');
+    $app->get('/noticia-resumos', HomeController::class . ':noticia_resumos')->setName('noticia_resumos');
 
     // // Paginas de Erro
     $app->getContainer()['notAllowedHandler'] = function ($c) {
