@@ -1,0 +1,28 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Notícias{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/editais.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/inscricao.css">
+<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/noticia-data.css">
+{% endblock %}
+{% block content %}
+<main>
+
+    <div class="titulo">
+        <section>
+            <div class="quadrado"></div>
+            <div class="texto">
+                <h1>
+                    {{noticia.titulo}}
+                </h1>
+            </div>
+        </section>
+    </div>
+
+    <div class="inscricao">
+        <section class="texto-inscricao">
+            {{noticia.conteudo|raw}}
+        </section>
+    </div>
+</main>
+{% endblock content %}

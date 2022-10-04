@@ -70,7 +70,6 @@
     .footer-logo {
         width: 100%;
         display: flex;
-        margin: 5px;
         justify-content: start;
         align-items: flex-start;
     }
