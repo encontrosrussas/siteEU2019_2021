@@ -16,7 +16,7 @@
     --cor-lilas: #CB98FE;
     --primeiro-degrade: linear-gradient(90deg, #9C96C8 0%, #4EBE85 52.6%, #5055A4 100%);
     --segundo-degrade: linear-gradient(90deg, #F9AF6E 0%, #5258A6 100%);
-  }
+}
 
 .footer {
     font-size: 22px;
@@ -52,37 +52,18 @@
 
 @media (max-width: 767px) {
     .footer {
+        margin-top: 120px;
         width: 100%;
         height: 220px;
         font-size: 20px;
-        display: block;
-        }
-
-    .info {
-        max-width: 95%;
-        width: 100%;
-        margin: 10px;
         display: flex;
-        justify-content: start;
-        font-size: 17px;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
     }
 
     .footer-logo {
-        width: 100%;
-        display: flex;
-        justify-content: start;
-        align-items: flex-start;
-    }
-
-    
-    .footer-logo p {
-        margin: 10px;
-
-    }
-
-    .footer-logo img {
-        margin-top: 10px;
-        margin-left: 5px;
+        margin-top: 70px;
     }
 }
 
@@ -176,7 +157,8 @@
 }
 
 @media (max-width: 776px) {
-    .caixa1, .caixa2 {
+    .caixa1,
+    .caixa2 {
         width: 100%;
     }
     .sub-footer {

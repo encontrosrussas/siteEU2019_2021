@@ -109,7 +109,7 @@ header nav {
   display: none;
   background-color: white;
   width: 9.7rem;
-  height: 8rem;
+  /* height: 8rem; */
 }
 
 .menu-edicoes:hover ul,
