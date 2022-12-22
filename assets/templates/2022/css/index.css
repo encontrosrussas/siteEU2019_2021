@@ -11,6 +11,7 @@
   font-family: "Archivo", sans-serif;
 }
 
+
 :root {
   /* colors */
   --cor-branca: #fff;
@@ -30,7 +31,9 @@
 
 body {
   padding-top: 20vh;
+  overflow-x: hidden;
 }
+
 
 .menu-mobile {
   position: absolute;
@@ -109,7 +112,8 @@ header nav {
   display: none;
   background-color: white;
   width: 9.7rem;
-  /* height: 8rem; */
+  /* height: 11.3rem; */
+  text-align: center;
 }
 
 .menu-edicoes:hover ul,
@@ -165,14 +169,15 @@ nav ul li a.active::after {
 }
 
 .inscreva-se {
-  height: 415px;
+  /*height: 415px;*/
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .frase {
   width: 35%;
-  height: 120%;
+  height: 415px;
   background-color: #000;
   display: flex;
   justify-content: center;
@@ -195,7 +200,7 @@ nav ul li a.active::after {
   justify-content: center;
   align-items: center;
   padding: 16px;
-  width: 292px;
+  width: 70%;
   transition: 0.6s;
 }
 
@@ -207,9 +212,29 @@ nav ul li a.active::after {
   transition: 0.6s;
 }
 
-.lado-vazio {
+.sobre {
   width: 65%;
   background-color: #7d4afe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.sobre .texto{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--cor-branca);
+  max-width: 70%;
+}
+
+.sobre .texto h2{
+  font-size: 2.5rem;
+}
+
+.sobre .texto p{
+  line-height: 1.5rem;
 }
 
 @media (max-width: 1100px) {
@@ -219,20 +244,21 @@ nav ul li a.active::after {
 
   .frase {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
   }
 
   .frase img {
     width: 50%;
   }
 
-  .lado-vazio {
+  .sobre {
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
   }
 }
 
 @media (max-width: 615px) {
+ 
   .inscreva-se {
     display: flex;
     justify-content: center;
@@ -242,7 +268,7 @@ nav ul li a.active::after {
 
   .frase {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     padding-left: 40px;
   }
 
@@ -250,10 +276,11 @@ nav ul li a.active::after {
     width: 90%;
   }
 
-  .lado-vazio {
+  .sobre {
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
   }
+
 }
 
 .noticias,
@@ -264,24 +291,29 @@ nav ul li a.active::after {
   justify-content: center;
   padding: 5rem 0;
   background-color: var(--cor-lilas);
-}
+} 
 
 main .depoimento {
   background-color: var(--cor-roxa);
   color: var(--cor-branca);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
 }
 
 .depoimento .conteudo-depoimento {
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  width: 50rem;
+  max-width: 35rem;
   text-align: center;
 }
 
 .depoimento .conteudo-depoimento p:nth-child(2) {
   line-height: 2.5rem;
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 .card {
@@ -374,7 +406,33 @@ main .depoimento {
   color: var(--cor-branca);
 }
 
-@media (max-width: 845px) {
+.encerramento{
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  gap: 2rem;
+  flex-direction: column;
+
+}
+
+.encerramento h2{
+  position: relative;
+  color: var(--cor-branca);
+}
+
+.encerramento .imagem{
+  max-width: 35rem;
+  max-height: 35rem
+}
+
+.encerramento .imagem img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: .5rem;
+}
+
+
+@media (max-width: 912px) {
   header {
     width: 100%;
     height: 15vh;
@@ -513,12 +571,13 @@ main .depoimento {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50%;
   }
 
   .depoimento .conteudo-depoimento p:nth-child(2) {
     line-height: 2rem;
     font-size: 1.5rem;
-    width: 20rem;
+    max-width: 20rem;
   }
 }
 
@@ -737,4 +796,10 @@ html {
 .cronograma {
   margin-top: 70px;
   text-align: center;
+}
+
+@media (max-width:332px){
+  .conteudo-depoimento p{
+  font-size: .8rem;
+  }
 }

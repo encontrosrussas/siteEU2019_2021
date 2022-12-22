@@ -41,6 +41,25 @@ section .quadrado {
   padding-bottom: 18rem;
 }
 
+.container.certificados{
+  display: flex;
+  align-items: flex-start;
+}
+
+.container.certificados a{
+  text-decoration: none;
+  color: var(--cor-roxa);
+  font-weight: 800;
+  border-left: 4px solid var(--cor-roxa);
+  margin-left: 1rem;
+  padding-left: .5rem;
+  transition: .3s;
+} 
+
+.container.certificados a:hover{
+  filter: brightness(120%);
+} 
+
 .container .rotulo {
   border-left: 8px solid var(--cor-verde);
   padding-left: 2rem;
