@@ -1,13 +1,19 @@
 {% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
-{% block title %}Certificados{% endblock %}
-{% block css %}
-<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/editais.css">
-<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/inscricao.css">
-<link rel="stylesheet" href="{{ base_url() }}/assets/templates/2022/css/noticia-data.css">
-{% endblock %}
-{% block content %}
+{% block title %}Certificados{% endblock %} {% block css %}
+<link
+    rel="stylesheet"
+    href="{{ base_url() }}/assets/templates/2022/css/editais.css"
+/>
+<link
+    rel="stylesheet"
+    href="{{ base_url() }}/assets/templates/2022/css/inscricao.css"
+/>
+<link
+    rel="stylesheet"
+    href="{{ base_url() }}/assets/templates/2022/css/noticia-data.css"
+/>
+{% endblock %} {% block content %}
 <main>
-
     <div class="titulo">
         <section>
             <div class="quadrado"></div>
@@ -19,26 +25,60 @@
 
     <section class="container certificados">
         <div class="rotulo">
-            <h2>Certificados de apresentação de resumos, orientações e de avaliadores.</h2>
+            <h2>
+                Certificados de apresentação de resumos, orientações e de
+                avaliadores.
+            </h2>
         </div>
-        <a href="http://sysprppg.ufc.br/eu/2022/index.php/certificados-russas" target="_blank">Certificados no site
-            geral</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHgu8iKUGkv2iJNElwbEszyuO70-KCavskGXFYZ7qAtuPb6g/formrestricted"
-            target="_blank">Demais certificados de apresentação de Resumos</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_lUU-DJfoebNuyhRuQA03x2iVqoRr083z22gAMo3MJPEabQ/formrestricted"
-            target="_blank">Certificados de premiação</a>
+        <a
+            href="http://sysprppg.ufc.br/eu/2022/index.php/certificados-russas"
+            target="_blank"
+            >Certificados no site geral</a
+        >
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdHgu8iKUGkv2iJNElwbEszyuO70-KCavskGXFYZ7qAtuPb6g/formrestricted"
+            target="_blank"
+            >Demais certificados de apresentação de Resumos</a
+        >
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe_lUU-DJfoebNuyhRuQA03x2iVqoRr083z22gAMo3MJPEabQ/formrestricted"
+            target="_blank"
+            >Certificados de premiação</a
+        >
         <div class="rotulo">
             <h2>Certificados de participação</h2>
-            <p>Faça a requisição do certificado preenchendo o formulário para receber o certificado no email de
-                preenchimento.
+            <p>
+                Faça a requisição do certificado preenchendo o formulário para
+                receber o certificado no email de preenchimento.
             </p>
         </div>
-        <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd4u3noCqeJ7V3EcZYmb6VgmNgHkRIX1EU7Yzy1xtcEKH1qpw/formResponse"
-            target="_blank">Apresentação de Workshop</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdr9Pw1qJ_evKhzvmbGBE3J88M-W6ELPrYIg07psg30uoZGkw/viewform"
-            target="_blank">Comissão Estudantil</a>
-        <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdo8HQVALtolcZTY0DVPYzrddeevA2rURVMsHhd5hb4zMk5Xg/formResponse"
-            target="_blank">Participação como Ouvinte em Workshop</a>
+        <a
+            href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd4u3noCqeJ7V3EcZYmb6VgmNgHkRIX1EU7Yzy1xtcEKH1qpw/formResponse"
+            target="_blank"
+            >Apresentação de Workshop</a
+        >
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdr9Pw1qJ_evKhzvmbGBE3J88M-W6ELPrYIg07psg30uoZGkw/viewform"
+            target="_blank"
+            >Comissão Estudantil</a
+        >
+        <a
+            href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdo8HQVALtolcZTY0DVPYzrddeevA2rURVMsHhd5hb4zMk5Xg/formResponse"
+            target="_blank"
+            >Participação como Ouvinte em Workshop</a
+        >
+        <div class="rotulo">
+            <h2>Certificados da comissão científica</h2>
+            <p>
+                Faça a requisição do certificado preenchendo o formulário para
+                receber o certificado no email de preenchimento.
+            </p>
+        </div>
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfArR-F1DUHM4snMBVqh_3syU8LGyYvrFCSwiLXRE6QAv3h7w/viewform"
+            target="_blank"
+            >Comissão científica</a
+        >
     </section>
 </main>
 {% endblock content %}
