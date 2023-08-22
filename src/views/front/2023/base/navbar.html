@@ -1,0 +1,82 @@
+<div class="px-4 pt-10 sm:py-10 bg-mauvelous-500">
+    <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
+        <div class="flex items-center justify-between">
+            <div class="flex flex-row space-x-4 lg:space-x-8">
+                <div>
+                    <a href="{{ base_url() }}">
+                        <img class="h-8 sm:h-12 md:h-7 lg:h-10 xl:h-12" src="{{ base_url() }}/assets/templates/2021/dist/images/logo_eu.svg" alt="" />
+                    </a>
+                </div>
+                <div>
+                    <a href="{{ base_url() }}">
+                        <img class="h-8 sm:h-12 md:h-7 lg:h-10 xl:h-12" src="{{ base_url() }}/assets/templates/2021/dist/images/logo_ufrussas.svg" alt="" />
+                    </a>
+                </div>
+            </div>
+            <div class="inline-block cursor-pointer md:hidden" id="hamburger" onClick="toggleNavbar()">
+                <div class="w-8 mb-2 bg-maire-500" style="height: 2px;"></div>
+                <div class="w-8 mb-2 bg-maire-500" style="height: 2px;"></div>
+                <div class="w-8 bg-maire-500" style="height: 2px;"></div>
+            </div>
+        </div>
+        <div class="hidden md:flex md:flex-row md:space-x-4 lg:space-x-6 xl:space-x-8 md:items-center">
+            <a href="{{ base_url() }}" class="inline-block py-1 mr-6 font-semibold text-dark uppercase md:py-0 md:mr-0 md:text-base lg:text-lg hover:text-maire-500">
+                Início
+            </a>
+            <a href="{{ base_url() }}#noticias" class="inline-block px-4 py-2 font-semibold text-dark uppercase md:py-0 md:px-0 md:text-base lg:text-lg hover:text-maire-500">
+                Notícias
+            </a>
+            <a href="{{ base_url() }}#cronograma" class="inline-block px-4 py-2 font-semibold text-dark uppercase md:py-0 md:px-0 md:text-base lg:text-lg hover:text-maire-500">
+                Cronograma
+            </a>
+            <div class="edicoes-dropdown">
+                <button class="flex items-center px-4 py-2 font-semibold text-dark uppercase focus:outline-none md:py-0 md:px-0 md:text-base lg:text-lg">
+                    Edições
+                    <i class="ml-2 fas fa-chevron-down fa-xs"></i>
+                </button>
+
+                <div class="absolute inset-x-0 font-semibold border-2 border-dark rounded edicoes-grupo-link bg-mauvelous-500">
+                    {% for ano in anos %}
+                    <a href="{{base_url()}}/ano/{{ano.id}}" class="p-1 text-dark md:text-base lg:text-lg edicoes-link hover:bg-opacity-30 hover:bg-chocolate-500">
+                        {{ano.nome_ano}}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="edicoes-dropdown">
+                <button class="flex items-center px-4 py-2 font-semibold text-dark uppercase focus:outline-none md:py-0 md:px-0 md:text-base lg:text-lg">
+                    Acesso rápido
+                    <i class="ml-2 fas fa-chevron-down fa-xs"></i>
+                </button>
+
+                <div class="absolute inset-x-0 font-semibold border-2 border-dark rounded edicoes-grupo-link bg-mauvelous-500">
+                    <a href="{{ base_url() }}/editais" class="p-1 text-dark md:text-base lg:text-lg edicoes-link hover:bg-opacity-30 hover:bg-chocolate-500">
+                        Edital
+                    </a>
+                    <a href="{{ base_url() }}/links-uteis" class="p-1 text-dark md:text-base lg:text-lg edicoes-link hover:bg-opacity-30 hover:bg-chocolate-500">
+                        Links úteis
+                    </a> 
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="hidden mt-3 bg-transparent" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="{{ base_url() }}" class="block px-3 py-2 text-base font-medium text-dark uppercase focus:text-maire-500 hover:text-maire-500">
+                Início
+            </a>
+            <a href="{{ base_url() }}#noticias" class="block px-3 py-2 text-base font-medium text-dark uppercase focus:text-maire-500 hover:text-maire-500">
+                Notícias
+            </a>
+            <a href="{{ base_url() }}#cronograma" class="block px-3 py-2 text-base font-medium text-dark uppercase focus:text-maire-500 hover:text-maire-500">
+                Cronograma
+            </a>
+            <a href="{{ base_url() }}/editais" class="block px-3 py-2 text-base font-medium uppercase border-2 rounded-full focus:border-white focus:text-white hover:text-white text-maire-500 border-maire-500">
+                Edital
+            </a>
+        </div>
+    </div>
+</div>
