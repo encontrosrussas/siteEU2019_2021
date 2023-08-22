@@ -1,0 +1,58 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<!-- Content -->
+    {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+
+    <div class="h-full px-4 bg-whitesmoke-500">
+        <div
+            class="flex flex-col max-w-full py-5 space-y-10 md:py-14 sm:py-8 xl:py-16 lg:space-y-0 lg:space-x-10 lg:max-w-6xl lg:mx-auto lg:flex-row lg:justify-between">
+            <div class="w-full lg:w-3/4" id="corpo-noticia">
+                <h1 class="inline-block text-xl font-bold md:text-2xl lg:text-3xl text-maire-500">
+                    {{noticia.titulo}}
+                </h1>
+                <br>
+                <p class="inline-block my-2 text-base md:text-lg xl:text-xl text-maire-300">
+                    {{noticia.data|data('l')|capitalize}}, {{noticia.data|data('d')}} de {{noticia.data|data('F')|capitalize}} de
+                    {{noticia.data|data('Y')}}, às {{noticia.hora|data('H:i')}}
+                </p>
+
+                <div class="mt-6 md:mt-8 lg:mt-12">
+                    {% if noticia.imagem %}
+                    <div class="mb-3 text-left lg:text-center">
+                        <img class="w-2/3" src="{{[base_url(),'/uploads/noticias/', noticia.imagem]|join}}"
+                            alt="{{ (noticia.imagem_descricao) ? noticia.imagem_descricao : '' }}">
+                    </div>
+                    {% endif %}
+                    <div class="text-base text-left xl:text-lg font-display text-maire-500">
+                        {{noticia.conteudo|raw}}
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-full lg:w-1/4" id="outras-noticia">
+                <div class="mb-2 border-b-2 lg:mb-4 xl:mb-5 border-chocolate-400">
+                    <h1 class="text-xl font-semibold uppercase text-chocolate-500 md:text-2xl lg:text-xl xl:text-2xl">
+                        Últimas Notícias
+                    </h1>
+                </div>
+
+                <div class="flex flex-col space-y-3 lg:space-y-5 xl:space-y-7">
+                    {% if noticias %}
+                        {% for noti in noticias%}
+                            <a href="{{base_url()}}/noticia/{{noti.id}}"
+                                class="mt-2 text-center border-2 rounded group border-chocolate-400">
+                                <div class="w-full h-64 bg-center bg-no-repeat bg-cover rounded-t md:h-72 lg:h-28 xl:h-40"
+                                    style="background-image: url({{ (noti.imagem) ? [base_url(),'/uploads/noticias/', noti.imagem]|join : [base_url(),'/assets/templates/2020/dist/images/banner_noticia_padrao.svg']|join}})"
+                                    alt="{{ (noti.imagem_descricao) ? noti.imagem_descricao : '' }}"></div>
+                                <h1
+                                    class="inline-block px-4 py-3 text-xl font-medium transition duration-150 ease-in-out fade-hover lg:text-base xl:text-lg text-chocolate-500 group-hover:text-chocolate-400 group-focus:text-chocolate-400">
+                                    {{noti.titulo}}
+                                </h1>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
