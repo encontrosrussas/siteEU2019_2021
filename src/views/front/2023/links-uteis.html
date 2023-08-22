@@ -1,0 +1,122 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Links úteis{% endblock %} {% block content %}
+<!-- Content -->
+{% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+<div class="h-full px-4 bg-whitesmoke-500">
+    <div
+        class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between"
+    >
+        <div class="py-5 md:py-14 sm:py-8 xl:py-16">
+            <h1
+                id="titulo"
+                class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+            >
+                Links úteis
+            </h1>
+            <div id="conteudo" class="xl:text-xl text-maire-500">
+                <h2
+                    style="
+                        margin-top: 90px;
+                        margin-bottom: 40px;
+                        font-size: 30px;
+                    "
+                    class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+                >
+                    MODELOS PARA ELABORAÇÃO DOS RESUMOS
+                </h2>
+                <div class="flex flex-col space-y-12">
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Simples (blind review) em ODT
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2023_ca5433c2b66ab11.odt"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Simples (blind review) em DOCX
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2023_41f32a005282f5c.docx"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Simples (completo) em ODT
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/modelo%20de%20resumo%20simples%20-%20eu2023_b55b576ff81720b.odt"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Expandido (completo) em ODT
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/modelo%20de%20resumo%20expandido%20-%20eu2023_35c9350e70c4983.odt"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Expandido (completo) em DOCX
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/modelo%20de%20resumo%20expandido%20-%20eu2023_7c6c57cfa23b3c4.docx"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div>
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500"
+                        >
+                            Resumo Expandido (completo) em TEX (pasta zipada)
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2023/tex_template_eu_d06203db8a55550.rar"
+                            target="_blank"
+                            class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Inscreva-se{% endblock %} {% block content %}
+<!-- Content -->
+{% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+
+<div class="h-full px-4 bg-whitesmoke-500" id="inscreva_se">
+    <div
+        class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between"
+    >
+        <div class="py-5 md:py-14 sm:py-8 xl:py-16">
+            <h1
+                id="titulo"
+                class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+            >
+                Como fazer a inscrição no EU2023?
+            </h1>
+
+            <div class="xl:text-xl text-maire-500">
+                <p
+                    class="inline-block mt-12 text-base text-left xl:text-lg font-display"
+                >
+                    Os resumos serão submetidos no <strong>SARA</strong> do
+                    Sistema Guardião, módulo de submissão, avaliação e revisão
+                    de trabalhos criado pelo Núcleo de Soluções em Software
+                    (N2S) do Campus da UFC em Russas. Caso seja o seu primeiro
+                    acesso, será preciso cadastrar-se (ver passo a passo) antes
+                    para acessar o Sistema. Após isso, deve-se clicar no ícone
+                    do SARA.
+                    <br />
+                    <br />
+                    Na página inicial do <strong>SARA</strong>, o(a) autor(a)
+                    deverá selecionar o evento
+                    <strong>VI ENCONTROS UNIVERSITÁRIOS</strong>, para ter
+                    acesso às trilhas, ou seja, às modalidades presentes no
+                    evento. Cada uma terá duas opções de resumo:
+                    <strong>SIMPLES</strong> e <strong>EXPANDIDO</strong>.
+                    <br />
+                    <br />
+                    O(a) autor(a) deverá escolher qual trilha submeter o resumo
+                    e clicar, observando as orientações de cada modalidade,
+                    cujas descrições encontram-se nos itens 1.1 a 1.11 do
+                    edital.
+                    <!-- <br/> -->
+                    <!-- <br/> -->
+                    <!-- Para enviar o trabalho, o participante deverá preencher os dados cadastrais do formulário eletrônico dos <strong>V ENCONTROS UNIVERSITÁRIOS DO CAMPUS DA UFC EM RUSSAS</strong> disponível no Sistema Guardião. Após
+                            o cadastro no Sistema Guardião, a submissão deverá, então, ser feita no <strong>Módulo SARA</strong>, acessado a partir do Sistema Guardião, e escolher obrigatoriamente a modalidade na qual participará, de acordo
+                            com o tipo de projeto ao qual está vinculado, informando a forma de apresentação e a área de conhecimento que julgar mais adequada para a avaliação do seu trabalho.
+                            <br />
+                            <br />
+                            O prazo para as submissões de trabalhos será a partir das <strong>8h</strong> do dia <strong>23/11/2020</strong> até as <b>23:59h</b> do dia <b>04/01/2023</b>, conforme descrito no cronograma constante no item 6
+                            deste edital. A submissão será realizada, exclusivamente, por meio do preenchimento do formulário eletrônico no endereço
+                            <a href="http://n2s.russas.ufc.br/guardiao" target="_blank">http://n2s.russas.ufc.br/guardiao</a>, seguindo, rigorosamente, as orientações descritas no item 2.5 deste edital. <br />
+                            <br />
+                            <strong>Não serão aceitas submissões fora do prazo.</strong>
+                            <br />
+                            <br />
+                            Poderão submeter trabalhos os alunos regularmente matriculados nos cursos de graduação do Campus da UFC em Russas, sob orientação de servidores docentes e/ou técnico-administrativos. Na modalidade Práticas
+                            Docentes no Ensino Superior, poderão se inscrever apenas docentes efetivos ou substitutos da Universidade Federal do Ceará, sendo dispensado o papel do orientador. Os trabalhos submetidos deverão seguir os
+                            seguintes tipos de submissão:
+                            <br />
+                            <br />
+                            <strong>Resumo Expandido ou Resumo Simples.</strong>
+                            Em ambos os casos deve ser submetido pelo autor principal, e com supervisão e anuência do orientador do projeto, em português. -->
+                </p>
+                <div class="my-12">
+                    <a
+                        href="http://n2s.russas.ufc.br/guardiao/"
+                        target="_blank"
+                        class="px-5 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white xl:text-2xl border-chocolate-500 text-chocolate-500"
+                    >
+                        Site guardião
+                    </a>
+                </div>
+                <div class="my-12">
+                    <a
+                        href="http://www.russas.ufc.br/uploads/docs2023/manual%20do%20usu%C3%A1rio%20do%20sistema%20guardi%C3%A3o_d3e5caa54d3da9e.pdf"
+                        target="_blank"
+                        class="px-5 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white xl:text-2xl border-chocolate-500 text-chocolate-500"
+                    >
+                        Passo a Passo para acessar o Sistema Guardião ( PDF )
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
