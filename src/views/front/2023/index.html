@@ -1,127 +1,296 @@
 {% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
 {% block title %}Inicio{% endblock %}
-{% block content %}
-        <!-- Content -->
-        <div
-            class="flex flex-col bg-right-bottom bg-no-repeat sm:min-h-screen sm:bg-size-25 md:bg-size-30 lg:bg-size-4/5 bg-mauvelous-500 sm:bg-formas">
-            {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
-            <div class="landpage-home-container">
-                <div class="landpage-home">
-                    <div>
-                        <img src="{{ base_url() }}/assets/templates/2023/dist/images/assinatura_eu.svg"
-                            alt="Assinatura EU 2023" />
-                    </div>
-                    <a href="{{ base_url() }}/inscrevase" class="inscrevase">
-                        Inscreva-se
-                    </a>
-                </div>
+    {% block content %}
+    <div class="container">
+        {% if noticias %}
+        <div class="space-30"></div>
+        <div class="row">
+            <div class="col-lg-1 hidden-xs hidden-sm hidden-md esp-sup">
+                <button type="button" role="presentation"
+                    class="glyphicon glyphicon-chevron-left btn go go-left">
+                </button>
             </div>
-        </div>
-        <!-- Notícias -->
-        <div class="w-full py-14 bg-smalt-500" id="noticias">
-            {% if noticias %}
-            <div class="w-9/12 h-full mx-auto bg-transparent sm:w-4/5 md:w-10/12 xl:w-10/12" id="carousel-noticias">
-                {% for noticia in noticias%}
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 noticia-item-spacing">
-                    <div class="h-32 border-2 border-dark rounded-t xl:h-40 bg-smalt-500 noticia-img" style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}');"></div>
-                    <div class="h-32 bg-white px-2 text-center border-b-2 border-l-2 border-r-2 border-dark rounded-b xl:h-40 xl:py-1 sm:text-base md:text-base lg:text-sm xl:text-base bg-smalt-500">
-                        <div class="flex items-center justify-center h-full">
-                            <a class="font-bold text-dark hover:text-dark" href="{{base_url()}}/noticia/{{noticia.id}}">
-                                {{noticia.titulo}}
-                            </a>
+            <div class="col-lg-10">
+                <div class="owl-carousel carousel-noticias">
+                    {% for noticia in noticias%}
+                    <div class="panel panel-default">
+                        <a href="{{base_url()}}/noticia/{{noticia.id}}#noticia">
+                        <div class="panel-heading">
+                            <img src="{{[base_url(),'/assets/img/NOTICIAS.svg']|join}}" alt="" class="img-responsive">
                         </div>
+                        <div class="panel-body">
+                            <h5 class="titulo-noticia center-block text-center">{{noticia.titulo}}</h5>
+                        </div>
+                        </a>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-            {% else %}
-            <div class="flex items-center justify-center h-32">
-                <span class="text-2xl font-semibold text-white sm:text-4xl">
-                    Não há notícias!
-                </span>
+            <div class="col-lg-1 hidden-xs hidden-sm hidden-md esp-sup">
+                <button type="button" role="presentation"
+                    class="glyphicon glyphicon-chevron-right btn btn-default go go-right">
+                </button>
             </div>
-            {% endif %}
         </div>
-
-        <!-- Cronograma -->
-        <div id="cronograma" class="flex flex-col min-h-screen">
-            <div class="self-center w-1/2 mt-0">
-                <img src="{{ base_url() }}/assets/templates/2023/dist/images/bg_cronograma.svg" alt="2023" />
+        <a href="{{base_url()}}/noticias#noticias">
+            <div class="text-right mais">Ver todas as notícias<i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
-
-            <div class="flex flex-col flex-1 py-4 sm:py-10 justify-evenly">
-                {% if calendario %}
-                <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-chocolate-500">
-                    Cronograma
+        </a>
+        {% else %}
+        <div class="space"></div>
+        <div class="text-center">
+            <h3>Não há Noticias!</h3>
+        </div>
+        <div class="space"></div>
+        {% endif %}
+    </div>
+    <div class="intro" id="encontros">
+        <div class="container">
+            <div class="space-100"></div>
+            <div class="tim-title text-center">
+                <h1>Sobre o evento</h1>
+            </div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <p class="testantotesto">Os Encontros Universitários (EU) e a Feira de Profissões (FP) do 
+                    Campus da UFC de Russas são anualmente realizados no Campus da UFC na cidade de Russas, 
+                    Estado do Ceará.  A cada ano, a organização dos eventos fica a cargo de uma comissão que 
+                    é nomeada pela própria direção do Campus.  Em 2019, os dois eventos acontecerão  entre os dias 
+                    06 e 08 de novembro e terá como tema  “da Universidade para o mercado de trabalho: ações de inovação
+                    e empreendedorismo”.  Os Encontros possuem as seguintes modalidades: Iniciação Científica, Iniciação Acadêmica,
+                    Projetos de Extensão, Aprendizagem Cooperativa, Apoio à Projetos de Graduação, Iniciação à Docência e Práticas Docentes no Ensino Superior.
+                </p>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+    <div class="objetivos" id="objetivos">
+        <div class="container">
+            <div class="space"></div>
+            <div class="tim-title text-center">
+                <h1>Objetivos</h1>
+            </div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <p class="testantotesto">
+                        Ao longo dos últimos anos, a tecnologia tem sido uma importante 
+                        aliada no desenvolvimento de grandes negócios, tendo possibilitado 
+                        a criação e evolução de empresas startups, que são empresas de baixo 
+                        custo que buscam encontrar soluções para diversos problemas práticos 
+                        em diversas áreas. Assim, os Encontros Universitários tem como objetivo 
+                        promover a troca de experiências entre os estudantes, vivenciadas em atividades 
+                        de ensino, pesquisa e extensão, favorecendo, assim, a criação de novas ideias e, 
+                        ao mesmo tempo, promovendo as ideias já implementadas.
+                </p>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+    <!--coisa nova aqui-->
+    <div class="missao" id="missao">
+        <div class="container">
+            <div class="space"></div>
+            <div class="tim-title text-center">
+                <h1>Missão</h1>
+            </div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <p class="testantotesto">
+                    Promover a troca de experiências entre estudantes, principalmente as vivenciadas em atividades de ensino, pesquisa e extensão.
+                </p>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+    <div class="visao" id="encontros">
+        <div class="container">
+            <div class="space-100"></div>
+            <div class="tim-title text-center">
+                <h1>Visão</h1>
+            </div>
+            <div class="text-justify tim-title text-center .text-nowrap">
+                <p class="testantotesto">
+                    Favorecer o desenvolvimento de novas ideias que resolvam problemas da sociedade e propiciem o desenvolvimento regional e, ao mesmo tempo, divulgar as ações propostas e desenvolvidas pela comunidade acadêmica.
+                </p>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+    <div class="valores" id="encontros">
+            <div class="container">
+                <div class="space"></div>
+                <div class="tim-title text-center">
+                    <h1>Valores</h1>
                 </div>
-
-                <div class="timeline js-timeline">
-                    <div class="mx-auto sm:w-10/12 md:w-11/12 lg:w-3/4 timeline-container">
+                <div class="text-justify tim-title text-center .text-nowrap">
+                    <p class="testantotesto">
+                        Comprometimento com o desenvolvimento tecnológico e a aprendizagem;
+                        Inovação, pois é inovando que se promove soluções que atendam às necessidades da  sociedade atual, a qual está em constante transformação;
+                        Sustentabilidade, as soluções propostas para a sociedade atual não podem comprometer o desenvolvimento de soluções para problemas da sociedade no futuro;
+                        Acolhimento, inclusão e respeito aos seres vivos e à natureza
+                    </p>
+                </div>
+                <div class="space"></div>
+            </div>
+    </div>
+    <!--coisa nova aqui-->
+    <div class="cronograma" id="cronograma">
+        <div class="space-30"></div>
+        <div class="container">
+            <div class="tim-title text-center">
+                <h1>Calendário</h1>
+            </div>
+            <div class="timeline">
+                <div class="timeline__wrap">
+                    <div class="timeline__items">
                         {% for dia in calendario %}
-                        <div class="timeline-block">
-                            <div class="timeline-icon {{ dia.concluido ? 'disabled' : 'active' }}">
-                                <i class="{{dia.icone|raw}} fa-lg"></i>
-                            </div>
-
-                            <div class="timeline-content">
-                                <h2>{{dia.data|raw}}</h2>
-                                <p class="py-1 text-base text-maire-500">
-                                    {{dia.descricao|raw}}
-                                </p>
-
-                                {% if dia.link %}
-                                <div class="flex items-center justify-between">
-                                    <a href="{{dia.link|raw}}" class="timeline-link">Clique aqui</a>
-                                </div>
-                                {% endif %}
+                        <div class="timeline__item">
+                            <div class="timeline__content">
+                                <h2 class="azul-timeline">{{dia.data|raw}}</h2>
+                                <p>{{dia.descricao|raw}}</p>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
-                {% else %}
-                <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-chocolate-500">
-                    Cronograma em breve!
-                </div>
-                {% endif %}
             </div>
         </div>
-
-        <!-- Depoimentos -->
-        <div id="depoimento" class="flex min-h-screen bg-left bg-no-repeat bg-contain bg-maire-500 bg-depoimento">
-            <div class="background"><img src="{{ base_url() }}/assets/templates/2023/dist/images/bkgd_depoimento.png" alt="background" /></div>
-            <div class="flex flex-col items-end content-center justify-center w-full lg:px-12 xl:px-12 depoimento">
-                <div class="flex flex-col px-5 space-y-12 text-right xl:px-10 xl:p-0 xl:w-3/4">
-                    <div class="text-2xl text-dark font-extrabold uppercase sm:text-3xl lg:text-4xl">
-                        Depoimento
+        <div class="space-30"></div>
+    </div>
+    <div class="programacao" id="programacao">
+        <div class="container">
+            <div class="space"></div>
+            <div class="tim-title text-center cor-tit">
+                <h1>Programação</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/apresentacoes#apresentacoes">
+                        <h2 class="corTituloCard">Apresentações</h2>
+                        <img src="{{base_url()}}/assets/img/presentation.png" alt="Figura Menu de Apresentações" class="img-responsive imgCardAti">
+                        <a href="{{base_url()}}/apresentacoes#apresentacoes" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
-                    
-                    {% if depoimento %}
-                    <div class="text-lg font-medium text-dark sm:text-2xl lg:text-2xl xl:text-3xl">
-                        <div class="depoimento">
-                            {{depoimento.depoimento|raw}}
-                        </div><!--.depoimento-->
-                    </div> 
-
-                    <div class="text-lg font-extrabold text-dark sm:text-2xl lg:2xl xl:text-3xl">
-                        {{depoimento.nome_autor|raw}}
+                </div>
+                <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/mini_cursos#mini_cursos">
+                        <h2 class="corTituloCard">Minicursos</h2>
+                        <img src="{{base_url()}}/assets/img/training.png" alt="Figura Menu de Minicursos" class="img-responsive imgCardAti">
+                        <a href="{{base_url()}}/mini_cursos#mini_cursos" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
-                    {% else %}
-                    <div class="text-lg font-medium text-dark sm:text-2xl lg:text-2xl xl:text-3xl">
-                        <div class="depoimento">
-                            Não há depoimentos no momento!
-                        </div>
-                        <!--.depoimento-->
+                </div>
+                <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/oficinas#oficinas">
+                        <h2 class="corTituloCard">Oficinas</h2>
+                        <img src="{{base_url()}}/assets/img/elearning.png" alt="Figura Menu de Oficinas" class="img-responsive imgCardAti">
+                        <a href="{{base_url()}}/oficinas#oficinas" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
                     </div>
-                    {% endif %}
+                </div>
+                <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/palestras#palestras">
+                        <h2 class="corTituloCard">Palestras</h2>
+                        <img src="{{base_url()}}/assets/img/lecture.png" alt="Figura Menu de Palestras" class="img-responsive imgCardAti">
+                        <a href="{{base_url()}}/palestras#palestras" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                    </div>
                 </div>
             </div>
+            <div class="space"></div>
         </div>
-
-        <!-- Carousel de Fotos -->
-        <div id="carousel-fs" class="carousel-fs">
-            {% for numeroFoto in 1..11 %}
-                <div class="carousel-cell" style="background-image: url({{[base_url(), "/assets/templates/2020/dist/carousel/fotos/", numeroFoto, ".jpg" ]|join}})"></div>
-            {% endfor %}
+    </div>
+    <div class="artistica" id="artistica">
+        <div class="container">
+            <div class="space"></div>
+            <div class="tim-title text-center cor-tit">
+                <h1>Mostra Artística</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/palco_mix#palco_mix">
+                        <h2 class="corTituloCard">Shows</h2>
+                        <img src="{{base_url()}}/assets/img/palcoMix.png" alt="Figura Menu de Shows" class="img-responsive imgCardAti">
+                        <a href="{{base_url()}}/palco_mix#palco_mix" class="btn btn-secondary active color-but botaoposicao" role="button" aria-pressed="true">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/mostra_audiovisual#mostra_audiovisual">
+                        <h2 class="corTituloCard">Sessão Pipoca</h2>
+                        <img src="{{base_url()}}/assets/img/mostraVisual.png" alt="Figura Menu Sessão Pipoca" class="img-responsive imgCardMostra">
+                        <a href="{{base_url()}}/mostra_audiovisual#mostra_audiovisual" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/feira_de_artesanato#feira_de_artesanato">
+                        <h2 class="corTituloCard">Espaço Pet</h2>
+                        <img src="{{base_url()}}/assets/img/pet.png" alt="Figura Menu Espaço Pet" class="img-responsive imgCardMostra">
+                        <a href="{{base_url()}}/feira_de_artesanato#feira_de_artesanato" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                    <div class="caixa">
+                        <a href="{{base_url()}}/espaco_gastronomico#espaco_gastronomico">
+                        <h2 class="corTituloCard">Feira Mix</h2>
+                        <img src="{{base_url()}}/assets/img/feiraArtesanato.png" alt="Figura Menu Feira Mix" class="img-responsive imgCardMostra">
+                        <a href="{{base_url()}}/espaco_gastronomico#espaco_gastronomico" class="btn btn-secondary active color-but esp-but-mostra" role="button" aria-pressed="true">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space"></div>
         </div>
-{% endblock content %}
+    </div>
+    <div id="carousel">
+        <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="7"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="8"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner inteiro">
+                <div class="item active">
+                    <img src="{{base_url()}}/assets/img/img1.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img2.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img3.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img4.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img5.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img6.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img7.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+                <div class="item">
+                    <img src="{{base_url()}}/assets/img/img8.jpg" class="img-fluid my-responsive" alt="Imagem do Slide">
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" data-target="#carousel-example-generic" data-slide="prev">
+                <span class="fa fa-angle-left fa-4x"></span>
+            </a>
+            <a class="right carousel-control" data-target="#carousel-example-generic" data-slide="next">
+                <span class="fa fa-angle-right fa-4x"></span>
+            </a>
+        </div>
+    </div> <!-- end carousel -->
+    {% endblock %}
+{% block js %}
+    <script src="{{base_url()}}/assets/js/inicio.js"></script>
+{% endblock %}
