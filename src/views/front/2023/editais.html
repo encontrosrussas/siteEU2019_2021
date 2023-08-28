@@ -1,56 +1,47 @@
 {% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
-{% block title %}Editais{% endblock %}
+{% block title %}Edital{% endblock %}
 {% block content %}
-    <div class="pag-noticias">
-        <div class="container" id="editais">
-            <div class="space-30"></div>
-            <div class="tim-title text-center">
-                <h1>Editais</h1>
-            </div>
-            <div class="space-30"></div>
-            <div class="text-justify tim-title text-center .text-nowrap">
-                <ol>
-                    {% if editais %}
-                    {% for edital in editais %}
-                    <li class="link-list__item">
-                        <article>
-                            <header class="text-left">
-                                <a href="{{base_url()}}/edital/{{edital.id}}#edital">
-                                <h1 class="link-list__title">{{edital.nome}}</h1>
-                                <h2 class="link-list__subtitle">{{edital.tipo}}</h2>
-                                <a href="{{base_url()}}/edital/{{edital.id}}#edital">
-                                    <div class="text-right color-black">Ver Edital<i class="fa fa-chevron-right"></i>
-                                    </div>
+        <!-- Content -->
+        {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+        <div class="h-full px-4 bg-whitesmoke-500">
+            <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
+                <div class="py-5 md:py-14 sm:py-8 xl:py-16">
+                    <h1 id="titulo" class=" text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500">
+                        Editais
+                    </h1>
+                    <div id="conteudo" class="xl:text-xl text-maire-500">
+                        {% if editais %}
+                        <div class="flex flex-col space-y-12">
+                            {% for edital in editais %}
+                            <div>
+                                <p class="text-xl font-semibold uppercase text-maire-500">{{ edital.nome }} - {{ edital.tipo }}</p>
+                                {% if edital.arquivo %}
+                                <a
+                                    href="{{[base_url(),'/uploads/editais/', edital.arquivo]|join}}"
+                                    target="_blank"
+                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                                >
+                                    Clique aqui
                                 </a>
-                            </header>
-                        </article>
-                    </li>
-                    {% endfor %}
-                    {% else %}
-                    <div class="space-30"></div>
-                    <li class="link-list__item">
-                        <article>
-                            <header class="text-left">
-                                <h1 class="link-list__title">Editais em breve!</h1>
-                                
-                            </header>
-                        </article>
-                    </li>
-                    {% endif %}
-                </ol>
+                                {% else %}
+                                {% if edital.link %}
+                                <a
+                                    href="{{ edital.link }}"
+                                    target="_blank"
+                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
+                                >
+                                    Clique aqui
+                                </a>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p class="text-xl font-semibold uppercase text-maire-500">Não há editais no momento!</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-        <nav class="paginate">
-            <ul class="pagination">
-                {% if paginas %}
-                {% for pag in range(1, paginas)%}
-                <li class="{{ pag == pagina_atual ? 'active' : '' }}">
-                    <a href="{{base_url()}}/editais/{{pag}}#editais">{{pag}}</a>
-                </li>
-                {% endfor %}
-                {% endif %}
-            </ul>
-        </nav>
-        <div class="space-30"></div>
-    </div>
-{% endblock %}
+{% endblock content %}

@@ -124,6 +124,14 @@ img {
     --tw-bg-opacity: 1;
     background-color: #e9d3bc;
 }
+.bg-secondary-color {
+    --tw-bg-opacity: 1;
+    background-color: #ef9a1f;
+}
+.bg-tertiary-color {
+    --tw-bg-opacity: 1;
+    background-color: #5d6529;
+}
 .bg-red-500 {
     --tw-bg-opacity: 1;
     background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
@@ -134,7 +142,7 @@ img {
 }
 .bg-smalt-500 {
     --tw-bg-opacity: 1;
-    background-color: #3ac1de;
+    background-color: #3459a3;
 }
 .bg-whitesmoke-500 {
     --tw-bg-opacity: 1;
@@ -338,6 +346,13 @@ img {
     font-size: 1.5rem;
     line-height: 2rem;
 }
+.text-assinatura-eu {
+    color: #3e1718;
+    font-size: 2.625rem;
+    line-height: normal;
+    font-weight: 700;
+    font-family: Fraunces;
+}
 .leading-tight {
     line-height: 1.25;
 }
@@ -499,6 +514,10 @@ img {
 .text-chocolate-500 {
     --tw-text-opacity: 1;
     color: #ed5e63;
+}
+.text-primary-color-500 {
+    --tw-text-opacity: 1;
+    color: #3e1718;
 }
 .group:hover .group-hover\:text-chocolate-400 {
     --tw-text-opacity: 1;
@@ -977,7 +996,7 @@ https://flickity.metafizzy.co
 .timeline-container:before {
     content: "";
     --tw-bg-opacity: 1;
-    background-color: #ed5e63;
+    background-color: #3e1718;
     height: 100%;
     position: absolute;
     left: 1.25rem;
@@ -1014,7 +1033,7 @@ https://flickity.metafizzy.co
     }
 }
 .timeline-icon.active {
-    background-color: #ed5e63;
+    background-color: #3e1718;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 .timeline-icon.active,
@@ -1031,9 +1050,9 @@ https://flickity.metafizzy.co
 .timeline-icon.disabled {
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
     --tw-border-opacity: 1;
-    border-color: #ed5e63;
+    border-color: #3e1718;
     border-width: 4px;
-    color: #ed5e63;
+    color: #3e1718;
 }
 .timeline-arrow-top {
     position: relative;
@@ -1070,17 +1089,17 @@ https://flickity.metafizzy.co
 .timeline-content h2 {
     line-height: 1.75rem;
     --tw-text-opacity: 1;
-    color: #ed5e63;
+    color: #3e1718;
 }
 .timeline-content .timeline-link {
     --tw-border-opacity: 1;
-    border-color: #ed5e63;
+    border-color: #3e1718;
     border-width: 1px;
     font-size: 1.125rem;
     margin-top: 0.75rem;
     padding: 0.25rem 0.5rem;
     text-transform: uppercase;
-    box-shadow: 4px 4px 0 0 #e85417;
+    box-shadow: 4px 4px 0 0 #3e1718;
 }
 .timeline-content .timeline-link:focus,
 .timeline-content .timeline-link:hover {
@@ -1294,7 +1313,7 @@ https://flickity.metafizzy.co
         margin-bottom: calc(5rem * var(--tw-space-y-reverse));
     }
     .sm\:bg-formas {
-        background-image: url(../../dist/images/formas.png);
+        background-image: url(../images/Hero_Image.png);
     }
     .sm\:block {
         display: block;
@@ -1787,7 +1806,7 @@ https://flickity.metafizzy.co
 }
 
 #cronograma {
-    background-color: #dedede !important;
+    background-color: #e9d3bc !important;
 }
 
 #depoimento {
