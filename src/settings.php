@@ -10,12 +10,12 @@ return [
             'level' => Monolog\Logger::DEBUG,
             'path' => __DIR__ .DIRECTORY_SEPARATOR.'..'. DIRECTORY_SEPARATOR . 'logs'. DIRECTORY_SEPARATOR .'app.log',
         ],
-        'db'=>[
+        'db' => [
             'type' => 'mysql',
-            'host' => 'db',
-            'user' => 'user',
-            'pass' => 'password',
-            'dbname' => 'EU',
+            'host' => 'localhost', //db //localhost
+            'user' => 'root', //user  //root
+            'pass' => '', //password //''
+            'dbname' => 'eu', //EU //eu
             'port' => 3306
         ],
         'api' => 'http://n2s.russas.ufc.br:8080/digital-valley-restapi/evento/{id_evento}/trabalho'
