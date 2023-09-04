@@ -21,13 +21,16 @@
                 </div>
             </div>
         </div>
+
         <!-- Notícias -->
         <div class="w-full py-14 bg-secondary-color" id="noticias">
             {% if noticias %}
             <div class="w-9/12 h-full mx-auto bg-transparent sm:w-4/5 md:w-10/12 xl:w-10/12" id="carousel-noticias">
                 {% for noticia in noticias%}
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 noticia-item-spacing">
-                    <div class="h-32 border-2 border-dark rounded-t xl:h-40 bg-smalt-500 noticia-img" style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}');"></div>
+                    <div class="h-32 border-2 border-dark rounded-t xl:h-40 bg-smalt-500 noticia-img bg-noticia-mosaico" >                      
+                        <div class="h-32 w-10/12 noticia-img" style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2023/dist/images/banner_noticia_padrao.svg"]|join}}');"></div>
+                    </div>
                     <div class="h-32 bg-white px-2 text-center border-b-2 border-l-2 border-r-2 border-dark rounded-b xl:h-40 xl:py-1 sm:text-base md:text-base lg:text-sm xl:text-base bg-smalt-500">
                         <div class="flex items-center justify-center h-full">
                             <a class="font-bold text-dark hover:text-dark" href="{{base_url()}}/noticia/{{noticia.id}}">
@@ -40,13 +43,13 @@
             </div>
             {% else %}
             <div class="flex items-center justify-center h-32">
-                <span class="text-2xl font-semibold text-white sm:text-4xl">
+                <span class="text-2xl font-semibold text-primary-color-500 sm:text-4xl">
                     Não há notícias!
                 </span>
             </div>
 
 
-
+            <!-- style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}');" -->
 
 
             {% endif %}
@@ -89,12 +92,67 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-chocolate-500">
+                <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-primary-color-500">
                     Cronograma em breve!
                 </div>
                 {% endif %}
             </div>
         </div>
+
+        <!-- programação -->
+        <!-- <div class="programacao" id="programacao">
+            <div class="container">
+                
+                <div class="tim-title text-center cor-tit">
+                    <h1>Programação</h1>
+                </div>
+                <div class="container-caixas">
+                    <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/apresentacoes#apresentacoes">
+                                <h2 class="tituloCard">Apresentações</h2>
+
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_apresentacoes.svg" alt="Figura Menu de Apresentações" class="img-responsive imgCardAti">
+
+                                <a href="{{base_url()}}/apresentacoes#apresentacoes" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/mini_cursos#mini_cursos">
+                                <h2 class="tituloCard">Minicursos</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_minicurso.svg" alt="Figura Menu de Minicursos" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/mini_cursos#mini_cursos" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                            <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/oficinas#oficinas">
+                                <h2 class="tituloCard">Oficinas</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_oficina.svg" alt="Figura Menu de Oficinas" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/oficinas#oficinas" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/palestras#palestras">
+                                <h2 class="tituloCard">Palestras</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_palestras.svg"  alt="Figura Menu de Palestras" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/palestras#palestras" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div> 
+            </div>
+        </div> -->
 
         <!-- Depoimentos -->
         <!-- <div id="depoimento" class="flex min-h-screen bg-left bg-no-repeat bg-contain bg-maire-500 bg-depoimento">
