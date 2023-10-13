@@ -160,10 +160,31 @@ img {
     --tw-bg-opacity: 1;
     background-color: #ed5e63;
 }
+.bg-dark-olive-green {
+    --tw-bg-opacity: 1;
+    background-color: #5d6529;
+}
+.bg-orange-peel {
+    --tw-bg-opacity: 1;
+    background-color: #ef9a1f;
+}
+.bg-maximum-red {
+    --tw-bg-opacity: 1;
+    background-color: #d92c1b;
+}
+.bg-bubblegum-pink {
+    --tw-bg-opacity: 1;
+    background-color: #ed7f98;
+}
+.bg-medium-sapphire {
+    --tw-bg-opacity: 1;
+    background-color: #3459a3;
+}
 .bg-depoimento {
 }
 .bg-mosaico {
-    background-image: url(../../dist/images/Mosaico.png);
+    background-image: url(../images/Mosaico.png);
+    border: 1px solid #000;
 }
 .bg-seta {
     background-image: url(../../dist/images/seta_deslize.svg);
@@ -358,6 +379,14 @@ img {
     line-height: normal;
     font-weight: 700;
     font-family: Fraunces;
+}
+.text-inscrevase {
+    font-family: fraunces;
+    color: #000;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 .leading-tight {
     line-height: 1.25;
@@ -585,6 +614,9 @@ img {
 .w-full {
     width: 100%;
 }
+.h-10\/12 {
+    height: 90%;
+}
 .transition {
     transition-property: background-color, border-color, color, fill, stroke,
         opacity, box-shadow, transform;
@@ -782,6 +814,12 @@ html {
 .edicoes-dropdown:hover .edicoes-grupo-link {
     display: flex;
     flex-direction: column;
+}
+.edicoes-grupo-link-mobile {
+    background-color: #3e1718;
+}
+.link-mobile:hover {
+    background-color: #fff;
 }
 .fade-hover,
 a {
@@ -1042,15 +1080,24 @@ https://flickity.metafizzy.co
         order: 1;
         height: 3rem;
         width: 3rem;
+        border: 0.25rem solid #3e1718;
     }
     .timeline-block:nth-child(2n) .timeline-icon {
         margin-right: calc(5% - 24px);
     }
 }
 .timeline-icon.active {
-    background-color: #3e1718;
+    background-color: #e9d3bc;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
+
+.timeline-icon.active span {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #3e1718;
+}
+
 .timeline-icon.active,
 .timeline-icon.disabled {
     --tw-bg-opacity: 1;
@@ -1063,10 +1110,9 @@ https://flickity.metafizzy.co
     z-index: 10;
 }
 .timeline-icon.disabled {
-    background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+    background-color: #e9d3bc;
     --tw-border-opacity: 1;
     border-color: #3e1718;
-    border-width: 4px;
     color: #3e1718;
 }
 .timeline-arrow-top {
@@ -1093,6 +1139,7 @@ https://flickity.metafizzy.co
     border-width: 1px;
     flex-grow: 1;
     margin-left: 0.75rem;
+    margin-right: 0.75rem;
     padding: 0.75rem 0.75rem 1rem;
     position: relative;
 }
@@ -1408,6 +1455,9 @@ https://flickity.metafizzy.co
     }
     .sm\:w-10\/12 {
         width: 83.333333%;
+    }
+    .sm\:h-4\/5 {
+        height: 80%;
     }
     .sm\:animate-smooth-bounce {
         -webkit-animation: smooth-bounce 3s ease-in-out infinite;
@@ -1902,6 +1952,7 @@ https://flickity.metafizzy.co
         width: 120px;
         height: 120px;
         margin: 10px auto 20px auto !important;
+        border: 0.625rem solid #3e1718;
     }
 
     #depoimento .left,
@@ -2133,4 +2184,137 @@ https://flickity.metafizzy.co
 
 .edital-button:hover {
     color: #d92c1b;
+}
+
+.valores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro {
+    background-color: #5d6529;
+}
+
+#scroll-to-top {
+    position: fixed;
+    display: none;
+    bottom: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: #000;
+    border-radius: 50%;
+    font-size: 80px;
+    font-weight: bold;
+}
+
+#scroll-to-top:hover {
+    color: #fff;
+}
+
+/* Carrosel de imagens evento
+.carousel-fs {
+    height: 55vh;
+}
+@media (min-width: 640px) {
+    .carousel-fs {
+        height: 75vh;
+    }
+}
+@media (min-width: 768px) {
+    .carousel-fs {
+        height: 80vh;
+    }
+}
+@media (min-width: 1024px) {
+    .carousel-fs {
+        height: 90vh;
+    }
+}
+.carousel-fs .carousel-cell {
+    background-position: 50%;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+} */
+
+/* Carrossel de apoiadores footer */
+
+.texto-patrocinadoes {
+    color: #fff;
+    opacity: 0.9;
+    font-size: 17px;
+}
+
+.container-carousel {
+    max-width: 100vw;
+    background-color: red;
+}
+
+.container-carousel-items {
+    max-width: 85%;
+    height: 100%;
+    padding-top: 20px;
+    z-index: 1;
+    position: relative;
+
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 992px) {
+    .container-carousel-items {
+        width: 970px;
+    }
+    .col-md-12 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-carousel-items {
+        width: 750px;
+    }
+    .col-sm-12 {
+        width: 100%;
+    }
+}
+
+.owl-carousel .owl-item img {
+    height: 137px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 1200px) {
+    .container-carousel-items {
+        width: 1170px;
+    }
+    .col-lg-12 {
+        width: 100%;
+    }
+}
+
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
 }

@@ -138,6 +138,33 @@
                 Cronograma
             </a>
             <a
+                href="{{ base_url() }}/links-uteis"
+                class="block px-3 py-2 text-base font-medium text-dark uppercase focus:text-maire-500 hover:text-maire-500"
+            >
+                Links úteis
+            </a>
+            <div class="edicoes-dropdown">
+                <button
+                    class="block px-3 py-2 text-base font-medium text-dark uppercase focus:text-maire-500 hover:text-maire-500"
+                >
+                    Edições
+                    <i class="ml-2 fas fa-chevron-down fa-xs"></i>
+                </button>
+
+                <div
+                    class="absolute inset-x-0 font-semibold border-2 border-dark rounded edicoes-grupo-link bg-primary-color-500 edicoes-grupo-link-mobile"
+                >
+                    {% for ano in anos %}
+                    <a
+                        href="{{base_url()}}/ano/{{ano.id}}"
+                        class="p-1 text-white md:text-base lg:text-lg edicoes-link link-mobile"
+                    >
+                        {{ano.nome_ano}}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <a
                 href="{{ base_url() }}/editais"
                 class="block px-3 py-2 text-base font-medium uppercase border-2 rounded-full focus:border-white focus:text-white hover:text-white text-maire-500 border-maire-500"
             >
