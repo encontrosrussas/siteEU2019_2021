@@ -1086,12 +1086,12 @@ https://flickity.metafizzy.co
         margin-right: calc(5% - 24px);
     }
 }
-.timeline-icon.active {
+.timeline-icon.disabled {
     background-color: #e9d3bc;
     color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
-.timeline-icon.active span {
+.timeline-icon.disabled span {
     width: 80%;
     height: 80%;
     border-radius: 50%;
@@ -1109,7 +1109,7 @@ https://flickity.metafizzy.co
     --tw-text-opacity: 1;
     z-index: 10;
 }
-.timeline-icon.disabled {
+.timeline-icon.active {
     background-color: #e9d3bc;
     --tw-border-opacity: 1;
     border-color: #3e1718;
@@ -2211,7 +2211,6 @@ https://flickity.metafizzy.co
 #scroll-to-top:hover {
     color: #fff;
 }
-
 /* Carrosel de imagens evento
 .carousel-fs {
     height: 55vh;
@@ -2240,8 +2239,7 @@ https://flickity.metafizzy.co
     width: 100%;
 } */
 
-/* Carrossel de apoiadores footer */
-
+/* Carrossel de patrocinadores footer */
 .texto-patrocinadoes {
     color: #fff;
     opacity: 0.9;
@@ -2315,6 +2313,6 @@ https://flickity.metafizzy.co
 
 .img-responsive {
     display: block;
-    height: auto;
+    height: 180px;
     max-width: 100%;
 }
