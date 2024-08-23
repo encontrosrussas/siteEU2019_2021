@@ -1,90 +1,283 @@
 {% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
-{% block title %}Links úteis{% endblock %}
-{% block content %}
+{% block title %}Links úteis{% endblock %} {% block content %}
 <!-- Content -->
-        {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
-        <div class="h-full px-4 bg-whitesmoke-500">
-            <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
-                <div class="py-5 md:py-14 sm:py-8 xl:py-16">
-                    <h1 id="titulo" class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500">
-                        Links úteis
-                    </h1> 
-                    <div id="conteudo" class="xl:text-xl text-maire-500">
-                        <h2 style="margin-top:90px; margin-bottom:40px; font-size:30px;" class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500">MODELOS PARA ELABORAÇÃO DOS RESUMOS</h2>
-                        <div class="flex flex-col space-y-12">
+{% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+<div class="h-full px-4 bg-primary-color py-5">
+    <div
+        class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between bg-mosaico py-5 px-5"
+    >
+        <div
+            class="py-5 md:py-14 sm:py-8 xl:py-16 px-5 bg-whitesmoke-500 w-full"
+        >
+            <h1
+                id="titulo"
+                class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+            >
+                Links úteis
+            </h1>
+            <div id="conteudo" class="xl:text-xl text-maire-500">
+                <h2
+                    style="
+                        margin-top: 90px;
+                        margin-bottom: 40px;
+                        font-size: 30px;
+                    "
+                    class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+                >
+                    LINK PARA HOMOLOGAÇÃO E AVALIAÇÃO DOS RESUMOS
+                </h2>
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Simples (blind review) em ODT</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2021_ca5433c2b66ab11.odt"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div> 
+                <div class="edital py-2">
+                    <p
+                        class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                    >
+                        Sistema ZERO C
+                    </p>
+                    <a
+                        href="https://zeroc-prod.web.app/"
+                        target="_blank"
+                        class="px-3 py-2 font-semibold uppercase edital-button"
+                    >
+                        Clique aqui
+                    </a>
+                </div>
 
+                <h2
+                    style="
+                        margin-top: 90px;
+                        margin-bottom: 40px;
+                        font-size: 30px;
+                    "
+                    class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+                >
+                    MODELOS PARA ELABORAÇÃO DOS RESUMOS
+                </h2>
+                <div class="flex flex-col space-y-12">
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Resumo Simples (blind review) em ODT
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2021_ca5433c2b66ab11.odt"
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
 
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Resumo Simples (blind review) em DOCX
+                        </p>
+                        <a
+                            href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2021_41f32a005282f5c.docx"
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Simples (blind review) em DOCX</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20simples%20(blind%20review)%20-%20eu2021_41f32a005282f5c.docx"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div> 
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Resumo Simples (completo) em ODT
+                        </p>
+                        <a
+                            href="{{base_url()}}/assets/templates/2023/dist/documents/modelo de resumo simples completo - 2023.docx"
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
 
+                    <h2
+                        style="margin-top: 90px; font-size: 30px"
+                        class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500"
+                    >
+                        TEMPLATES
+                    </h2>
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Simples (completo) em ODT</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20simples%20-%20eu2021_b55b576ff81720b.odt"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div> 
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Template de Apresentação Oral para os Encontros
+                            Universitários 2023 - UFC Russas:
+                            <a
+                                href="https://www.canva.com/design/DAFyEsVr9Os/_qNdkMTn3lXUFg_bkG2KdQ/view?utm_content=DAFyEsVr9Os&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview"
+                                target="_blank"
+                                >Link</a
+                            >
+                            <br />
+                            <br />
+                            Observações:
+                            <br />
+                            <br />
+                            1. Todos as apresentações deverão seguir este
+                            layout.
+                            <br />
+                            <br />
+                            2. Clicando no link você será redirecionado para o
+                            modelo de apresentação oral no Canva, clique em
+                            "Usar modelo" e edite com as informações da sua
+                            apresentação.
+                            <br />
+                            <br />
+                            3. Recomenda-se que utilize aproximadamente 1 (um)
+                            slide por minuto, assim a apresentação deverá conter
+                            aproximadamente 10-15 (dez a quinze) slides,
+                            distribuídos de acordo com o que está no modelo.
+                            <br />
+                            <br />
+                            Qualquer dúvida entrem em contato pelo instagram dos
+                            encontros:
+                            <a
+                                href="https://www.instagram.com/euscampusrussas/"
+                                target="_blank"
+                                >@euscampusrussas</a
+                            >
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Expandido (completo) em ODT</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20expandido%20-%20eu2021_35c9350e70c4983.odt"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div>
+                            <br />
+                            <br />
+                            Atenciosamente, Equipe EUs UFC Russas.
+                        </p>
+                        <a
+                            href="https://www.canva.com/design/DAFyEsVr9Os/_qNdkMTn3lXUFg_bkG2KdQ/view?utm_content=DAFyEsVr9Os&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview
+                            "
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Expandido (completo) em DOCX</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/modelo%20de%20resumo%20expandido%20-%20eu2021_7c6c57cfa23b3c4.docx"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div>
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Template de pôster para os Encontros Universitários
+                            2023 - UFC Russas:
+                            <a
+                                href="https://www.canva.com/design/DAFuhRJ0ThQ/pEl2lzeVzcT_eJuaoUn-2g/view?utm_content=DAFuhRJ0ThQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview"
+                                target="_blank"
+                                >Link</a
+                            >
+                            <br />
+                            <br />
+                            Observações:
+                            <br />
+                            <br />
+                            1. Todos os banners deverão seguir este layout
+                            podendo ser mudada a cor e adicionada a logo do
+                            projeto ao cabeçalho apenas.
+                            <br />
+                            <br />
+                            2. Clicando no link você será redirecionado para o
+                            modelo de pôster no Canva, clique em "Usar modelo" e
+                            edite com as informações do projeto.
+                            <br />
+                            <br />
+                            3. Coloque fotos e gráficos para representar o
+                            máximo do projeto exposto.
+                            <br />
+                            <br />
+                            4. Foi deixado um espaço no cabeçalho para logo, mas
+                            também há a versão sem uso de logo.
+                            <br />
+                            <br />
+                            5. No corpo do pôster há espaço para fotos e
+                            gráficos, editem como achar necessário.
+                            <br />
+                            <br />
+                            Qualquer dúvida entrem em contato pelo instagram dos
+                            encontros:
+                            <a
+                                href="https://www.instagram.com/euscampusrussas/"
+                                target="_blank"
+                                >@euscampusrussas</a
+                            >
 
-                            <div>
-                                <p class="text-xl font-semibold uppercase text-maire-500">Resumo Expandido (completo) em TEX (pasta zipada)</p>
-                                <a
-                                    href="http://www.russas.ufc.br/uploads/docs2021/tex_template_eu_d06203db8a55550.rar"
-                                    target="_blank"
-                                    class="px-3 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white border-chocolate-500 text-chocolate-500"
-                                >
-                                Clique aqui
-                                </a>
-                            </div>
- 
-                        </div> 
+                            <br />
+                            <br />
+                            Atenciosamente, Equipe EUs UFC Russas.
+                        </p>
+                        <a
+                            href="https://www.canva.com/design/DAFuhRJ0ThQ/pEl2lzeVzcT_eJuaoUn-2g/view?utm_content=DAFuhRJ0ThQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview"
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
+                    </div>
+
+                    <div class="edital py-2">
+                        <p
+                            class="text-xl font-semibold uppercase text-maire-500 mb-3"
+                        >
+                            Template de apresentação Pitch para os Encontros
+                            Universitários 2023 - UFC Russas:
+                            <a
+                                href="https://www.canva.com/design/DAFuj4ClB0c/VypTipPXobnfA5x6YzY7KA/view?utm_content=DAFuj4ClB0c&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview"
+                                target="_blank"
+                                >Link</a
+                            >
+                            <br />
+                            <br />
+                            Observações:
+                            <br />
+                            <br />
+                            1. Todos as apresentações deverão seguir este layout
+                            podendo ser adicionada a logo do projeto ao
+                            cabeçalho apenas.
+                            <br />
+                            <br />
+                            2. Clicando no link você será redirecionado para o
+                            modelo de apresentação no Canva, clique em "Usar
+                            modelo" e edite com as informações da apresentação.
+                            <br />
+                            <br />
+                            3. Foi deixado um espaço no cabeçalho para logo mas
+                            pode ser retirado caso haja necessidade.
+                            <br />
+                            <br />
+                            Nesse modelo, os(as) participantes deverão fazer
+                            apresentações orais com duração de 3 a 5 minutos,
+                            contendo um breve relato do problema investigado,
+                            metodologia, resultados e as principais
+                            conclusões/impactos, em uma linguagem acessível.
+                            <br />
+                            <br />
+                            Qualquer dúvida entrem em contato pelo instagram dos
+                            encontros:
+                            <a
+                                href="https://www.instagram.com/euscampusrussas/"
+                                target="_blank"
+                                >@euscampusrussas</a
+                            >
+
+                            <br />
+                            <br />
+                            Atenciosamente, Equipe EUs UFC Russas.
+                        </p>
+                        <a
+                            href="https://www.canva.com/design/DAFuj4ClB0c/VypTipPXobnfA5x6YzY7KA/view?utm_content=DAFuj4ClB0c&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview"
+                            target="_blank"
+                            class="px-3 py-2 font-semibold uppercase edital-button"
+                        >
+                            Clique aqui
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 {% endblock content %}

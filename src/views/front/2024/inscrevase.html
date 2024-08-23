@@ -1,0 +1,64 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Inscreva-se{% endblock %} {% block content %}
+<!-- Content -->
+{% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+
+<div class="h-full px-4 py-5 bg-orange-quarternary-color-2024" id="inscreva_se">
+    <div class="md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between bg-mosaico py-4 px-4">
+        <div class="py-5 md:py-14 sm:py-8 xl:py-16 bg-whitesmoke-500 px-4">
+            <h1 id="titulo"
+                class="text-xl font-semibold md:text-3xl sm:text-2xl xl:text-5xl xl:font-bold text-maire-500">
+                Como fazer a inscrição no EU2024?
+            </h1>
+
+            <div class="xl:text-xl text-maire-500">
+                <p class="inline-block mt-12 text-base text-left md:text-2xl">
+                    O período de inscrição dos resumos será das
+                    <strong>08:00h</strong> do dia <strong>21/08</strong> até as
+                    <strong>23:59h</strong> do dia <strong>16/09/2024</strong>.
+                    A inscrição será realizada, exclusivamente, por via
+                    eletrônica, no endereço
+                    <a href="http://www.encontrosuniversitarios.ufc.br" class="font-bold text-maire-500"
+                        target="_blank">http://www.encontrosuniversitarios.ufc.br</a>, utilizando-se o link “Inscrição”
+                    referente ao campus de
+                    Russas e/ou pela plataforma de submissão de artigos
+                    <strong>Zero C</strong>.
+                    <br />
+                    <br />
+                    <strong>Sistema Zero C</strong>
+                    <br />
+                    <br />
+                    <a href="https://zeroc-prod.web.app/login" target="_blank"
+                        class="px-3 py-2 font-semibold uppercase edital-button">Clique aqui</a>
+                    <!-- <br /> -->
+                    <!-- <br /> -->
+                    <!-- <strong>Passo a passo para acessar o Sistema Zero C
+                        (PDF)</strong>
+                    <br /> -->
+                    <!-- <br />
+                    <a href="{{base_url()}}/assets/templates/2023/dist/documents/ADITIVO.pdf" target="_blank"
+                        class="px-3 py-2 font-semibold uppercase edital-button">Clique aqui</a> -->
+                </p>
+                <!-- <div class="my-12">
+                    <div class="my-12">
+                        <a href="http://n2s.russas.ufc.br/guardiao/" target="_blank"
+                            class="px-5 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white xl:text-2xl border-chocolate-500 text-chocolate-500">
+                            Site Zero C
+                        </a>
+                    </div>
+                </div> -->
+                <!-- 
+                <div class="my-12">
+                    <a
+                        href="http://www.russas.ufc.br/uploads/docs2021/manual%20do%20usu%C3%A1rio%20do%20sistema%20guardi%C3%A3o_d3e5caa54d3da9e.pdf"
+                        target="_blank"
+                        class="px-5 py-0 font-semibold uppercase border-2 rounded-full hover:bg-chocolate-500 hover:text-white xl:text-2xl border-chocolate-500 text-chocolate-500"
+                    >
+                        Passo a Passo para acessar o Sistema Guardião ( PDF )
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

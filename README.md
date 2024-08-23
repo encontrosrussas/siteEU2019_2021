@@ -12,3 +12,8 @@ Quando todas as alterações tiverem sido feitas e o site estiver pronto, basta 
 Hospedagem no servidor do Campus até 2022:
 
 http://200.129.62.41/encontros/
+
+
+Acesso admin
+administrador@eu.com
+12345678

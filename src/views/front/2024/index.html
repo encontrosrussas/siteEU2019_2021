@@ -1,0 +1,290 @@
+{% extends ['front/', ano_atual['nome_ano'], '/base/template-base.html']|join %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<!-- Content -->
+<div
+    class="flex flex-col bg-right-bottom bg-no-repeat sm:min-h-screen sm:bg-size-25 md:bg-size-25 lg:bg-size-3/4 bg-orange-quarternary-color-2024 sm:bg-formas">
+    {% include ['front/', ano_atual['nome_ano'], '/base/navbar.html']|join %}
+    <div class="landpage-home-container">
+        <div class="landpage-home">
+            <div>
+                <!-- <img src="{{ base_url() }}/assets/templates/2021/dist/images/assinatura_eu.svg"
+                            alt="Assinatura EU 2021" /> -->
+                <p class="text-assinatura-eu">EU 2024</p>
+                <p class="text-assinatura-eu mt-6">Nossas ideias moldam o futuro,
+                    e é aqui na universidade
+                    que elas ganham vida.</p>
+            </div>
+            <!-- {{ base_url() }}/inscrevase -->
+            <a href="{{ base_url() }}/inscrevase" class="inscrevase">
+                Inscreva-se
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Valores EU -->
+<div class="bg-blue-primary-color-2024 valores">
+    <div class="container">
+        <div class="space-100"></div>
+        <div class="tim-title text-center">
+            <h2 class="uppercase">Sobre o evento</h2>
+        </div>
+        <div class="text-justify tim-title text-center .text-nowrap">
+            <p class="text-base md:text-2xl font-normal">Os Encontros Universitários da Universidade Federal do Ceará
+                são eventos
+                acadêmicos, artísticos e culturais que promovem a integração, troca de experiências e
+                ampliação de conhecimentos entre estudantes, servidores docentes, servidores técnicos-
+                administrativos e comunidade. Eles são um dos principais eventos de divulgação científica
+                e cultural do Ceará, ocorrem anualmente e abrangem diversas áreas, como iniciação
+                científica, pesquisa, práticas docentes, empreendedorismo, extensão, cultura, inovação e
+                experiências estudantis. Nos três dias de Encontros, toda a produção acadêmica da UFC é
+                mostrada à sociedade, por meio de apresentações de trabalhos e atividades culturais. Uma
+                ampla programação de palestras, debates, oficinas, workshops e feiras também é ofertada,
+                gratuitamente, ao público.
+            </p>
+        </div>
+        <div class="space"></div>
+    </div>
+</div>
+
+<div class="bg-orange-quarternary-color-2024 valores">
+    <div class="container">
+        <div class="space-100"></div>
+        <div class="tim-title text-center">
+            <h2 class="uppercase">Objetivos</h2>
+        </div>
+        <div class="text-justify tim-title text-center .text-nowrap">
+            <p class="text-base md:text-2xl font-normal">Aproximar docentes, técnicos-administrativos, estudantes e a
+                sociedade em um
+                ambiente interdisciplinar e colaborativo, para divulgar projetos institucionais no âmbito do
+                ensino, da pesquisa, da extensão, do empreendedorismo e inovação e cultura.
+            </p>
+        </div>
+        <div class="space"></div>
+    </div>
+</div>
+
+<div class="bg-orange-secondary-color-2024 valores">
+    <div class="container">
+        <div class="space-100"></div>
+        <div class="tim-title text-center">
+            <h2 class="uppercase">Missão</h2>
+        </div>
+        <div class="text-justify tim-title text-center .text-nowrap">
+            <p class="text-base md:text-2xl font-normal">Nossa missão é estimular o potencial dos estudantes por meio
+                dos Encontros Universitários, fortalecendo conexões, ampliando o aprendizado para além da sala de aula e
+                inspirando a geração de ideias transformadoras.
+            </p>
+        </div>
+        <div class="space"></div>
+    </div>
+</div>
+
+<div class="bg-blue-primary-color-2024 valores">
+    <div class="container">
+        <div class="space-100"></div>
+        <div class="tim-title text-center">
+            <h2 class="uppercase">Visão</h2>
+        </div>
+        <div class="text-justify tim-title text-center .text-nowrap">
+            <p class="text-base md:text-2xl font-normal">Almejamos ser uma referência na educação superior, onde os
+                Encontros Universitários se tornam um terreno fértil para ideias que não só abordem as demandas atuais,
+                mas também tenham impacto positivo nas futuras gerações.
+            </p>
+        </div>
+        <div class="space"></div>
+    </div>
+</div>
+
+<div class="bg-orange-tertiary-color-2024 valores">
+    <div class="container">
+        <div class="space-100"></div>
+        <div class="tim-title text-center">
+            <h2 class="uppercase">Valores</h2>
+        </div>
+        <div class="text-justify tim-title text-center .text-nowrap">
+            <p class="text-base md:text-2xl font-normal">Valorizamos e celebramos a diversidade de experiências, origens
+                e perspectivas como um enriquecimento no processo educacional. A inclusão de todos é crucial para criar
+                um ambiente de aprendizado verdadeiramente enriquecedor.
+            </p>
+        </div>
+        <div class="space"></div>
+    </div>
+</div>
+
+<!-- Notícias -->
+<div class="w-full py-14 bg-secondary-color" id="noticias">
+    {% if noticias %}
+    <div class="w-9/12 h-full mx-auto bg-transparent sm:w-4/5 md:w-10/12 xl:w-10/12" id="carousel-noticias">
+        {% for noticia in noticias%}
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 noticia-item-spacing">
+            <div class="h-32 border-2 border-dark rounded-t xl:h-40 bg-smalt-500 noticia-img bg-noticia-mosaico">
+                <div class="h-10/12 w-10/12 noticia-img"
+                    style="background-image: url('{{ (noticia.imagem) ? [base_url()," /uploads/noticias/",
+                    noticia.imagem]|join :
+                    [base_url(),"/assets/templates/2023/dist/images/banner_noticia_padrao.svg"]|join}}');"></div>
+            </div>
+            <div
+                class="h-32 bg-white px-2 text-center border-b-2 border-l-2 border-r-2 border-dark rounded-b xl:h-40 xl:py-1 sm:text-base md:text-base lg:text-sm xl:text-base bg-smalt-500">
+                <div class="flex items-center justify-center h-full">
+                    <a class="font-bold text-dark hover:text-dark" href="{{base_url()}}/noticia/{{noticia.id}}">
+                        {{noticia.titulo}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="flex items-center justify-center h-32">
+        <span class="text-2xl font-semibold text-primary-color-500 sm:text-4xl">
+            Não há notícias!
+        </span>
+    </div>
+    <!-- style="background-image: url('{{ (noticia.imagem) ? [base_url(),"/uploads/noticias/", noticia.imagem]|join : [base_url(),"/assets/templates/2020/dist/images/banner_noticia_padrao.svg"]|join}}');" -->
+    {% endif %}
+</div>
+
+<!-- Cronograma -->
+<div id="cronograma" class="flex flex-col min-h-screen">
+    <!-- imagem topo conograma -->
+    <!-- <div class="self-center w-1/2 mt-6">
+        <img src="{{ base_url() }}/assets/templates/2023/dist/images/Logo_Cronograma.png"
+            alt="Logo pessoas com diversidades diferentes junto com logo encontros Universitários 2023" />
+    </div> -->
+
+    <div class="flex flex-col flex-1 py-4 sm:py-10 justify-evenly">
+        {% if calendario %}
+        <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-primary-color-500">
+            Cronograma
+        </div>
+
+        <div class="timeline js-timeline">
+            <div class="mx-auto sm:w-10/12 md:w-11/12 lg:w-3/4 timeline-container">
+                {% for dia in calendario %}
+                <div class="timeline-block">
+                    <div class="timeline-icon {{ dia.concluido ? 'disabled' : 'active' }}">
+                        <!-- <i class="{{dia.icone|raw}} fa-lg"></i> -->
+                        <span></span>
+                    </div>
+
+                    <div class="timeline-content">
+                        <h2>{{dia.data|raw}}</h2>
+                        <p class="py-1 text-base text-primary-color-500">
+                            {{dia.descricao|raw}}
+                        </p>
+
+                        {% if dia.link %}
+                        <div class="flex items-center justify-between">
+                            <a href="{{dia.link|raw}}" class="timeline-link">Clique aqui</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="text-2xl font-bold text-center uppercase lg:text-3xl xl:text-4xl text-primary-color-500">
+            Cronograma em breve!
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- programação -->
+<!-- <div class="programacao" id="programacao">
+            <div class="container">
+                
+                <div class="tim-title text-center cor-tit">
+                    <h1>Programação</h1>
+                </div>
+                <div class="container-caixas">
+                    <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/apresentacoes#apresentacoes">
+                                <h2 class="tituloCard">Apresentações</h2>
+
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_apresentacoes.svg" alt="Figura Menu de Apresentações" class="img-responsive imgCardAti">
+
+                                <a href="{{base_url()}}/apresentacoes#apresentacoes" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/mini_cursos#mini_cursos">
+                                <h2 class="tituloCard">Minicursos</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_minicurso.svg" alt="Figura Menu de Minicursos" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/mini_cursos#mini_cursos" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                            <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/oficinas#oficinas">
+                                <h2 class="tituloCard">Oficinas</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_oficina.svg" alt="Figura Menu de Oficinas" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/oficinas#oficinas" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 col-md-12 col-sm-12">
+                        <div class="caixa">
+                            <div class="bg-white conteudo-caixa">
+                                <a href="{{base_url()}}/palestras#palestras">
+                                <h2 class="tituloCard">Palestras</h2>
+                                <img src="{{base_url()}}/assets/templates/2023/dist/images/programacao_palestras.svg"  alt="Figura Menu de Palestras" class="img-responsive imgCardAti">
+                                <a href="{{base_url()}}/palestras#palestras" class="btn btn-secondary active color-but botaoposicao btn-caixa" role="button" aria-pressed="true">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div> 
+            </div>
+        </div> -->
+
+<!-- Depoimentos -->
+<!-- <div id="depoimento" class="flex min-h-screen bg-left bg-no-repeat bg-contain bg-maire-500 bg-depoimento">
+            <div class="background"><img src="{{ base_url() }}/assets/templates/2021/dist/images/bkgd_depoimento.png" alt="background" /></div>
+            <div class="flex flex-col items-end content-center justify-center w-full lg:px-12 xl:px-12 depoimento">
+                <div class="flex flex-col px-5 space-y-12 text-right xl:px-10 xl:p-0 xl:w-3/4">
+                    <div class="text-2xl text-dark font-extrabold uppercase sm:text-3xl lg:text-4xl">
+                        Depoimento
+                    </div>
+                    
+                    {% if depoimento %}
+                    <div class="text-lg font-medium text-dark sm:text-2xl lg:text-2xl xl:text-3xl">
+                        <div class="depoimento">
+                            {{depoimento.depoimento|raw}}
+                        </div>.depoimento-->
+<!-- </div> 
+
+                    <div class="text-lg font-extrabold text-dark sm:text-2xl lg:2xl xl:text-3xl">
+                        {{depoimento.nome_autor|raw}}
+                    </div>
+                    {% else %}
+                    <div class="text-lg font-medium text-dark sm:text-2xl lg:text-2xl xl:text-3xl">
+                        <div class="depoimento">
+                            Não há depoimentos no momento!
+                        </div>
+                        .depoimento-->
+<!-- </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div> -->
+
+
+<!-- Carousel de Fotos -->
+<div id="carousel-fs" class="carousel-fs">
+    {% for numeroFoto in 1..11 %}
+    <div class="carousel-cell" style="background-image: url({{[base_url(), "
+        /assets/templates/2020/dist/carousel/fotos/", numeroFoto, ".jpg" ]|join}})"></div>
+    {% endfor %}
+</div>
+{% endblock content %}
